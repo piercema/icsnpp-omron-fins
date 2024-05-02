@@ -1,0 +1,13 @@
+module Zeek_omron_fins;
+
+import OMRON_FINS;
+import spicy;
+
+on OMRON_FINS::Messages::%done {
+    spicy::accept_input();
+}
+
+on OMRON_FINS::Messages::%error {
+    spicy::decline_input("error parsing omron_fins message");
+}
+
