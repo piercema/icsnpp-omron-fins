@@ -14,7 +14,6 @@ event OMRON_FINS::FINS_HeaderEvt (c: connection, is_orig: bool, fins_header: OMR
 
     local info_general_log = c$omron_fins_general_log;
 
-    info_general_log$fins__header_reserved = fins_header$reserved;
     info_general_log$fins__header_gateway_count = fins_header$gateway_count;
     info_general_log$fins__header_destination_network_address = fins_header$destination_network_address;
     info_general_log$fins__header_destination_node_number = fins_header$destination_node_number;
