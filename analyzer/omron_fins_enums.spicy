@@ -1,0 +1,18 @@
+module OMRON_FINS_ENUMS;
+
+import spicy;
+
+public type DataType = enum {
+    COMMAND  = 0,
+    RESPONSE = 1
+};
+
+public type GatewayUsage = enum {
+    DONT_USE  = 0,
+    USE       = 1
+};
+
+public type ResponseSetting = enum {
+    RESPONSE_REQ     = 0,
+    RESPONSE_NOT_REQ = 1
+};

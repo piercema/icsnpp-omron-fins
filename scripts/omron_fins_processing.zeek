@@ -14,18 +14,17 @@ event OMRON_FINS::FINS_HeaderEvt (c: connection, is_orig: bool, fins_header: OMR
 
     local info_general_log = c$omron_fins_general_log;
 
-    info_general_log$fins__header_gateway_count = fins_header$gateway_count;
-    info_general_log$fins__header_destination_network_address = fins_header$destination_network_address;
-    info_general_log$fins__header_destination_node_number = fins_header$destination_node_number;
-    info_general_log$fins__header_destination_unit_address = fins_header$destination_unit_address;
-    info_general_log$fins__header_source_network_address = fins_header$source_network_address;
-    info_general_log$fins__header_source_node_number = fins_header$source_node_number;
-    info_general_log$fins__header_source_unit_address = fins_header$source_unit_address;
-    info_general_log$fins__header_service_id = fins_header$service_id;
-    info_general_log$fins__header_information_control_field_gateway = fins_header$information_control_field$gateway;
-    info_general_log$fins__header_information_control_field_data_type = fins_header$information_control_field$data_type;
-    info_general_log$fins__header_information_control_field_reserved = fins_header$information_control_field$reserved;
-    info_general_log$fins__header_information_control_field_response_setting = fins_header$information_control_field$response_setting;
+    info_general_log$icf_gateway                 = OMRON_FINS_ENUMS::GATEWAY_USAGE[fins_header$icf$gateway];
+    info_general_log$icf_data_type               = OMRON_FINS_ENUMS::DATA_TYPE[fins_header$icf$data_type];
+    info_general_log$icf_response_setting        = OMRON_FINS_ENUMS::RESPONSE_SETTING[fins_header$icf$response_setting];
+    info_general_log$gateway_count               = fins_header$gateway_count;
+    info_general_log$destination_network_address = fins_header$destination_network_address;
+    info_general_log$destination_node_number     = fins_header$destination_node_number;
+    info_general_log$destination_unit_address    = fins_header$destination_unit_address;
+    info_general_log$source_network_address      = fins_header$source_network_address;
+    info_general_log$source_node_number          = fins_header$source_node_number;
+    info_general_log$source_unit_address         = fins_header$source_unit_address;
+    info_general_log$service_id                  = fins_header$service_id;
     OMRON_FINS::emit_omron_fins_general_log(c);
 }
 
