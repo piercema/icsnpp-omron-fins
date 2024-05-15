@@ -24,6 +24,7 @@ public type FINS_Header = unit {
     source_node_number          : uint8;
     source_unit_address         : uint8;
     service_id                  : uint8;
+    command                     : uint16 &convert=OMRON_FINS_ENUMS::Command($$);
 
     on %done { print self; }
 
