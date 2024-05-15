@@ -16,3 +16,77 @@ public type ResponseSetting = enum {
     RESPONSE_REQ     = 0,
     RESPONSE_NOT_REQ = 1
 };
+
+public type Command = enum {
+
+    MEMORY_AREA_READ              = 0x0101,
+    MEMORY_AREA_WRITE             = 0x0102,
+    MEMORY_AREA_FILL              = 0x0103,
+    MULTIPLE_MEMORY_AREA_READ     = 0x0104,
+    MULTIPLE_MEMORY_AREA_TRANSFER = 0x0105,
+
+    PARAMETER_AREA_READ           = 0x0201,
+    PARAMETER_AREA_WRITE          = 0x0202,
+    PARAMETER_AREA_CLEAR          = 0x0203,
+    DATA_LINK_TABLE_READ          = 0x0220,
+    DATA_LINK_TABLE_WRITE         = 0x0221,
+
+    PROGRAM_AREA_PROTECT          = 0x0304,
+    PROGRAM_AREA_PROTECT_CLEAR    = 0x0305,
+    PROGRAM_AREA_READ             = 0x0306,
+    PROGRAM_AREA_WRITE            = 0x0307,
+    PROGRAM_AREA_CLEAR            = 0x0308,
+
+    RUN                           = 0x0401,
+    STOP                          = 0x0402,
+    RESET                         = 0x0403,
+
+    CONTROLLER_DATA_READ          = 0x0501,
+    CONNECTION_DATA_READ          = 0x0502,
+
+    CONTROLLER_STATUS_READ        = 0x0601,
+    NETWORK_STATUS_READ           = 0x0602,
+    DATA_LINK_STATUS_READ         = 0x0603,
+    CYCLE_TIME_READ               = 0x0620,
+
+    CLOCK_READ                    = 0x0701,
+    CLOCK_WRITE                   = 0x0702,
+
+    LOOP_BACK_TEST                = 0x0801,
+    BROADCAST_TEST_RESULTS_READ   = 0x0802,
+    BROADCAST_TEST_DATA_SEND      = 0x0803,
+
+    MESSAGE_READ_MESSAGE_WRITE_FAL_FALS_READ = 0x0920,
+
+    ACCESS_RIGHT_ACQUIRE          = 0x0C01,
+    ACCESS_RIGHT_FORCED_ACQUIRE   = 0x0C02,
+    ACCESS_RIGHT_RELEASE          = 0x0C03,
+
+    ERROR_CLEAR                   = 0x2101,
+    ERROR_LOG_READ                = 0x2102,
+    ERROR_LOG_CLEAR               = 0x2103,
+
+    FILE_NAME_READ                = 0x2201,
+    SINGLE_FILE_READ              = 0x2202,
+    SINGLE_FILE_WRITE             = 0x2203,
+    MEMORY_CARD_FORMAT            = 0x2204,
+    FILE_DELETE                   = 0x2205,
+    VOLUME_LABEL_CREATE_DELETE    = 0x2206,
+    FILE_COPY                     = 0x2207,
+    FILE_NAME_CHANGE              = 0x2208,
+    FILE_DATA_CHECK               = 0x2209,
+    MEMORY_AREA_FILE_TRANSER      = 0x220A,
+    PARAMETER_AREA_FILE_TRANSFER  = 0x220B,
+    PROGRAM_AREA_FILE_TRANSFER    = 0x220C,
+    FILE_MEMORY_INDEX_READ        = 0x220F,
+    FILE_MEMORY_READ              = 0x2210,
+    FILE_MEMORY_WRITE             = 0x2211,
+
+    FORCED_SET_RESET              = 0x2301,
+    FORCED_SET_RESET_CANCEL       = 0x2302,
+    MULTIPOINT_FORCED_STATUS_READ = 0x230A,
+
+    NAME_SET                      = 0x2601,
+    NAME_DELETE                   = 0x2602,
+    NAME_READ                     = 0x2603,
+};
