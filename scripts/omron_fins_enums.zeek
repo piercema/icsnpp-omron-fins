@@ -2,21 +2,54 @@ module OMRON_FINS_ENUMS;
 
 export{
 
+    #
+    # Section 1-3 Command/Response Transmission Data 
+    #   Information Control Field (ICF) Details:
+    #
+    #   Bitfield:
+    #     [7]   - Gateway usage (0: don't use; 1: use); set to 1.
+    #     [6]   - Data type (0: command; 1: response)
+    #     [5-1] - Reserved.  Set to 0.
+    #     [0]   - Response setting (0: response required; 1: response not required)
+    #
     const DATA_TYPE = {
         [OMRON_FINS_ENUMS::DataType_COMMAND]  = "Command",
         [OMRON_FINS_ENUMS::DataType_RESPONSE] = "Response"
     }&default = "Unknown";
 
+    #
+    # Section 1-3 Command/Response Transmission Data 
+    #   Information Control Field (ICF) Details:
+    #
+    #   Bitfield:
+    #     [7]   - Gateway usage (0: don't use; 1: use); set to 1.
+    #     [6]   - Data type (0: command; 1: response)
+    #     [5-1] - Reserved.  Set to 0.
+    #     [0]   - Response setting (0: response required; 1: response not required)
+    #
     const GATEWAY_USAGE = {
         [OMRON_FINS_ENUMS::GatewayUsage_DONT_USE] = "Don't Use",
         [OMRON_FINS_ENUMS::GatewayUsage_USE]      = "Use"
     }&default = "Unknown";
 
+    #
+    # Section 1-3 Command/Response Transmission Data 
+    #   Information Control Field (ICF) Details:
+    #
+    #   Bitfield:
+    #     [7]   - Gateway usage (0: don't use; 1: use); set to 1.
+    #     [6]   - Data type (0: command; 1: response)
+    #     [5-1] - Reserved.  Set to 0.
+    #     [0]   - Response setting (0: response required; 1: response not required)
+    #
     const RESPONSE_SETTING = {
         [OMRON_FINS_ENUMS::ResponseSetting_RESPONSE_REQ]     = "Response-Required",
         [OMRON_FINS_ENUMS::ResponseSetting_RESPONSE_NOT_REQ] = "Response-Not-Required"
     }&default = "Unknown";
 
+    #
+    # Appendix A: FINS Command List
+    #
     const COMMAND = {
         [OMRON_FINS_ENUMS::Command_MEMORY_AREA_READ]              = "Memory Area Read",
         [OMRON_FINS_ENUMS::Command_MEMORY_AREA_WRITE]             = "Memory Area Write",

@@ -2,21 +2,54 @@ module OMRON_FINS_ENUMS;
 
 import spicy;
 
+#
+# Section 1-3 Command/Response Transmission Data 
+#   Information Control Field (ICF) Details:
+#
+#   Bitfield:
+#     [7]   - Gateway usage (0: don't use; 1: use); set to 1.
+#     [6]   - Data type (0: command; 1: response)
+#     [5-1] - Reserved.  Set to 0.
+#     [0]   - Response setting (0: response required; 1: response not required)
+#
 public type DataType = enum {
     COMMAND  = 0,
     RESPONSE = 1
 };
 
+#
+# Section 1-3 Command/Response Transmission Data 
+#   Information Control Field (ICF) Details:
+#
+#   Bitfield:
+#     [7]   - Gateway usage (0: don't use; 1: use); set to 1.
+#     [6]   - Data type (0: command; 1: response)
+#     [5-1] - Reserved.  Set to 0.
+#     [0]   - Response setting (0: response required; 1: response not required)
+#
 public type GatewayUsage = enum {
     DONT_USE  = 0,
     USE       = 1
 };
 
+#
+# Section 1-3 Command/Response Transmission Data 
+#   Information Control Field (ICF) Details:
+#
+#   Bitfield:
+#     [7]   - Gateway usage (0: don't use; 1: use); set to 1.
+#     [6]   - Data type (0: command; 1: response)
+#     [5-1] - Reserved.  Set to 0.
+#     [0]   - Response setting (0: response required; 1: response not required)
+#
 public type ResponseSetting = enum {
     RESPONSE_REQ     = 0,
     RESPONSE_NOT_REQ = 1
 };
 
+#
+# Appendix A: FINS Command List
+#
 public type Command = enum {
 
     MEMORY_AREA_READ              = 0x0101,
