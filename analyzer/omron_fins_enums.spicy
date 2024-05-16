@@ -123,3 +123,37 @@ public type Command = enum {
     NAME_DELETE                   = 0x2602,
     NAME_READ                     = 0x2603,
 };
+
+#
+# Section 2-2 Memory Area Designations
+#
+public type MemoryArea = enum {
+    CIO_TR_CPU_BUS_LINK_AND_AUXILIARY__BIT_STATUS                  = 0x00,
+    CIO_TR_CPU_BUS_LINK_AND_AUXILIARY__BIT_STATUS_FORCED_STATUS    = 0x40,
+    CIO_TR_CPU_BUS_LINK_AND_AUXILIARY__WORD_CONTENTS               = 0x80,
+    CIO_TR_CPU_BUS_LINK_AND_AUXILIARY__WORD_CONTENTS_FORCED_STATUS = 0xC0,
+    TIMER_COUNTER__COMPLETION_FLAG_STATUS                          = 0x01,
+    TIMER_COUNTER__COMPLETION_FLAG_STATUS_FORCED_STATUS            = 0x41,
+    TIMER_COUNTER__PV                                              = 0x81,
+    DM__WORD_CONTENTS                                              = 0x82,
+
+    TRANSITION__FLAG_STATUS                                        = 0x03,
+    TRANSITION__FLAG_STATUS_FORCED_STATUS                          = 0x43,
+    STEP__FLAG_STATUS                                              = 0x04,
+    STEP__STATUS                                                   = 0x44,
+    STEP__STEP_TIME_PV                                             = 0x84,
+    FORCED_STATUS__BIT_STATUS                                      = 0x05,
+    FORCED_STATUS__WORD_CONTENTS                                   = 0x85,
+    ACTION__FLAG_STATUS                                            = 0x1B,
+    REGISTER__REGISTER_CONTENTS                                    = 0x9C,
+    INTERRUPT__SCHEDULED_INTERRUPT_INTERVAL                        = 0xDD,
+    EXPANSION_DM__WORD_CONTENTS_90                                 = 0x90,
+    EXPANSION_DM__WORD_CONTENTS_91                                 = 0x91,
+    EXPANSION_DM__WORD_CONTENTS_92                                 = 0x92,
+    EXPANSION_DM__WORD_CONTENTS_93                                 = 0x93,
+    EXPANSION_DM__WORD_CONTENTS_94                                 = 0x94,
+    EXPANSION_DM__WORD_CONTENTS_95                                 = 0x95,
+    EXPANSION_DM__WORD_CONTENTS_96                                 = 0x96,
+    EXPANSION_DM__WORD_CONTENTS_97                                 = 0x97,
+    EXPANSION_DM__WORD_CONTENTS_98                                 = 0x98,
+};

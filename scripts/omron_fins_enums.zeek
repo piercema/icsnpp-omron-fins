@@ -122,4 +122,38 @@ export{
         [OMRON_FINS_ENUMS::Command_NAME_DELETE]                   = "Name Delete",
         [OMRON_FINS_ENUMS::Command_NAME_READ]                     = "Name Read"
     }&default = "Unknown";
+
+    #
+    # Section 2-2 Memory Area Designations
+    #
+    const MEMORY_AREA = {
+        [OMRON_FINS_ENUMS::MemoryArea_CIO_TR_CPU_BUS_LINK_AND_AUXILIARY__BIT_STATUS]                  = "CIO, TR, CPU Bus Link, and Auxiliary: Bit Status (0x00)",
+        [OMRON_FINS_ENUMS::MemoryArea_CIO_TR_CPU_BUS_LINK_AND_AUXILIARY__BIT_STATUS_FORCED_STATUS]    = "CIO, TR, CPU Bus Link, and Auxiliary: Bit Status Forced Status (0x40)",
+        [OMRON_FINS_ENUMS::MemoryArea_CIO_TR_CPU_BUS_LINK_AND_AUXILIARY__WORD_CONTENTS]               = "CIO, TR, CPU Bus Link, and Auxiliary: Word Contents (0x80)",
+        [OMRON_FINS_ENUMS::MemoryArea_CIO_TR_CPU_BUS_LINK_AND_AUXILIARY__WORD_CONTENTS_FORCED_STATUS] = "CIO, TR, CPU Bus Link, and Auxiliary: Word Contents Forced Status (0x0C)",
+        [OMRON_FINS_ENUMS::MemoryArea_TIMER_COUNTER__COMPLETION_FLAG_STATUS]                          = "Timer/Counter: Completion Flag Status (0x01)",
+        [OMRON_FINS_ENUMS::MemoryArea_TIMER_COUNTER__COMPLETION_FLAG_STATUS_FORCED_STATUS]            = "Timer/Counter: Completion Flag Status Forced Status (0x41)",
+        [OMRON_FINS_ENUMS::MemoryArea_TIMER_COUNTER__PV]                                              = "Timer/Counter: PV (0x81)",
+        [OMRON_FINS_ENUMS::MemoryArea_DM__WORD_CONTENTS]                                              = "DM: Word Contents (0x82)",
+
+        [OMRON_FINS_ENUMS::MemoryArea_TRANSITION__FLAG_STATUS]                                        = "Transition: Flag Status (0x03)",
+        [OMRON_FINS_ENUMS::MemoryArea_TRANSITION__FLAG_STATUS_FORCED_STATUS]                          = "Transition: Flag Status Forced Status (0x43)",
+        [OMRON_FINS_ENUMS::MemoryArea_STEP__FLAG_STATUS]                                              = "Step: Flag Status (0x04)",
+        [OMRON_FINS_ENUMS::MemoryArea_STEP__STATUS]                                                   = "Step: Status (0x44)",
+        [OMRON_FINS_ENUMS::MemoryArea_STEP__STEP_TIME_PV]                                             = "Step: Step Time PV (0x84)",
+        [OMRON_FINS_ENUMS::MemoryArea_FORCED_STATUS__BIT_STATUS]                                      = "Forced Status: Bit Status (0x05)",
+        [OMRON_FINS_ENUMS::MemoryArea_FORCED_STATUS__WORD_CONTENTS]                                   = "Forced Status: Word Contents (0x85)",
+        [OMRON_FINS_ENUMS::MemoryArea_ACTION__FLAG_STATUS]                                            = "Action: Flag Status (0x1b)",
+        [OMRON_FINS_ENUMS::MemoryArea_REGISTER__REGISTER_CONTENTS]                                    = "Register: Register Contents (0x9C)",
+        [OMRON_FINS_ENUMS::MemoryArea_INTERRUPT__SCHEDULED_INTERRUPT_INTERVAL]                        = "Interrupt: Scheduled Interrupt Interval (0xDD)",
+        [OMRON_FINS_ENUMS::MemoryArea_EXPANSION_DM__WORD_CONTENTS_90]                                 = "Expansion DM: Word Contents, bank E0 (0x90)",
+        [OMRON_FINS_ENUMS::MemoryArea_EXPANSION_DM__WORD_CONTENTS_91]                                 = "Expansion DM: Word Contents, bank E1 (0x91)",
+        [OMRON_FINS_ENUMS::MemoryArea_EXPANSION_DM__WORD_CONTENTS_92]                                 = "Expansion DM: Word Contents, bank E2 (0x92)",
+        [OMRON_FINS_ENUMS::MemoryArea_EXPANSION_DM__WORD_CONTENTS_93]                                 = "Expansion DM: Word Contents, bank E3 (0x93)",
+        [OMRON_FINS_ENUMS::MemoryArea_EXPANSION_DM__WORD_CONTENTS_94]                                 = "Expansion DM: Word Contents, bank E4 (0x94)",
+        [OMRON_FINS_ENUMS::MemoryArea_EXPANSION_DM__WORD_CONTENTS_95]                                 = "Expansion DM: Word Contents, bank E5 (0x95)",
+        [OMRON_FINS_ENUMS::MemoryArea_EXPANSION_DM__WORD_CONTENTS_96]                                 = "Expansion DM: Word Contents, bank E6 (0x96)",
+        [OMRON_FINS_ENUMS::MemoryArea_EXPANSION_DM__WORD_CONTENTS_97]                                 = "Expansion DM: Word Contents, bank E7 (0x97)",
+        [OMRON_FINS_ENUMS::MemoryArea_EXPANSION_DM__WORD_CONTENTS_98]                                 = "Expansion DM: Word Contents, current bank (0x98)",
+    }&default = "Unknown";
 }
