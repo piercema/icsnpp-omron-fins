@@ -50,7 +50,7 @@ public type ResponseSetting = enum {
 #
 # Appendix A: FINS Command List
 #
-public type Command = enum {
+public type CommandCode = enum {
 
     MEMORY_AREA_READ              = 0x0101,
     MEMORY_AREA_WRITE             = 0x0102,

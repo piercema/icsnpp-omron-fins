@@ -25,7 +25,7 @@ event OMRON_FINS::FINS_HeaderEvt (c: connection, is_orig: bool, fins_header: OMR
     info_general_log$source_node_number          = fins_header$source_node_number;
     info_general_log$source_unit_address         = fins_header$source_unit_address;
     info_general_log$service_id                  = fins_header$service_id;
-    info_general_log$command                     = OMRON_FINS_ENUMS::COMMAND[fins_header$command];
+    info_general_log$command_code                = OMRON_FINS_ENUMS::COMMAND[fins_header$command_code];
     OMRON_FINS::emit_omron_fins_general_log(c);
 }
 
