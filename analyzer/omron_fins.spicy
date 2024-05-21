@@ -27,6 +27,43 @@ public type FINS_Header = unit {
     service_id                  : uint8  &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
     command_code                : uint16 &convert=OMRON_FINS_ENUMS::CommandCode($$);
 
+    switch(self.command_code) {
+        OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_READ          -> memory_area_read_cmd         : MemoryAreaRead(self.icf.data_type);
+        OMRON_FINS_ENUMS::CommandCode::MULTIPLE_MEMORY_AREA_READ -> multiple_memory_area_read_cmd: MultipleMemoryAreaRead(self.icf.data_type);
+    };
+
     on %done { print self; }
 
+};
+
+#
+# MemoryAreaRead
+#
+type MemoryAreaRead = unit(data_type: OMRON_FINS_ENUMS::DataType) {
+    switch(data_type) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : MemoryAreaRead_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: MemoryAreaRead_Response();
+    };
+};
+
+type MemoryAreaRead_Command = unit {
+};
+
+type MemoryAreaRead_Response = unit {
+};
+
+#
+# MultipleMemoryAreaRead
+#
+type MultipleMemoryAreaRead = unit(data_type: OMRON_FINS_ENUMS::DataType) {
+    switch(data_type) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : MultipleMemoryAreaRead_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: MultipleMemoryAreaRead_Response();
+    };
+};
+
+type MultipleMemoryAreaRead_Command = unit {
+};
+
+type MultipleMemoryAreaRead_Response = unit {
 };
