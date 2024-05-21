@@ -16,7 +16,7 @@ export {
         source_network_address      : count   &log &optional;
         source_node_number          : count   &log &optional;
         source_unit_address         : count   &log &optional;
-        service_id                  : count   &log &optional;
+        service_id                  : string   &log &optional;
         command                     : string  &log &optional;
     };
 

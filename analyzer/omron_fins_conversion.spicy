@@ -1,5 +1,0 @@
-module OMRON_FINS_CONVERSION;
-
-public function generateId() : string &cxxname="OMRON_FINS_CONVERSION::generateId";
-
-

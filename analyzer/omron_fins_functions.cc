@@ -5,7 +5,7 @@
 #include <hilti/rt/libhilti.h>
 #include <spicy/rt/libspicy.h>
 
-namespace OMRON_FINS_CONVERSION
+namespace OMRON_FINS_FUNCTIONS
 {
     #define ID_LEN 9
     
