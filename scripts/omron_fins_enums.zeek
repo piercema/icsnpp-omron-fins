@@ -156,4 +156,109 @@ export{
         [OMRON_FINS_ENUMS::MemoryArea_EXPANSION_DM__WORD_CONTENTS_97]                                 = "Expansion DM: Word Contents, bank E7 (0x97)",
         [OMRON_FINS_ENUMS::MemoryArea_EXPANSION_DM__WORD_CONTENTS_98]                                 = "Expansion DM: Word Contents, current bank (0x98)",
     }&default = "Unknown";
+
+    #
+    # Section 8-3 Response Code
+    #
+    const RESPONSE_CODE = {
+        [OMRON_FINS_ENUMS::ResponseCode_NORMAL_COMPLETION]                                             = "Normal completion (0x0000)",
+        [OMRON_FINS_ENUMS::ResponseCode_SERVICE_WAS_INTERRUPTED]                                       = "Service was interrupted (0x0001)",
+        [OMRON_FINS_ENUMS::ResponseCode_LOCAL_NODE_NOT_PART_OF_NETWORK]                                = "Local node not part of Network (0x0101)",
+        [OMRON_FINS_ENUMS::ResponseCode_TOKEN_TIMEOUT_NODE_NUMBER_TOO_LARGE]                           = "Token time-out, node number to large (0x0102)",
+        [OMRON_FINS_ENUMS::ResponseCode_NUMVER_OF_TRANSMIT_RETRIES_EXCEEDED]                           = "Number of transmit retries exceeded (0x0103)",
+        [OMRON_FINS_ENUMS::ResponseCode_MAXIMUM_NUMBER_OF_FRAMES_EXCEEDED]                             = "Maximum number of frames exceeded (0x0104)",
+        [OMRON_FINS_ENUMS::ResponseCode_NODE_NUMBER_SETTING_ERROR_RANGE]                               = "Node number setting error (range) (0x0105)",
+        [OMRON_FINS_ENUMS::ResponseCode_NODE_NUMBER_DUPLICATION_ERROR]                                 = "Node number duplication error (0x0106)",
+
+        [OMRON_FINS_ENUMS::ResponseCode_DESTINATION_NODE_NOT_PART_OF_NETWORK]                          = "Destination node not part of Network (0x0201)",
+        [OMRON_FINS_ENUMS::ResponseCode_NO_NODE_WITH_SPECIFIED_NODE_NUMBER]                            = "No node with the specified node number (0x0202)",
+        [OMRON_FINS_ENUMS::ResponseCode_THIRD_NODE_NOT_PART_OF_NETWORK_BROADCASTING_WAS_SPECIFIED]     = "Third node not part of Network ",
+        [OMRON_FINS_ENUMS::ResponseCode_BUSY_ERROR_DESTINATION_NODE_BUSY]                              = "Busy error, destination node busy (0x0204)",
+        [OMRON_FINS_ENUMS::ResponseCode_RESPONSE_TIMEOUT]                                              = "Response time-out (0x0205)",
+
+        [OMRON_FINS_ENUMS::ResponseCode_ERROR_OCCURRED_ERC_INDICATOR_IS_LIT]                           = "Error occurred (0x0301)",
+        [OMRON_FINS_ENUMS::ResponseCode_CPU_ERROR_OCCURRED_IN_PC_AT_DETINATION_NODE]                   = "CPU error occurred in the PC at the destination node (0x0302)",
+        [OMRON_FINS_ENUMS::ResponseCode_CONTROLLER_ERROR_HAS_PREVENTED_NORMAL_RESPONSE]                = "A controller error has prevented a normal response (0x0303)",
+        [OMRON_FINS_ENUMS::ResponseCode_NODE_NUMBER_SETTING_ERROR]                                     = "Node number setting error (0x0304)",
+
+        [OMRON_FINS_ENUMS::ResponseCode_UNDEFINED_COMMAND_USED]                                        = "An undefined command has been used (0x0401)",
+        [OMRON_FINS_ENUMS::ResponseCode_SPECIFIED_MODEL_OR_VERSION_WRONG]                              = "Cannot process command because the specified unit model or version is wrong (0x0402)",
+
+        [OMRON_FINS_ENUMS::ResponseCode_DESTINATION_NODE_NUMBER_NOT_SET_IN_ROUTING_TABLE]              = "Destination node number is not set in the routing table (0x0501)",
+        [OMRON_FINS_ENUMS::ResponseCode_ROUTING_TABLE_NOT_REGISTERED]                                  = "Routing table isn't registered (0x0502)",
+        [OMRON_FINS_ENUMS::ResponseCode_ROUTING_TABLE_ERROR]                                           = "Routing table error (0x0503)",
+        [OMRON_FINS_ENUMS::ResponseCode_MAX_RELAY_NODES_EXCEEDED]                                      = "Max relay nodes (2) was exceeded (0x0504)",
+
+        [OMRON_FINS_ENUMS::ResponseCode_COMMAND_LONGER_THAN_MAX_LENGTH]                                = "The command is longer than the max permissible length (0x1001)",
+        [OMRON_FINS_ENUMS::ResponseCode_COMMAND_SHORTER_THAN_MIN_LENGTH]                               = "The command is shorter than the min permissible length (0x1002)",
+        [OMRON_FINS_ENUMS::ResponseCode_NUMBER_OF_DATA_ITEMS_DIFFERS_FROM_ACTUAL_NUMBER]               = "The designated number of data items differs from the actual number (0x1003)",
+        [OMRON_FINS_ENUMS::ResponseCode_INCORRECT_COMMAND_FORMAT]                                      = "An incorrect command format has been used (0x1004)",
+        [OMRON_FINS_ENUMS::ResponseCode_INCORRECT_HEADER_USED]                                         = "An incorrect header has been used (0x1005)",
+
+        [OMRON_FINS_ENUMS::ResponseCode_MEMORY_AREA_CODE_INVALID_OR_DM_NOT_AVAILABLE]                  = "Memory area code invalid or DM is not available (0x1101)",
+        [OMRON_FINS_ENUMS::ResponseCode_ACCESS_SIZE_IS_WRONG_IN_COMMAND]                               = "Access size is wrong in command (0x1102)",
+        [OMRON_FINS_ENUMS::ResponseCode_FIRST_ADDRESS_IN_INACCESSIBLE_AREA]                            = "First address in inaccessible area (0x1103)",
+        [OMRON_FINS_ENUMS::ResponseCode_END_SPECIFIED_WORD_RANGE_EXCEEDS_ACCEPTABLE_RANGE]             = "The end of specified word range exceeds acceptable range (0x1104)",
+        [OMRON_FINS_ENUMS::ResponseCode_PARAMETER_NON_EXISTENT_PROGRAM_NUMBER]                         = "A non-existent program number (0x1106)",
+        [OMRON_FINS_ENUMS::ResponseCode_SIZES_OF_DATA_ITEMS_IN_COMMAND_BLOCK_WRONG]                    = "The size of data items in command block are wrong (0x1109)",
+        [OMRON_FINS_ENUMS::ResponseCode_IOM_BREAK_FUNCTION_CANNOT_EXECUTE]                             = "The IOM break function cannot be executed (0x110a)",
+        [OMRON_FINS_ENUMS::ResponseCode_RESPONSE_BLOCK_IS_LONGER_THAN_MAX_LENGTH]                      = "The response block is longer than the max length (0x110b)",
+        [OMRON_FINS_ENUMS::ResponseCode_INCORRECT_PARAMETER_CODE_SPECIFIED]                            = "An incorrect parameter code has been specified (0x110c)",
+
+        [OMRON_FINS_ENUMS::ResponseCode_READ_DATA_IS_PROTECTED]                                        = "The data is protected (0x2002)",
+        [OMRON_FINS_ENUMS::ResponseCode_READ_REGISTERED_TABLE_DOES_NOT_EXIST]                          = "Registered table does not exist (0x2003)",
+        [OMRON_FINS_ENUMS::ResponseCode_READ_SEARCH_DATA_DOES_NOT_EXIST]                               = "Search data does not exist (0x2004)",
+        [OMRON_FINS_ENUMS::ResponseCode_READ_NON_EXISTENT_PROGRAM_NUMBER]                              = "Non-existent program number (0x2005)",
+        [OMRON_FINS_ENUMS::ResponseCode_READ_NON_EXISTENT_FILE]                                        = "Non-existent file (0x2006)",
+        [OMRON_FINS_ENUMS::ResponseCode_READ_VERIFICATION_ERROR]                                       = "Verification error (0x2007)",
+
+        [OMRON_FINS_ENUMS::ResponseCode_WRITE_SPECIFIED_AREA_READ_ONLY]                                = "Specified area is read-only (0x2101)",
+        [OMRON_FINS_ENUMS::ResponseCode_WRITE_DATA_PROTECTED]                                          = "The data is protected (0x2102)",
+        [OMRON_FINS_ENUMS::ResponseCode_WRITE_TOO_MANY_FILES_OPEN]                                     = "Too many files open (0x2103)",
+        [OMRON_FINS_ENUMS::ResponseCode_WRITE_NON_EXISTENT_PROGRAM_NUMBER]                             = "Non-existent program number (0x2105)",
+        [OMRON_FINS_ENUMS::ResponseCode_WRITE_NON_EXISTENT_FILE]                                       = "Non-existent file (0x2106)",
+        [OMRON_FINS_ENUMS::ResponseCode_WRITE_NON_FILE_EXISTS]                                         = "File already exists (0x2107)",
+        [OMRON_FINS_ENUMS::ResponseCode_WRITE_DATA_CANNONT_BE_CHANGED]                                 = "Data cannot be changed (0x2108)",
+
+        [OMRON_FINS_ENUMS::ResponseCode_MODE_IS_WRONG_EXECUTING]                                       = "The mode is wrong (executing) (0x2201)",
+        [OMRON_FINS_ENUMS::ResponseCode_MODE_IS_WRONG_STOPPED]                                         = "The mode is wrong (stopped) (0x2202)",
+        [OMRON_FINS_ENUMS::ResponseCode_PC_IN_PROGRAM_MODE]                                            = "The PC is in the PROGRAM mode (0x2203)",
+        [OMRON_FINS_ENUMS::ResponseCode_PC_IN_DEBUG_MODE]                                              = "The PC is in the DEBUG mode (0x2204)",
+        [OMRON_FINS_ENUMS::ResponseCode_PC_IN_MONITOR_MODE]                                            = "The PC is in the MONITOR mode (0x2205)",
+        [OMRON_FINS_ENUMS::ResponseCode_PC_IN_RUN_MODE]                                                = "The PC is in the RUN mode (0x2206)",
+        [OMRON_FINS_ENUMS::ResponseCode_SPECIFIED_NODE_IS_NOT_CONTROL_NODE]                            = "The specified node is not the control node (0x2207)",
+        [OMRON_FINS_ENUMS::ResponseCode_MODE_IS_WRONG_STEP_CANNOT_EXECUTE]                             = "The mode is wrong and the step cannot be executed (0x2208)",
+
+        [OMRON_FINS_ENUMS::ResponseCode_FILE_DEVICE_DOES_NOT_EXIST_WHERE_SPECIFIED]                    = "The file device does not exist where specified (0x2301)",
+        [OMRON_FINS_ENUMS::ResponseCode_SPECIFIED_MEMORY_DOES_NOT_EXIST]                               = "The specified memory does not exist (0x2302)",
+        [OMRON_FINS_ENUMS::ResponseCode_NO_CLOCK_EXISTS]                                               = "No clock exists (0x2303)",
+        [OMRON_FINS_ENUMS::ResponseCode_DATA_LINK_TABLE_IS_INCORRECT]                                  = "Data link table is incorrect (0x2401)",
+
+        [OMRON_FINS_ENUMS::ResponseCode_PARITY_CHECKSUM_ERROR_OCCURRED]                                = "Parity / checksum error occurred (0x2502)",
+        [OMRON_FINS_ENUMS::ResponseCode_IO_SETTING_ERROR]                                              = "I/O setting error (0x2503)",
+        [OMRON_FINS_ENUMS::ResponseCode_TO_MANY_IO_POINTS]                                             = "Too many I/O points (0x2504)",
+        [OMRON_FINS_ENUMS::ResponseCode_CPU_BUS_ERROR]                                                 = "CPU bus error (0x2505)",
+        [OMRON_FINS_ENUMS::ResponseCode_IO_DUPLICATION_ERROR]                                          = "I/O duplication error (0x2506)",
+        [OMRON_FINS_ENUMS::ResponseCode_IO_BUS_ERROR]                                                  = "I/O bus error (0x2507)",
+        [OMRON_FINS_ENUMS::ResponseCode_SYSMCA_BUS_2_ERROR]                                            = "SYSMAC BUS/2 error (0x2509)",
+        [OMRON_FINS_ENUMS::ResponseCode_SPECIAL_IO_UNIT_ERROR]                                         = "Special I/O Unit error (0x250a)",
+        [OMRON_FINS_ENUMS::ResponseCode_DUPLICATION_SYSMAC_BUS_WORD_ALLOCATION]                        = "Duplication in SYSMAC BUS word allocation (0x250d)",
+        [OMRON_FINS_ENUMS::ResponseCode_MEMORY_ERROR_HAS_OCCURRED]                                     = "A memory error has occurred (0x250f)",
+        [OMRON_FINS_ENUMS::ResponseCode_TERMINATOR_NOT_CONNECTED_IN_SYSMAC_BUS_SYSTEM]                 = "Terminator not connected in SYSMAC BUS system (0x2510)",
+
+        [OMRON_FINS_ENUMS::ResponseCode_SPECIFIED_AREA_NOT_PROTECTED]                                  = "The specified area is not protected (0x2601)",
+        [OMRON_FINS_ENUMS::ResponseCode_INCORRECT_PASSWORD_SPECIFIED]                                  = "An incorrect password has been specified (0x2602)",
+        [OMRON_FINS_ENUMS::ResponseCode_SPECIFIED_AREA_IS_PROTECTED]                                   = "The specified area is protected (0x2604)",
+        [OMRON_FINS_ENUMS::ResponseCode_SERVICE_IS_BEING_EXECUTED]                                     = "The service is being executed (0x2605)",
+        [OMRON_FINS_ENUMS::ResponseCode_SERVICE_IS_NOT_BEING_EXECUTED]                                 = "The service is not being executed (0x2606)",
+        [OMRON_FINS_ENUMS::ResponseCode_SERVICE_CANNOT_BE_EXECUTED_FROM_LOCAL_NODE]                    = "Service cannot be execute from local node (0x2607)",
+        [OMRON_FINS_ENUMS::ResponseCode_SERVICE_CANNOT_BE_EXECUTED_SETTINGS_INCORRECT]                 = "Service cannot be executed settings are incorrect (0x2608)",
+        [OMRON_FINS_ENUMS::ResponseCode_SERVICE_CANNOT_BE_EXECUTED_INCORRECT_SETTINGS_IN_COMMAND_DATA] = "Service cannot be executed incorrect settings in command data (0x2609)",
+        [OMRON_FINS_ENUMS::ResponseCode_SPECIFIED_ACTION_ALREADY_REGISTERED]                           = "The specified action has already been registered (0x260a)",
+        [OMRON_FINS_ENUMS::ResponseCode_CANNOT_CLEAR_ERROR_ERROR_STILL_EXISTS]                         = "Cannot clear error, error still exists (0x260b)",
+
+        [OMRON_FINS_ENUMS::ResponseCode_ACCESS_RIGHT_HELD_BY_ANOTHER_DEVICE]                           = "The access right is held by another device (0x3001)",
+
+        [OMRON_FINS_ENUMS::ResponseCode_COMMAND_ABORTED_WITH_ABORT_COMMAND]                            = "Command aborted with ABORT command (0x4001)",
+    }&default = "Unknown";
 }
