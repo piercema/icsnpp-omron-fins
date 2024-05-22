@@ -159,7 +159,7 @@ public type MemoryArea = enum {
 };
 
 #
-# Section 8-3 Resonse Codes
+# Section 8-3 Response Codes
 #
 public type ResponseCode = enum {
     NORMAL_COMPLETION                                            = 0x0000,
