@@ -13,8 +13,8 @@ export{
     #     [0]   - Response setting (0: response required; 1: response not required)
     #
     const DATA_TYPE = {
-        [OMRON_FINS_ENUMS::DataType_COMMAND]  = "Command",
-        [OMRON_FINS_ENUMS::DataType_RESPONSE] = "Response"
+        [OMRON_FINS_ENUMS::DataType_COMMAND]  = "Command (0)",
+        [OMRON_FINS_ENUMS::DataType_RESPONSE] = "Response (1)"
     }&default = "Unknown";
 
     #
@@ -28,8 +28,8 @@ export{
     #     [0]   - Response setting (0: response required; 1: response not required)
     #
     const GATEWAY_USAGE = {
-        [OMRON_FINS_ENUMS::GatewayUsage_DONT_USE] = "Don't Use",
-        [OMRON_FINS_ENUMS::GatewayUsage_USE]      = "Use"
+        [OMRON_FINS_ENUMS::GatewayUsage_DONT_USE] = "Don't Use (0)",
+        [OMRON_FINS_ENUMS::GatewayUsage_USE]      = "Use (1)"
     }&default = "Unknown";
 
     #
@@ -43,84 +43,84 @@ export{
     #     [0]   - Response setting (0: response required; 1: response not required)
     #
     const RESPONSE_SETTING = {
-        [OMRON_FINS_ENUMS::ResponseSetting_RESPONSE_REQ]     = "Response-Required",
-        [OMRON_FINS_ENUMS::ResponseSetting_RESPONSE_NOT_REQ] = "Response-Not-Required"
+        [OMRON_FINS_ENUMS::ResponseSetting_RESPONSE_REQ]     = "Response-Required (0)",
+        [OMRON_FINS_ENUMS::ResponseSetting_RESPONSE_NOT_REQ] = "Response-Not-Required (1)"
     }&default = "Unknown";
 
     #
     # Appendix A: FINS Command List
     #
     const COMMAND = {
-        [OMRON_FINS_ENUMS::CommandCode_MEMORY_AREA_READ]              = "Memory Area Read",
-        [OMRON_FINS_ENUMS::CommandCode_MEMORY_AREA_WRITE]             = "Memory Area Write",
-        [OMRON_FINS_ENUMS::CommandCode_MEMORY_AREA_FILL]              = "Memory Area Fill",
-        [OMRON_FINS_ENUMS::CommandCode_MULTIPLE_MEMORY_AREA_READ]     = "Multiple Memory Area Read",
-        [OMRON_FINS_ENUMS::CommandCode_MULTIPLE_MEMORY_AREA_TRANSFER] = "Multiple Memory Area Transfer",
+        [OMRON_FINS_ENUMS::CommandCode_MEMORY_AREA_READ]              = "Memory Area Read (0x0101)",
+        [OMRON_FINS_ENUMS::CommandCode_MEMORY_AREA_WRITE]             = "Memory Area Write (0x0102)",
+        [OMRON_FINS_ENUMS::CommandCode_MEMORY_AREA_FILL]              = "Memory Area Fill (0x0103)",
+        [OMRON_FINS_ENUMS::CommandCode_MULTIPLE_MEMORY_AREA_READ]     = "Multiple Memory Area Read (0x0104)",
+        [OMRON_FINS_ENUMS::CommandCode_MULTIPLE_MEMORY_AREA_TRANSFER] = "Multiple Memory Area Transfer (0x0105)",
 
-        [OMRON_FINS_ENUMS::CommandCode_PARAMETER_AREA_READ]           = "Parameter Area Read",
-        [OMRON_FINS_ENUMS::CommandCode_PARAMETER_AREA_WRITE]          = "Parameter Area Write",
-        [OMRON_FINS_ENUMS::CommandCode_PARAMETER_AREA_CLEAR]          = "Parameter Area Clear",
-        [OMRON_FINS_ENUMS::CommandCode_DATA_LINK_TABLE_READ]          = "Data Link Table Read",
-        [OMRON_FINS_ENUMS::CommandCode_DATA_LINK_TABLE_WRITE]         = "Data Link Table Write",
+        [OMRON_FINS_ENUMS::CommandCode_PARAMETER_AREA_READ]           = "Parameter Area Read (0x0201)",
+        [OMRON_FINS_ENUMS::CommandCode_PARAMETER_AREA_WRITE]          = "Parameter Area Write (0x0202)",
+        [OMRON_FINS_ENUMS::CommandCode_PARAMETER_AREA_CLEAR]          = "Parameter Area Clear (0x0203)",
+        [OMRON_FINS_ENUMS::CommandCode_DATA_LINK_TABLE_READ]          = "Data Link Table Read (0x0220)",
+        [OMRON_FINS_ENUMS::CommandCode_DATA_LINK_TABLE_WRITE]         = "Data Link Table Write (0x0221)",
 
-        [OMRON_FINS_ENUMS::CommandCode_PROGRAM_AREA_PROTECT]          = "Program Area Protect",
-        [OMRON_FINS_ENUMS::CommandCode_PROGRAM_AREA_PROTECT_CLEAR]    = "Program Area Protect Clear",
-        [OMRON_FINS_ENUMS::CommandCode_PROGRAM_AREA_READ]             = "Program Area Read",
-        [OMRON_FINS_ENUMS::CommandCode_PROGRAM_AREA_WRITE]            = "Program Area Write",
-        [OMRON_FINS_ENUMS::CommandCode_PROGRAM_AREA_CLEAR]            = "Program Area Clear",
+        [OMRON_FINS_ENUMS::CommandCode_PROGRAM_AREA_PROTECT]          = "Program Area Protect (0x0301)",
+        [OMRON_FINS_ENUMS::CommandCode_PROGRAM_AREA_PROTECT_CLEAR]    = "Program Area Protect Clear (0x0302)",
+        [OMRON_FINS_ENUMS::CommandCode_PROGRAM_AREA_READ]             = "Program Area Read (0x0303)",
+        [OMRON_FINS_ENUMS::CommandCode_PROGRAM_AREA_WRITE]            = "Program Area Write (0x0304)",
+        [OMRON_FINS_ENUMS::CommandCode_PROGRAM_AREA_CLEAR]            = "Program Area Clear (0x0305)",
 
-        [OMRON_FINS_ENUMS::CommandCode_RUN]                           = "Run",
-        [OMRON_FINS_ENUMS::CommandCode_STOP]                          = "Stop",
-        [OMRON_FINS_ENUMS::CommandCode_RESET]                         = "Reset",
+        [OMRON_FINS_ENUMS::CommandCode_RUN]                           = "Run (0x0401)",
+        [OMRON_FINS_ENUMS::CommandCode_STOP]                          = "Stop (0x0402)",
+        [OMRON_FINS_ENUMS::CommandCode_RESET]                         = "Reset (0x0403)",
 
-        [OMRON_FINS_ENUMS::CommandCode_CONTROLLER_DATA_READ]          = "Controller Data Read",
-        [OMRON_FINS_ENUMS::CommandCode_CONNECTION_DATA_READ]          = "Connection Data Read",
+        [OMRON_FINS_ENUMS::CommandCode_CONTROLLER_DATA_READ]          = "Controller Data Read (0x0501)",
+        [OMRON_FINS_ENUMS::CommandCode_CONNECTION_DATA_READ]          = "Connection Data Read (0x0502)",
 
-        [OMRON_FINS_ENUMS::CommandCode_CONTROLLER_STATUS_READ]        = "Controller Status Read",
-        [OMRON_FINS_ENUMS::CommandCode_NETWORK_STATUS_READ]           = "Network Status Read" ,
-        [OMRON_FINS_ENUMS::CommandCode_DATA_LINK_STATUS_READ]         = "Data Link Status Read",
-        [OMRON_FINS_ENUMS::CommandCode_CYCLE_TIME_READ]               = "Cycle Time Read",
+        [OMRON_FINS_ENUMS::CommandCode_CONTROLLER_STATUS_READ]        = "Controller Status Read (0x0601)",
+        [OMRON_FINS_ENUMS::CommandCode_NETWORK_STATUS_READ]           = "Network Status Read (0x0602)" ,
+        [OMRON_FINS_ENUMS::CommandCode_DATA_LINK_STATUS_READ]         = "Data Link Status Read (0x0603)",
+        [OMRON_FINS_ENUMS::CommandCode_CYCLE_TIME_READ]               = "Cycle Time Read (0x0620)",
 
-        [OMRON_FINS_ENUMS::CommandCode_CLOCK_READ]                    = "Clock Read",
-        [OMRON_FINS_ENUMS::CommandCode_CLOCK_WRITE]                   = "Clock Write",
+        [OMRON_FINS_ENUMS::CommandCode_CLOCK_READ]                    = "Clock Read (0x0701)",
+        [OMRON_FINS_ENUMS::CommandCode_CLOCK_WRITE]                   = "Clock Write (0x0702)",
 
-        [OMRON_FINS_ENUMS::CommandCode_LOOP_BACK_TEST]                = "Loop Back Test",
-        [OMRON_FINS_ENUMS::CommandCode_BROADCAST_TEST_RESULTS_READ]   = "Broadcast Test Results Read",
-        [OMRON_FINS_ENUMS::CommandCode_BROADCAST_TEST_DATA_SEND]      = "Broadcast Test Data Send" ,
+        [OMRON_FINS_ENUMS::CommandCode_LOOP_BACK_TEST]                = "Loop Back Test (0x0801)",
+        [OMRON_FINS_ENUMS::CommandCode_BROADCAST_TEST_RESULTS_READ]   = "Broadcast Test Results Read (0x0802)",
+        [OMRON_FINS_ENUMS::CommandCode_BROADCAST_TEST_DATA_SEND]      = "Broadcast Test Data Send (0x0803)" ,
 
-        [OMRON_FINS_ENUMS::CommandCode_MESSAGE_READ_MESSAGE_WRITE_FAL_FALS_READ] = "Message Read | Message Clear | FAL/FALS Read",
+        [OMRON_FINS_ENUMS::CommandCode_MESSAGE_READ_MESSAGE_WRITE_FAL_FALS_READ] = "Message Read | Message Clear | FAL/FALS Read (0x0920)",
 
-        [OMRON_FINS_ENUMS::CommandCode_ACCESS_RIGHT_ACQUIRE]          = "Access Right Acquire",
-        [OMRON_FINS_ENUMS::CommandCode_ACCESS_RIGHT_FORCED_ACQUIRE]   = "Access Right Forced Acquire",
-        [OMRON_FINS_ENUMS::CommandCode_ACCESS_RIGHT_RELEASE]          = "Access Right Release",
+        [OMRON_FINS_ENUMS::CommandCode_ACCESS_RIGHT_ACQUIRE]          = "Access Right Acquire (0x0C01)",
+        [OMRON_FINS_ENUMS::CommandCode_ACCESS_RIGHT_FORCED_ACQUIRE]   = "Access Right Forced Acquire (0x0C02)",
+        [OMRON_FINS_ENUMS::CommandCode_ACCESS_RIGHT_RELEASE]          = "Access Right Release (0x0C03)",
 
-        [OMRON_FINS_ENUMS::CommandCode_ERROR_CLEAR]                   = "Error Clear",
-        [OMRON_FINS_ENUMS::CommandCode_ERROR_LOG_READ]                = "Error Log Read",
-        [OMRON_FINS_ENUMS::CommandCode_ERROR_LOG_CLEAR]               = "Error Log Clear",
+        [OMRON_FINS_ENUMS::CommandCode_ERROR_CLEAR]                   = "Error Clear (0x2101)",
+        [OMRON_FINS_ENUMS::CommandCode_ERROR_LOG_READ]                = "Error Log Read (0x2102)",
+        [OMRON_FINS_ENUMS::CommandCode_ERROR_LOG_CLEAR]               = "Error Log Clear (0x2103)",
 
-        [OMRON_FINS_ENUMS::CommandCode_FILE_NAME_READ]                = "File Name Read",
-        [OMRON_FINS_ENUMS::CommandCode_SINGLE_FILE_READ]              = "Single File Name Read",
-        [OMRON_FINS_ENUMS::CommandCode_SINGLE_FILE_WRITE]             = "Single File Name Write",
-        [OMRON_FINS_ENUMS::CommandCode_MEMORY_CARD_FORMAT]            = "Memory Card Format",
-        [OMRON_FINS_ENUMS::CommandCode_FILE_DELETE]                   = "File Delete",
-        [OMRON_FINS_ENUMS::CommandCode_VOLUME_LABEL_CREATE_DELETE]    = "Volume Label Create Delete",
-        [OMRON_FINS_ENUMS::CommandCode_FILE_COPY]                     = "File Copy",
-        [OMRON_FINS_ENUMS::CommandCode_FILE_NAME_CHANGE]              = "File Name Change",
-        [OMRON_FINS_ENUMS::CommandCode_FILE_DATA_CHECK]               = "File Data Check",
-        [OMRON_FINS_ENUMS::CommandCode_MEMORY_AREA_FILE_TRANSER]      = "Memory Area File Transfer",
-        [OMRON_FINS_ENUMS::CommandCode_PARAMETER_AREA_FILE_TRANSFER]  = "Parameter Area File Transer",
-        [OMRON_FINS_ENUMS::CommandCode_PROGRAM_AREA_FILE_TRANSFER]    = "Program Area File Transfer",
-        [OMRON_FINS_ENUMS::CommandCode_FILE_MEMORY_INDEX_READ]        = "File Memory Index Read",
-        [OMRON_FINS_ENUMS::CommandCode_FILE_MEMORY_READ]              = "File Memory Read",
-        [OMRON_FINS_ENUMS::CommandCode_FILE_MEMORY_WRITE]             = "File Memory Write",
+        [OMRON_FINS_ENUMS::CommandCode_FILE_NAME_READ]                = "File Name Read (0x2201)",
+        [OMRON_FINS_ENUMS::CommandCode_SINGLE_FILE_READ]              = "Single File Name Read (0x2202)",
+        [OMRON_FINS_ENUMS::CommandCode_SINGLE_FILE_WRITE]             = "Single File Name Write (0x2203)",
+        [OMRON_FINS_ENUMS::CommandCode_MEMORY_CARD_FORMAT]            = "Memory Card Format (0x2204)",
+        [OMRON_FINS_ENUMS::CommandCode_FILE_DELETE]                   = "File Delete (0x2205)",
+        [OMRON_FINS_ENUMS::CommandCode_VOLUME_LABEL_CREATE_DELETE]    = "Volume Label Create Delete (0x2206)",
+        [OMRON_FINS_ENUMS::CommandCode_FILE_COPY]                     = "File Copy (0x2207)",
+        [OMRON_FINS_ENUMS::CommandCode_FILE_NAME_CHANGE]              = "File Name Change (0x2208)",
+        [OMRON_FINS_ENUMS::CommandCode_FILE_DATA_CHECK]               = "File Data Check (0x2209)",
+        [OMRON_FINS_ENUMS::CommandCode_MEMORY_AREA_FILE_TRANSER]      = "Memory Area File Transfer (0x220A)",
+        [OMRON_FINS_ENUMS::CommandCode_PARAMETER_AREA_FILE_TRANSFER]  = "Parameter Area File Transer (0x220B)",
+        [OMRON_FINS_ENUMS::CommandCode_PROGRAM_AREA_FILE_TRANSFER]    = "Program Area File Transfer (0x220C)",
+        [OMRON_FINS_ENUMS::CommandCode_FILE_MEMORY_INDEX_READ]        = "File Memory Index Read (0x220F)",
+        [OMRON_FINS_ENUMS::CommandCode_FILE_MEMORY_READ]              = "File Memory Read (0x2210)",
+        [OMRON_FINS_ENUMS::CommandCode_FILE_MEMORY_WRITE]             = "File Memory Write (0x2211)",
 
-        [OMRON_FINS_ENUMS::CommandCode_FORCED_SET_RESET]              = "Forced Set Reset",
-        [OMRON_FINS_ENUMS::CommandCode_FORCED_SET_RESET_CANCEL]       = "Forced Set Reset Cancel",
-        [OMRON_FINS_ENUMS::CommandCode_MULTIPOINT_FORCED_STATUS_READ] = "Multipoint Foreced Status Read",
+        [OMRON_FINS_ENUMS::CommandCode_FORCED_SET_RESET]              = "Forced Set Reset (0x2301)",
+        [OMRON_FINS_ENUMS::CommandCode_FORCED_SET_RESET_CANCEL]       = "Forced Set Reset Cancel (0x2302)",
+        [OMRON_FINS_ENUMS::CommandCode_MULTIPOINT_FORCED_STATUS_READ] = "Multipoint Foreced Status Read (0x230A)",
 
-        [OMRON_FINS_ENUMS::CommandCode_NAME_SET]                      = "Name Set",
-        [OMRON_FINS_ENUMS::CommandCode_NAME_DELETE]                   = "Name Delete",
-        [OMRON_FINS_ENUMS::CommandCode_NAME_READ]                     = "Name Read"
+        [OMRON_FINS_ENUMS::CommandCode_NAME_SET]                      = "Name Set (0x2601)",
+        [OMRON_FINS_ENUMS::CommandCode_NAME_DELETE]                   = "Name Delete (0x2602)",
+        [OMRON_FINS_ENUMS::CommandCode_NAME_READ]                     = "Name Read (0x2603)"
     }&default = "Unknown";
 
     #
