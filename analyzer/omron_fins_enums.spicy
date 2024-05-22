@@ -157,3 +157,110 @@ public type MemoryArea = enum {
     EXPANSION_DM__WORD_CONTENTS_97                                 = 0x97,
     EXPANSION_DM__WORD_CONTENTS_98                                 = 0x98,
 };
+
+#
+# Section 2-2 Memory Area Designations
+#
+public type ResponseCode = enum {
+    NORMAL_COMPLETION                                            = 0x0000,
+    SERVICE_WAS_INTERRUPTED                                      = 0x0001,
+
+    LOCAL_NODE_NOT_PART_OF_NETWORK                               = 0x0101,
+    TOKEN_TIMEOUT_NODE_NUMBER_TOO_LARGE                          = 0x0102,
+    NUMVER_OF_TRANSMIT_RETRIES_EXCEEDED                          = 0x0103,
+    MAXIMUM_NUMBER_OF_FRAMES_EXCEEDED                            = 0x0104,
+    NODE_NUMBER_SETTING_ERROR_RANGE                              = 0x0105,
+    NODE_NUMBER_DUPLICATION_ERROR                                = 0x0106,
+
+    DESTINATION_NODE_NOT_PART_OF_NETWORK                          = 0x0201,
+    NO_NODE_WITH_SPECIFIED_NODE_NUMBER                            = 0x0202,
+    THIRD_NODE_NOT_PART_OF_NETWORK_BROADCASTING_WAS_SPECIFIED     = 0x0203,
+    BUSY_ERROR_DESTINATION_NODE_BUSY                              = 0x0204,
+    RESPONSE_TIMEOUT                                              = 0x0205,
+
+    ERROR_OCCURRED_ERC_INDICATOR_IS_LIT                           = 0x0301,
+    CPU_ERROR_OCCURRED_IN_PC_AT_DETINATION_NODE                   = 0x0302,
+    CONTROLLER_ERROR_HAS_PREVENTED_NORMAL_RESPONSE                = 0x0303,
+    NODE_NUMBER_SETTING_ERROR                                     = 0x0304,
+
+    UNDEFINED_COMMAND_USED                                        = 0x0401,
+    SPECIFIED_MODEL_OR_VERSION_WRONG                              = 0x0402,
+
+    DESTINATION_NODE_NUMBER_NOT_SET_IN_ROUTING_TABLE              = 0x0501,
+    ROUTING_TABLE_NOT_REGISTERED                                  = 0x0502,
+    ROUTING_TABLE_ERROR                                           = 0x0503,
+    MAX_RELAY_NODES_EXCEEDED                                      = 0x0504,
+
+    COMMAND_LONGER_THAN_MAX_LENGTH                                = 0x1001,
+    COMMAND_SHORTER_THAN_MIN_LENGTH                               = 0x1002,
+    NUMBER_OF_DATA_ITEMS_DIFFERS_FROM_ACTUAL_NUMBER               = 0x1003,
+    INCORRECT_COMMAND_FORMAT                                      = 0x1004,
+    INCORRECT_HEADER_USED                                         = 0x1005,
+
+    MEMORY_AREA_CODE_INVALID_OR_DM_NOT_AVAILABLE                  = 0x1101,
+    ACCESS_SIZE_IS_WRONG_IN_COMMAND                               = 0x1102,
+    FIRST_ADDRESS_IN_INACCESSIBLE_AREA                            = 0x1103,
+    END_SPECIFIED_WORD_RANGE_EXCEEDS_ACCEPTABLE_RANGE             = 0x1104,
+    PARAMETER_NON_EXISTENT_PROGRAM_NUMBER                         = 0x1106,
+    SIZES_OF_DATA_ITEMS_IN_COMMAND_BLOCK_WRONG                    = 0x1109,
+    IOM_BREAK_FUNCTION_CANNOT_EXECUTE                             = 0x110A,
+    RESPONSE_BLOCK_IS_LONGER_THAN_MAX_LENGTH                      = 0x110B,
+    INCORRECT_PARAMETER_CODE_SPECIFIED                            = 0x110C,
+
+    READ_DATA_IS_PROTECTED                                        = 0x2002,
+    READ_REGISTERED_TABLE_DOES_NOT_EXIST                          = 0x2003,
+    READ_SEARCH_DATA_DOES_NOT_EXIST                               = 0x2004,
+    READ_NON_EXISTENT_PROGRAM_NUMBER                              = 0x2005,
+    READ_NON_EXISTENT_FILE                                        = 0x2006,
+    READ_VERIFICATION_ERROR                                       = 0x2007,
+
+    WRITE_SPECIFIED_AREA_READ_ONLY                                = 0x2101,
+    WRITE_DATA_PROTECTED                                          = 0x2102,
+    WRITE_TOO_MANY_FILES_OPEN                                     = 0x2103,
+    WRITE_NON_EXISTENT_PROGRAM_NUMBER                             = 0x2105,
+    WRITE_NON_EXISTENT_FILE                                       = 0x2106,
+    WRITE_NON_FILE_EXISTS                                         = 0x2107,
+    WRITE_DATA_CANNONT_BE_CHANGED                                 = 0x2108,
+
+    MODE_IS_WRONG_EXECUTING                                       = 0x2201,
+    MODE_IS_WRONG_STOPPED                                         = 0x2202,
+    PC_IN_PROGRAM_MODE                                            = 0x2203,
+    PC_IN_DEBUG_MODE                                              = 0x2204,
+    PC_IN_MONITOR_MODE                                            = 0x2205,
+    PC_IN_RUN_MODE                                                = 0x2206,
+    SPECIFIED_NODE_IS_NOT_CONTROL_NODE                            = 0x2207,
+    MODE_IS_WRONG_STEP_CANNOT_EXECUTE                             = 0x2208,
+
+    FILE_DEVICE_DOES_NOT_EXIST_WHERE_SPECIFIED                    = 0x2301,
+    SPECIFIED_MEMORY_DOES_NOT_EXIST                               = 0x2302,
+    NO_CLOCK_EXISTS                                               = 0x2303,
+
+    DATA_LINK_TABLE_IS_INCORRECT                                  = 0x2401,
+
+    PARITY_CHECKSUM_ERROR_OCCURRED                                = 0x2502,
+    IO_SETTING_ERROR                                              = 0x2503,
+    TO_MANY_IO_POINTS                                             = 0x2504,
+    CPU_BUS_ERROR                                                 = 0x2505,
+    IO_DUPLICATION_ERROR                                          = 0x2506,
+    IO_BUS_ERROR                                                  = 0x2507,
+    SYSMCA_BUS_2_ERROR                                            = 0x2509,
+    SPECIAL_IO_UNIT_ERROR                                         = 0x250A,
+    DUPLICATION_SYSMAC_BUS_WORD_ALLOCATION                        = 0x250D,
+    MEMORY_ERROR_HAS_OCCURRED                                     = 0x250F,
+    TERMINATOR_NOT_CONNECTED_IN_SYSMAC_BUS_SYSTEM                 = 0x2510,
+
+    SPECIFIED_AREA_NOT_PROTECTED                                  = 0x2601,
+    INCORRECT_PASSWORD_SPECIFIED                                  = 0x2602,
+    SPECIFIED_AREA_IS_PROTECTED                                   = 0x2604,
+    SERVICE_IS_BEING_EXECUTED                                     = 0x2605,
+    SERVICE_IS_NOT_BEING_EXECUTED                                 = 0x2606,
+    SERVICE_CANNOT_BE_EXECUTED_FROM_LOCAL_NODE                    = 0x2607,
+    SERVICE_CANNOT_BE_EXECUTED_SETTINGS_INCORRECT                 = 0x2608,
+    SERVICE_CANNOT_BE_EXECUTED_INCORRECT_SETTINGS_IN_COMMAND_DATA = 0x2609,
+    SPECIFIED_ACTION_ALREADY_REGISTERED                           = 0x260A,
+    CANNOT_CLEAR_ERROR_ERROR_STILL_EXISTS                         = 0x260B,
+
+    ACCESS_RIGHT_HELD_BY_ANOTHER_DEVICE                           = 0x3001,
+
+    COMMAND_ABORTED_WITH_ABORT_COMMAND                            = 0x4001,
+};
