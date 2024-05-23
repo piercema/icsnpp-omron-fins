@@ -9,6 +9,14 @@ hook set_session_general_log(c: connection) {
             $proto="omron_fins");
 }
 
+hook set_session_detail_log(c: connection) {
+    if ( ! c?$omron_fins_detail_log )
+        c$omron_fins_detail_log = detail_log(
+            $ts=network_time(),
+            $uid=c$uid,
+            $id=c$id);
+}
+
 event OMRON_FINS::FINS_HeaderEvt (c: connection, is_orig: bool, fins_header: OMRON_FINS::FINS_Header) {
     hook set_session_general_log(c);
 
@@ -29,4 +37,17 @@ event OMRON_FINS::FINS_HeaderEvt (c: connection, is_orig: bool, fins_header: OMR
     OMRON_FINS::emit_omron_fins_general_log(c);
 }
 
+event OMRON_FINS::FINS_CommandEvt (c: connection, is_orig: bool, fins_command: OMRON_FINS::Command) {
+    hook set_session_detail_log(c);
 
+    local info_detail_log = c$omron_fins_detail_log;
+
+    info_detail_log$command_code = OMRON_FINS_ENUMS::COMMAND[fins_command$command_code];
+    switch(fins_command$command_code) {
+        case OMRON_FINS_ENUMS::CommandCode_MEMORY_AREA_READ:
+            c = OMRON_FINS_FUNCTIONS::process_memory_area_read(c, fins_command);
+            break;
+    }
+
+    OMRON_FINS::emit_omron_fins_detail_log(c);
+}

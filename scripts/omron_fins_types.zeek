@@ -20,4 +20,11 @@ export {
         command_code                : string  &log &optional;
     };
 
+    type detail_log: record {
+        ts                          : time    &log;
+        uid                         : string  &log;
+        id                          : conn_id &log;
+        command_code                : string  &log &optional;
+    };
+
 }
