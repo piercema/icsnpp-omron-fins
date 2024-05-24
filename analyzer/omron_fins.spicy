@@ -28,7 +28,13 @@ public type FINS_Header = unit {
     command_code                : uint16 &convert=OMRON_FINS_ENUMS::CommandCode($$);
     command                     : Command(self);
 
-    on %done { print self; }
+    on %done { 
+        print self; 
+    }
+
+    on %error(msg: string) {
+        print "ERROR: %s" % msg;
+    }
 
 };
 
@@ -37,8 +43,63 @@ public type Command = unit(fins_header: FINS_Header) {
     var icf_data_type : OMRON_FINS_ENUMS::DataType;
 
     switch(fins_header.command_code) {
-        OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_READ          -> memory_area_read          : MemoryAreaRead(fins_header.icf.data_type);
-        OMRON_FINS_ENUMS::CommandCode::MULTIPLE_MEMORY_AREA_READ -> multiple_memory_area_read : MultipleMemoryAreaRead(fins_header.icf.data_type);
+        OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_READ                         -> memory_area_read          : MemoryAreaRead(fins_header.icf.data_type);
+        OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_WRITE                        -> restofdata_1  : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_FILL                         -> restofdata_2  : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::MULTIPLE_MEMORY_AREA_READ                -> multiple_memory_area_read : MultipleMemoryAreaRead(fins_header.icf.data_type);
+        OMRON_FINS_ENUMS::CommandCode::MULTIPLE_MEMORY_AREA_TRANSFER            -> restofdata_3  : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_READ                      -> restofdata_4  : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_WRITE                     -> restofdata_5  : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_CLEAR                     -> restofdata_6  : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::DATA_LINK_TABLE_READ                     -> restofdata_7  : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::DATA_LINK_TABLE_WRITE                    -> restofdata_8  : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_PROTECT                     -> restofdata_9  : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_PROTECT_CLEAR               -> restofdata_10 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_READ                        -> restofdata_11 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_WRITE                       -> restofdata_12 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_CLEAR                       -> restofdata_13 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::RUN                                      -> restofdata_14 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::STOP                                     -> restofdata_15 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::RESET                                    -> restofdata_16 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::CONTROLLER_DATA_READ                     -> restofdata_17 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::CONNECTION_DATA_READ                     -> restofdata_18 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::CONTROLLER_STATUS_READ                   -> restofdata_19 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::NETWORK_STATUS_READ                      -> restofdata_20 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::DATA_LINK_STATUS_READ                    -> restofdata_21 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::CYCLE_TIME_READ                          -> restofdata_22 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::CLOCK_READ                               -> restofdata_23 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::CLOCK_WRITE                              -> restofdata_24 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::LOOP_BACK_TEST                           -> restofdata_25 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::BROADCAST_TEST_RESULTS_READ              -> restofdata_26 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::BROADCAST_TEST_DATA_SEND                 -> restofdata_27 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::MESSAGE_READ_MESSAGE_WRITE_FAL_FALS_READ -> restofdata_28 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::ACCESS_RIGHT_ACQUIRE                     -> restofdata_29 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::ACCESS_RIGHT_FORCED_ACQUIRE              -> restofdata_30 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::ACCESS_RIGHT_RELEASE                     -> restofdata_31 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::ERROR_CLEAR                              -> restofdata_32 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::ERROR_LOG_READ                           -> restofdata_33 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::ERROR_LOG_CLEAR                          -> restofdata_34 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::FILE_NAME_READ                           -> restofdata_35 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::SINGLE_FILE_READ                         -> restofdata_36 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::SINGLE_FILE_WRITE                        -> restofdata_37 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::MEMORY_CARD_FORMAT                       -> restofdata_38 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::FILE_DELETE                              -> restofdata_39 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::VOLUME_LABEL_CREATE_DELETE               -> restofdata_40 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::FILE_COPY                                -> restofdata_41 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::FILE_NAME_CHANGE                         -> restofdata_42 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::FILE_DATA_CHECK                          -> restofdata_43 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_FILE_TRANSER                 -> restofdata_44 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_FILE_TRANSFER             -> restofdata_45 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_FILE_TRANSFER               -> restofdata_46 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::FILE_MEMORY_INDEX_READ                   -> restofdata_47 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::FILE_MEMORY_READ                         -> restofdata_48 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::FILE_MEMORY_WRITE                        -> restofdata_49 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::FORCED_SET_RESET                         -> restofdata_50 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::FORCED_SET_RESET_CANCEL                  -> restofdata_51 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::MULTIPOINT_FORCED_STATUS_READ            -> restofdata_52 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::NAME_SET                                 -> restofdata_53 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::NAME_DELETE                              -> restofdata_54 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::NAME_READ                                -> restofdata_55 : bytes &eod;
     };
 
     on %init {
