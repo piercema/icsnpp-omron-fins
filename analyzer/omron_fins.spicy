@@ -33,15 +33,17 @@ public type FINS_Header = unit {
 };
 
 public type Command = unit(fins_header: FINS_Header) {
-    var command_code: OMRON_FINS_ENUMS::CommandCode;
+    var command_code  : OMRON_FINS_ENUMS::CommandCode;
+    var icf_data_type : OMRON_FINS_ENUMS::DataType;
 
     switch(fins_header.command_code) {
-        OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_READ          -> memory_area_read_cmd         : MemoryAreaRead(fins_header.icf.data_type);
-        OMRON_FINS_ENUMS::CommandCode::MULTIPLE_MEMORY_AREA_READ -> multiple_memory_area_read_cmd: MultipleMemoryAreaRead(fins_header.icf.data_type);
+        OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_READ          -> memory_area_read          : MemoryAreaRead(fins_header.icf.data_type);
+        OMRON_FINS_ENUMS::CommandCode::MULTIPLE_MEMORY_AREA_READ -> multiple_memory_area_read : MultipleMemoryAreaRead(fins_header.icf.data_type);
     };
 
     on %init {
-        self.command_code = fins_header.command_code;
+        self.command_code  = fins_header.command_code;
+        self.icf_data_type = fins_header.icf.data_type;
     }
 };
 

@@ -1,10 +1,15 @@
-module OMRON_FINS_FUNCTIONS;
+module OMRON_FINS;
 
 export {
 
-    function process_memory_area_read(c: connection, fins_command: OMRON_FINS::Command): connection {
-        print "MEMORY_AREA_READ";
-        return c;
+    function process_memory_area_read(info_detail_log: detail_log, fins_command: OMRON_FINS::Command): detail_log {
+
+        info_detail_log$memory_area_code       = OMRON_FINS_ENUMS::MEMORY_AREA[fins_command$memory_area_read$command$memory_area_code];
+        info_detail_log$beginning_address      = fins_command$memory_area_read$command$beginning_address;     
+        info_detail_log$beginning_address_bits = fins_command$memory_area_read$command$beginning_address_bits;
+        info_detail_log$number_of_items        = fins_command$memory_area_read$command$number_of_items;
+
+        return info_detail_log;
     }
 
 }

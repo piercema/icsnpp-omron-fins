@@ -25,6 +25,13 @@ export {
         uid                         : string  &log;
         id                          : conn_id &log;
         command_code                : string  &log &optional;
+        icf_data_type               : string  &log &optional;
+
+        memory_area_code            : string &log &optional;
+        beginning_address           : string &log &optional;
+        beginning_address_bits      : string &log &optional;
+        number_of_items             : count &log &optional;
+
     };
 
 }
