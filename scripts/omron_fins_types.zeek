@@ -32,6 +32,9 @@ export {
         beginning_address_bits      : string &log &optional;
         number_of_items             : count &log &optional;
 
+        response_code               : string &log &optional;
+        data                        : string &log &optional;
+
     };
 
 }

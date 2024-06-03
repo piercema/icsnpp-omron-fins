@@ -126,6 +126,8 @@ type MemoryAreaRead_Command = unit {
 };
 
 type MemoryAreaRead_Response = unit {
+    response_code : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data          : bytes &eod &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
 };
 
 #

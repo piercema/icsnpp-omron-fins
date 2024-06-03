@@ -6,4 +6,28 @@ public function uintToHexString(data: uint64): string {
     return "0x%x" % data;
 }
 
+public function bytesToHexString(data: bytes): string {
+    local bytesAsHexString : string;
+    local cnt : uint8;
+
+    cnt = 0;
+    bytesAsHexString = "";
+
+    for (byte in data) {
+        bytesAsHexString = bytesAsHexString + ("%x" % byte);
+
+        ++cnt;
+        if (cnt >= 15) {
+            break;
+        }
+    }
+
+    if (cnt > 0) {
+        bytesAsHexString = "0x" + bytesAsHexString;
+    }
+
+    return bytesAsHexString;
+}
+
+
 
