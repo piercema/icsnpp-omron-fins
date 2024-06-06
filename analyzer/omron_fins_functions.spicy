@@ -3,7 +3,7 @@ module OMRON_FINS_FUNCTIONS;
 public function generateId() : string &cxxname="OMRON_FINS_CONVERSION::generateId";
 
 public function uintToHexString(data: uint64): string {
-    return "0x%x" % data;
+    return "0x%02x" % data;
 }
 
 public function bytesToHexString(data: bytes): string {
@@ -14,7 +14,7 @@ public function bytesToHexString(data: bytes): string {
     bytesAsHexString = "";
 
     for (byte in data) {
-        bytesAsHexString = bytesAsHexString + ("%x" % byte);
+        bytesAsHexString = bytesAsHexString + ("%02x" % byte);
 
         ++cnt;
         if (cnt >= 15) {
