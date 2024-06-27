@@ -11,22 +11,22 @@ public type Messages = unit {
 public type FINS_Header = unit {
     # Information Control Field
     icf        : bitfield(8) {  
-                                gateway          : 7 &convert=OMRON_FINS_ENUMS::GatewayUsage($$);
-                                data_type        : 6 &convert=OMRON_FINS_ENUMS::DataType($$);
-                                reserved         : 1..5;
-                                response_setting : 0 &convert=OMRON_FINS_ENUMS::ResponseSetting($$);
+                                gateway         : 7 &convert=OMRON_FINS_ENUMS::GatewayUsage($$);
+                                dataType        : 6 &convert=OMRON_FINS_ENUMS::DataType($$);
+                                reserved        : 1..5;
+                                responseSetting : 0 &convert=OMRON_FINS_ENUMS::ResponseSetting($$);
                              };
-    reserved                    : uint8;
-    gateway_count               : uint8;
-    destination_network_address : uint8;
-    destination_node_number     : uint8;
-    destination_unit_address    : uint8;
-    source_network_address      : uint8;
-    source_node_number          : uint8;
-    source_unit_address         : uint8;
-    service_id                  : uint8  &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
-    command_code                : uint16 &convert=OMRON_FINS_ENUMS::CommandCode($$);
-    command                     : Command(self);
+    reserved                  : uint8;
+    gatewayCount              : uint8;
+    destinationNetworkAddress : uint8;
+    destinationNodeNumber     : uint8;
+    destinationUnitAddress    : uint8;
+    sourceNetworkAddress      : uint8;
+    sourceNodeNumber          : uint8;
+    sourceUnitAddress         : uint8;
+    serviceId                 : uint8  &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    commandCode               : uint16 &convert=OMRON_FINS_ENUMS::CommandCode($$);
+    command                   : Command(self);
 
     on %done { 
         print self; 
@@ -38,15 +38,15 @@ public type FINS_Header = unit {
 
 };
 
-public type Command = unit(fins_header: FINS_Header) {
-    var command_code  : OMRON_FINS_ENUMS::CommandCode;
-    var icf_data_type : OMRON_FINS_ENUMS::DataType;
+public type Command = unit(finsHeader: FINS_Header) {
+    var commandCode : OMRON_FINS_ENUMS::CommandCode;
+    var icfDataType : OMRON_FINS_ENUMS::DataType;
 
-    switch(fins_header.command_code) {
-        OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_READ                         -> memory_area_read          : MemoryAreaRead(fins_header.icf.data_type);
+    switch(finsHeader.commandCode) {
+        OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_READ                         -> memoryAreaRead         : MemoryAreaRead(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_WRITE                        -> restofdata_1  : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_FILL                         -> restofdata_2  : bytes &eod;
-        OMRON_FINS_ENUMS::CommandCode::MULTIPLE_MEMORY_AREA_READ                -> multiple_memory_area_read : MultipleMemoryAreaRead(fins_header.icf.data_type);
+        OMRON_FINS_ENUMS::CommandCode::MULTIPLE_MEMORY_AREA_READ                -> multipleMemoryAreaRead : MultipleMemoryAreaRead(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::MULTIPLE_MEMORY_AREA_TRANSFER            -> restofdata_3  : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_READ                      -> restofdata_4  : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_WRITE                     -> restofdata_5  : bytes &eod;
@@ -103,37 +103,37 @@ public type Command = unit(fins_header: FINS_Header) {
     };
 
     on %init {
-        self.command_code  = fins_header.command_code;
-        self.icf_data_type = fins_header.icf.data_type;
+        self.commandCode = finsHeader.commandCode;
+        self.icfDataType = finsHeader.icf.dataType;
     }
 };
 
 #
 # MemoryAreaRead
 #
-type MemoryAreaRead = unit(data_type: OMRON_FINS_ENUMS::DataType) {
-    switch(data_type) {
+type MemoryAreaRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
         OMRON_FINS_ENUMS::DataType::COMMAND  -> command : MemoryAreaRead_Command();
         OMRON_FINS_ENUMS::DataType::RESPONSE -> response: MemoryAreaRead_Response();
     };
 };
 
 type MemoryAreaRead_Command = unit {
-    memory_area_code      : uint8  &convert=OMRON_FINS_ENUMS::MemoryArea($$);
-    beginning_address     : bytes &size=3 &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
-    number_of_items       : uint16;
+    memoryAreaCode   : uint8  &convert=OMRON_FINS_ENUMS::MemoryArea($$);
+    beginningAddress : bytes &size=3 &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
+    numberOfItems    : uint16;
 };
 
 type MemoryAreaRead_Response = unit {
-    response_code : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    data          : bytes &eod &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data         : bytes &eod &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
 };
 
 #
 # MultipleMemoryAreaRead
 #
-type MultipleMemoryAreaRead = unit(data_type: OMRON_FINS_ENUMS::DataType) {
-    switch(data_type) {
+type MultipleMemoryAreaRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
         OMRON_FINS_ENUMS::DataType::COMMAND  -> command : MultipleMemoryAreaRead_Command();
         OMRON_FINS_ENUMS::DataType::RESPONSE -> response: MultipleMemoryAreaRead_Response();
     };
