@@ -7,7 +7,6 @@ export {
         if (fins_command$icf_data_type == OMRON_FINS_ENUMS::DataType_COMMAND) {
             info_detail_log$memory_area_code       = OMRON_FINS_ENUMS::MEMORY_AREA[fins_command$memory_area_read$command$memory_area_code];
             info_detail_log$beginning_address      = fins_command$memory_area_read$command$beginning_address;     
-            info_detail_log$beginning_address_bits = fins_command$memory_area_read$command$beginning_address_bits;
             info_detail_log$number_of_items        = fins_command$memory_area_read$command$number_of_items;
 
         } else if (fins_command$icf_data_type == OMRON_FINS_ENUMS::DataType_RESPONSE) {

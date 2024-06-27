@@ -120,8 +120,7 @@ type MemoryAreaRead = unit(data_type: OMRON_FINS_ENUMS::DataType) {
 
 type MemoryAreaRead_Command = unit {
     memory_area_code      : uint8  &convert=OMRON_FINS_ENUMS::MemoryArea($$);
-    beginning_address     : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
-    beginning_address_bits: uint8  &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    beginning_address     : bytes &size=3 &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
     number_of_items       : uint16;
 };
 

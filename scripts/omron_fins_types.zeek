@@ -29,7 +29,6 @@ export {
 
         memory_area_code            : string &log &optional;
         beginning_address           : string &log &optional;
-        beginning_address_bits      : string &log &optional;
         number_of_items             : count &log &optional;
 
         response_code               : string &log &optional;
