@@ -1,0 +1,15 @@
+module OMRON_FINS_TYPES;
+
+import OMRON_FINS_ENUMS;
+import OMRON_FINS_FUNCTIONS;
+
+#
+# MemoryAreaReadType
+#
+type MemoryAreaReadType = unit {
+    memoryAreaCode      : uint8 &convert=OMRON_FINS_ENUMS::MemoryArea($$);
+    beginningAddress    : bytes &size=3 &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
+};
+
+
+

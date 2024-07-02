@@ -51,7 +51,6 @@ function emit_omron_fins_general_log(c: connection) {
     if ( c?$omron_fins_proto )
         c$omron_fins_general_log$proto = c$omron_fins_proto;
     Log::write(OMRON_FINS::LOG_GENERAL_LOG, c$omron_fins_general_log);
-    delete c$omron_fins_general_log;
 }
 
 function emit_omron_fins_detail_log(c: connection) {
@@ -59,6 +58,5 @@ function emit_omron_fins_detail_log(c: connection) {
         return;
 
     Log::write(OMRON_FINS::LOG_DETAIL_LOG, c$omron_fins_detail_log);
-    delete c$omron_fins_detail_log;
 }
 

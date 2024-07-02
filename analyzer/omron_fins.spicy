@@ -3,6 +3,7 @@ module OMRON_FINS;
 import spicy;
 import OMRON_FINS_ENUMS;
 import OMRON_FINS_FUNCTIONS;
+import OMRON_FINS_TYPES;
 
 public type Messages = unit {
      : FINS_Header;
@@ -29,7 +30,7 @@ public type FINS_Header = unit {
     command                   : Command(self);
 
     on %done { 
-        print self; 
+#        print self; 
     }
 
     on %error(msg: string) {
@@ -119,9 +120,8 @@ type MemoryAreaRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type MemoryAreaRead_Command = unit {
-    memoryAreaCode   : uint8  &convert=OMRON_FINS_ENUMS::MemoryArea($$);
-    beginningAddress : bytes &size=3 &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
-    numberOfItems    : uint16;
+    memoryAreaReadType : OMRON_FINS_TYPES::MemoryAreaReadType();
+    numberOfItems      : uint16;
 };
 
 type MemoryAreaRead_Response = unit {
@@ -140,6 +140,7 @@ type MultipleMemoryAreaRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type MultipleMemoryAreaRead_Command = unit {
+    memoryAreaReadType : OMRON_FINS_TYPES::MemoryAreaReadType()[];
 };
 
 type MultipleMemoryAreaRead_Response = unit {
