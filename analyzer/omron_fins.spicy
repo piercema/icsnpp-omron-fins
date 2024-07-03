@@ -120,8 +120,8 @@ type MemoryAreaRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type MemoryAreaRead_Command = unit {
-    memoryAreaReadType : OMRON_FINS_TYPES::MemoryAreaReadType();
-    numberOfItems      : uint16;
+    memoryAreaReadCommandType : OMRON_FINS_TYPES::MemoryAreaReadCommandType();
+    numberOfItems             : uint16;
 };
 
 type MemoryAreaRead_Response = unit {
@@ -140,8 +140,10 @@ type MultipleMemoryAreaRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type MultipleMemoryAreaRead_Command = unit {
-    memoryAreaReadType : OMRON_FINS_TYPES::MemoryAreaReadType()[];
+    memoryAreaReadCommandType : OMRON_FINS_TYPES::MemoryAreaReadCommandType()[];
 };
 
 type MultipleMemoryAreaRead_Response = unit {
+    responseCode               : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    memoryAreaReadResponseType : OMRON_FINS_TYPES::MemoryAreaReadResponseType()[];
 };
