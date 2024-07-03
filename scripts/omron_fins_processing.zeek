@@ -5,6 +5,7 @@ event OMRON_FINS::FINS_HeaderEvt (c: connection, is_orig: bool, finsHeader: OMRO
 
     local info_general_log = c$omron_fins_general_log;
 
+    # Map header information
     info_general_log$omron_fins_link_id          = finsHeader$omronFinsLinkId;
     info_general_log$icf_gateway                 = OMRON_FINS_ENUMS::GATEWAY_USAGE[finsHeader$icf$gateway];
     info_general_log$icf_data_type               = OMRON_FINS_ENUMS::DATA_TYPE[finsHeader$icf$dataType];
@@ -19,6 +20,7 @@ event OMRON_FINS::FINS_HeaderEvt (c: connection, is_orig: bool, finsHeader: OMRO
     info_general_log$service_id                  = finsHeader$serviceId;
     info_general_log$command_code                = OMRON_FINS_ENUMS::COMMAND[finsHeader$commandCode];
 
+    # Process the command details
     process_details(c, finsHeader$command, info_general_log$omron_fins_link_id);
 
     # Fire the event and tidy up
