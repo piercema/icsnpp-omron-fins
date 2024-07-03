@@ -10,6 +10,8 @@ public type Messages = unit {
 };
 
 public type FINS_Header = unit {
+    var omronFinsLinkId : string;
+
     # Information Control Field
     icf        : bitfield(8) {  
                                 gateway         : 7 &convert=OMRON_FINS_ENUMS::GatewayUsage($$);
@@ -29,6 +31,10 @@ public type FINS_Header = unit {
     commandCode               : uint16 &convert=OMRON_FINS_ENUMS::CommandCode($$);
     command                   : Command(self);
 
+    on %init {
+        self.omronFinsLinkId = OMRON_FINS_FUNCTIONS::generateId();
+    }
+    
     on %done { 
 #        print self; 
     }

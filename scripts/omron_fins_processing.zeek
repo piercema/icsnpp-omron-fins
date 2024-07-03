@@ -5,6 +5,7 @@ event OMRON_FINS::FINS_HeaderEvt (c: connection, is_orig: bool, finsHeader: OMRO
 
     local info_general_log = c$omron_fins_general_log;
 
+    info_general_log$omron_fins_link_id          = finsHeader$omronFinsLinkId;
     info_general_log$icf_gateway                 = OMRON_FINS_ENUMS::GATEWAY_USAGE[finsHeader$icf$gateway];
     info_general_log$icf_data_type               = OMRON_FINS_ENUMS::DATA_TYPE[finsHeader$icf$dataType];
     info_general_log$icf_response_setting        = OMRON_FINS_ENUMS::RESPONSE_SETTING[finsHeader$icf$responseSetting];
@@ -18,19 +19,9 @@ event OMRON_FINS::FINS_HeaderEvt (c: connection, is_orig: bool, finsHeader: OMRO
     info_general_log$service_id                  = finsHeader$serviceId;
     info_general_log$command_code                = OMRON_FINS_ENUMS::COMMAND[finsHeader$commandCode];
 
+    process_details(c, finsHeader$command, info_general_log$omron_fins_link_id);
+
     # Fire the event and tidy up
     OMRON_FINS::emit_omron_fins_general_log(c);
     delete c$omron_fins_general_log;
-}
-
-event OMRON_FINS::FINS_CommandEvt (c: connection, is_orig: bool, finsCommand: OMRON_FINS::Command) {
-    switch(finsCommand$commandCode) {
-        case OMRON_FINS_ENUMS::CommandCode_MEMORY_AREA_READ:
-            OMRON_FINS::process_memory_area_read_detail(c, finsCommand);
-            break;
-        case OMRON_FINS_ENUMS::CommandCode_MULTIPLE_MEMORY_AREA_READ:
-            OMRON_FINS::process_multiple_memory_area_read_detail(c, finsCommand);
-            break;
-    }
-
 }

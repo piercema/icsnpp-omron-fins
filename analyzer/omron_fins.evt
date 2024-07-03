@@ -15,9 +15,3 @@ on OMRON_FINS::FINS_Header -> event OMRON_FINS::FINS_HeaderEvt (
     self
 );
 
-on OMRON_FINS::Command -> event OMRON_FINS::FINS_CommandEvt (
-    $conn,
-    $is_orig,
-    self
-);
-

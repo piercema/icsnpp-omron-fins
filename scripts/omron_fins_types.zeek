@@ -6,6 +6,7 @@ export {
         uid                         : string  &log;
         id                          : conn_id &log;
         proto                       : string  &log;
+        omron_fins_link_id          : string  &log &optional;
         icf_gateway                 : string  &log &optional;
         icf_data_type               : string  &log &optional;
         icf_response_setting        : string  &log &optional;
@@ -24,6 +25,7 @@ export {
         ts                          : time    &log;
         uid                         : string  &log;
         id                          : conn_id &log;
+        omron_fins_link_id          : string  &log &optional;
         command_code                : string  &log &optional;
         icf_data_type               : string  &log &optional;
 

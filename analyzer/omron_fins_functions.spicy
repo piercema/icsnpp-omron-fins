@@ -1,6 +1,6 @@
 module OMRON_FINS_FUNCTIONS;
 
-public function generateId() : string &cxxname="OMRON_FINS_CONVERSION::generateId";
+public function generateId() : string &cxxname="OMRON_FINS_FUNCTIONS::generateId";
 
 public function uintToHexString(data: uint64): string {
     return "0x%02x" % data;

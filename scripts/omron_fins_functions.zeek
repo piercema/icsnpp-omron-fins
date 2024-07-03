@@ -30,10 +30,11 @@ export {
         return info_detail_log;
     }
 
-    function process_memory_area_read_detail(c: connection, finsCommand: OMRON_FINS::Command) {
+    function process_memory_area_read_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
         c = set_session_detail_log(c);
 
         local info_detail_log = c$omron_fins_detail_log;
+        info_detail_log$omron_fins_link_id = link_id;
         info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
 
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
@@ -51,7 +52,7 @@ export {
         delete c$omron_fins_detail_log;
     }
 
-    function process_multiple_memory_area_read_detail(c : connection, finsCommand: OMRON_FINS::Command) {
+    function process_multiple_memory_area_read_detail(c : connection, finsCommand: OMRON_FINS::Command, link_id: string) {
 
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
             for (i in finsCommand$multipleMemoryAreaRead$command$memoryAreaReadCommandType) {
@@ -59,6 +60,7 @@ export {
                 c = set_session_detail_log(c);
 
                 # Set the data
+                c$omron_fins_detail_log$omron_fins_link_id = link_id;
                 c$omron_fins_detail_log = process_command_and_datatype_detail(c$omron_fins_detail_log, finsCommand);
                 c$omron_fins_detail_log$memory_area_code  = OMRON_FINS_ENUMS::MEMORY_AREA[finsCommand$multipleMemoryAreaRead$command$memoryAreaReadCommandType[i]$memoryAreaCode];
                 c$omron_fins_detail_log$beginning_address = finsCommand$multipleMemoryAreaRead$command$memoryAreaReadCommandType[i]$beginningAddress;
@@ -73,6 +75,7 @@ export {
                 c = set_session_detail_log(c);
  
                 # Set the data
+                c$omron_fins_detail_log$omron_fins_link_id = link_id;
                 c$omron_fins_detail_log = process_command_and_datatype_detail(c$omron_fins_detail_log, finsCommand);
                 c$omron_fins_detail_log$response_code    = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$multipleMemoryAreaRead$response$responseCode];
                 c$omron_fins_detail_log$memory_area_code = OMRON_FINS_ENUMS::MEMORY_AREA[finsCommand$multipleMemoryAreaRead$response$memoryAreaReadResponseType[i]$memoryAreaCode];
@@ -83,8 +86,17 @@ export {
                 delete c$omron_fins_detail_log;
             }
         }
+    }
 
-
+    function process_details(c: connection, finsCommand: OMRON_FINS::Command, omron_fins_link_id: string) {
+        switch(finsCommand$commandCode) {
+            case OMRON_FINS_ENUMS::CommandCode_MEMORY_AREA_READ:
+                process_memory_area_read_detail(c, finsCommand, omron_fins_link_id);
+                break;
+            case OMRON_FINS_ENUMS::CommandCode_MULTIPLE_MEMORY_AREA_READ:
+                process_multiple_memory_area_read_detail(c, finsCommand, omron_fins_link_id);
+                break;
+        }
     }
 
 
