@@ -6,6 +6,6 @@
 @load ./main
 @load ./omron_fins_utilities
 @load ./omron_fins_memory_area
-@load ./omron_fins_functions
 @load ./omron_fins_processing
+@load ./omron_fins_event_processing
 
