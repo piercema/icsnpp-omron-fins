@@ -7,6 +7,9 @@ export {
             case OMRON_FINS_ENUMS::CommandCode_MEMORY_AREA_READ:
                 process_memory_area_read_detail(c, finsCommand, omron_fins_link_id);
                 break;
+            case OMRON_FINS_ENUMS::CommandCode_MEMORY_AREA_WRITE:
+                process_memory_area_write_detail(c, finsCommand, omron_fins_link_id);
+                break;
             case OMRON_FINS_ENUMS::CommandCode_MULTIPLE_MEMORY_AREA_READ:
                 process_multiple_memory_area_read_detail(c, finsCommand, omron_fins_link_id);
                 break;

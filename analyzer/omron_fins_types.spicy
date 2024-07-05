@@ -4,9 +4,9 @@ import OMRON_FINS_ENUMS;
 import OMRON_FINS_FUNCTIONS;
 
 #
-# MemoryAreaReadCommandType
+# MemoryAreaCommandType
 #
-type MemoryAreaReadCommandType = unit {
+type MemoryAreaCommandType = unit {
     memoryAreaCode      : uint8 &convert=OMRON_FINS_ENUMS::MemoryArea($$);
     beginningAddress    : bytes &size=3 &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
 };

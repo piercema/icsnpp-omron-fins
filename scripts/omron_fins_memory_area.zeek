@@ -23,6 +23,27 @@ export {
         delete c$omron_fins_detail_log;
     }
 
+    function process_memory_area_write_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
+        c = set_session_detail_log(c);
+
+        c$omron_fins_detail_log$omron_fins_link_id = link_id;
+        c$omron_fins_detail_log = process_command_and_datatype_detail(c$omron_fins_detail_log, finsCommand);
+
+        if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
+            c$omron_fins_detail_log$memory_area_code  = OMRON_FINS_ENUMS::MEMORY_AREA[finsCommand$memoryAreaWrite$command$memoryAreaWriteCommandType$memoryAreaCode];
+            c$omron_fins_detail_log$beginning_address = finsCommand$memoryAreaWrite$command$memoryAreaWriteCommandType$beginningAddress;     
+            c$omron_fins_detail_log$number_of_items   = finsCommand$memoryAreaWrite$command$numberOfItems;
+            c$omron_fins_detail_log$data              = finsCommand$memoryAreaWrite$command$dataAsString;
+
+        } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
+            c$omron_fins_detail_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$memoryAreaWrite$response$responseCode];
+        }
+
+        # Fire the event and tidy up
+        OMRON_FINS::emit_omron_fins_detail_log(c);
+        delete c$omron_fins_detail_log;
+    }
+
     function process_multiple_memory_area_read_detail(c : connection, finsCommand: OMRON_FINS::Command, link_id: string) {
 
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
