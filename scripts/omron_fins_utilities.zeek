@@ -1,6 +1,5 @@
 module OMRON_FINS;
 
-export {
     function set_session_general_log(c: connection): connection {
         if ( ! c?$omron_fins_general_log )
             c$omron_fins_general_log = general_log(
@@ -29,4 +28,3 @@ export {
 
         return info_detail_log;
     }
-}

@@ -1,6 +1,5 @@
 module OMRON_FINS;
 
-export {
     type general_log: record {
         ts                          : time    &log;
         uid                         : string  &log;
@@ -35,7 +34,5 @@ export {
 
         response_code               : string &log &optional;
         data                        : string &log &optional;
-
     };
 
-}

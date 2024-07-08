@@ -1,7 +1,5 @@
 module OMRON_FINS;
 
-export {
-
     function process_details(c: connection, finsCommand: OMRON_FINS::Command, omron_fins_link_id: string) {
         switch(finsCommand$commandCode) {
             case OMRON_FINS_ENUMS::CommandCode_MEMORY_AREA_READ:
@@ -15,4 +13,3 @@ export {
                 break;
         }
     }
-}
