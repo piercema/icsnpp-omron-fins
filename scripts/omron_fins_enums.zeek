@@ -261,4 +261,17 @@ export{
 
         [OMRON_FINS_ENUMS::ResponseCode_COMMAND_ABORTED_WITH_ABORT_COMMAND]                            = "Command aborted with ABORT command (0x4001)",
     }&default = "Unknown";
+
+    #
+    # Section 2-23 Clock Read command
+    #
+    const DAY_OF_WEEK = {
+        [OMRON_FINS_ENUMS::DayOfWeek_SUN]  = "Sun (0)",
+        [OMRON_FINS_ENUMS::DayOfWeek_MON]  = "Mon (1)",
+        [OMRON_FINS_ENUMS::DayOfWeek_TUES] = "Tue (2)",
+        [OMRON_FINS_ENUMS::DayOfWeek_WED]  = "Wed (3)",
+        [OMRON_FINS_ENUMS::DayOfWeek_THUR] = "Thu (4)",
+        [OMRON_FINS_ENUMS::DayOfWeek_FRI]  = "Fri (5)",
+        [OMRON_FINS_ENUMS::DayOfWeek_SAT]  = "Sat (6)",
+    }&default = "Unknown";
 }

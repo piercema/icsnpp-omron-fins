@@ -11,5 +11,8 @@ module OMRON_FINS;
             case OMRON_FINS_ENUMS::CommandCode_MULTIPLE_MEMORY_AREA_READ:
                 process_multiple_memory_area_read_detail(c, finsCommand, omron_fins_link_id);
                 break;
+            case OMRON_FINS_ENUMS::CommandCode_CLOCK_READ:
+                process_clock_read_detail(c, finsCommand, omron_fins_link_id);
+                break;
         }
     }

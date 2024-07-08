@@ -264,3 +264,16 @@ public type ResponseCode = enum {
 
     COMMAND_ABORTED_WITH_ABORT_COMMAND                            = 0x4001,
 };
+
+#
+# Section 2-23 Clock Read command
+#
+public type DayOfWeek = enum {
+    SUN  = 0x00,
+    MON  = 0x01,
+    TUES = 0x02,
+    WED  = 0x03,
+    THUR = 0x04,
+    FRI  = 0x05,
+    SAT  = 0x06,
+};

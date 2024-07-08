@@ -74,7 +74,7 @@ public type Command = unit(finsHeader: FINS_Header) {
         OMRON_FINS_ENUMS::CommandCode::NETWORK_STATUS_READ                      -> restofdata_20 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::DATA_LINK_STATUS_READ                    -> restofdata_21 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::CYCLE_TIME_READ                          -> restofdata_22 : bytes &eod;
-        OMRON_FINS_ENUMS::CommandCode::CLOCK_READ                               -> restofdata_23 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::CLOCK_READ                               -> clockRead              : ClockRead(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::CLOCK_WRITE                              -> restofdata_24 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::LOOP_BACK_TEST                           -> restofdata_25 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::BROADCAST_TEST_RESULTS_READ              -> restofdata_26 : bytes &eod;
@@ -177,4 +177,29 @@ type MultipleMemoryAreaRead_Command = unit {
 type MultipleMemoryAreaRead_Response = unit {
     responseCode               : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
     memoryAreaReadResponseType : OMRON_FINS_TYPES::MemoryAreaReadResponseType()[];
+};
+
+#
+# ClockRead
+#
+type ClockRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ClockRead_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ClockRead_Response();
+    };
+};
+
+type ClockRead_Command = unit {
+    : bytes &eod; # Note: There is no data associated with the ClockRead command - hence the anonymous field
+};
+
+type ClockRead_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    year         : uint8;
+    month        : uint8;
+    date         : uint8;
+    hour         : uint8;
+    minute       : uint8;
+    second       : uint8;
+    day          : uint8 &convert=OMRON_FINS_ENUMS::DayOfWeek($$);
 };

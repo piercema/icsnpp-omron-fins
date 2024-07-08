@@ -34,5 +34,14 @@ module OMRON_FINS;
 
         response_code               : string &log &optional;
         data                        : string &log &optional;
+
+        year                        : count &log &optional;
+        month                       : count &log &optional;
+        date                        : count &log &optional;
+        hour                        : count &log &optional;
+        minute                      : count &log &optional;
+        second                      : count &log &optional;
+        day                         : string &log &optional;
+
     };
 
