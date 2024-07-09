@@ -105,7 +105,7 @@ public type Command = unit(finsHeader: FINS_Header) {
         OMRON_FINS_ENUMS::CommandCode::FORCED_SET_RESET_CANCEL                  -> restofdata_51 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::MULTIPOINT_FORCED_STATUS_READ            -> restofdata_52 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::NAME_SET                                 -> nameSet                : NameSet(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::NAME_DELETE                              -> restofdata_54 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::NAME_DELETE                              -> nameDelete             : NameDelete(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::NAME_READ                                -> nameRead               : NameRead(finsHeader.icf.dataType);
     };
 
@@ -289,4 +289,22 @@ type NameRead_Response = unit {
     on %done {
         self.nameDataAsString = self.nameData.decode();
     }
+};
+
+#
+# NameDelete
+#
+type NameDelete = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : NameDelete_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: NameDelete_Response();
+    };
+};
+
+type NameDelete_Command = unit {
+    : bytes &eod; # Note: There is no data associated with the NameDelete command - hence the anonymous field
+};
+
+type NameDelete_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
 };

@@ -23,5 +23,8 @@ module OMRON_FINS;
             case OMRON_FINS_ENUMS::CommandCode_NAME_READ:
                 process_name_read_detail(c, finsCommand, omron_fins_link_id);
                 break;
+            case OMRON_FINS_ENUMS::CommandCode_NAME_DELETE:
+                process_name_delete_detail(c, finsCommand, omron_fins_link_id);
+                break;
         }
     }
