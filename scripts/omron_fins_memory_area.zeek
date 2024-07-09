@@ -82,3 +82,26 @@ module OMRON_FINS;
             }
         }
     }
+
+    function process_memory_area_fill_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
+        c = set_session_detail_log(c);
+
+        local info_detail_log = c$omron_fins_detail_log;
+        info_detail_log$omron_fins_link_id = link_id;
+        info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
+
+        if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
+            info_detail_log$memory_area_code  = OMRON_FINS_ENUMS::MEMORY_AREA[finsCommand$memoryAreaFill$command$memoryAreaFillCommandType$memoryAreaCode];
+            info_detail_log$beginning_address = finsCommand$memoryAreaFill$command$memoryAreaFillCommandType$beginningAddress;     
+            info_detail_log$number_of_items   = finsCommand$memoryAreaFill$command$numberOfItems;
+            info_detail_log$data              = finsCommand$memoryAreaFill$command$data;
+
+        } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
+            info_detail_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$memoryAreaFill$response$responseCode];
+        }
+
+        # Fire the event and tidy up
+        OMRON_FINS::emit_omron_fins_detail_log(c);
+        delete c$omron_fins_detail_log;
+    }
+
