@@ -75,7 +75,7 @@ public type Command = unit(finsHeader: FINS_Header) {
         OMRON_FINS_ENUMS::CommandCode::DATA_LINK_STATUS_READ                    -> restofdata_21 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::CYCLE_TIME_READ                          -> restofdata_22 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::CLOCK_READ                               -> clockRead              : ClockRead(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::CLOCK_WRITE                              -> restofdata_24 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::CLOCK_WRITE                              -> clockWrite             : ClockWrite(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::LOOP_BACK_TEST                           -> restofdata_25 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::BROADCAST_TEST_RESULTS_READ              -> restofdata_26 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::BROADCAST_TEST_DATA_SEND                 -> restofdata_27 : bytes &eod;
@@ -202,4 +202,43 @@ type ClockRead_Response = unit {
     minute       : uint8;
     second       : uint8;
     day          : uint8 &convert=OMRON_FINS_ENUMS::DayOfWeek($$);
+};
+
+#
+# ClockWrite
+#
+type ClockWrite = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ClockWrite_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ClockWrite_Response();
+    };
+};
+
+type ClockWrite_Command = unit {
+    year         : uint8;
+    month        : uint8;
+    date         : uint8;
+    hour         : uint8;
+    minute       : uint8;
+    data         : bytes &eod;
+    var second   : uint8;
+    var day      : OMRON_FINS_ENUMS::DayOfWeek;
+    on %done {
+        #
+        # The second and day parameters are optional and are parsed as bytes to the &eod.  Once
+        # parsed, then length is checked to determine if one or both fields need to be set.
+        #
+        if ( |self.data| == 1 ) {
+            self.second = *self.data.at(0);
+        } 
+        
+        if ( |self.data| == 2) {
+            self.second = *self.data.at(0);
+            self.day = OMRON_FINS_ENUMS::DayOfWeek(*self.data.at(1));
+        }
+    }
+};
+
+type ClockWrite_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
 };
