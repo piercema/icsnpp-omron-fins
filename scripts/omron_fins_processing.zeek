@@ -17,5 +17,8 @@ module OMRON_FINS;
             case OMRON_FINS_ENUMS::CommandCode_CLOCK_WRITE:
                 process_clock_write_detail(c, finsCommand, omron_fins_link_id);
                 break;
+            case OMRON_FINS_ENUMS::CommandCode_NAME_SET:
+                process_name_set_detail(c, finsCommand, omron_fins_link_id);
+                break;
         }
     }
