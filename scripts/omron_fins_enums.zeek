@@ -55,7 +55,7 @@ export{
         [OMRON_FINS_ENUMS::CommandCode_MEMORY_AREA_WRITE]             = "Memory Area Write (0x0102)",
         [OMRON_FINS_ENUMS::CommandCode_MEMORY_AREA_FILL]              = "Memory Area Fill (0x0103)",
         [OMRON_FINS_ENUMS::CommandCode_MULTIPLE_MEMORY_AREA_READ]     = "Multiple Memory Area Read (0x0104)",
-        [OMRON_FINS_ENUMS::CommandCode_MULTIPLE_MEMORY_AREA_TRANSFER] = "Multiple Memory Area Transfer (0x0105)",
+        [OMRON_FINS_ENUMS::CommandCode_MEMORY_AREA_TRANSFER]          = "Memory Area Transfer (0x0105)",
 
         [OMRON_FINS_ENUMS::CommandCode_PARAMETER_AREA_READ]           = "Parameter Area Read (0x0201)",
         [OMRON_FINS_ENUMS::CommandCode_PARAMETER_AREA_WRITE]          = "Parameter Area Write (0x0202)",

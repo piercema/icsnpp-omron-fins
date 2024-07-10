@@ -56,7 +56,7 @@ public type CommandCode = enum {
     MEMORY_AREA_WRITE             = 0x0102,
     MEMORY_AREA_FILL              = 0x0103,
     MULTIPLE_MEMORY_AREA_READ     = 0x0104,
-    MULTIPLE_MEMORY_AREA_TRANSFER = 0x0105,
+    MEMORY_AREA_TRANSFER          = 0x0105,
 
     PARAMETER_AREA_READ           = 0x0201,
     PARAMETER_AREA_WRITE          = 0x0202,

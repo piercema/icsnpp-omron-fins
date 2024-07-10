@@ -105,3 +105,60 @@ module OMRON_FINS;
         delete c$omron_fins_detail_log;
     }
 
+    function process_memory_area_transfer_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
+
+        local info_detail_log: detail_log;
+
+        if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
+            #
+            # Source information
+            #
+
+            # Set/add the detail_log to the connection
+            c = set_session_detail_log(c);
+            info_detail_log = c$omron_fins_detail_log;
+
+            # Set the source data
+            info_detail_log$omron_fins_link_id = link_id;
+            info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
+            info_detail_log$memory_area_code  = OMRON_FINS_ENUMS::MEMORY_AREA[finsCommand$memoryAreaTransfer$command$memoryAreaTransferSource$memoryAreaCode] + " (Source)";
+            info_detail_log$beginning_address = finsCommand$memoryAreaTransfer$command$memoryAreaTransferSource$beginningAddress;     
+            info_detail_log$number_of_items   = finsCommand$memoryAreaTransfer$command$numberOfItems;
+
+            # Fire the event and tidy up
+            OMRON_FINS::emit_omron_fins_detail_log(c);
+            delete c$omron_fins_detail_log;
+
+            #
+            # Destination information
+            #
+
+            # Set/add the detail_log to the connection
+            c = set_session_detail_log(c);
+            info_detail_log = c$omron_fins_detail_log;
+
+            # Set the destination data
+            info_detail_log$omron_fins_link_id = link_id;
+            info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
+            info_detail_log$memory_area_code  = OMRON_FINS_ENUMS::MEMORY_AREA[finsCommand$memoryAreaTransfer$command$memoryAreaTransferDestination$memoryAreaCode] + " (Destination)";
+            info_detail_log$beginning_address = finsCommand$memoryAreaTransfer$command$memoryAreaTransferDestination$beginningAddress;     
+
+            # Fire the event and tidy up
+            OMRON_FINS::emit_omron_fins_detail_log(c);
+            delete c$omron_fins_detail_log;
+
+        } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
+            # Set/add the detail_log to the connection
+            c = set_session_detail_log(c);
+            info_detail_log = c$omron_fins_detail_log;
+
+            # Set the data
+            info_detail_log$omron_fins_link_id = link_id;
+            info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
+            info_detail_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$memoryAreaTransfer$response$responseCode];
+
+            # Fire the event and tidy up
+            OMRON_FINS::emit_omron_fins_detail_log(c);
+            delete c$omron_fins_detail_log;
+        }
+    }

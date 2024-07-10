@@ -54,7 +54,7 @@ public type Command = unit(finsHeader: FINS_Header) {
         OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_WRITE                        -> memoryAreaWrite        : MemoryAreaWrite(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_FILL                         -> memoryAreaFill         : MemoryAreaFill(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::MULTIPLE_MEMORY_AREA_READ                -> multipleMemoryAreaRead : MultipleMemoryAreaRead(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::MULTIPLE_MEMORY_AREA_TRANSFER            -> restofdata_3  : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_TRANSFER                     -> memoryAreaTransfer     : MemoryAreaTransfer(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_READ                      -> restofdata_4  : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_WRITE                     -> restofdata_5  : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_CLEAR                     -> restofdata_6  : bytes &eod;
@@ -177,6 +177,26 @@ type MemoryAreaFill_Command = unit {
 };
 
 type MemoryAreaFill_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+};
+
+#
+# MemoryAreaTransfer
+#
+type MemoryAreaTransfer = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : MemoryAreaTransfer_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: MemoryAreaTransfer_Response();
+    };
+};
+
+type MemoryAreaTransfer_Command = unit {
+    memoryAreaTransferSource      : OMRON_FINS_TYPES::MemoryAreaCommandType();
+    memoryAreaTransferDestination : OMRON_FINS_TYPES::MemoryAreaCommandType();
+    numberOfItems                 : uint16;
+};
+
+type MemoryAreaTransfer_Response = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
 };
 

@@ -14,6 +14,9 @@ module OMRON_FINS;
             case OMRON_FINS_ENUMS::CommandCode_MEMORY_AREA_FILL:
                 process_memory_area_fill_detail(c, finsCommand, omron_fins_link_id);
                 break;
+            case OMRON_FINS_ENUMS::CommandCode_MEMORY_AREA_TRANSFER:
+                process_memory_area_transfer_detail(c, finsCommand, omron_fins_link_id);
+                break;
             case OMRON_FINS_ENUMS::CommandCode_CLOCK_READ:
                 process_clock_read_detail(c, finsCommand, omron_fins_link_id);
                 break;
