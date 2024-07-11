@@ -279,10 +279,10 @@ export{
     # Parameter Area Codes
     #
     const PARAMETER_AREA_CODE = {
-        [OMRON_FINS_ENUMS::ParameterAreaCode_PC_SETUP]                  = "PC Setup",
-        [OMRON_FINS_ENUMS::ParameterAreaCode_PERIPHRAL_DEVICE_SETTINGS] = "Peripheral Device Settings",
-        [OMRON_FINS_ENUMS::ParameterAreaCode_IO_TABLE]                  = "I/O Tables",
-        [OMRON_FINS_ENUMS::ParameterAreaCode_ROUTING_TABLES]            = "Routing Tables",
-        [OMRON_FINS_ENUMS::ParameterAreaCode_CPU_BUS_UNIT_SETTINGS]     = "CPU Bus Unit Settings",
+        [OMRON_FINS_ENUMS::ParameterAreaCode_PC_SETUP]                  = "PC Setup (0x8010)",
+        [OMRON_FINS_ENUMS::ParameterAreaCode_PERIPHRAL_DEVICE_SETTINGS] = "Peripheral Device Settings (0x8011)",
+        [OMRON_FINS_ENUMS::ParameterAreaCode_IO_TABLE]                  = "I/O Tables (0x8012)",
+        [OMRON_FINS_ENUMS::ParameterAreaCode_ROUTING_TABLES]            = "Routing Tables (0x8013)",
+        [OMRON_FINS_ENUMS::ParameterAreaCode_CPU_BUS_UNIT_SETTINGS]     = "CPU Bus Unit Settings (0x8002)",
     }&default = "Unknown";
 }
