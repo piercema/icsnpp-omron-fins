@@ -20,6 +20,9 @@ module OMRON_FINS;
             case OMRON_FINS_ENUMS::CommandCode_PARAMETER_AREA_READ:
                 process_parameter_area_read_detail(c, finsCommand, omron_fins_link_id);
                 break;
+            case OMRON_FINS_ENUMS::CommandCode_PARAMETER_AREA_WRITE:
+                process_parameter_area_write_detail(c, finsCommand, omron_fins_link_id);
+                break;
             case OMRON_FINS_ENUMS::CommandCode_CLOCK_READ:
                 process_clock_read_detail(c, finsCommand, omron_fins_link_id);
                 break;

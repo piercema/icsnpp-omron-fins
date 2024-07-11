@@ -56,7 +56,7 @@ public type Command = unit(finsHeader: FINS_Header) {
         OMRON_FINS_ENUMS::CommandCode::MULTIPLE_MEMORY_AREA_READ                -> multipleMemoryAreaRead : MultipleMemoryAreaRead(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_TRANSFER                     -> memoryAreaTransfer     : MemoryAreaTransfer(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_READ                      -> parameterAreaRead      : ParameterAreaRead(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_WRITE                     -> restofdata_5  : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_WRITE                     -> parameterAreaWrite     : ParameterAreaWrite(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_CLEAR                     -> restofdata_6  : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::DATA_LINK_TABLE_READ                     -> restofdata_7  : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::DATA_LINK_TABLE_WRITE                    -> restofdata_8  : bytes &eod;
@@ -382,4 +382,33 @@ type ParameterAreaRead_Response = unit {
     on %done {
        self.dataAsString = self.data.decode();
     }
+};
+
+#
+# ParameterAreaWrite
+#
+type ParameterAreaWrite = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ParameterAreaWrite_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ParameterAreaWrite_Response();
+    };
+};
+
+type ParameterAreaWrite_Command = unit {
+    var dataAsString  : string;
+    parameterAreaCode : uint16 &convert=OMRON_FINS_ENUMS::ParameterAreaCode($$);
+    beginningWord     : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    numberOfWords     : bitfield(16) {
+        wordsToRead : 0..14;
+        lastWord    : 15;
+    };
+    data              : bytes &eod;
+
+    on %done {
+       self.dataAsString = self.data.decode();
+    }
+};
+
+type ParameterAreaWrite_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
 };
