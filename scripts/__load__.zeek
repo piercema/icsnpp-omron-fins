@@ -8,6 +8,7 @@
 @load ./omron_fins_clock
 @load ./omron_fins_name
 @load ./omron_fins_memory_area
+@load ./omron_fins_parameter
 @load ./omron_fins_processing
 @load ./omron_fins_event_processing
 

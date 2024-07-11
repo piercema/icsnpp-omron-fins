@@ -274,4 +274,15 @@ export{
         [OMRON_FINS_ENUMS::DayOfWeek_FRI]  = "Fri (5)",
         [OMRON_FINS_ENUMS::DayOfWeek_SAT]  = "Sat (6)",
     }&default = "Unknown";
+
+    #
+    # Parameter Area Codes
+    #
+    const PARAMETER_AREA_CODE = {
+        [OMRON_FINS_ENUMS::ParameterAreaCode_PC_SETUP]                  = "PC Setup",
+        [OMRON_FINS_ENUMS::ParameterAreaCode_PERIPHRAL_DEVICE_SETTINGS] = "Peripheral Device Settings",
+        [OMRON_FINS_ENUMS::ParameterAreaCode_IO_TABLE]                  = "I/O Tables",
+        [OMRON_FINS_ENUMS::ParameterAreaCode_ROUTING_TABLES]            = "Routing Tables",
+        [OMRON_FINS_ENUMS::ParameterAreaCode_CPU_BUS_UNIT_SETTINGS]     = "CPU Bus Unit Settings",
+    }&default = "Unknown";
 }

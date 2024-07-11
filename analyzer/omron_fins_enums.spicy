@@ -277,3 +277,14 @@ public type DayOfWeek = enum {
     FRI  = 0x05,
     SAT  = 0x06,
 };
+
+#
+# Parameter Area Codes
+#
+public type ParameterAreaCode = enum {
+    PC_SETUP                  = 0x8010,
+    PERIPHRAL_DEVICE_SETTINGS = 0x8011,
+    IO_TABLE                  = 0x8012,
+    ROUTING_TABLES            = 0x8013,
+    CPU_BUS_UNIT_SETTINGS     = 0x8002,
+};

@@ -30,17 +30,22 @@ module OMRON_FINS;
 
         memory_area_code            : string &log &optional;
         beginning_address           : string &log &optional;
-        number_of_items             : count &log &optional;
+        number_of_items             : count  &log &optional;
+
+        parameter_area_code         : string &log &optional;
+        beginning_word              : string &log &optional;
+        number_of_words             : count  &log &optional;
+        last_word                   : count  &log &optional;
 
         response_code               : string &log &optional;
         data                        : string &log &optional;
 
-        year                        : count &log &optional;
-        month                       : count &log &optional;
-        date                        : count &log &optional;
-        hour                        : count &log &optional;
-        minute                      : count &log &optional;
-        second                      : count &log &optional;
+        year                        : count  &log &optional;
+        month                       : count  &log &optional;
+        date                        : count  &log &optional;
+        hour                        : count  &log &optional;
+        minute                      : count  &log &optional;
+        second                      : count  &log &optional;
         day                         : string &log &optional;
 
     };

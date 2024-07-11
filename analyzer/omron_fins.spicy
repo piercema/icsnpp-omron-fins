@@ -55,7 +55,7 @@ public type Command = unit(finsHeader: FINS_Header) {
         OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_FILL                         -> memoryAreaFill         : MemoryAreaFill(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::MULTIPLE_MEMORY_AREA_READ                -> multipleMemoryAreaRead : MultipleMemoryAreaRead(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_TRANSFER                     -> memoryAreaTransfer     : MemoryAreaTransfer(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_READ                      -> restofdata_4  : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_READ                      -> parameterAreaRead      : ParameterAreaRead(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_WRITE                     -> restofdata_5  : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_CLEAR                     -> restofdata_6  : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::DATA_LINK_TABLE_READ                     -> restofdata_7  : bytes &eod;
@@ -347,4 +347,39 @@ type NameDelete_Command = unit {
 
 type NameDelete_Response = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+};
+
+#
+# ParameterAreaRead
+#
+type ParameterAreaRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ParameterAreaRead_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ParameterAreaRead_Response();
+    };
+};
+
+type ParameterAreaRead_Command = unit {
+    parameterAreaCode : uint16 &convert=OMRON_FINS_ENUMS::ParameterAreaCode($$);
+    beginningWord     : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    numberOfWords     : bitfield(16) {
+        wordsToRead : 0..14;
+        lastWord    : 15;
+    };
+};
+
+type ParameterAreaRead_Response = unit {
+    var dataAsString  : string;
+    responseCode      : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    parameterAreaCode : uint16 &convert=OMRON_FINS_ENUMS::ParameterAreaCode($$);
+    beginningWord     : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    numberOfWords     : bitfield(16) {
+        wordsToRead : 0..14;
+        lastWord    : 15;
+    };
+    data              : bytes &eod;
+
+    on %done {
+       self.dataAsString = self.data.decode();
+    }
 };
