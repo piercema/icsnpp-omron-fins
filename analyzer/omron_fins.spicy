@@ -57,7 +57,7 @@ public type Command = unit(finsHeader: FINS_Header) {
         OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_TRANSFER                     -> memoryAreaTransfer     : MemoryAreaTransfer(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_READ                      -> parameterAreaRead      : ParameterAreaRead(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_WRITE                     -> parameterAreaWrite     : ParameterAreaWrite(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_CLEAR                     -> restofdata_6  : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_CLEAR                     -> parameterAreaClear     : ParameterAreaClear(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::DATA_LINK_TABLE_READ                     -> restofdata_7  : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::DATA_LINK_TABLE_WRITE                    -> restofdata_8  : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_PROTECT                     -> restofdata_9  : bytes &eod;
@@ -410,5 +410,26 @@ type ParameterAreaWrite_Command = unit {
 };
 
 type ParameterAreaWrite_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+};
+
+#
+# ParameterAreaClear
+#
+type ParameterAreaClear = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ParameterAreaClear_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ParameterAreaClear_Response();
+    };
+};
+
+type ParameterAreaClear_Command = unit {
+    parameterAreaCode : uint16 &convert=OMRON_FINS_ENUMS::ParameterAreaCode($$);
+    beginningWord     : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    numberOfWords     : uint16;
+    data              : bytes &eod &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
+};
+
+type ParameterAreaClear_Response = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
 };
