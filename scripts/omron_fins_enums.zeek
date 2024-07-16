@@ -285,4 +285,12 @@ export{
         [OMRON_FINS_ENUMS::ParameterAreaCode_ROUTING_TABLES]            = "Routing Tables (0x8013)",
         [OMRON_FINS_ENUMS::ParameterAreaCode_CPU_BUS_UNIT_SETTINGS]     = "CPU Bus Unit Settings (0x8002)",
     }&default = "Unknown";
+
+    #
+    # Data Link Status
+    #
+    const DATA_LINK_STATUS = {
+        [OMRON_FINS_ENUMS::DataLinkStatus_NORMAL]  = "Normal (0)",
+        [OMRON_FINS_ENUMS::DataLinkStatus_WARNING] = "Warning (1)",
+    }&default = "Unknown";
 }

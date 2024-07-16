@@ -48,5 +48,19 @@ module OMRON_FINS;
         second                      : count  &log &optional;
         day                         : string &log &optional;
 
+        fixed                            : string &log &optional;
+        intelligent_id_no                : string &log &optional;
+        first_word                       : string &log &optional;
+        read_length                      : string &log &optional;
+
+        num_of_link_nodes                : count &log &optional;
+
+        block_record_data_link_status    : string &log &optional;
+        block_record_num_of_link_nodes   : count &log &optional;
+        block_record_cio_area_first_word : string &log &optional;
+        block_record_kind_of_dm          : string &log &optional;
+        block_record_dm_area_first_word  : string &log &optional;
+        block_record_num_of_total_words  : count &log &optional;
+
     };
 

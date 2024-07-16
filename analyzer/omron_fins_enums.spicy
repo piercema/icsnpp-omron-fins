@@ -288,3 +288,11 @@ public type ParameterAreaCode = enum {
     ROUTING_TABLES            = 0x8013,
     CPU_BUS_UNIT_SETTINGS     = 0x8002,
 };
+
+#
+# Data Link Status
+#
+public type DataLinkStatus = enum {
+    NORMAL  = 0,
+    WARNING = 1,
+};
