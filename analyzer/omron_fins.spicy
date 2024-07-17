@@ -59,7 +59,7 @@ public type Command = unit(finsHeader: FINS_Header) {
         OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_WRITE                     -> parameterAreaWrite     : ParameterAreaWrite(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_CLEAR                     -> parameterAreaClear     : ParameterAreaClear(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::DATA_LINK_TABLE_READ                     -> dataLinkTableRead      : DataLinkTableRead(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::DATA_LINK_TABLE_WRITE                    -> restofdata_8  : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::DATA_LINK_TABLE_WRITE                    -> dataLinkTableWrite     : DataLinkTableWrite(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_PROTECT                     -> restofdata_9  : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_PROTECT_CLEAR               -> restofdata_10 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_READ                        -> restofdata_11 : bytes &eod;
@@ -457,5 +457,31 @@ type DataLinkTableRead_Response = unit {
         numOfLinkNodes : 0..6;
         bit7           : 7;
     };
-    blockRecord        : OMRON_FINS_TYPES::BlockRecord()[];
+    blockRecord        : OMRON_FINS_TYPES::BlockRecordRead()[];
+};
+
+#
+# DataLinkTableWrite
+#
+type DataLinkTableWrite = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : DataLinkTableWrite_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: DataLinkTableWrite_Response();
+    };
+};
+
+type DataLinkTableWrite_Command = unit {
+    fixed           : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    intelligentIdNo : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    firstWord       : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    dataLength      : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    numOfLinkNodesMask : bitfield(8) {
+        numOfLinkNodes : 0..6;
+        bit7           : 7;
+    };
+    blockRecord        : OMRON_FINS_TYPES::BlockRecordWrite()[];
+};
+
+type DataLinkTableWrite_Response = unit {
+    responseCode     : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
 };

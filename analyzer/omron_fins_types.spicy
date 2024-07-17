@@ -50,10 +50,21 @@ type MemoryAreaReadResponseType = unit {
     };
 };
 
-type BlockRecord = unit {
+type BlockRecordRead = unit {
     nodeNum : bitfield(8) {
         numOfLinkNodes : 0..6;
         dataLinkStatus : 7 &convert=OMRON_FINS_ENUMS::DataLinkStatus($$);
+    };
+    cioAreaFirstWord : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    kindOfDM         : uint8  &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    dmAreaFirstWord  : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    numOfTotalWords  : uint16;
+};
+
+type BlockRecordWrite = unit {
+    nodeNumMask : bitfield(8) {
+        nodeNum : 0..6;
+        bit7    : 7;
     };
     cioAreaFirstWord : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
     kindOfDM         : uint8  &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
