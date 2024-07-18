@@ -35,7 +35,7 @@ module OMRON_FINS;
         parameter_area_code         : string &log &optional;
         beginning_word              : string &log &optional;
         number_of_words             : count  &log &optional;
-        last_word                   : count  &log &optional;
+        last_word_bit               : count  &log &optional;
 
         response_code               : string &log &optional;
         data                        : string &log &optional;
@@ -64,5 +64,9 @@ module OMRON_FINS;
         block_record_dm_area_first_word  : string &log &optional;
         block_record_num_of_total_words  : count  &log &optional;
 
+        program_no                       : count  &log &optional;
+        protect_code                     : count  &log &optional;
+        password                         : string &log &optional;
+        last_word                        : string &log &optional;
     };
 

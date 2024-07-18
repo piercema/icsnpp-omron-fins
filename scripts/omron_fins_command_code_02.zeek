@@ -11,14 +11,14 @@ module OMRON_FINS;
             info_detail_log$parameter_area_code = OMRON_FINS_ENUMS::PARAMETER_AREA_CODE[finsCommand$parameterAreaRead$command$parameterAreaCode];
             info_detail_log$beginning_word      = finsCommand$parameterAreaRead$command$beginningWord;
             info_detail_log$number_of_words     = finsCommand$parameterAreaRead$command$numberOfWords$wordsToRead;
-            info_detail_log$last_word           = finsCommand$parameterAreaRead$command$numberOfWords$lastWord;
+            info_detail_log$last_word_bit       = finsCommand$parameterAreaRead$command$numberOfWords$lastWordBit;
 
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
             info_detail_log$response_code       = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$parameterAreaRead$response$responseCode];
             info_detail_log$parameter_area_code = OMRON_FINS_ENUMS::PARAMETER_AREA_CODE[finsCommand$parameterAreaRead$response$parameterAreaCode];
             info_detail_log$beginning_word      = finsCommand$parameterAreaRead$response$beginningWord;
             info_detail_log$number_of_words     = finsCommand$parameterAreaRead$response$numberOfWords$wordsToRead;
-            info_detail_log$last_word           = finsCommand$parameterAreaRead$response$numberOfWords$lastWord;
+            info_detail_log$last_word_bit       = finsCommand$parameterAreaRead$response$numberOfWords$lastWordBit;
             info_detail_log$data                = finsCommand$parameterAreaRead$response$dataAsString;
         }
 
@@ -38,7 +38,7 @@ module OMRON_FINS;
             info_detail_log$parameter_area_code = OMRON_FINS_ENUMS::PARAMETER_AREA_CODE[finsCommand$parameterAreaWrite$command$parameterAreaCode];
             info_detail_log$beginning_word      = finsCommand$parameterAreaWrite$command$beginningWord;
             info_detail_log$number_of_words     = finsCommand$parameterAreaWrite$command$numberOfWords$wordsToRead;
-            info_detail_log$last_word           = finsCommand$parameterAreaWrite$command$numberOfWords$lastWord;
+            info_detail_log$last_word_bit       = finsCommand$parameterAreaWrite$command$numberOfWords$lastWordBit;
             info_detail_log$data                = finsCommand$parameterAreaWrite$command$dataAsString;
 
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {

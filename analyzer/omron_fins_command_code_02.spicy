@@ -20,7 +20,7 @@ type ParameterAreaRead_Command = unit {
     beginningWord     : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
     numberOfWords     : bitfield(16) {
         wordsToRead : 0..14;
-        lastWord    : 15;
+        lastWordBit : 15;
     };
 };
 
@@ -31,7 +31,7 @@ type ParameterAreaRead_Response = unit {
     beginningWord     : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
     numberOfWords     : bitfield(16) {
         wordsToRead : 0..14;
-        lastWord    : 15;
+        lastWordBit : 15;
     };
     data              : bytes &eod;
 
@@ -56,7 +56,7 @@ type ParameterAreaWrite_Command = unit {
     beginningWord     : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
     numberOfWords     : bitfield(16) {
         wordsToRead : 0..14;
-        lastWord    : 15;
+        lastWordBit : 15;
     };
     data              : bytes &eod;
 

@@ -1,0 +1,97 @@
+module OMRON_FINS_COMMAND_CODE_03;
+
+import spicy;
+import OMRON_FINS_ENUMS;
+import OMRON_FINS_FUNCTIONS;
+import OMRON_FINS_TYPES;
+
+#
+# ProgramAreaProtect
+#
+type ProgramAreaProtect = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ProgramAreaProtect_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ProgramAreaProtect_Response();
+    };
+};
+
+type ProgramAreaProtect_Command = unit {
+    var passwordAsString : string;
+    programNo     : uint16;
+    protectCode   : uint8;
+    beginningWord : uint32 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    lastWord      : uint32 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    password      : bytes  &size=4;
+
+    on %done {
+        self.passwordAsString = self.password.decode();
+    }
+};
+
+type ProgramAreaProtect_Response = unit {
+    responseCode      : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+};
+
+#
+# ProgramAreaProtectClear
+#
+type ProgramAreaProtectClear = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ProgramAreaProtectClear_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ProgramAreaProtectClear_Response();
+    };
+};
+
+type ProgramAreaProtectClear_Command = unit {
+};
+
+type ProgramAreaProtectClear_Response = unit {
+};
+
+#
+# ProgramAreaRead
+#
+type ProgramAreaRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ProgarAreaRead_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ProgarAreaRead_Response();
+    };
+};
+
+type ProgarAreaRead_Command = unit {
+};
+
+type ProgarAreaRead_Response = unit {
+};
+
+#
+# ProgramAreaWrite
+#
+type ProgramAreaWrite = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ProgarAreaWrite_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ProgarAreaWrite_Response();
+    };
+};
+
+type ProgarAreaWrite_Command = unit {
+};
+
+type ProgarAreaWrite_Response = unit {
+};
+
+#
+# ProgramAreaClear
+#
+type ProgramAreaClear = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ProgarAreaClear_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ProgarAreaClear_Response();
+    };
+};
+
+type ProgarAreaClear_Command = unit {
+};
+
+type ProgarAreaClear_Response = unit {
+};

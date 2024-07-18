@@ -6,6 +6,7 @@ import OMRON_FINS_FUNCTIONS;
 import OMRON_FINS_TYPES;
 import OMRON_FINS_COMMAND_CODE_01;
 import OMRON_FINS_COMMAND_CODE_02;
+import OMRON_FINS_COMMAND_CODE_03;
 import OMRON_FINS_COMMAND_CODE_07;
 import OMRON_FINS_COMMAND_CODE_26;
 
@@ -64,7 +65,7 @@ public type Command = unit(finsHeader: FINS_Header) {
         OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_CLEAR                     -> parameterAreaClear     : OMRON_FINS_COMMAND_CODE_02::ParameterAreaClear(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::DATA_LINK_TABLE_READ                     -> dataLinkTableRead      : OMRON_FINS_COMMAND_CODE_02::DataLinkTableRead(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::DATA_LINK_TABLE_WRITE                    -> dataLinkTableWrite     : OMRON_FINS_COMMAND_CODE_02::DataLinkTableWrite(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_PROTECT                     -> restofdata_9  : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_PROTECT                     -> programAreaProtect     : OMRON_FINS_COMMAND_CODE_03::ProgramAreaProtect(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_PROTECT_CLEAR               -> restofdata_10 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_READ                        -> restofdata_11 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_WRITE                       -> restofdata_12 : bytes &eod;
