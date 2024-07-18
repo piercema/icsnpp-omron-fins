@@ -1,0 +1,143 @@
+module OMRON_FINS_COMMAND_CODE_02;
+
+import spicy;
+import OMRON_FINS_ENUMS;
+import OMRON_FINS_FUNCTIONS;
+import OMRON_FINS_TYPES;
+
+#
+# ParameterAreaRead
+#
+type ParameterAreaRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ParameterAreaRead_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ParameterAreaRead_Response();
+    };
+};
+
+type ParameterAreaRead_Command = unit {
+    parameterAreaCode : uint16 &convert=OMRON_FINS_ENUMS::ParameterAreaCode($$);
+    beginningWord     : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    numberOfWords     : bitfield(16) {
+        wordsToRead : 0..14;
+        lastWord    : 15;
+    };
+};
+
+type ParameterAreaRead_Response = unit {
+    var dataAsString  : string;
+    responseCode      : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    parameterAreaCode : uint16 &convert=OMRON_FINS_ENUMS::ParameterAreaCode($$);
+    beginningWord     : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    numberOfWords     : bitfield(16) {
+        wordsToRead : 0..14;
+        lastWord    : 15;
+    };
+    data              : bytes &eod;
+
+    on %done {
+       self.dataAsString = self.data.decode();
+    }
+};
+
+#
+# ParameterAreaWrite
+#
+type ParameterAreaWrite = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ParameterAreaWrite_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ParameterAreaWrite_Response();
+    };
+};
+
+type ParameterAreaWrite_Command = unit {
+    var dataAsString  : string;
+    parameterAreaCode : uint16 &convert=OMRON_FINS_ENUMS::ParameterAreaCode($$);
+    beginningWord     : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    numberOfWords     : bitfield(16) {
+        wordsToRead : 0..14;
+        lastWord    : 15;
+    };
+    data              : bytes &eod;
+
+    on %done {
+       self.dataAsString = self.data.decode();
+    }
+};
+
+type ParameterAreaWrite_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+};
+
+#
+# ParameterAreaClear
+#
+type ParameterAreaClear = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ParameterAreaClear_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ParameterAreaClear_Response();
+    };
+};
+
+type ParameterAreaClear_Command = unit {
+    parameterAreaCode : uint16 &convert=OMRON_FINS_ENUMS::ParameterAreaCode($$);
+    beginningWord     : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    numberOfWords     : uint16;
+    data              : bytes &eod &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
+};
+
+type ParameterAreaClear_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+};
+
+#
+# DataLinkTableRead
+#
+type DataLinkTableRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : DataLinkTableRead_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: DataLinkTableRead_Response();
+    };
+};
+
+type DataLinkTableRead_Command = unit {
+    fixed           : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    intelligentIdNo : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    firstWord       : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    readLength      : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+};
+
+type DataLinkTableRead_Response = unit {
+    responseCode     : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    numOfLinkNodesMask : bitfield(8) {
+        numOfLinkNodes : 0..6;
+        bit7           : 7;
+    };
+    blockRecord        : OMRON_FINS_TYPES::BlockRecordRead()[];
+};
+
+#
+# DataLinkTableWrite
+#
+type DataLinkTableWrite = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : DataLinkTableWrite_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: DataLinkTableWrite_Response();
+    };
+};
+
+type DataLinkTableWrite_Command = unit {
+    fixed           : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    intelligentIdNo : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    firstWord       : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    dataLength      : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    numOfLinkNodesMask : bitfield(8) {
+        numOfLinkNodes : 0..6;
+        bit7           : 7;
+    };
+    blockRecord        : OMRON_FINS_TYPES::BlockRecordWrite()[];
+};
+
+type DataLinkTableWrite_Response = unit {
+    responseCode     : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+};

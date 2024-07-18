@@ -1,0 +1,72 @@
+module OMRON_FINS_COMMAND_CODE_26;
+
+import spicy;
+import OMRON_FINS_ENUMS;
+import OMRON_FINS_FUNCTIONS;
+import OMRON_FINS_TYPES;
+
+#
+# NameSet
+#
+type NameSet = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : NameSet_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: NameSet_Response();
+    };
+};
+
+type NameSet_Command = unit {
+    var nameDataAsString : string;
+    nameData : bytes &eod; 
+
+    on %done {
+        self.nameDataAsString = self.nameData.decode();
+    }
+};
+
+type NameSet_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+};
+
+#
+# NameRead
+#
+type NameRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : NameSet_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: NameSet_Response();
+    };
+};
+
+type NameRead_Command = unit {
+    : bytes &eod; # Note: There is no data associated with the NameRead command - hence the anonymous field
+};
+
+type NameRead_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+
+    var nameDataAsString : string;
+    nameData : bytes &eod; 
+
+    on %done {
+        self.nameDataAsString = self.nameData.decode();
+    }
+};
+
+#
+# NameDelete
+#
+type NameDelete = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : NameDelete_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: NameDelete_Response();
+    };
+};
+
+type NameDelete_Command = unit {
+    : bytes &eod; # Note: There is no data associated with the NameDelete command - hence the anonymous field
+};
+
+type NameDelete_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+};

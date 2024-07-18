@@ -4,6 +4,10 @@ import spicy;
 import OMRON_FINS_ENUMS;
 import OMRON_FINS_FUNCTIONS;
 import OMRON_FINS_TYPES;
+import OMRON_FINS_COMMAND_CODE_01;
+import OMRON_FINS_COMMAND_CODE_02;
+import OMRON_FINS_COMMAND_CODE_07;
+import OMRON_FINS_COMMAND_CODE_26;
 
 public type Messages = unit {
      : FINS_Header;
@@ -50,16 +54,16 @@ public type Command = unit(finsHeader: FINS_Header) {
     var icfDataType : OMRON_FINS_ENUMS::DataType;
 
     switch(finsHeader.commandCode) {
-        OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_READ                         -> memoryAreaRead         : MemoryAreaRead(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_WRITE                        -> memoryAreaWrite        : MemoryAreaWrite(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_FILL                         -> memoryAreaFill         : MemoryAreaFill(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::MULTIPLE_MEMORY_AREA_READ                -> multipleMemoryAreaRead : MultipleMemoryAreaRead(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_TRANSFER                     -> memoryAreaTransfer     : MemoryAreaTransfer(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_READ                      -> parameterAreaRead      : ParameterAreaRead(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_WRITE                     -> parameterAreaWrite     : ParameterAreaWrite(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_CLEAR                     -> parameterAreaClear     : ParameterAreaClear(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::DATA_LINK_TABLE_READ                     -> dataLinkTableRead      : DataLinkTableRead(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::DATA_LINK_TABLE_WRITE                    -> dataLinkTableWrite     : DataLinkTableWrite(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_READ                         -> memoryAreaRead         : OMRON_FINS_COMMAND_CODE_01::MemoryAreaRead(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_WRITE                        -> memoryAreaWrite        : OMRON_FINS_COMMAND_CODE_01::MemoryAreaWrite(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_FILL                         -> memoryAreaFill         : OMRON_FINS_COMMAND_CODE_01::MemoryAreaFill(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::MULTIPLE_MEMORY_AREA_READ                -> multipleMemoryAreaRead : OMRON_FINS_COMMAND_CODE_01::MultipleMemoryAreaRead(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_TRANSFER                     -> memoryAreaTransfer     : OMRON_FINS_COMMAND_CODE_01::MemoryAreaTransfer(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_READ                      -> parameterAreaRead      : OMRON_FINS_COMMAND_CODE_02::ParameterAreaRead(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_WRITE                     -> parameterAreaWrite     : OMRON_FINS_COMMAND_CODE_02::ParameterAreaWrite(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_CLEAR                     -> parameterAreaClear     : OMRON_FINS_COMMAND_CODE_02::ParameterAreaClear(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::DATA_LINK_TABLE_READ                     -> dataLinkTableRead      : OMRON_FINS_COMMAND_CODE_02::DataLinkTableRead(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::DATA_LINK_TABLE_WRITE                    -> dataLinkTableWrite     : OMRON_FINS_COMMAND_CODE_02::DataLinkTableWrite(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_PROTECT                     -> restofdata_9  : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_PROTECT_CLEAR               -> restofdata_10 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_READ                        -> restofdata_11 : bytes &eod;
@@ -74,8 +78,8 @@ public type Command = unit(finsHeader: FINS_Header) {
         OMRON_FINS_ENUMS::CommandCode::NETWORK_STATUS_READ                      -> restofdata_20 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::DATA_LINK_STATUS_READ                    -> restofdata_21 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::CYCLE_TIME_READ                          -> restofdata_22 : bytes &eod;
-        OMRON_FINS_ENUMS::CommandCode::CLOCK_READ                               -> clockRead              : ClockRead(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::CLOCK_WRITE                              -> clockWrite             : ClockWrite(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::CLOCK_READ                               -> clockRead              : OMRON_FINS_COMMAND_CODE_07::ClockRead(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::CLOCK_WRITE                              -> clockWrite             : OMRON_FINS_COMMAND_CODE_07::ClockWrite(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::LOOP_BACK_TEST                           -> restofdata_25 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::BROADCAST_TEST_RESULTS_READ              -> restofdata_26 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::BROADCAST_TEST_DATA_SEND                 -> restofdata_27 : bytes &eod;
@@ -104,384 +108,13 @@ public type Command = unit(finsHeader: FINS_Header) {
         OMRON_FINS_ENUMS::CommandCode::FORCED_SET_RESET                         -> restofdata_50 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::FORCED_SET_RESET_CANCEL                  -> restofdata_51 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::MULTIPOINT_FORCED_STATUS_READ            -> restofdata_52 : bytes &eod;
-        OMRON_FINS_ENUMS::CommandCode::NAME_SET                                 -> nameSet                : NameSet(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::NAME_DELETE                              -> nameDelete             : NameDelete(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::NAME_READ                                -> nameRead               : NameRead(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::NAME_SET                                 -> nameSet                : OMRON_FINS_COMMAND_CODE_26::NameSet(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::NAME_DELETE                              -> nameDelete             : OMRON_FINS_COMMAND_CODE_26::NameDelete(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::NAME_READ                                -> nameRead               : OMRON_FINS_COMMAND_CODE_26::NameRead(finsHeader.icf.dataType);
     };
 
     on %init {
         self.commandCode = finsHeader.commandCode;
         self.icfDataType = finsHeader.icf.dataType;
     }
-};
-
-#
-# MemoryAreaRead
-#
-type MemoryAreaRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
-    switch(dataType) {
-        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : MemoryAreaRead_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: MemoryAreaRead_Response();
-    };
-};
-
-type MemoryAreaRead_Command = unit {
-    memoryAreaReadCommandType : OMRON_FINS_TYPES::MemoryAreaCommandType();
-    numberOfItems             : uint16;
-};
-
-type MemoryAreaRead_Response = unit {
-    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    data         : bytes &eod &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
-};
-
-#
-# MemoryAreaWrite
-#
-type MemoryAreaWrite = unit(dataType: OMRON_FINS_ENUMS::DataType) {
-    switch(dataType) {
-        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : MemoryAreaWrite_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: MemoryAreaWrite_Response();
-    };
-};
-
-type MemoryAreaWrite_Command = unit {
-    var dataAsString : string;
-    memoryAreaWriteCommandType : OMRON_FINS_TYPES::MemoryAreaCommandType();
-    numberOfItems              : uint16;
-    data                       : bytes &eod;
-
-    on %done {
-       self.dataAsString = self.data.decode();
-    }
-};
-
-type MemoryAreaWrite_Response = unit {
-    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-};
-
-#
-# MemoryAreaFill
-#
-type MemoryAreaFill = unit(dataType: OMRON_FINS_ENUMS::DataType) {
-    switch(dataType) {
-        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : MemoryAreaFill_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: MemoryAreaFill_Response();
-    };
-};
-
-type MemoryAreaFill_Command = unit {
-    memoryAreaFillCommandType  : OMRON_FINS_TYPES::MemoryAreaCommandType();
-    numberOfItems              : uint16;
-    data                       : bytes &eod &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
-};
-
-type MemoryAreaFill_Response = unit {
-    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-};
-
-#
-# MemoryAreaTransfer
-#
-type MemoryAreaTransfer = unit(dataType: OMRON_FINS_ENUMS::DataType) {
-    switch(dataType) {
-        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : MemoryAreaTransfer_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: MemoryAreaTransfer_Response();
-    };
-};
-
-type MemoryAreaTransfer_Command = unit {
-    memoryAreaTransferSource      : OMRON_FINS_TYPES::MemoryAreaCommandType();
-    memoryAreaTransferDestination : OMRON_FINS_TYPES::MemoryAreaCommandType();
-    numberOfItems                 : uint16;
-};
-
-type MemoryAreaTransfer_Response = unit {
-    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-};
-
-#
-# MultipleMemoryAreaRead
-#
-type MultipleMemoryAreaRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
-    switch(dataType) {
-        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : MultipleMemoryAreaRead_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: MultipleMemoryAreaRead_Response();
-    };
-};
-
-type MultipleMemoryAreaRead_Command = unit {
-    memoryAreaReadCommandType : OMRON_FINS_TYPES::MemoryAreaCommandType()[];
-};
-
-type MultipleMemoryAreaRead_Response = unit {
-    responseCode               : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    memoryAreaReadResponseType : OMRON_FINS_TYPES::MemoryAreaReadResponseType()[];
-};
-
-#
-# ClockRead
-#
-type ClockRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
-    switch(dataType) {
-        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ClockRead_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ClockRead_Response();
-    };
-};
-
-type ClockRead_Command = unit {
-    : bytes &eod; # Note: There is no data associated with the ClockRead command - hence the anonymous field
-};
-
-type ClockRead_Response = unit {
-    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    year         : uint8;
-    month        : uint8;
-    date         : uint8;
-    hour         : uint8;
-    minute       : uint8;
-    second       : uint8;
-    day          : uint8 &convert=OMRON_FINS_ENUMS::DayOfWeek($$);
-};
-
-#
-# ClockWrite
-#
-type ClockWrite = unit(dataType: OMRON_FINS_ENUMS::DataType) {
-    switch(dataType) {
-        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ClockWrite_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ClockWrite_Response();
-    };
-};
-
-type ClockWrite_Command = unit {
-    year         : uint8;
-    month        : uint8;
-    date         : uint8;
-    hour         : uint8;
-    minute       : uint8;
-    data         : bytes &eod;
-    var second   : uint8;
-    var day      : OMRON_FINS_ENUMS::DayOfWeek;
-    on %done {
-        #
-        # The second and day parameters are optional and are parsed as bytes to the &eod.  Once
-        # parsed, then length is checked to determine if one or both fields need to be set.
-        #
-        if ( |self.data| == 1 ) {
-            self.second = *self.data.at(0);
-        } 
-        
-        if ( |self.data| == 2) {
-            self.second = *self.data.at(0);
-            self.day = OMRON_FINS_ENUMS::DayOfWeek(*self.data.at(1));
-        }
-    }
-};
-
-type ClockWrite_Response = unit {
-    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-};
-
-#
-# NameSet
-#
-type NameSet = unit(dataType: OMRON_FINS_ENUMS::DataType) {
-    switch(dataType) {
-        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : NameSet_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: NameSet_Response();
-    };
-};
-
-type NameSet_Command = unit {
-    var nameDataAsString : string;
-    nameData : bytes &eod; 
-
-    on %done {
-        self.nameDataAsString = self.nameData.decode();
-    }
-};
-
-type NameSet_Response = unit {
-    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-};
-
-#
-# NameRead
-#
-type NameRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
-    switch(dataType) {
-        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : NameSet_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: NameSet_Response();
-    };
-};
-
-type NameRead_Command = unit {
-    : bytes &eod; # Note: There is no data associated with the NameRead command - hence the anonymous field
-};
-
-type NameRead_Response = unit {
-    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-
-    var nameDataAsString : string;
-    nameData : bytes &eod; 
-
-    on %done {
-        self.nameDataAsString = self.nameData.decode();
-    }
-};
-
-#
-# NameDelete
-#
-type NameDelete = unit(dataType: OMRON_FINS_ENUMS::DataType) {
-    switch(dataType) {
-        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : NameDelete_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: NameDelete_Response();
-    };
-};
-
-type NameDelete_Command = unit {
-    : bytes &eod; # Note: There is no data associated with the NameDelete command - hence the anonymous field
-};
-
-type NameDelete_Response = unit {
-    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-};
-
-#
-# ParameterAreaRead
-#
-type ParameterAreaRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
-    switch(dataType) {
-        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ParameterAreaRead_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ParameterAreaRead_Response();
-    };
-};
-
-type ParameterAreaRead_Command = unit {
-    parameterAreaCode : uint16 &convert=OMRON_FINS_ENUMS::ParameterAreaCode($$);
-    beginningWord     : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
-    numberOfWords     : bitfield(16) {
-        wordsToRead : 0..14;
-        lastWord    : 15;
-    };
-};
-
-type ParameterAreaRead_Response = unit {
-    var dataAsString  : string;
-    responseCode      : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    parameterAreaCode : uint16 &convert=OMRON_FINS_ENUMS::ParameterAreaCode($$);
-    beginningWord     : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
-    numberOfWords     : bitfield(16) {
-        wordsToRead : 0..14;
-        lastWord    : 15;
-    };
-    data              : bytes &eod;
-
-    on %done {
-       self.dataAsString = self.data.decode();
-    }
-};
-
-#
-# ParameterAreaWrite
-#
-type ParameterAreaWrite = unit(dataType: OMRON_FINS_ENUMS::DataType) {
-    switch(dataType) {
-        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ParameterAreaWrite_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ParameterAreaWrite_Response();
-    };
-};
-
-type ParameterAreaWrite_Command = unit {
-    var dataAsString  : string;
-    parameterAreaCode : uint16 &convert=OMRON_FINS_ENUMS::ParameterAreaCode($$);
-    beginningWord     : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
-    numberOfWords     : bitfield(16) {
-        wordsToRead : 0..14;
-        lastWord    : 15;
-    };
-    data              : bytes &eod;
-
-    on %done {
-       self.dataAsString = self.data.decode();
-    }
-};
-
-type ParameterAreaWrite_Response = unit {
-    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-};
-
-#
-# ParameterAreaClear
-#
-type ParameterAreaClear = unit(dataType: OMRON_FINS_ENUMS::DataType) {
-    switch(dataType) {
-        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ParameterAreaClear_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ParameterAreaClear_Response();
-    };
-};
-
-type ParameterAreaClear_Command = unit {
-    parameterAreaCode : uint16 &convert=OMRON_FINS_ENUMS::ParameterAreaCode($$);
-    beginningWord     : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
-    numberOfWords     : uint16;
-    data              : bytes &eod &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
-};
-
-type ParameterAreaClear_Response = unit {
-    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-};
-
-#
-# DataLinkTableRead
-#
-type DataLinkTableRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
-    switch(dataType) {
-        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : DataLinkTableRead_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: DataLinkTableRead_Response();
-    };
-};
-
-type DataLinkTableRead_Command = unit {
-    fixed           : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
-    intelligentIdNo : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
-    firstWord       : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
-    readLength      : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
-};
-
-type DataLinkTableRead_Response = unit {
-    responseCode     : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    numOfLinkNodesMask : bitfield(8) {
-        numOfLinkNodes : 0..6;
-        bit7           : 7;
-    };
-    blockRecord        : OMRON_FINS_TYPES::BlockRecordRead()[];
-};
-
-#
-# DataLinkTableWrite
-#
-type DataLinkTableWrite = unit(dataType: OMRON_FINS_ENUMS::DataType) {
-    switch(dataType) {
-        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : DataLinkTableWrite_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: DataLinkTableWrite_Response();
-    };
-};
-
-type DataLinkTableWrite_Command = unit {
-    fixed           : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
-    intelligentIdNo : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
-    firstWord       : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
-    dataLength      : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
-    numOfLinkNodesMask : bitfield(8) {
-        numOfLinkNodes : 0..6;
-        bit7           : 7;
-    };
-    blockRecord        : OMRON_FINS_TYPES::BlockRecordWrite()[];
-};
-
-type DataLinkTableWrite_Response = unit {
-    responseCode     : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
 };

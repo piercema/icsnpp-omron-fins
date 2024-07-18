@@ -1,0 +1,110 @@
+module OMRON_FINS_COMMAND_CODE_01;
+
+import spicy;
+import OMRON_FINS_ENUMS;
+import OMRON_FINS_FUNCTIONS;
+import OMRON_FINS_TYPES;
+
+#
+# MemoryAreaRead
+#
+type MemoryAreaRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : MemoryAreaRead_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: MemoryAreaRead_Response();
+    };
+};
+
+type MemoryAreaRead_Command = unit {
+    memoryAreaReadCommandType : OMRON_FINS_TYPES::MemoryAreaCommandType();
+    numberOfItems             : uint16;
+};
+
+type MemoryAreaRead_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data         : bytes &eod &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
+};
+
+#
+# MemoryAreaWrite
+#
+type MemoryAreaWrite = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : MemoryAreaWrite_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: MemoryAreaWrite_Response();
+    };
+};
+
+type MemoryAreaWrite_Command = unit {
+    var dataAsString : string;
+    memoryAreaWriteCommandType : OMRON_FINS_TYPES::MemoryAreaCommandType();
+    numberOfItems              : uint16;
+    data                       : bytes &eod;
+
+    on %done {
+       self.dataAsString = self.data.decode();
+    }
+};
+
+type MemoryAreaWrite_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+};
+
+#
+# MemoryAreaFill
+#
+type MemoryAreaFill = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : MemoryAreaFill_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: MemoryAreaFill_Response();
+    };
+};
+
+type MemoryAreaFill_Command = unit {
+    memoryAreaFillCommandType  : OMRON_FINS_TYPES::MemoryAreaCommandType();
+    numberOfItems              : uint16;
+    data                       : bytes &eod &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
+};
+
+type MemoryAreaFill_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+};
+
+#
+# MemoryAreaTransfer
+#
+type MemoryAreaTransfer = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : MemoryAreaTransfer_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: MemoryAreaTransfer_Response();
+    };
+};
+
+type MemoryAreaTransfer_Command = unit {
+    memoryAreaTransferSource      : OMRON_FINS_TYPES::MemoryAreaCommandType();
+    memoryAreaTransferDestination : OMRON_FINS_TYPES::MemoryAreaCommandType();
+    numberOfItems                 : uint16;
+};
+
+type MemoryAreaTransfer_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+};
+
+#
+# MultipleMemoryAreaRead
+#
+type MultipleMemoryAreaRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : MultipleMemoryAreaRead_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: MultipleMemoryAreaRead_Response();
+    };
+};
+
+type MultipleMemoryAreaRead_Command = unit {
+    memoryAreaReadCommandType : OMRON_FINS_TYPES::MemoryAreaCommandType()[];
+};
+
+type MultipleMemoryAreaRead_Response = unit {
+    responseCode               : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    memoryAreaReadResponseType : OMRON_FINS_TYPES::MemoryAreaReadResponseType()[];
+};
