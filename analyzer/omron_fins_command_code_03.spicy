@@ -81,14 +81,19 @@ type ProgramAreaRead_Command = unit {
 };
 
 type ProgramAreaRead_Response = unit {
-    responseCode  : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    programNo     : uint16;
-    beginningWord : uint32 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    var dataAsString : string;
+    responseCode     : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    programNo        : uint16;
+    beginningWord    : uint32 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
     numberOfBytesMask : bitfield(16) {
         numberOfBytes : 0..14;
         lastWordBit   : 15;
     };
-    data : bytes &eod &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
+    data : bytes &eod;
+
+    on %done {
+        self.dataAsString = self.data.decode();
+    }
 };
 
 #
@@ -102,9 +107,28 @@ type ProgramAreaWrite = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type ProgramAreaWrite_Command = unit {
+    var dataAsString : string;
+    programNo        : uint16;
+    beginningWord    : uint32 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    numberOfBytesMask : bitfield(16) {
+        numberOfBytes : 0..14;
+        lastWordBit   : 15;
+    };
+    data : bytes &eod;
+
+    on %done {
+        self.dataAsString = self.data.decode();
+    }
 };
 
 type ProgramAreaWrite_Response = unit {
+    responseCode  : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    programNo     : uint16;
+    beginningWord : uint32 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    numberOfBytesMask : bitfield(16) {
+        numberOfBytes : 0..14;
+        lastWordBit   : 15;
+    };
 };
 
 #

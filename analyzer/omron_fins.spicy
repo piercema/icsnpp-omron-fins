@@ -68,7 +68,7 @@ public type Command = unit(finsHeader: FINS_Header) {
         OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_PROTECT                     -> programAreaProtect      : OMRON_FINS_COMMAND_CODE_03::ProgramAreaProtect(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_PROTECT_CLEAR               -> programAreaProtectClear : OMRON_FINS_COMMAND_CODE_03::ProgramAreaProtectClear(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_READ                        -> programAreaRead         : OMRON_FINS_COMMAND_CODE_03::ProgramAreaRead(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_WRITE                       -> restofdata_12 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_WRITE                       -> programAreaWrite        : OMRON_FINS_COMMAND_CODE_03::ProgramAreaWrite(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_CLEAR                       -> programAreaClear        : OMRON_FINS_COMMAND_CODE_03::ProgramAreaClear(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::RUN                                      -> restofdata_14 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::STOP                                     -> restofdata_15 : bytes &eod;

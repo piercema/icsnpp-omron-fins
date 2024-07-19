@@ -66,7 +66,7 @@ module OMRON_FINS;
             info_detail_log$beginning_word  = finsCommand$programAreaRead$response$beginningWord;
             info_detail_log$number_of_bytes = finsCommand$programAreaRead$response$numberOfBytesMask$numberOfBytes;
             info_detail_log$last_word_bit   = finsCommand$programAreaRead$response$numberOfBytesMask$lastWordBit;
-            info_detail_log$data            = finsCommand$programAreaRead$response$data;
+            info_detail_log$data            = finsCommand$programAreaRead$response$dataAsString;
 
         }
 
@@ -83,8 +83,18 @@ module OMRON_FINS;
         info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
 
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
+            info_detail_log$program_no      = finsCommand$programAreaWrite$command$programNo;
+            info_detail_log$beginning_word  = finsCommand$programAreaWrite$command$beginningWord;
+            info_detail_log$number_of_bytes = finsCommand$programAreaWrite$command$numberOfBytesMask$numberOfBytes;
+            info_detail_log$last_word_bit   = finsCommand$programAreaWrite$command$numberOfBytesMask$lastWordBit;
+            info_detail_log$data            = finsCommand$programAreaWrite$command$dataAsString;
 
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
+            info_detail_log$response_code   = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$programAreaWrite$response$responseCode];
+            info_detail_log$program_no      = finsCommand$programAreaWrite$response$programNo;
+            info_detail_log$beginning_word  = finsCommand$programAreaWrite$response$beginningWord;
+            info_detail_log$number_of_bytes = finsCommand$programAreaWrite$response$numberOfBytesMask$numberOfBytes;
+            info_detail_log$last_word_bit   = finsCommand$programAreaWrite$response$numberOfBytesMask$lastWordBit;
 
         }
 
