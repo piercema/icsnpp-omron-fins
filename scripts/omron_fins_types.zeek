@@ -68,5 +68,6 @@ module OMRON_FINS;
         protect_code                     : count  &log &optional;
         password                         : string &log &optional;
         last_word                        : string &log &optional;
+        clear_code                       : string &log &optional;
     };
 

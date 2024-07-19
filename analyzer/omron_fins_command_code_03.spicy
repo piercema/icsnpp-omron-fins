@@ -65,15 +65,15 @@ type ProgramAreaProtectClear_Response = unit {
 #
 type ProgramAreaRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
     switch(dataType) {
-        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ProgarAreaRead_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ProgarAreaRead_Response();
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ProgramAreaRead_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ProgramAreaRead_Response();
     };
 };
 
-type ProgarAreaRead_Command = unit {
+type ProgramAreaRead_Command = unit {
 };
 
-type ProgarAreaRead_Response = unit {
+type ProgramAreaRead_Response = unit {
 };
 
 #
@@ -81,15 +81,15 @@ type ProgarAreaRead_Response = unit {
 #
 type ProgramAreaWrite = unit(dataType: OMRON_FINS_ENUMS::DataType) {
     switch(dataType) {
-        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ProgarAreaWrite_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ProgarAreaWrite_Response();
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ProgramAreaWrite_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ProgramAreaWrite_Response();
     };
 };
 
-type ProgarAreaWrite_Command = unit {
+type ProgramAreaWrite_Command = unit {
 };
 
-type ProgarAreaWrite_Response = unit {
+type ProgramAreaWrite_Response = unit {
 };
 
 #
@@ -97,13 +97,16 @@ type ProgarAreaWrite_Response = unit {
 #
 type ProgramAreaClear = unit(dataType: OMRON_FINS_ENUMS::DataType) {
     switch(dataType) {
-        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ProgarAreaClear_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ProgarAreaClear_Response();
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ProgramAreaClear_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ProgramAreaClear_Response();
     };
 };
 
-type ProgarAreaClear_Command = unit {
+type ProgramAreaClear_Command = unit {
+    programNo : uint16;
+    clearCode : uint8 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
 };
 
-type ProgarAreaClear_Response = unit {
+type ProgramAreaClear_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
 };
