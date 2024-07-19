@@ -29,7 +29,7 @@ type ProgramAreaProtect_Command = unit {
 };
 
 type ProgramAreaProtect_Response = unit {
-    responseCode      : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
 };
 
 #
@@ -43,9 +43,21 @@ type ProgramAreaProtectClear = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type ProgramAreaProtectClear_Command = unit {
+    var passwordAsString : string;
+    programNo     : uint16;
+    protectCode   : uint8;
+    beginningWord : uint32 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    lastWord      : uint32 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    password      : bytes  &size=4;
+
+    on %done {
+        self.passwordAsString = self.password.decode();
+    }
+
 };
 
 type ProgramAreaProtectClear_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
 };
 
 #

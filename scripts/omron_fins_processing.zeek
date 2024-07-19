@@ -35,6 +35,9 @@ module OMRON_FINS;
             case OMRON_FINS_ENUMS::CommandCode_PROGRAM_AREA_PROTECT:
                 process_program_area_protect_detail(c, finsCommand, omron_fins_link_id);
                 break;
+            case OMRON_FINS_ENUMS::CommandCode_PROGRAM_AREA_PROTECT_CLEAR:
+                process_program_area_protect_clear_detail(c, finsCommand, omron_fins_link_id);
+                break;
             case OMRON_FINS_ENUMS::CommandCode_CLOCK_READ:
                 process_clock_read_detail(c, finsCommand, omron_fins_link_id);
                 break;

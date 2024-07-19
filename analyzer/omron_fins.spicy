@@ -55,18 +55,18 @@ public type Command = unit(finsHeader: FINS_Header) {
     var icfDataType : OMRON_FINS_ENUMS::DataType;
 
     switch(finsHeader.commandCode) {
-        OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_READ                         -> memoryAreaRead         : OMRON_FINS_COMMAND_CODE_01::MemoryAreaRead(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_WRITE                        -> memoryAreaWrite        : OMRON_FINS_COMMAND_CODE_01::MemoryAreaWrite(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_FILL                         -> memoryAreaFill         : OMRON_FINS_COMMAND_CODE_01::MemoryAreaFill(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::MULTIPLE_MEMORY_AREA_READ                -> multipleMemoryAreaRead : OMRON_FINS_COMMAND_CODE_01::MultipleMemoryAreaRead(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_TRANSFER                     -> memoryAreaTransfer     : OMRON_FINS_COMMAND_CODE_01::MemoryAreaTransfer(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_READ                      -> parameterAreaRead      : OMRON_FINS_COMMAND_CODE_02::ParameterAreaRead(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_WRITE                     -> parameterAreaWrite     : OMRON_FINS_COMMAND_CODE_02::ParameterAreaWrite(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_CLEAR                     -> parameterAreaClear     : OMRON_FINS_COMMAND_CODE_02::ParameterAreaClear(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::DATA_LINK_TABLE_READ                     -> dataLinkTableRead      : OMRON_FINS_COMMAND_CODE_02::DataLinkTableRead(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::DATA_LINK_TABLE_WRITE                    -> dataLinkTableWrite     : OMRON_FINS_COMMAND_CODE_02::DataLinkTableWrite(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_PROTECT                     -> programAreaProtect     : OMRON_FINS_COMMAND_CODE_03::ProgramAreaProtect(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_PROTECT_CLEAR               -> restofdata_10 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_READ                         -> memoryAreaRead          : OMRON_FINS_COMMAND_CODE_01::MemoryAreaRead(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_WRITE                        -> memoryAreaWrite         : OMRON_FINS_COMMAND_CODE_01::MemoryAreaWrite(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_FILL                         -> memoryAreaFill          : OMRON_FINS_COMMAND_CODE_01::MemoryAreaFill(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::MULTIPLE_MEMORY_AREA_READ                -> multipleMemoryAreaRead  : OMRON_FINS_COMMAND_CODE_01::MultipleMemoryAreaRead(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::MEMORY_AREA_TRANSFER                     -> memoryAreaTransfer      : OMRON_FINS_COMMAND_CODE_01::MemoryAreaTransfer(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_READ                      -> parameterAreaRead       : OMRON_FINS_COMMAND_CODE_02::ParameterAreaRead(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_WRITE                     -> parameterAreaWrite      : OMRON_FINS_COMMAND_CODE_02::ParameterAreaWrite(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::PARAMETER_AREA_CLEAR                     -> parameterAreaClear      : OMRON_FINS_COMMAND_CODE_02::ParameterAreaClear(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::DATA_LINK_TABLE_READ                     -> dataLinkTableRead       : OMRON_FINS_COMMAND_CODE_02::DataLinkTableRead(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::DATA_LINK_TABLE_WRITE                    -> dataLinkTableWrite      : OMRON_FINS_COMMAND_CODE_02::DataLinkTableWrite(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_PROTECT                     -> programAreaProtect      : OMRON_FINS_COMMAND_CODE_03::ProgramAreaProtect(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_PROTECT_CLEAR               -> programAreaProtectClear : OMRON_FINS_COMMAND_CODE_03::ProgramAreaProtectClear(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_READ                        -> restofdata_11 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_WRITE                       -> restofdata_12 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_CLEAR                       -> restofdata_13 : bytes &eod;
@@ -79,8 +79,8 @@ public type Command = unit(finsHeader: FINS_Header) {
         OMRON_FINS_ENUMS::CommandCode::NETWORK_STATUS_READ                      -> restofdata_20 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::DATA_LINK_STATUS_READ                    -> restofdata_21 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::CYCLE_TIME_READ                          -> restofdata_22 : bytes &eod;
-        OMRON_FINS_ENUMS::CommandCode::CLOCK_READ                               -> clockRead              : OMRON_FINS_COMMAND_CODE_07::ClockRead(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::CLOCK_WRITE                              -> clockWrite             : OMRON_FINS_COMMAND_CODE_07::ClockWrite(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::CLOCK_READ                               -> clockRead               : OMRON_FINS_COMMAND_CODE_07::ClockRead(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::CLOCK_WRITE                              -> clockWrite              : OMRON_FINS_COMMAND_CODE_07::ClockWrite(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::LOOP_BACK_TEST                           -> restofdata_25 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::BROADCAST_TEST_RESULTS_READ              -> restofdata_26 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::BROADCAST_TEST_DATA_SEND                 -> restofdata_27 : bytes &eod;
@@ -109,9 +109,9 @@ public type Command = unit(finsHeader: FINS_Header) {
         OMRON_FINS_ENUMS::CommandCode::FORCED_SET_RESET                         -> restofdata_50 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::FORCED_SET_RESET_CANCEL                  -> restofdata_51 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::MULTIPOINT_FORCED_STATUS_READ            -> restofdata_52 : bytes &eod;
-        OMRON_FINS_ENUMS::CommandCode::NAME_SET                                 -> nameSet                : OMRON_FINS_COMMAND_CODE_26::NameSet(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::NAME_DELETE                              -> nameDelete             : OMRON_FINS_COMMAND_CODE_26::NameDelete(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::NAME_READ                                -> nameRead               : OMRON_FINS_COMMAND_CODE_26::NameRead(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::NAME_SET                                 -> nameSet                 : OMRON_FINS_COMMAND_CODE_26::NameSet(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::NAME_DELETE                              -> nameDelete              : OMRON_FINS_COMMAND_CODE_26::NameDelete(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::NAME_READ                                -> nameRead                : OMRON_FINS_COMMAND_CODE_26::NameRead(finsHeader.icf.dataType);
     };
 
     on %init {
