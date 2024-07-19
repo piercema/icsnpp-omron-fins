@@ -71,9 +71,24 @@ type ProgramAreaRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type ProgramAreaRead_Command = unit {
+    programNo     : uint16;
+    beginningWord : uint32 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    numberOfBytesMask : bitfield(16) {
+        numberOfBytes : 0..14;
+        lastWordBit   : 15;
+    };
+
 };
 
 type ProgramAreaRead_Response = unit {
+    responseCode  : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    programNo     : uint16;
+    beginningWord : uint32 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    numberOfBytesMask : bitfield(16) {
+        numberOfBytes : 0..14;
+        lastWordBit   : 15;
+    };
+    data : bytes &eod &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
 };
 
 #
