@@ -1,0 +1,67 @@
+module OMRON_FINS_COMMAND_CODE_04;
+
+import spicy;
+import OMRON_FINS_ENUMS;
+import OMRON_FINS_FUNCTIONS;
+import OMRON_FINS_TYPES;
+
+#
+# Run
+#
+type Run = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : Run_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: Run_Response();
+    };
+};
+
+type Run_Command = unit {
+    programNo   : uint16;
+    mode        : bytes &eod;
+    var runMode : OMRON_FINS_ENUMS::RunMode;
+
+    on %done {
+        if ( |self.mode| == 1 ) {
+            self.runMode = OMRON_FINS_ENUMS::RunMode(*self.mode.at(0));
+        }
+    }
+};
+
+type Run_Response = unit {
+    responseCode      : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+};
+
+
+#
+# Stop
+#
+type StopRun = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : Stop_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: Stop_Response();
+    };
+};
+
+type Stop_Command = unit {
+};
+
+type Stop_Response = unit {
+    responseCode      : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+};
+
+#
+# Reset
+#
+type Reset = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : Reset_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: Reset_Response();
+    };
+};
+
+type Reset_Command = unit {
+};
+
+type Reset_Response = unit {
+    responseCode      : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+};

@@ -7,6 +7,7 @@ import OMRON_FINS_TYPES;
 import OMRON_FINS_COMMAND_CODE_01;
 import OMRON_FINS_COMMAND_CODE_02;
 import OMRON_FINS_COMMAND_CODE_03;
+import OMRON_FINS_COMMAND_CODE_04;
 import OMRON_FINS_COMMAND_CODE_07;
 import OMRON_FINS_COMMAND_CODE_26;
 
@@ -70,7 +71,7 @@ public type Command = unit(finsHeader: FINS_Header) {
         OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_READ                        -> programAreaRead         : OMRON_FINS_COMMAND_CODE_03::ProgramAreaRead(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_WRITE                       -> programAreaWrite        : OMRON_FINS_COMMAND_CODE_03::ProgramAreaWrite(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::PROGRAM_AREA_CLEAR                       -> programAreaClear        : OMRON_FINS_COMMAND_CODE_03::ProgramAreaClear(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::RUN                                      -> restofdata_14 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::RUN                                      -> run                     : OMRON_FINS_COMMAND_CODE_04::Run(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::STOP                                     -> restofdata_15 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::RESET                                    -> restofdata_16 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::CONTROLLER_DATA_READ                     -> restofdata_17 : bytes &eod;

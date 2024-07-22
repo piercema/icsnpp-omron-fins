@@ -293,4 +293,14 @@ export{
         [OMRON_FINS_ENUMS::DataLinkStatus_NORMAL]  = "Normal (0)",
         [OMRON_FINS_ENUMS::DataLinkStatus_WARNING] = "Warning (1)",
     }&default = "Unknown";
+
+
+    #
+    # RunMode 
+    #
+    const RUN_MODE = {
+        [OMRON_FINS_ENUMS::RunMode_DEBUG]   = "Debug (1)",
+        [OMRON_FINS_ENUMS::RunMode_MONITOR] = "Monitor (2)",
+        [OMRON_FINS_ENUMS::RunMode_RUN]     = "Run (4)",
+    }&default = "Unknown";
 }

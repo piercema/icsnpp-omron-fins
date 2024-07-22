@@ -70,5 +70,7 @@ module OMRON_FINS;
         last_word                        : string &log &optional;
         clear_code                       : string &log &optional;
         number_of_bytes                  : count  &log &optional;
+
+        run_mode                         : string &log &optional;
     };
 

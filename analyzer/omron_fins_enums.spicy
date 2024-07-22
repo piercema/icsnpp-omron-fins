@@ -296,3 +296,12 @@ public type DataLinkStatus = enum {
     NORMAL  = 0,
     WARNING = 1,
 };
+
+#
+# RunMode 
+#
+public type RunMode = enum {
+    DEBUG   = 1,
+    MONITOR = 2,
+    RUN     = 4,
+};
