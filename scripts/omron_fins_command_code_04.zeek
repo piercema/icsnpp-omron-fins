@@ -8,11 +8,11 @@ module OMRON_FINS;
         info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
 
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
-            info_detail_log$program_no = finsCommand$run$command$programNo;
-            info_detail_log$run_mode   = OMRON_FINS_ENUMS::RUN_MODE[finsCommand$run$command$runMode];
+            info_detail_log$program_no = finsCommand$runCommand$command$programNo;
+            info_detail_log$run_mode   = OMRON_FINS_ENUMS::RUN_MODE[finsCommand$runCommand$command$runMode];
 
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
-            info_detail_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$run$response$responseCode];
+            info_detail_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$runCommand$response$responseCode];
         }
 
         # Fire the event and tidy up
