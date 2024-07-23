@@ -35,7 +35,7 @@ type Run_Response = unit {
 #
 # Stop
 #
-type StopRun = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+type Stop = unit(dataType: OMRON_FINS_ENUMS::DataType) {
     switch(dataType) {
         OMRON_FINS_ENUMS::DataType::COMMAND  -> command : Stop_Command();
         OMRON_FINS_ENUMS::DataType::RESPONSE -> response: Stop_Response();
@@ -43,6 +43,7 @@ type StopRun = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type Stop_Command = unit {
+        : bytes &eod; # Note: There is no data associated with the Stop command - hence the anonymous field
 };
 
 type Stop_Response = unit {
