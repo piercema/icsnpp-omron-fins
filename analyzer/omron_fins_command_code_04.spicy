@@ -49,20 +49,3 @@ type Stop_Command = unit {
 type Stop_Response = unit {
     responseCode      : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
 };
-
-#
-# Reset
-#
-type Reset = unit(dataType: OMRON_FINS_ENUMS::DataType) {
-    switch(dataType) {
-        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : Reset_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: Reset_Response();
-    };
-};
-
-type Reset_Command = unit {
-};
-
-type Reset_Response = unit {
-    responseCode      : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-};
