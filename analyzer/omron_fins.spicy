@@ -8,6 +8,7 @@ import OMRON_FINS_COMMAND_CODE_01;
 import OMRON_FINS_COMMAND_CODE_02;
 import OMRON_FINS_COMMAND_CODE_03;
 import OMRON_FINS_COMMAND_CODE_04;
+import OMRON_FINS_COMMAND_CODE_05;
 import OMRON_FINS_COMMAND_CODE_07;
 import OMRON_FINS_COMMAND_CODE_26;
 
@@ -74,8 +75,8 @@ public type Command = unit(finsHeader: FINS_Header) {
         OMRON_FINS_ENUMS::CommandCode::RUN                                      -> runCommand                     : OMRON_FINS_COMMAND_CODE_04::Run(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::STOP                                     -> stopCommand                    : OMRON_FINS_COMMAND_CODE_04::Stop(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::RESET                                    -> resetCommand                   : bytes &eod; # Note: The reset command does not contain any detailed data
-        OMRON_FINS_ENUMS::CommandCode::CONTROLLER_DATA_READ                     -> restofdata_17 : bytes &eod;
-        OMRON_FINS_ENUMS::CommandCode::CONNECTION_DATA_READ                     -> restofdata_18 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::CONTROLLER_DATA_READ                     -> controllerDataReadCommand      : OMRON_FINS_COMMAND_CODE_05::ControllerDataRead(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::CONNECTION_DATA_READ                     -> connectionDataReadCommand      : OMRON_FINS_COMMAND_CODE_05::ConnectionDataRead(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::CONTROLLER_STATUS_READ                   -> restofdata_19 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::NETWORK_STATUS_READ                      -> restofdata_20 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::DATA_LINK_STATUS_READ                    -> restofdata_21 : bytes &eod;

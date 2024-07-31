@@ -1,0 +1,120 @@
+module OMRON_FINS_COMMAND_CODE_05;
+
+import spicy;
+import OMRON_FINS_ENUMS;
+import OMRON_FINS_FUNCTIONS;
+import OMRON_FINS_TYPES;
+
+#
+# ControllerDataRead
+#
+type ControllerDataRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ControllerDataRead_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ControllerDataRead_Response();
+    };
+};
+
+public type ControllerDataRead_Command = unit {
+    var controllerData : OMRON_FINS_ENUMS::ControllerData;
+
+    data : bytes &eod;
+
+    on %done {
+        if ( |self.data| == 1) {
+            self.controllerData = OMRON_FINS_ENUMS::ControllerData(*self.data.at(0));
+        }
+    }
+};
+
+public type ControllerDataRead_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    dataToRead : bytes &eod;
+
+    #
+    # Controller Model - Data to read specified as 00
+    #
+    var controllerModel      : string;  # &size=20;
+    var controllerVersion    : string;  # &size=20;
+    var forSystemUse         : string;  # &size=40;
+    var programAreaSize      : uint64; # &size=2
+    var iomSize              : uint64; # &size=1
+    var noOfDMWords          : uint64; # &size=2
+    var timerSize            : uint64; # &size=1
+    var expansionDMSize      : uint64; # &size=1
+    var noOfStepsTransitions : uint64; # &size=2
+    var kindOfMemoryCard     : OMRON_FINS_ENUMS::KindOfMemoryCard; # &size=1
+    var memoryCardSize       : uint64; # &size=2
+
+    #
+    # CPU Bus Unit - Data to read specified as 01
+    #
+    var cpuBusUnitConfig : bytes;  # 64 bytes
+    var remoteIOData     : uint64; # 2 bytes
+    var pcStatus         : uint64; # 1 byte
+    on %done {
+
+        #
+        # Data to read specified as Controller Model (00)
+        #
+        if (|self.dataToRead| == 92) {  
+            self.controllerModel = self.dataToRead.sub(0,20).decode();
+            self.controllerVersion = self.dataToRead.sub(20,40).decode();
+            self.forSystemUse = self.dataToRead.sub(40,80).decode();
+            self.programAreaSize = self.dataToRead.sub(80,82).to_uint(spicy::ByteOrder::Network);
+            self.iomSize = self.dataToRead.sub(82,83).to_uint(spicy::ByteOrder::Network);
+            self.noOfDMWords = self.dataToRead.sub(83,85).to_uint(spicy::ByteOrder::Network);
+            self.timerSize = self.dataToRead.sub(85,86).to_uint(spicy::ByteOrder::Network);
+            self.expansionDMSize = self.dataToRead.sub(86,87).to_uint(spicy::ByteOrder::Network);
+            self.noOfStepsTransitions = self.dataToRead.sub(87,89).to_uint(spicy::ByteOrder::Network);
+            self.kindOfMemoryCard = OMRON_FINS_ENUMS::KindOfMemoryCard(self.dataToRead.sub(89,90).to_int(spicy::ByteOrder::Network));
+            self.memoryCardSize = self.dataToRead.sub(90,92).to_uint(spicy::ByteOrder::Network);
+
+        #
+        # Data to read specified as CPU Bus Unit (01)
+        #
+        } else if (|self.dataToRead| == 67) {
+            self.cpuBusUnitConfig = self.dataToRead.sub(0,64);
+            self.remoteIOData = self.dataToRead.sub(64, 66).to_uint(spicy::ByteOrder::Network);
+            self.pcStatus = self.dataToRead.sub(66, 67).to_uint(spicy::ByteOrder::Network);
+
+        #
+        # Data to read is omitted - parse both Controller Model and CPU Bus Unit
+        #
+        } else { 
+            self.controllerModel = self.dataToRead.sub(0,20).decode();
+            self.controllerVersion = self.dataToRead.sub(20,40).decode();
+            self.forSystemUse = self.dataToRead.sub(40,80).decode();
+            self.programAreaSize = self.dataToRead.sub(80,82).to_uint(spicy::ByteOrder::Network);
+            self.iomSize = self.dataToRead.sub(82,83).to_uint(spicy::ByteOrder::Network);
+            self.noOfDMWords = self.dataToRead.sub(83,85).to_uint(spicy::ByteOrder::Network);
+            self.timerSize = self.dataToRead.sub(85,86).to_uint(spicy::ByteOrder::Network);
+            self.expansionDMSize = self.dataToRead.sub(86,87).to_uint(spicy::ByteOrder::Network);
+            self.noOfStepsTransitions = self.dataToRead.sub(87,89).to_uint(spicy::ByteOrder::Network);
+            self.kindOfMemoryCard = OMRON_FINS_ENUMS::KindOfMemoryCard(self.dataToRead.sub(89,90).to_int(spicy::ByteOrder::Network));
+            self.memoryCardSize = self.dataToRead.sub(90,92).to_uint(spicy::ByteOrder::Network);
+
+            self.cpuBusUnitConfig = self.dataToRead.sub(92,156);
+            self.remoteIOData = self.dataToRead.sub(156, 158).to_uint(spicy::ByteOrder::Network);
+            self.pcStatus = self.dataToRead.sub(158, 159).to_uint(spicy::ByteOrder::Network);
+
+        }
+    }
+};
+
+#
+# ConnectionDataRead
+#
+type ConnectionDataRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ConnectionDataRead_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ConnectionDataRead_Response();
+    };
+};
+
+type ConnectionDataRead_Command = unit {
+};
+
+type ConnectionDataRead_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+};

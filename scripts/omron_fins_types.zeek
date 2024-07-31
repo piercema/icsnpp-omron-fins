@@ -72,5 +72,23 @@ module OMRON_FINS;
         number_of_bytes                  : count  &log &optional;
 
         run_mode                         : string &log &optional;
+
+        controller_data_to_read          : string &log &optional;
+        controller_model                 : string &log &optional;
+        controller_version               : string &log &optional;
+        for_system_use                   : string &log &optional;
+        program_area_size                : count  &log &optional;
+        iom_size                         : count  &log &optional;
+        no_of_dm_words                   : count  &log &optional;
+        timer_size                       : count  &log &optional;
+        expansion_dm_size                : count  &log &optional;
+        no_of_steps_transitions          : count  &log &optional;
+        kind_of_memory_card              : string &log &optional;
+        memory_card_size                 : count  &log &optional;
+
+        cpu_bus_unit_config              : string &log &optional;
+        remote_io_data                   : count  &log &optional;
+        pc_status                        : count  &log &optional;
+
     };
 

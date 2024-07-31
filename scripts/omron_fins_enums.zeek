@@ -303,4 +303,23 @@ export{
         [OMRON_FINS_ENUMS::RunMode_MONITOR] = "Monitor (2)",
         [OMRON_FINS_ENUMS::RunMode_RUN]     = "Run (4)",
     }&default = "Not Set: Default to Monitor (2)";
+
+    #
+    # Controller Data
+    #
+    const CONTROLLER_DATA = {
+        [OMRON_FINS_ENUMS::ControllerData_CONTROLLER_MODEL] = "Controller model Controller version Area data (00)",
+        [OMRON_FINS_ENUMS::ControllerData_CPU_BUS_UNIT]     = "CPU Bus Unit configuration Remote I/O data PC status (01)",
+    }&default = "Unknown";
+
+    #
+    # Kind of Memory Card
+    #
+    const KIND_OF_MEMORYCARD = {
+        [OMRON_FINS_ENUMS::KindOfMemoryCard_NO_MEMORY_CARD] = "No Memory Card (00)",
+        [OMRON_FINS_ENUMS::KindOfMemoryCard_SPRAM]          = "SPRAM (01)",
+        [OMRON_FINS_ENUMS::KindOfMemoryCard_EPROM]          = "EPROM (02)",
+        [OMRON_FINS_ENUMS::KindOfMemoryCard_EEPROM]         = "EEPROM (03)",
+    }&default = "Unknown";
+
 }

@@ -305,3 +305,21 @@ public type RunMode = enum {
     MONITOR = 2,
     RUN     = 4,
 };
+
+#
+# Controller Data
+#
+public type ControllerData = enum {
+    CONTROLLER_MODEL = 0x00,
+    CPU_BUS_UNIT     = 0x01,
+};
+
+#
+# Kind of Memory Card
+#
+public type KindOfMemoryCard = enum {
+    NO_MEMORY_CARD = 0x00,
+    SPRAM          = 0x01,
+    EPROM          = 0x02,
+    EEPROM         = 0x03,
+};
