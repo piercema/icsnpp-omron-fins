@@ -27,6 +27,21 @@ public type ControllerDataRead_Command = unit {
     }
 };
 
+#
+# Controller Data Read response
+#
+# Parsing the Controller Data Read response is a little different from parsing
+# other command repsonses.  In reviewing the test packet capture, it became 
+# apparent that at the point the response can be parsed, the context of the data
+# to be read, which is specified as the 3rd byte of the controller data read 
+# command, has been lost.  In order to determine the data to be read 
+# (Controller Model, CPU Bus Unit, or Both), the code parses the data as bytes
+# to &eod and checks the length of the data.  If the length is 92 bytes, then 
+# the data to be read is Controller Model data.  If the length is 67 bytes, then 
+# the data to be read is CPU Bus Unit data.  Otherwise, both Controller Model 
+# data and CPU Bus Unit data is read.  Once parsed, unit variables representing 
+# the detailed data are set by indexing into the &eod byte array.
+#
 public type ControllerDataRead_Response = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
     dataToRead : bytes &eod;
@@ -37,14 +52,14 @@ public type ControllerDataRead_Response = unit {
     var controllerModel      : string;  # &size=20;
     var controllerVersion    : string;  # &size=20;
     var forSystemUse         : string;  # &size=40;
-    var programAreaSize      : uint64; # &size=2
-    var iomSize              : uint64; # &size=1
-    var noOfDMWords          : uint64; # &size=2
-    var timerSize            : uint64; # &size=1
-    var expansionDMSize      : uint64; # &size=1
-    var noOfStepsTransitions : uint64; # &size=2
+    var programAreaSize      : uint64;  # &size=2
+    var iomSize              : uint64;  # &size=1
+    var noOfDMWords          : uint64;  # &size=2
+    var timerSize            : uint64;  # &size=1
+    var expansionDMSize      : uint64;  # &size=1
+    var noOfStepsTransitions : uint64;  # &size=2
     var kindOfMemoryCard     : OMRON_FINS_ENUMS::KindOfMemoryCard; # &size=1
-    var memoryCardSize       : uint64; # &size=2
+    var memoryCardSize       : uint64;  # &size=2
 
     #
     # CPU Bus Unit - Data to read specified as 01
