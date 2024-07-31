@@ -86,7 +86,7 @@ module OMRON_FINS;
         kind_of_memory_card              : string &log &optional;
         memory_card_size                 : count  &log &optional;
 
-        cpu_bus_unit_config              : string &log &optional;
+        cpu_bus_unit_config              : vector of count &log &optional;
         remote_io_data                   : count  &log &optional;
         pc_status                        : count  &log &optional;
 

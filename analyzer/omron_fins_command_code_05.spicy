@@ -49,9 +49,9 @@ public type ControllerDataRead_Response = unit {
     #
     # CPU Bus Unit - Data to read specified as 01
     #
-    var cpuBusUnitConfig : bytes;  # 64 bytes
-    var remoteIOData     : uint64; # 2 bytes
-    var pcStatus         : uint64; # 1 byte
+    var cpuBusUnitConfig : vector<uint64>;  # 64 bytes
+    var remoteIOData     : uint64;          # 2 bytes
+    var pcStatus         : uint64;          # 1 byte
     on %done {
 
         #
@@ -74,7 +74,27 @@ public type ControllerDataRead_Response = unit {
         # Data to read specified as CPU Bus Unit (01)
         #
         } else if (|self.dataToRead| == 67) {
-            self.cpuBusUnitConfig = self.dataToRead.sub(0,64);
+            #
+            # CPU UNit Config bytes 0-32 contain data; bytes 33-64 are reserved (0x20) and not logged
+            #
+            self.cpuBusUnitConfig.assign(0,  self.dataToRead.sub(0,2).to_uint(spicy::ByteOrder::Network));
+            self.cpuBusUnitConfig.assign(1,  self.dataToRead.sub(2,4).to_uint(spicy::ByteOrder::Network));
+            self.cpuBusUnitConfig.assign(2,  self.dataToRead.sub(4,6).to_uint(spicy::ByteOrder::Network));
+            self.cpuBusUnitConfig.assign(3,  self.dataToRead.sub(6,8).to_uint(spicy::ByteOrder::Network));
+            self.cpuBusUnitConfig.assign(4,  self.dataToRead.sub(8,10).to_uint(spicy::ByteOrder::Network));
+            self.cpuBusUnitConfig.assign(5,  self.dataToRead.sub(10,12).to_uint(spicy::ByteOrder::Network));
+            self.cpuBusUnitConfig.assign(6,  self.dataToRead.sub(12,14).to_uint(spicy::ByteOrder::Network));
+            self.cpuBusUnitConfig.assign(7,  self.dataToRead.sub(14,15).to_uint(spicy::ByteOrder::Network));
+            self.cpuBusUnitConfig.assign(8,  self.dataToRead.sub(16,18).to_uint(spicy::ByteOrder::Network));
+            self.cpuBusUnitConfig.assign(9,  self.dataToRead.sub(18,20).to_uint(spicy::ByteOrder::Network));
+            self.cpuBusUnitConfig.assign(10, self.dataToRead.sub(20,22).to_uint(spicy::ByteOrder::Network));
+            self.cpuBusUnitConfig.assign(11, self.dataToRead.sub(22,24).to_uint(spicy::ByteOrder::Network));
+            self.cpuBusUnitConfig.assign(12, self.dataToRead.sub(24,26).to_uint(spicy::ByteOrder::Network));
+            self.cpuBusUnitConfig.assign(13, self.dataToRead.sub(26,28).to_uint(spicy::ByteOrder::Network));
+            self.cpuBusUnitConfig.assign(14, self.dataToRead.sub(28,30).to_uint(spicy::ByteOrder::Network));
+            self.cpuBusUnitConfig.assign(15, self.dataToRead.sub(30,32).to_uint(spicy::ByteOrder::Network));
+            # Note: cpuBusUnitConfig bytes 33 to 64 are set to 0x20 (reserved) and not logged
+
             self.remoteIOData = self.dataToRead.sub(64, 66).to_uint(spicy::ByteOrder::Network);
             self.pcStatus = self.dataToRead.sub(66, 67).to_uint(spicy::ByteOrder::Network);
 
@@ -94,7 +114,26 @@ public type ControllerDataRead_Response = unit {
             self.kindOfMemoryCard = OMRON_FINS_ENUMS::KindOfMemoryCard(self.dataToRead.sub(89,90).to_int(spicy::ByteOrder::Network));
             self.memoryCardSize = self.dataToRead.sub(90,92).to_uint(spicy::ByteOrder::Network);
 
-            self.cpuBusUnitConfig = self.dataToRead.sub(92,156);
+            #
+            # CPU UNit Config bytes 0-32 contain data; bytes 33-64 are reserved (0x20) and not logged
+            #
+            self.cpuBusUnitConfig.assign(0,  self.dataToRead.sub(92,94).to_uint(spicy::ByteOrder::Network));
+            self.cpuBusUnitConfig.assign(1,  self.dataToRead.sub(94,96).to_uint(spicy::ByteOrder::Network));
+            self.cpuBusUnitConfig.assign(2,  self.dataToRead.sub(96,98).to_uint(spicy::ByteOrder::Network));
+            self.cpuBusUnitConfig.assign(3,  self.dataToRead.sub(98,100).to_uint(spicy::ByteOrder::Network));
+            self.cpuBusUnitConfig.assign(4,  self.dataToRead.sub(100,102).to_uint(spicy::ByteOrder::Network));
+            self.cpuBusUnitConfig.assign(5,  self.dataToRead.sub(102,104).to_uint(spicy::ByteOrder::Network));
+            self.cpuBusUnitConfig.assign(6,  self.dataToRead.sub(104,106).to_uint(spicy::ByteOrder::Network));
+            self.cpuBusUnitConfig.assign(7,  self.dataToRead.sub(106,108).to_uint(spicy::ByteOrder::Network));
+            self.cpuBusUnitConfig.assign(8,  self.dataToRead.sub(108,110).to_uint(spicy::ByteOrder::Network));
+            self.cpuBusUnitConfig.assign(9,  self.dataToRead.sub(110,112).to_uint(spicy::ByteOrder::Network));
+            self.cpuBusUnitConfig.assign(10, self.dataToRead.sub(112,114).to_uint(spicy::ByteOrder::Network));
+            self.cpuBusUnitConfig.assign(11, self.dataToRead.sub(114,116).to_uint(spicy::ByteOrder::Network));
+            self.cpuBusUnitConfig.assign(12, self.dataToRead.sub(116,118).to_uint(spicy::ByteOrder::Network));
+            self.cpuBusUnitConfig.assign(13, self.dataToRead.sub(118,120).to_uint(spicy::ByteOrder::Network));
+            self.cpuBusUnitConfig.assign(14, self.dataToRead.sub(120,122).to_uint(spicy::ByteOrder::Network));
+            self.cpuBusUnitConfig.assign(15, self.dataToRead.sub(122,124).to_uint(spicy::ByteOrder::Network));
+
             self.remoteIOData = self.dataToRead.sub(156, 158).to_uint(spicy::ByteOrder::Network);
             self.pcStatus = self.dataToRead.sub(158, 159).to_uint(spicy::ByteOrder::Network);
 
