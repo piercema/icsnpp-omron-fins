@@ -64,9 +64,11 @@ public type ControllerDataRead_Response = unit {
     #
     # CPU Bus Unit - Data to read specified as 01
     #
-    var cpuBusUnitConfig : vector<uint64>;  # 64 bytes
-    var remoteIOData     : uint64;          # 2 bytes
-    var pcStatus         : uint64;          # 1 byte
+    var cpuBusUnitConfig             : vector<uint64>;  # 64 bytes
+    var remoteIOData                 : uint64;          # 2 bytes
+    var noOfSysmacBusMastersMounted  : uint64;          # 1 bytes
+    var noOfSysmacBus2MastersMounted : uint64;          # 1 bytes
+    var pcStatus                     : uint64;          # 1 byte
     on %done {
 
         #
@@ -108,9 +110,10 @@ public type ControllerDataRead_Response = unit {
             self.cpuBusUnitConfig.assign(13, self.dataToRead.sub(26,28).to_uint(spicy::ByteOrder::Network));
             self.cpuBusUnitConfig.assign(14, self.dataToRead.sub(28,30).to_uint(spicy::ByteOrder::Network));
             self.cpuBusUnitConfig.assign(15, self.dataToRead.sub(30,32).to_uint(spicy::ByteOrder::Network));
-            # Note: cpuBusUnitConfig bytes 33 to 64 are set to 0x20 (reserved) and not logged
 
-            self.remoteIOData = self.dataToRead.sub(64, 66).to_uint(spicy::ByteOrder::Network);
+            self.noOfSysmacBusMastersMounted  = self.dataToRead.sub(64, 65).to_uint(spicy::ByteOrder::Network);
+            self.noOfSysmacBus2MastersMounted = self.dataToRead.sub(65, 66).to_uint(spicy::ByteOrder::Network);
+
             self.pcStatus = self.dataToRead.sub(66, 67).to_uint(spicy::ByteOrder::Network);
 
         #
@@ -149,7 +152,8 @@ public type ControllerDataRead_Response = unit {
             self.cpuBusUnitConfig.assign(14, self.dataToRead.sub(120,122).to_uint(spicy::ByteOrder::Network));
             self.cpuBusUnitConfig.assign(15, self.dataToRead.sub(122,124).to_uint(spicy::ByteOrder::Network));
 
-            self.remoteIOData = self.dataToRead.sub(156, 158).to_uint(spicy::ByteOrder::Network);
+            self.noOfSysmacBusMastersMounted  = self.dataToRead.sub(156, 157).to_uint(spicy::ByteOrder::Network);
+            self.noOfSysmacBus2MastersMounted = self.dataToRead.sub(157, 158).to_uint(spicy::ByteOrder::Network);
             self.pcStatus = self.dataToRead.sub(158, 159).to_uint(spicy::ByteOrder::Network);
 
         }

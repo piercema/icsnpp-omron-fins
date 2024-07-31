@@ -25,9 +25,10 @@ module OMRON_FINS;
             info_detail_log$kind_of_memory_card     = OMRON_FINS_ENUMS::KIND_OF_MEMORYCARD[finsCommand$controllerDataReadCommand$response$kindOfMemoryCard];
             info_detail_log$memory_card_size        = finsCommand$controllerDataReadCommand$response$memoryCardSize;
 
-            info_detail_log$cpu_bus_unit_config = finsCommand$controllerDataReadCommand$response$cpuBusUnitConfig;
-            info_detail_log$remote_io_data      = finsCommand$controllerDataReadCommand$response$remoteIOData;
-            info_detail_log$pc_status           = finsCommand$controllerDataReadCommand$response$pcStatus;
+            info_detail_log$cpu_bus_unit_config              = finsCommand$controllerDataReadCommand$response$cpuBusUnitConfig;
+            info_detail_log$no_of_sysmac_bus_master_mounted  = finsCommand$controllerDataReadCommand$response$noOfSysmacBusMastersMounted;
+            info_detail_log$no_of_sysmac_bus2_master_mounted = finsCommand$controllerDataReadCommand$response$noOfSysmacBus2MastersMounted;
+            info_detail_log$pc_status                        = finsCommand$controllerDataReadCommand$response$pcStatus;
         }
 
         # Fire the event and tidy up

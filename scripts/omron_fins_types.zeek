@@ -87,7 +87,8 @@ module OMRON_FINS;
         memory_card_size                 : count  &log &optional;
 
         cpu_bus_unit_config              : vector of count &log &optional;
-        remote_io_data                   : count  &log &optional;
+        no_of_sysmac_bus_master_mounted  : count  &log &optional;
+        no_of_sysmac_bus2_master_mounted : count  &log &optional;
         pc_status                        : count  &log &optional;
 
     };
