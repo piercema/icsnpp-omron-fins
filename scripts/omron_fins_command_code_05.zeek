@@ -28,7 +28,10 @@ module OMRON_FINS;
             info_detail_log$cpu_bus_unit_config              = finsCommand$controllerDataReadCommand$response$cpuBusUnitConfig;
             info_detail_log$no_of_sysmac_bus_master_mounted  = finsCommand$controllerDataReadCommand$response$noOfSysmacBusMastersMounted;
             info_detail_log$no_of_sysmac_bus2_master_mounted = finsCommand$controllerDataReadCommand$response$noOfSysmacBus2MastersMounted;
-            info_detail_log$pc_status                        = finsCommand$controllerDataReadCommand$response$pcStatus;
+
+            info_detail_log$peripheral_device_connected      = finsCommand$controllerDataReadCommand$response$peripheralDeviceConnected;
+            info_detail_log$built_in_host_interface          = finsCommand$controllerDataReadCommand$response$builtInHostInterface;
+            info_detail_log$no_of_racks_connected            = finsCommand$controllerDataReadCommand$response$noOfRacksConnected;
         }
 
         # Fire the event and tidy up

@@ -89,7 +89,9 @@ module OMRON_FINS;
         cpu_bus_unit_config              : vector of count &log &optional;
         no_of_sysmac_bus_master_mounted  : count  &log &optional;
         no_of_sysmac_bus2_master_mounted : count  &log &optional;
-        pc_status                        : count  &log &optional;
+        peripheral_device_connected      : count  &log &optional;
+        built_in_host_interface          : count  &log &optional;
+        no_of_racks_connected            : count  &log &optional;
 
     };
 

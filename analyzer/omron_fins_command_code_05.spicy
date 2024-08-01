@@ -68,8 +68,16 @@ public type ControllerDataRead_Response = unit {
     var remoteIOData                 : uint64;          # 2 bytes
     var noOfSysmacBusMastersMounted  : uint64;          # 1 bytes
     var noOfSysmacBus2MastersMounted : uint64;          # 1 bytes
-    var pcStatus                     : uint64;          # 1 byte
+    var peripheralDeviceConnected    : uint64;          # 7 bit of pcStatus
+    var builtInHostInterface         : uint64;          # 6 bit of pcStatus
+    var noOfRacksConnected           : uint64;          # 0..3 bit of pcStatus
+
+
     on %done {
+        local pcStatus : uint64;
+        local peripheralDeviceConnectedMask = 0x80;
+        local buildInHostInterfaceMask      = 0x40;
+        local noOfRacksConnectedMask        = 0x0F;
 
         #
         # Data to read specified as Controller Model (00)
@@ -114,8 +122,11 @@ public type ControllerDataRead_Response = unit {
             self.noOfSysmacBusMastersMounted  = self.dataToRead.sub(64, 65).to_uint(spicy::ByteOrder::Network);
             self.noOfSysmacBus2MastersMounted = self.dataToRead.sub(65, 66).to_uint(spicy::ByteOrder::Network);
 
-            self.pcStatus = self.dataToRead.sub(66, 67).to_uint(spicy::ByteOrder::Network);
-
+            pcStatus = self.dataToRead.sub(66, 67).to_uint(spicy::ByteOrder::Network);
+            self.peripheralDeviceConnected = (pcStatus & peripheralDeviceConnectedMask) >> 7;
+            self.builtInHostInterface      = (pcStatus & buildInHostInterfaceMask) >> 6;
+            self.noOfRacksConnected        =  pcStatus & noOfRacksConnectedMask;
+        
         #
         # Data to read is omitted - parse both Controller Model and CPU Bus Unit
         #
@@ -154,7 +165,11 @@ public type ControllerDataRead_Response = unit {
 
             self.noOfSysmacBusMastersMounted  = self.dataToRead.sub(156, 157).to_uint(spicy::ByteOrder::Network);
             self.noOfSysmacBus2MastersMounted = self.dataToRead.sub(157, 158).to_uint(spicy::ByteOrder::Network);
-            self.pcStatus = self.dataToRead.sub(158, 159).to_uint(spicy::ByteOrder::Network);
+
+            pcStatus = self.dataToRead.sub(158, 159).to_uint(spicy::ByteOrder::Network);
+            self.peripheralDeviceConnected = (pcStatus & peripheralDeviceConnectedMask) >> 7;
+            self.builtInHostInterface      = (pcStatus & buildInHostInterfaceMask) >> 6;
+            self.noOfRacksConnected        =  pcStatus & noOfRacksConnectedMask;
 
         }
     }
