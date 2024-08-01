@@ -74,6 +74,8 @@ module OMRON_FINS;
         run_mode                         : string &log &optional;
 
         controller_data_to_read          : string &log &optional;
+
+        # Controller Model
         controller_model                 : string &log &optional;
         controller_version               : string &log &optional;
         for_system_use                   : string &log &optional;
@@ -86,9 +88,12 @@ module OMRON_FINS;
         kind_of_memory_card              : string &log &optional;
         memory_card_size                 : count  &log &optional;
 
+        # CPU Bus Unit
         cpu_bus_unit_config              : vector of count &log &optional;
         no_of_sysmac_bus_master_mounted  : count  &log &optional;
         no_of_sysmac_bus2_master_mounted : count  &log &optional;
+
+        # CPU Bus Unit - PC Status details
         peripheral_device_connected      : count  &log &optional;
         built_in_host_interface          : count  &log &optional;
         no_of_racks_connected            : count  &log &optional;
