@@ -98,5 +98,8 @@ module OMRON_FINS;
         built_in_host_interface          : count  &log &optional;
         no_of_racks_connected            : count  &log &optional;
 
+        unit_address                     : string &log &optional;
+        no_of_units                      : count  &log &optional;
+
     };
 

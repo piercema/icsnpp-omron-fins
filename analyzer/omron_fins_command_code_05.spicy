@@ -186,6 +186,15 @@ type ConnectionDataRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type ConnectionDataRead_Command = unit {
+    unitAddress   : uint8 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    restOfData    : bytes &eod;
+    var noOfUnits : uint8;
+
+    on %done {
+        if (|self.restOfData| == 1) {
+            self.noOfUnits = *self.restOfData.at(0);
+        }
+    }
 };
 
 type ConnectionDataRead_Response = unit {
