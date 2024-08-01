@@ -193,6 +193,8 @@ type ConnectionDataRead_Command = unit {
     on %done {
         if (|self.restOfData| == 1) {
             self.noOfUnits = *self.restOfData.at(0);
+        } else {
+            self.noOfUnits = 0x19; # Default if not specified.
         }
     }
 };
