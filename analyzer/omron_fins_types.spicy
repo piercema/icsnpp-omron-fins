@@ -72,3 +72,7 @@ type BlockRecordWrite = unit {
     numOfTotalWords  : uint16;
 };
 
+type Unit = unit {
+    unitAddress : uint8 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    modelNumber : bytes &size=20;
+};

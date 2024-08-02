@@ -40,21 +40,41 @@ module OMRON_FINS;
     }
 
     function process_connection_data_read_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
-        c = set_session_detail_log(c);
-
-        local info_detail_log = c$omron_fins_detail_log;
-        info_detail_log$omron_fins_link_id = link_id;
-        info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
+        local info_detail_log: detail_log;
 
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
-            info_detail_log$unit_address = finsCommand$connectionDataReadCommand$command$unitAddress;
+            # Set/add the detail_log to the connection
+            c = set_session_detail_log(c);
+            info_detail_log = c$omron_fins_detail_log;
+
+            # Set the data
+            info_detail_log$omron_fins_link_id = link_id;
+            info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
             info_detail_log$no_of_units  = finsCommand$connectionDataReadCommand$command$noOfUnits;
+            info_detail_log$unit_address = finsCommand$connectionDataReadCommand$command$unitAddress;
+
+            # Fire the event and tidy up
+            OMRON_FINS::emit_omron_fins_detail_log(c);
+            delete c$omron_fins_detail_log;
 
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
-            info_detail_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$connectionDataReadCommand$response$responseCode];
-        }
 
-        # Fire the event and tidy up
-        OMRON_FINS::emit_omron_fins_detail_log(c);
-        delete c$omron_fins_detail_log;
+            for (i in finsCommand$connectionDataReadCommand$response$units) {
+                # Set/add the detail_log to the connection
+                c = set_session_detail_log(c);
+                info_detail_log = c$omron_fins_detail_log;
+
+                # Set the data
+                info_detail_log$omron_fins_link_id = link_id;
+                info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
+                info_detail_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$connectionDataReadCommand$response$responseCode];
+                info_detail_log$no_of_units   = finsCommand$connectionDataReadCommand$response$noOfUnits;
+                info_detail_log$unit_address  = finsCommand$connectionDataReadCommand$response$units[i]$unitAddress;
+                info_detail_log$model_number  = finsCommand$connectionDataReadCommand$response$units[i]$modelNumber;
+
+                # Fire the event and tidy up
+                OMRON_FINS::emit_omron_fins_detail_log(c);
+                delete c$omron_fins_detail_log;
+            }
+        }
     }

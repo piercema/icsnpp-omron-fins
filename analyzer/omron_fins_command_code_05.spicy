@@ -201,4 +201,6 @@ type ConnectionDataRead_Command = unit {
 
 type ConnectionDataRead_Response = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    noOfUnits    : uint8;
+    units        : OMRON_FINS_TYPES::Unit[self.noOfUnits];
 };
