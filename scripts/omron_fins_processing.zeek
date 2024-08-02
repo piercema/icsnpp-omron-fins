@@ -59,6 +59,18 @@ module OMRON_FINS;
             case OMRON_FINS_ENUMS::CommandCode_CONNECTION_DATA_READ:
                 process_connection_data_read_detail(c, finsCommand, omron_fins_link_id);
                 break;
+            case OMRON_FINS_ENUMS::CommandCode_CONTROLLER_STATUS_READ:
+                process_controller_status_read_detail(c, finsCommand, omron_fins_link_id);
+                break;
+            case OMRON_FINS_ENUMS::CommandCode_NETWORK_STATUS_READ:
+                process_network_status_read_detail(c, finsCommand, omron_fins_link_id);
+                break;
+            case OMRON_FINS_ENUMS::CommandCode_DATA_LINK_STATUS_READ:
+                process_data_link_status_read_detail(c, finsCommand, omron_fins_link_id);
+                break;
+            case OMRON_FINS_ENUMS::CommandCode_CYCLE_TIME_READ:
+                process_cycle_time_read_detail(c, finsCommand, omron_fins_link_id);
+                break;
             case OMRON_FINS_ENUMS::CommandCode_CLOCK_READ:
                 process_clock_read_detail(c, finsCommand, omron_fins_link_id);
                 break;

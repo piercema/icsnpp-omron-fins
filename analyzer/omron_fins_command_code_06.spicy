@@ -1,0 +1,82 @@
+module OMRON_FINS_COMMAND_CODE_06;
+
+import spicy;
+import OMRON_FINS_ENUMS;
+import OMRON_FINS_FUNCTIONS;
+import OMRON_FINS_TYPES;
+
+#
+# Controller Status Read
+#
+type ControllerStatusRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ControllerStatusRead_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ControllerStatusRead_Response();
+    };
+};
+
+public type ControllerStatusRead_Command = unit {
+    data : bytes &eod;
+};
+
+public type ControllerStatusRead_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data : bytes &eod;
+};
+
+#
+# Network Status Read
+#
+type NetworkStatusRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : NetworkStatusRead_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: NetworkStatusRead_Response();
+    };
+};
+
+type NetworkStatusRead_Command = unit {
+    data    : bytes &eod;
+};
+
+type NetworkStatusRead_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data    : bytes &eod;
+};
+
+#
+# Data Link Status Read
+#
+type DataLinkStatusRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : DataLinkStatusRead_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: DataLinkStatusRead_Response();
+    };
+};
+
+type DataLinkStatusRead_Command = unit {
+    data    : bytes &eod;
+};
+
+type DataLinkStatusRead_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data    : bytes &eod;
+};
+
+#
+# Cycle Time Read
+#
+type CycleTimeRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : CycleTimeRead_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: CycleTimeRead_Response();
+    };
+};
+
+type CycleTimeRead_Command = unit {
+    data    : bytes &eod;
+};
+
+type CycleTimeRead_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data    : bytes &eod;
+};

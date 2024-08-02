@@ -10,6 +10,7 @@
 @load ./omron_fins_command_code_03
 @load ./omron_fins_command_code_04
 @load ./omron_fins_command_code_05
+@load ./omron_fins_command_code_06
 @load ./omron_fins_command_code_07
 @load ./omron_fins_command_code_26
 @load ./omron_fins_processing

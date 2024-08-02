@@ -9,6 +9,7 @@ import OMRON_FINS_COMMAND_CODE_02;
 import OMRON_FINS_COMMAND_CODE_03;
 import OMRON_FINS_COMMAND_CODE_04;
 import OMRON_FINS_COMMAND_CODE_05;
+import OMRON_FINS_COMMAND_CODE_06;
 import OMRON_FINS_COMMAND_CODE_07;
 import OMRON_FINS_COMMAND_CODE_26;
 
@@ -77,10 +78,10 @@ public type Command = unit(finsHeader: FINS_Header) {
         OMRON_FINS_ENUMS::CommandCode::RESET                                    -> resetCommand                   : bytes &eod; # Note: The reset command does not contain any detailed data
         OMRON_FINS_ENUMS::CommandCode::CONTROLLER_DATA_READ                     -> controllerDataReadCommand      : OMRON_FINS_COMMAND_CODE_05::ControllerDataRead(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::CONNECTION_DATA_READ                     -> connectionDataReadCommand      : OMRON_FINS_COMMAND_CODE_05::ConnectionDataRead(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::CONTROLLER_STATUS_READ                   -> restofdata_19 : bytes &eod;
-        OMRON_FINS_ENUMS::CommandCode::NETWORK_STATUS_READ                      -> restofdata_20 : bytes &eod;
-        OMRON_FINS_ENUMS::CommandCode::DATA_LINK_STATUS_READ                    -> restofdata_21 : bytes &eod;
-        OMRON_FINS_ENUMS::CommandCode::CYCLE_TIME_READ                          -> restofdata_22 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::CONTROLLER_STATUS_READ                   -> controllerStatusReadCommand    : OMRON_FINS_COMMAND_CODE_06::ControllerStatusRead(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::NETWORK_STATUS_READ                      -> networkStatusReadCommand       : OMRON_FINS_COMMAND_CODE_06::NetworkStatusRead(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::DATA_LINK_STATUS_READ                    -> dataLinkStatusReadCommand      : OMRON_FINS_COMMAND_CODE_06::DataLinkStatusRead(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::CYCLE_TIME_READ                          -> cycleTimeReadCommand           : OMRON_FINS_COMMAND_CODE_06::CycleTimeRead(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::CLOCK_READ                               -> clockReadCommand               : OMRON_FINS_COMMAND_CODE_07::ClockRead(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::CLOCK_WRITE                              -> clockWriteCommand              : OMRON_FINS_COMMAND_CODE_07::ClockWrite(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::LOOP_BACK_TEST                           -> restofdata_25 : bytes &eod;

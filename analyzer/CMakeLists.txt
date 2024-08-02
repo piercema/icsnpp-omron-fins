@@ -12,6 +12,7 @@ spicy_add_analyzer(
             omron_fins_command_code_03.spicy  
             omron_fins_command_code_04.spicy  
             omron_fins_command_code_05.spicy  
+            omron_fins_command_code_06.spicy  
             omron_fins_command_code_07.spicy  
             omron_fins_command_code_26.spicy
     SCRIPTS __load__.zeek 
@@ -26,6 +27,7 @@ spicy_add_analyzer(
             omron_fins_command_code_03.zeek 
             omron_fins_command_code_04.zeek 
             omron_fins_command_code_05.zeek 
+            omron_fins_command_code_06.zeek 
             omron_fins_command_code_07.zeek  
             omron_fins_command_code_26.zeek
 )
