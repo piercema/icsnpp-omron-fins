@@ -322,4 +322,23 @@ export{
         [OMRON_FINS_ENUMS::KindOfMemoryCard_EEPROM]         = "EEPROM (03)",
     }&default = "Unknown";
 
+    #
+    # Controller Status Read Status
+    #
+    const CONTROLLER_STATUS_READ_STATUS = {
+        [OMRON_FINS_ENUMS::ControllerStatusReadStatus_STOP] = "Stop (Program Not Executing)",
+        [OMRON_FINS_ENUMS::ControllerStatusReadStatus_RUN]  = "Run (Program Executing)",
+        [OMRON_FINS_ENUMS::ControllerStatusReadStatus_CPU]  = "CPU (On Standby)",
+    }&default = "Unknown";
+
+    #
+    # Controller Status Read Mode
+    #
+    const CONTROLLER_STATUS_READ_MODE = {
+        [OMRON_FINS_ENUMS::ControllerStatusReadMode_PROGRAM] = "PROGRAM",
+        [OMRON_FINS_ENUMS::ControllerStatusReadMode_DEBUG]   = "DEBUG",
+        [OMRON_FINS_ENUMS::ControllerStatusReadMode_MONITOR] = "MONITOR",
+        [OMRON_FINS_ENUMS::ControllerStatusReadMode_RUN]     = "RUN",
+    }&default = "Unknown";
+
 }

@@ -323,3 +323,22 @@ public type KindOfMemoryCard = enum {
     EPROM          = 0x02,
     EEPROM         = 0x03,
 };
+
+#
+# Controller Status Read Status
+#
+public type ControllerStatusReadStatus = enum {
+    STOP = 0x00,
+    RUN  = 0x01,
+    CPU  = 0x80,
+};
+
+#
+# Controller Status Read Mode
+#
+public type ControllerStatusReadMode = enum {
+    PROGRAM = 0x00,
+    DEBUG   = 0x01,
+    MONITOR = 0x02,
+    RUN     = 0x04,
+};

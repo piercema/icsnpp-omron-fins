@@ -102,5 +102,14 @@ module OMRON_FINS;
         unit_address                     : string &log &optional;
         model_number                     : string &log &optional;
 
+        # Controller Status Data Read details
+        controller_status_data_read_status : string &log &optional;
+        controller_status_data_read_mode   : string &log &optional;
+        fatal_error                        : vector of string &log &optional;
+        non_fatal_error                    : vector of string &log &optional;
+        message_yes_no                     : vector of string &log &optional;
+        fal_fals_no                        : count  &log &optional;
+        error_message                      : string &log &optional;
+
     };
 

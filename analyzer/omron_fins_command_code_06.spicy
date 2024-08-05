@@ -16,12 +16,116 @@ type ControllerStatusRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 public type ControllerStatusRead_Command = unit {
-    data : bytes &eod;
+        : bytes &eod; # Note: There is no data associated with the Controller Status Read command - hence the anonymous field
 };
 
 public type ControllerStatusRead_Response = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    data : bytes &eod;
+    status       : uint8  &convert=OMRON_FINS_ENUMS::ControllerStatusReadStatus($$);
+    mode         : uint8  &convert=OMRON_FINS_ENUMS::ControllerStatusReadMode($$);
+
+    # Fatal Error Data
+    var fatalErrorDataVec: vector<string>;
+    fatalErrorData : bitfield(16) {
+        watchDogTimerError : 0;
+        reserved           : 1..5;
+        falsError          : 6;
+        fatalSFCError      : 7;
+        cycleTimeOver      : 8;
+        programError       : 9;
+        ioSettingError     : 10;
+        ioPointOverflow    : 11;
+        cpuBusError        : 12;
+        duplicationError   : 13;
+        ioBusError         : 14;
+        memoryError        : 15;
+    };
+    on fatalErrorData {
+        local watchDogTimerErrorStr = "Watch dog timer error: %d" % self.fatalErrorData.watchDogTimerError;
+        local falsErrorStr          = "FALS error: %d"            % self.fatalErrorData.falsError;
+        local fatalSFCErrorStr      = "Fatal SFC error: %d"       % self.fatalErrorData.fatalSFCError;
+        local cycleTimeOverStr      = "Cycle time over: %d"       % self.fatalErrorData.cycleTimeOver;
+        local programErrorStr       = "Program error: %d"         % self.fatalErrorData.programError;
+        local ioSettingErrorStr     = "I/O setting error: %d"     % self.fatalErrorData.ioSettingError;
+        local ioPointOverflowStr    = "I/O point overflow: %d"    % self.fatalErrorData.ioPointOverflow;
+        local cpuBusErrorStr        = "CPU bus error: %d"         % self.fatalErrorData.cpuBusError;
+        local duplicationErrorStr   = "Duplication error: %d"     % self.fatalErrorData.duplicationError;
+        local ioBusErrorStr         = "I/O bus error: %d"         % self.fatalErrorData.ioBusError;
+        local memoryErrorStr        = "Memory error: %d"          % self.fatalErrorData.memoryError;
+
+        self.fatalErrorDataVec = [watchDogTimerErrorStr, falsErrorStr, fatalSFCErrorStr, cycleTimeOverStr, programErrorStr, ioSettingErrorStr,
+                                  ioPointOverflowStr, cpuBusErrorStr, duplicationErrorStr, ioBusErrorStr, memoryErrorStr];
+
+    }
+
+    # Non Fatal Error Data
+    var nonFatalErrorDataVec : vector<string>;
+    nonFatalErrorData : bitfield(16) {
+        reserved_0_1               : 0..1;
+        momentaryPowerInterruption : 2;
+        cpuBusUnitSettingError     : 3;
+        batteryError               : 4;
+        sysmacBusError             : 5;
+        sysmacBus2Error            : 6;
+        cpuBusUnitError            : 7;
+        reserved_8                 : 8;
+        ioVerificationError        : 9;
+        reserved_10                : 10;
+        nonFatalSFCError           : 11;
+        indirectDMError            : 12;
+        jmpError                   : 13;
+        reserved_14                : 14;
+        falError                   : 15;
+    };
+    on nonFatalErrorData {
+        local momentaryPowerInterruptionStr = "Momentary poser interruption: %d" % self.nonFatalErrorData.momentaryPowerInterruption;
+        local cpuBusUnitSettingErrorStr     = "CPU Bus Unit setting error: %d"   % self.nonFatalErrorData.cpuBusUnitSettingError;
+        local batteryErrorStr               = "Battery error: %d"                % self.nonFatalErrorData.batteryError;
+        local sysmacBusErrorStr             = "SYSMAC BUS error: %d"             % self.nonFatalErrorData.sysmacBusError;
+        local sysmacBus2ErrorStr            = "SYSMAC BUS/2 error: %d"           % self.nonFatalErrorData.sysmacBus2Error;
+        local cpuBusUnitErrorStr            = "CPU Bus Unit error: %d"           % self.nonFatalErrorData.cpuBusUnitError;
+        local ioVerificationErrorStr        = "I/O verification error: %d"       % self.nonFatalErrorData.ioVerificationError;
+        local nonFatalSFCErrorStr           = "Non-fatal SFC error: %d"          % self.nonFatalErrorData.nonFatalSFCError;
+        local indirectDMErrorStr            = "Indirect DM error: %d"            % self.nonFatalErrorData.indirectDMError;
+        local jmpErrorStr                   = "JMP error: %d"                    % self.nonFatalErrorData.jmpError;
+        local falErrorStr                   = "FAL error: %d"                    % self.nonFatalErrorData.falError;
+
+        self.nonFatalErrorDataVec = [momentaryPowerInterruptionStr, cpuBusUnitSettingErrorStr, batteryErrorStr, sysmacBusErrorStr,
+                                     sysmacBus2ErrorStr, cpuBusUnitErrorStr, ioVerificationErrorStr, nonFatalSFCErrorStr, indirectDMErrorStr,
+                                     indirectDMErrorStr, jmpErrorStr, falErrorStr];
+
+    }
+
+    # Message yes/no
+    var messageYesNoVec : vector<string>;
+    messageYesNo : bitfield(16) {
+        messageNo_0   : 0;
+        messageNo_1   : 1;
+        messageNo_2   : 2;
+        messageNo_3   : 3;
+        messageNo_4   : 4;
+        messageNo_5   : 5;
+        messageNo_6   : 6;
+        messageNo_7   : 7;
+        reserved_8_15 : 8..15;
+    };
+    on messageYesNo {
+
+        local messageNo_0_str = "Message no. 0: %d" % self.messageYesNo.messageNo_0;
+        local messageNo_1_str = "Message no. 1: %d" % self.messageYesNo.messageNo_1;
+        local messageNo_2_str = "Message no. 2: %d" % self.messageYesNo.messageNo_2;
+        local messageNo_3_str = "Message no. 3: %d" % self.messageYesNo.messageNo_3;
+        local messageNo_4_str = "Message no. 4: %d" % self.messageYesNo.messageNo_4;
+        local messageNo_5_str = "Message no. 5: %d" % self.messageYesNo.messageNo_5;
+        local messageNo_6_str = "Message no. 6: %d" % self.messageYesNo.messageNo_6;
+        local messageNo_7_str = "Message no. 7: %d" % self.messageYesNo.messageNo_7;
+
+        self.messageYesNoVec = [messageNo_0_str, messageNo_1_str, messageNo_2_str, messageNo_3_str,
+                                messageNo_4_str, messageNo_5_str, messageNo_6_str, messageNo_7_str];
+    }
+
+    falFalsNo    : uint16;
+    errorMessage : bytes &size=16;
 };
 
 #
