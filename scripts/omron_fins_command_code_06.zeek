@@ -75,8 +75,10 @@ module OMRON_FINS;
             info_detail_log$cycle_time_read_parameter = OMRON_FINS_ENUMS::CYCLE_TIME_READ_PARAMETER[finsCommand$cycleTimeReadCommand$command$parameter];
 
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
-            info_detail_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$cycleTimeReadCommand$response$responseCode];
-
+            info_detail_log$response_code      = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$cycleTimeReadCommand$response$responseCode];
+            info_detail_log$average_cycle_time = finsCommand$cycleTimeReadCommand$response$averageCycleTime;
+            info_detail_log$max_cycle_time     = finsCommand$cycleTimeReadCommand$response$maxCycleTime;
+            info_detail_log$min_cycle_time     = finsCommand$cycleTimeReadCommand$response$minCycleTime;
         }
 
         # Fire the event and tidy up

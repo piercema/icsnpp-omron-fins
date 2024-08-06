@@ -113,5 +113,8 @@ module OMRON_FINS;
 
         # Cycle Time Read
         cycle_time_read_parameter          : string &log &optional;
+        average_cycle_time                 : double &log &optional; 
+        max_cycle_time                     : double &log &optional; 
+        min_cycle_time                     : double &log &optional; 
     };
 

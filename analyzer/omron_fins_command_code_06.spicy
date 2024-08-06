@@ -180,7 +180,80 @@ type CycleTimeRead_Command = unit {
     parameter : uint8 &convert=OMRON_FINS_ENUMS::CycleTimeReadParameter($$);
 };
 
+#
+# The response consists of a respose code, an average cycle time, max cycle time, 
+# and a min cycle time. The cycle times consist of 8 digits encoded as 4-bit BCD 
+# values taking a total of 4 bytes to encode.
+# 
+# BCD Reference:
+#      https://en.wikipedia.org/wiki/Binary-coded_decimal
+# 
 type CycleTimeRead_Response = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    data    : bytes &eod;
+
+    var averageCycleTime : real;
+    averageCycleTimeBCD  : bitfield(32) {
+        digit1 : 0..3   &convert=$$ * 1;
+        digit2 : 4..7   &convert=$$ * 10;
+        digit3 : 8..11  &convert=$$ * 100;
+        digit4 : 12..15 &convert=$$ * 1000;
+        digit5 : 16..19 &convert=$$ * 10000;
+        digit6 : 20..23 &convert=$$ * 100000;
+        digit7 : 24..27 &convert=$$ * 1000000;
+        digit8 : 28..31 &convert=$$ * 10000000;
+    };
+
+    var maxCycleTime : real;
+    maxCycleTimeBCD  : bitfield(32) {
+        digit1 : 0..3   &convert=$$ * 1;
+        digit2 : 4..7   &convert=$$ * 10;
+        digit3 : 8..11  &convert=$$ * 100;
+        digit4 : 12..15 &convert=$$ * 1000;
+        digit5 : 16..19 &convert=$$ * 10000;
+        digit6 : 20..23 &convert=$$ * 100000;
+        digit7 : 24..27 &convert=$$ * 1000000;
+        digit8 : 28..31 &convert=$$ * 10000000;
+    };
+
+    var minCycleTime : real;
+    minCycleTimeBCD  : bitfield(32) {
+        digit1 : 0..3   &convert=$$ * 1;
+        digit2 : 4..7   &convert=$$ * 10;
+        digit3 : 8..11  &convert=$$ * 100;
+        digit4 : 12..15 &convert=$$ * 1000;
+        digit5 : 16..19 &convert=$$ * 10000;
+        digit6 : 20..23 &convert=$$ * 100000;
+        digit7 : 24..27 &convert=$$ * 1000000;
+        digit8 : 28..31 &convert=$$ * 10000000;
+    };
+
+    on %done {
+        self.averageCycleTime = cast<real>(self.averageCycleTimeBCD.digit1 + 
+                                           self.averageCycleTimeBCD.digit2 +
+                                           self.averageCycleTimeBCD.digit3 +
+                                           self.averageCycleTimeBCD.digit4 +
+                                           self.averageCycleTimeBCD.digit5 +
+                                           self.averageCycleTimeBCD.digit6 +
+                                           self.averageCycleTimeBCD.digit7 +
+                                           self.averageCycleTimeBCD.digit8) * 0.1;
+
+        self.maxCycleTime = cast<real>(self.maxCycleTimeBCD.digit1 + 
+                                       self.maxCycleTimeBCD.digit2 +
+                                       self.maxCycleTimeBCD.digit3 +
+                                       self.maxCycleTimeBCD.digit4 +
+                                       self.maxCycleTimeBCD.digit5 +
+                                       self.maxCycleTimeBCD.digit6 +
+                                       self.maxCycleTimeBCD.digit7 +
+                                       self.maxCycleTimeBCD.digit8) * 0.1;
+
+        self.minCycleTime = cast<real>(self.minCycleTimeBCD.digit1 + 
+                                       self.minCycleTimeBCD.digit2 +
+                                       self.minCycleTimeBCD.digit3 +
+                                       self.minCycleTimeBCD.digit4 +
+                                       self.minCycleTimeBCD.digit5 +
+                                       self.minCycleTimeBCD.digit6 +
+                                       self.minCycleTimeBCD.digit7 +
+                                       self.minCycleTimeBCD.digit8) * 0.1;
+
+    }
 };
