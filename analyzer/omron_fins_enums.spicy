@@ -342,3 +342,11 @@ public type ControllerStatusReadMode = enum {
     MONITOR = 0x02,
     RUN     = 0x04,
 };
+
+#
+# Cycle Time Read Parameter
+#
+public type CycleTimeReadParameter = enum {
+    INIT = 0x00,
+    READ = 0x01,
+};

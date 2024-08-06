@@ -177,7 +177,7 @@ type CycleTimeRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type CycleTimeRead_Command = unit {
-    data    : bytes &eod;
+    parameter : uint8 &convert=OMRON_FINS_ENUMS::CycleTimeReadParameter($$);
 };
 
 type CycleTimeRead_Response = unit {

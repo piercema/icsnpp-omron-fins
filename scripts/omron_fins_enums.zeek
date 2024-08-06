@@ -341,4 +341,11 @@ export{
         [OMRON_FINS_ENUMS::ControllerStatusReadMode_RUN]     = "RUN",
     }&default = "Unknown";
 
+    #
+    # Cycle Time Read Parameter
+    #
+    const CYCLE_TIME_READ_PARAMETER = {
+        [OMRON_FINS_ENUMS::CycleTimeReadParameter_INIT] = "Initialize cycle time",
+        [OMRON_FINS_ENUMS::CycleTimeReadParameter_READ] = "Read the cycle time",
+    }&default = "Unknown";
 }

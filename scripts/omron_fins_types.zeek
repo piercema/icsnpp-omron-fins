@@ -111,5 +111,7 @@ module OMRON_FINS;
         fal_fals_no                        : count  &log &optional;
         error_message                      : string &log &optional;
 
+        # Cycle Time Read
+        cycle_time_read_parameter          : string &log &optional;
     };
 
