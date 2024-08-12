@@ -350,3 +350,43 @@ public type CycleTimeReadParameter = enum {
     INIT = 0x00,
     READ = 0x01,
 };
+
+#
+# Network Status: In Network
+#
+public type InNetwork = enum {
+    NOT_IN_NETWORK = 0x00,
+    IN_NETWORK     = 0x01,
+};
+
+#
+# Network Status: Exit Status
+#
+public type ExitStatus = enum {
+    NORMAL = 0x00,
+    ERROR  = 0x01,
+};
+
+#
+# Network Status: Polling
+#
+public type Polling = enum {
+    RESPONDS_TO_POLLING          = 0x00,
+    DOES_NOT_RESPOND_TO_POLLING  = 0x01,
+};
+
+#
+# Network Status: Cyclic Operation
+#
+public type CyclicOperation = enum {
+    STOPPED = 0x00,
+    ACTIVE  = 0x01,
+};
+
+#
+# Network Status: Cyclic Transmission Status
+#
+public type CyclicTransmissionStatus = enum {
+    NO_TRANSMISSSION = 0x00,
+    TRANSMISSION     = 0x01,
+};

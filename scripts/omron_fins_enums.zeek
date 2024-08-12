@@ -348,4 +348,45 @@ export{
         [OMRON_FINS_ENUMS::CycleTimeReadParameter_INIT] = "Initialize cycle time",
         [OMRON_FINS_ENUMS::CycleTimeReadParameter_READ] = "Read the cycle time",
     }&default = "Unknown";
+
+    #
+    # Network Status: In Network
+    #
+    const IN_NETWORK = {
+        [OMRON_FINS_ENUMS::InNetwork_NOT_IN_NETWORK] = "Not in network",
+        [OMRON_FINS_ENUMS::InNetwork_IN_NETWORK]     = "In network",
+    }&default = "Unknown";
+
+    #
+    # Network Status: Exit Status
+    #
+    const EXIT_STATUS = {
+        [OMRON_FINS_ENUMS::ExitStatus_NORMAL] = "Normal exit",
+        [OMRON_FINS_ENUMS::ExitStatus_ERROR]  = "Exited due to error",
+    }&default = "Unknown";
+
+    #
+    # Network Status: Polling
+    #
+    const POLLING = {
+        [OMRON_FINS_ENUMS::Polling_RESPONDS_TO_POLLING]          = "Responds to polling",
+        [OMRON_FINS_ENUMS::Polling_DOES_NOT_RESPOND_TO_POLLING]  = "Does not respond to polling",
+    }&default = "Unknown";
+
+    #
+    # Network Status: Cyclic Operation
+    #
+    const CYCLIC_OPERATION = {
+        [OMRON_FINS_ENUMS::CyclicOperation_STOPPED] = "Stopped",
+        [OMRON_FINS_ENUMS::CyclicOperation_ACTIVE]  = "Active",
+    }&default = "Unknown";
+
+    #
+    # Network Status: Cyclic Transmission Status
+    #
+    const CYCLIC_TRANSMISSION_STATUS = {
+        [OMRON_FINS_ENUMS::CyclicTransmissionStatus_NO_TRANSMISSSION] = "No Transmission",
+        [OMRON_FINS_ENUMS::CyclicTransmissionStatus_TRANSMISSION]     = "Transmission",
+    }&default = "Unknown";
+
 }

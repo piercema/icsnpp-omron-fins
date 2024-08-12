@@ -118,3 +118,23 @@ module OMRON_FINS;
         min_cycle_time                     : double &log &optional; 
     };
 
+    type network_status_read_log: record {
+        ts                          : time    &log;
+        uid                         : string  &log;
+        id                          : conn_id &log;
+        omron_fins_link_id          : string  &log &optional;
+        command_code                : string  &log &optional;
+        icf_data_type               : string  &log &optional;
+        response_code               : string  &log &optional;
+
+        node_number                 : count   &log &optional;
+        in_network                  : string  &log &optional;
+        exit_status                 : string  &log &optional;
+        polling                     : string  &log &optional;
+        communication_cycle_time    : double  &log &optional;
+        current_polling_node_number : count   &log &optional;
+        cyclic_operation            : string  &log &optional;
+        cyclic_transmission_status  : string  &log &optional;
+        non_fatal_error             : count   &log &optional;
+        cyclic_error_count          : count   &log &optional;
+    };

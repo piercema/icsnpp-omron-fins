@@ -76,3 +76,40 @@ type Unit = unit {
     unitAddress : uint8 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
     modelNumber : bytes &size=20;
 };
+
+#
+# Network Status Read
+#
+type NodeDetails = unit {
+    nodeData : bitfield(8) {
+        inNetwork_1  : 0 &convert=OMRON_FINS_ENUMS::InNetwork($$);
+        exitStatus_1 : 1 &convert=OMRON_FINS_ENUMS::ExitStatus($$);
+        reserved_1   : 2;
+        polling_1    : 3 &convert=OMRON_FINS_ENUMS::Polling($$);
+        inNetwork_2  : 4 &convert=OMRON_FINS_ENUMS::InNetwork($$);
+        exitStatus_2 : 5 &convert=OMRON_FINS_ENUMS::ExitStatus($$);
+        reserved_2   : 6;
+        polling_2    : 7 &convert=OMRON_FINS_ENUMS::Polling($$);
+    };
+};
+
+type NetworkMemberData = unit {
+    nodes  : NodeDetails()[31];
+};
+
+type CyclicNonFatalErrorData = unit {
+    nodeData : bitfield(8) {
+        nonFatalError_0 : 0;
+        nonFatalError_1 : 1;
+        nonFatalError_2 : 2;
+        nonFatalError_3 : 3;
+        nonFatalError_4 : 4;
+        nonFatalError_5 : 5;
+        nonFatalError_6 : 6;
+        nonFatalError_7 : 7;
+    };
+};
+
+type CyclicNonFatalErrors = unit {
+    nodes : CyclicNonFatalErrorData()[8];  
+};
