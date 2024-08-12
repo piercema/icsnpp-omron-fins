@@ -89,49 +89,49 @@ module OMRON_FINS;
                 if (i == 0) {
                     network_status_read = network_status_vector[node_count];
                     network_status_read$node_number = ++node_count;
-                    network_status_read$non_fatal_error  = finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_1;
+                    network_status_read$non_fatal_error  = OMRON_FINS_ENUMS::NON_FATAL_ERROR_STATUS[finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_1];
                     c$omron_fins_network_status_read_log = network_status_read;
                     OMRON_FINS::emit_omron_fins_network_status_read_log(c);
                     delete c$omron_fins_network_status_read_log;
 
                     network_status_read = network_status_vector[node_count];
                     network_status_read$node_number = ++node_count;
-                    network_status_read$non_fatal_error  = finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_2;
+                    network_status_read$non_fatal_error  = OMRON_FINS_ENUMS::NON_FATAL_ERROR_STATUS[finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_2];
                     c$omron_fins_network_status_read_log = network_status_read;
                     OMRON_FINS::emit_omron_fins_network_status_read_log(c);
                     delete c$omron_fins_network_status_read_log;
 
                     network_status_read = network_status_vector[node_count];
                     network_status_read$node_number = ++node_count;
-                    network_status_read$non_fatal_error  = finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_3;
+                    network_status_read$non_fatal_error  = OMRON_FINS_ENUMS::NON_FATAL_ERROR_STATUS[finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_3];
                     c$omron_fins_network_status_read_log = network_status_read;
                     OMRON_FINS::emit_omron_fins_network_status_read_log(c);
                     delete c$omron_fins_network_status_read_log;
 
                     network_status_read = network_status_vector[node_count];
                     network_status_read$node_number = ++node_count;
-                    network_status_read$non_fatal_error  = finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_4;
+                    network_status_read$non_fatal_error  = OMRON_FINS_ENUMS::NON_FATAL_ERROR_STATUS[finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_4];
                     c$omron_fins_network_status_read_log = network_status_read;
                     OMRON_FINS::emit_omron_fins_network_status_read_log(c);
                     delete c$omron_fins_network_status_read_log;
 
                     network_status_read = network_status_vector[node_count];
                     network_status_read$node_number = ++node_count;
-                    network_status_read$non_fatal_error  = finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_5;
+                    network_status_read$non_fatal_error  = OMRON_FINS_ENUMS::NON_FATAL_ERROR_STATUS[finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_5];
                     c$omron_fins_network_status_read_log = network_status_read;
                     OMRON_FINS::emit_omron_fins_network_status_read_log(c);
                     delete c$omron_fins_network_status_read_log;
 
                     network_status_read = network_status_vector[node_count];
                     network_status_read$node_number = ++node_count;
-                    network_status_read$non_fatal_error  = finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_6;
+                    network_status_read$non_fatal_error  = OMRON_FINS_ENUMS::NON_FATAL_ERROR_STATUS[finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_6];
                     c$omron_fins_network_status_read_log = network_status_read;
                     OMRON_FINS::emit_omron_fins_network_status_read_log(c);
                     delete c$omron_fins_network_status_read_log;
 
                     network_status_read = network_status_vector[node_count];
                     network_status_read$node_number = ++node_count;
-                    network_status_read$non_fatal_error  = finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_7;
+                    network_status_read$non_fatal_error  = OMRON_FINS_ENUMS::NON_FATAL_ERROR_STATUS[finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_7];
                     c$omron_fins_network_status_read_log = network_status_read;
                     OMRON_FINS::emit_omron_fins_network_status_read_log(c);
                     delete c$omron_fins_network_status_read_log;
@@ -139,49 +139,49 @@ module OMRON_FINS;
                 } else if (i == 7) {
                     network_status_read = network_status_vector[node_count];
                     network_status_read$node_number = ++node_count;
-                    network_status_read$non_fatal_error  = finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_0;
+                    network_status_read$non_fatal_error  = OMRON_FINS_ENUMS::NON_FATAL_ERROR_STATUS[finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_0];
                     c$omron_fins_network_status_read_log = network_status_read;
                     OMRON_FINS::emit_omron_fins_network_status_read_log(c);
                     delete c$omron_fins_network_status_read_log;
 
                     network_status_read = network_status_vector[node_count];
                     network_status_read$node_number = ++node_count;
-                    network_status_read$non_fatal_error  = finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_1;
+                    network_status_read$non_fatal_error  = OMRON_FINS_ENUMS::NON_FATAL_ERROR_STATUS[finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_1];
                     c$omron_fins_network_status_read_log = network_status_read;
                     OMRON_FINS::emit_omron_fins_network_status_read_log(c);
                     delete c$omron_fins_network_status_read_log;
 
                     network_status_read = network_status_vector[node_count];
                     network_status_read$node_number = ++node_count;
-                    network_status_read$non_fatal_error  = finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_2;
+                    network_status_read$non_fatal_error  = OMRON_FINS_ENUMS::NON_FATAL_ERROR_STATUS[finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_2];
                     c$omron_fins_network_status_read_log = network_status_read;
                     OMRON_FINS::emit_omron_fins_network_status_read_log(c);
                     delete c$omron_fins_network_status_read_log;
 
                     network_status_read = network_status_vector[node_count];
                     network_status_read$node_number = ++node_count;
-                    network_status_read$non_fatal_error  = finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_3;
+                    network_status_read$non_fatal_error  = OMRON_FINS_ENUMS::NON_FATAL_ERROR_STATUS[finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_3];
                     c$omron_fins_network_status_read_log = network_status_read;
                     OMRON_FINS::emit_omron_fins_network_status_read_log(c);
                     delete c$omron_fins_network_status_read_log;
 
                     network_status_read = network_status_vector[node_count];
                     network_status_read$node_number = ++node_count;
-                    network_status_read$non_fatal_error  = finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_4;
+                    network_status_read$non_fatal_error  = OMRON_FINS_ENUMS::NON_FATAL_ERROR_STATUS[finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_4];
                     c$omron_fins_network_status_read_log = network_status_read;
                     OMRON_FINS::emit_omron_fins_network_status_read_log(c);
                     delete c$omron_fins_network_status_read_log;
 
                     network_status_read = network_status_vector[node_count];
                     network_status_read$node_number = ++node_count;
-                    network_status_read$non_fatal_error  = finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_5;
+                    network_status_read$non_fatal_error  = OMRON_FINS_ENUMS::NON_FATAL_ERROR_STATUS[finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_5];
                     c$omron_fins_network_status_read_log = network_status_read;
                     OMRON_FINS::emit_omron_fins_network_status_read_log(c);
                     delete c$omron_fins_network_status_read_log;
 
                     network_status_read = network_status_vector[node_count];
                     network_status_read$node_number = ++node_count;
-                    network_status_read$non_fatal_error  = finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_6;
+                    network_status_read$non_fatal_error  = OMRON_FINS_ENUMS::NON_FATAL_ERROR_STATUS[finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_6];
                     c$omron_fins_network_status_read_log = network_status_read;
                     OMRON_FINS::emit_omron_fins_network_status_read_log(c);
                     delete c$omron_fins_network_status_read_log;
@@ -189,56 +189,56 @@ module OMRON_FINS;
                 } else {
                     network_status_read = network_status_vector[node_count];
                     network_status_read$node_number = ++node_count;
-                    network_status_read$non_fatal_error  = finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_0;
+                    network_status_read$non_fatal_error  = OMRON_FINS_ENUMS::NON_FATAL_ERROR_STATUS[finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_0];
                     c$omron_fins_network_status_read_log = network_status_read;
                     OMRON_FINS::emit_omron_fins_network_status_read_log(c);
                     delete c$omron_fins_network_status_read_log;
 
                     network_status_read = network_status_vector[node_count];
                     network_status_read$node_number = ++node_count;
-                    network_status_read$non_fatal_error  = finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_1;
+                    network_status_read$non_fatal_error  = OMRON_FINS_ENUMS::NON_FATAL_ERROR_STATUS[finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_1];
                     c$omron_fins_network_status_read_log = network_status_read;
                     OMRON_FINS::emit_omron_fins_network_status_read_log(c);
                     delete c$omron_fins_network_status_read_log;
 
                     network_status_read = network_status_vector[node_count];
                     network_status_read$node_number = ++node_count;
-                    network_status_read$non_fatal_error  = finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_2;
+                    network_status_read$non_fatal_error  = OMRON_FINS_ENUMS::NON_FATAL_ERROR_STATUS[finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_2];
                     c$omron_fins_network_status_read_log = network_status_read;
                     OMRON_FINS::emit_omron_fins_network_status_read_log(c);
                     delete c$omron_fins_network_status_read_log;
 
                     network_status_read = network_status_vector[node_count];
                     network_status_read$node_number = ++node_count;
-                    network_status_read$non_fatal_error  = finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_3;
+                    network_status_read$non_fatal_error  = OMRON_FINS_ENUMS::NON_FATAL_ERROR_STATUS[finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_3];
                     c$omron_fins_network_status_read_log = network_status_read;
                     OMRON_FINS::emit_omron_fins_network_status_read_log(c);
                     delete c$omron_fins_network_status_read_log;
 
                     network_status_read = network_status_vector[node_count];
                     network_status_read$node_number = ++node_count;
-                    network_status_read$non_fatal_error  = finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_4;
+                    network_status_read$non_fatal_error  = OMRON_FINS_ENUMS::NON_FATAL_ERROR_STATUS[finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_4];
                     c$omron_fins_network_status_read_log = network_status_read;
                     OMRON_FINS::emit_omron_fins_network_status_read_log(c);
                     delete c$omron_fins_network_status_read_log;
 
                     network_status_read = network_status_vector[node_count];
                     network_status_read$node_number = ++node_count;
-                    network_status_read$non_fatal_error  = finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_5;
+                    network_status_read$non_fatal_error  = OMRON_FINS_ENUMS::NON_FATAL_ERROR_STATUS[finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_5];
                     c$omron_fins_network_status_read_log = network_status_read;
                     OMRON_FINS::emit_omron_fins_network_status_read_log(c);
                     delete c$omron_fins_network_status_read_log;
 
                     network_status_read = network_status_vector[node_count];
                     network_status_read$node_number = ++node_count;
-                    network_status_read$non_fatal_error  = finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_6;
+                    network_status_read$non_fatal_error  = OMRON_FINS_ENUMS::NON_FATAL_ERROR_STATUS[finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_6];
                     c$omron_fins_network_status_read_log = network_status_read;
                     OMRON_FINS::emit_omron_fins_network_status_read_log(c);
                     delete c$omron_fins_network_status_read_log;
 
                     network_status_read = network_status_vector[node_count];
                     network_status_read$node_number = ++node_count;
-                    network_status_read$non_fatal_error  = finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_7;
+                    network_status_read$non_fatal_error  = OMRON_FINS_ENUMS::NON_FATAL_ERROR_STATUS[finsCommand$networkStatusReadCommand$response$cyclicNonFatalErrors$nodes[i]$nodeData$nonFatalError_7];
                     c$omron_fins_network_status_read_log = network_status_read;
                     OMRON_FINS::emit_omron_fins_network_status_read_log(c);
                     delete c$omron_fins_network_status_read_log;

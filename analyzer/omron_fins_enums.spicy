@@ -390,3 +390,12 @@ public type CyclicTransmissionStatus = enum {
     NO_TRANSMISSSION = 0x00,
     TRANSMISSION     = 0x01,
 };
+
+
+#
+# Network Status: Non Fatal Error Status
+#
+public type NonFatalErrorStatus = enum {
+    NON_FATAL_ERROR_OFF = 0x00,
+    NON_FATAL_ERROR_ON  = 0x01,
+};

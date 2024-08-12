@@ -135,6 +135,6 @@ module OMRON_FINS;
         current_polling_node_number : count   &log &optional;
         cyclic_operation            : string  &log &optional;
         cyclic_transmission_status  : string  &log &optional;
-        non_fatal_error             : count   &log &optional;
+        non_fatal_error             : string  &log &optional;
         cyclic_error_count          : count   &log &optional;
     };

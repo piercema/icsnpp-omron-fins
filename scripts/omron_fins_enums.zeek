@@ -389,4 +389,11 @@ export{
         [OMRON_FINS_ENUMS::CyclicTransmissionStatus_TRANSMISSION]     = "Transmission",
     }&default = "Unknown";
 
+    #
+    # Network Status: Non Fatal Error Status
+    #
+    const NON_FATAL_ERROR_STATUS = {
+        [OMRON_FINS_ENUMS::NonFatalErrorStatus_NON_FATAL_ERROR_OFF] = "OFF",
+        [OMRON_FINS_ENUMS::NonFatalErrorStatus_NON_FATAL_ERROR_ON]  = "ON",
+    }&default = "Unknown";
 }

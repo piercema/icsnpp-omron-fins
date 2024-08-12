@@ -99,14 +99,14 @@ type NetworkMemberData = unit {
 
 type CyclicNonFatalErrorData = unit {
     nodeData : bitfield(8) {
-        nonFatalError_0 : 0;
-        nonFatalError_1 : 1;
-        nonFatalError_2 : 2;
-        nonFatalError_3 : 3;
-        nonFatalError_4 : 4;
-        nonFatalError_5 : 5;
-        nonFatalError_6 : 6;
-        nonFatalError_7 : 7;
+        nonFatalError_0 : 0 &convert=OMRON_FINS_ENUMS::NonFatalErrorStatus($$);
+        nonFatalError_1 : 1 &convert=OMRON_FINS_ENUMS::NonFatalErrorStatus($$);
+        nonFatalError_2 : 2 &convert=OMRON_FINS_ENUMS::NonFatalErrorStatus($$);
+        nonFatalError_3 : 3 &convert=OMRON_FINS_ENUMS::NonFatalErrorStatus($$);
+        nonFatalError_4 : 4 &convert=OMRON_FINS_ENUMS::NonFatalErrorStatus($$);
+        nonFatalError_5 : 5 &convert=OMRON_FINS_ENUMS::NonFatalErrorStatus($$);
+        nonFatalError_6 : 6 &convert=OMRON_FINS_ENUMS::NonFatalErrorStatus($$);
+        nonFatalError_7 : 7 &convert=OMRON_FINS_ENUMS::NonFatalErrorStatus($$);
     };
 };
 
