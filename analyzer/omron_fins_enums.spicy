@@ -399,3 +399,43 @@ public type NonFatalErrorStatus = enum {
     NON_FATAL_ERROR_OFF = 0x00,
     NON_FATAL_ERROR_ON  = 0x01,
 };
+
+#
+# Data Link Status Read: Master/Slave
+#
+public type DataLinkStatusReadMasterSlave = enum {
+    SLAVE  = 0x00,
+    MASTER = 0x01,
+};
+
+#
+# Data Link Status Read: Data Links
+#
+public type DataLinkStatusReadDataLinks = enum {
+    NOT_ACTIVE = 0x00,
+    ACTIVE     = 0x01,
+};
+
+#
+# Data Link Status Read: Error
+#
+public type DataLinkStatusReadError = enum {
+    NORMAL = 0x00,
+    ERROR  = 0x01,
+};
+
+#
+# Data Link Status Read: Mode
+#
+public type DataLinkStatusReadMode = enum {
+    STOP = 0x00,
+    RUN  = 0x01,
+};
+
+#
+# Data Link Status Read: Warning
+#
+public type DataLinkStatusReadWarning = enum {
+    NORMAL  = 0x00,
+    WARNING = 0x01,
+};

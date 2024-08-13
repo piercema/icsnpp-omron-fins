@@ -155,3 +155,60 @@ type CyclicNonFatalErrorData = unit {
 type CyclicNonFatalErrors = unit {
     nodes : CyclicNonFatalErrorData()[8];  
 };
+
+#
+# Data Link Status Read: Error
+#
+type Error = unit {
+    error : bitfield(8) {
+        error_0 : 0 &convert=OMRON_FINS_ENUMS::DataLinkStatusReadError($$);
+        error_1 : 1 &convert=OMRON_FINS_ENUMS::DataLinkStatusReadError($$);
+        error_2 : 2 &convert=OMRON_FINS_ENUMS::DataLinkStatusReadError($$);
+        error_3 : 3 &convert=OMRON_FINS_ENUMS::DataLinkStatusReadError($$);
+        error_4 : 4 &convert=OMRON_FINS_ENUMS::DataLinkStatusReadError($$);
+        error_5 : 5 &convert=OMRON_FINS_ENUMS::DataLinkStatusReadError($$);
+        error_6 : 6 &convert=OMRON_FINS_ENUMS::DataLinkStatusReadError($$);
+        error_7 : 7 &convert=OMRON_FINS_ENUMS::DataLinkStatusReadError($$);
+    };
+};
+
+#
+# Data Link Status Read: Warning
+#
+type Warning = unit {
+    warning : bitfield(8) {
+        warning_0 : 0 &convert=OMRON_FINS_ENUMS::DataLinkStatusReadWarning($$);
+        warning_1 : 1 &convert=OMRON_FINS_ENUMS::DataLinkStatusReadWarning($$);
+        warning_2 : 2 &convert=OMRON_FINS_ENUMS::DataLinkStatusReadWarning($$);
+        warning_3 : 3 &convert=OMRON_FINS_ENUMS::DataLinkStatusReadWarning($$);
+        warning_4 : 4 &convert=OMRON_FINS_ENUMS::DataLinkStatusReadWarning($$);
+        warning_5 : 5 &convert=OMRON_FINS_ENUMS::DataLinkStatusReadWarning($$);
+        warning_6 : 6 &convert=OMRON_FINS_ENUMS::DataLinkStatusReadWarning($$);
+        warning_7 : 7 &convert=OMRON_FINS_ENUMS::DataLinkStatusReadWarning($$);
+    };
+};
+
+#
+# Data Link Status Read: Mode
+#
+type Mode = unit {
+    mode : bitfield(8) {
+        mode_0 : 0 &convert=OMRON_FINS_ENUMS::DataLinkStatusReadMode($$);
+        mode_1 : 1 &convert=OMRON_FINS_ENUMS::DataLinkStatusReadMode($$);
+        mode_2 : 2 &convert=OMRON_FINS_ENUMS::DataLinkStatusReadMode($$);
+        mode_3 : 3 &convert=OMRON_FINS_ENUMS::DataLinkStatusReadMode($$);
+        mode_4 : 4 &convert=OMRON_FINS_ENUMS::DataLinkStatusReadMode($$);
+        mode_5 : 5 &convert=OMRON_FINS_ENUMS::DataLinkStatusReadMode($$);
+        mode_6 : 6 &convert=OMRON_FINS_ENUMS::DataLinkStatusReadMode($$);
+        mode_7 : 7 &convert=OMRON_FINS_ENUMS::DataLinkStatusReadMode($$);
+    };
+};
+
+#
+# Data Link Status Read: Status
+#
+type Status = unit {
+    error   : Error;
+    mode    : Mode;
+    warning : Warning;
+};

@@ -138,3 +138,21 @@ module OMRON_FINS;
         non_fatal_error             : string  &log &optional;
         cyclic_error_count          : count   &log &optional;
     };
+
+    type data_link_status_read_log: record {
+        ts                 : time    &log;
+        uid                : string  &log;
+        id                 : conn_id &log;
+        omron_fins_link_id : string  &log &optional;
+        command_code       : string  &log &optional;
+        icf_data_type      : string  &log &optional;
+        response_code      : string  &log &optional;
+
+        node_number        : count  &log &optional;
+        data_links         : string &log &optional;
+        node_setting       : string &log &optional;
+        master_node_number : count  &log &optional;
+        error_status       : string &log &optional;
+        mode_status        : string &log &optional;
+        warning_status     : string &log &optional;
+    };

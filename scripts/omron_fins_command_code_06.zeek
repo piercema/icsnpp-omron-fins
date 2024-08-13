@@ -312,22 +312,288 @@ module OMRON_FINS;
     }
 
     function process_data_link_status_read_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
-        c = set_session_detail_log(c);
 
-        local info_detail_log = c$omron_fins_detail_log;
-        info_detail_log$omron_fins_link_id = link_id;
-        info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
+        # Note: For the Data Link Status Read command,there is no data to process; therefore we only process the response
 
-        if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
+        if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
+            local data_link_status_read = data_link_status_read_log($ts=network_time(), $uid=c$uid, $id=c$id);
+            data_link_status_read$omron_fins_link_id = link_id;
+            data_link_status_read$command_code       = OMRON_FINS_ENUMS::COMMAND[finsCommand$commandCode];
+            data_link_status_read$icf_data_type      = OMRON_FINS_ENUMS::DATA_TYPE[finsCommand$icfDataType];
 
-        } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
-            info_detail_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$dataLinkStatusReadCommand$response$responseCode];
+            data_link_status_read$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$dataLinkStatusReadCommand$response$responseCode];
 
+            data_link_status_read$data_links         = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_DATA_LINKS[finsCommand$dataLinkStatusReadCommand$response$statusFlags$dataLinks];
+            data_link_status_read$node_setting       = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MASTER_SLAVE[finsCommand$dataLinkStatusReadCommand$response$statusFlags$slaveMaster];
+            data_link_status_read$master_node_number = finsCommand$dataLinkStatusReadCommand$response$masterNodeNumber;
+
+            local cnt = 1;
+            while (cnt <= 4) {
+                if (cnt == 1) {
+                    data_link_status_read$node_number      = 1;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_1$error$error$error_0];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_1$mode$mode$mode_0];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_1$warning$warning$warning_0];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                    data_link_status_read$node_number      = 2;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_1$error$error$error_1];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_1$mode$mode$mode_1];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_1$warning$warning$warning_1];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                    data_link_status_read$node_number      = 3;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_1$error$error$error_2];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_1$mode$mode$mode_2];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_1$warning$warning$warning_2];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                    data_link_status_read$node_number      = 4;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_1$error$error$error_3];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_1$mode$mode$mode_3];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_1$warning$warning$warning_3];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                    data_link_status_read$node_number      = 5;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_1$error$error$error_4];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_1$mode$mode$mode_4];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_1$warning$warning$warning_4];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                    data_link_status_read$node_number      = 6;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_1$error$error$error_5];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_1$mode$mode$mode_5];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_1$warning$warning$warning_5];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                    data_link_status_read$node_number      = 7;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_1$error$error$error_6];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_1$mode$mode$mode_6];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_1$warning$warning$warning_6];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                    data_link_status_read$node_number      = 8;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_1$error$error$error_7];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_1$mode$mode$mode_7];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_1$warning$warning$warning_7];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                } else if (cnt == 2) {
+                    data_link_status_read$node_number      = 9;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_2$error$error$error_0];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_2$mode$mode$mode_0];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_2$warning$warning$warning_0];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                    data_link_status_read$node_number      = 10;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_2$error$error$error_1];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_2$mode$mode$mode_1];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_2$warning$warning$warning_1];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                    data_link_status_read$node_number      = 11;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_2$error$error$error_2];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_2$mode$mode$mode_2];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_2$warning$warning$warning_2];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                    data_link_status_read$node_number      = 12;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_2$error$error$error_3];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_2$mode$mode$mode_3];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_2$warning$warning$warning_3];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                    data_link_status_read$node_number      = 13;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_2$error$error$error_4];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_2$mode$mode$mode_4];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_2$warning$warning$warning_4];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                    data_link_status_read$node_number      = 14;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_2$error$error$error_5];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_2$mode$mode$mode_5];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_2$warning$warning$warning_5];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                    data_link_status_read$node_number      = 15;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_2$error$error$error_6];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_2$mode$mode$mode_6];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_2$warning$warning$warning_6];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                    data_link_status_read$node_number      = 16;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_2$error$error$error_7];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_2$mode$mode$mode_7];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_2$warning$warning$warning_7];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                } else if (cnt == 3) {
+                    data_link_status_read$node_number      = 17;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_3$error$error$error_0];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_3$mode$mode$mode_0];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_3$warning$warning$warning_0];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                    data_link_status_read$node_number      = 18;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_3$error$error$error_1];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_3$mode$mode$mode_1];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_3$warning$warning$warning_1];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                    data_link_status_read$node_number      = 19;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_3$error$error$error_2];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_3$mode$mode$mode_2];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_3$warning$warning$warning_2];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                    data_link_status_read$node_number      = 20;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_3$error$error$error_3];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_3$mode$mode$mode_3];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_3$warning$warning$warning_3];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                    data_link_status_read$node_number      = 21;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_3$error$error$error_4];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_3$mode$mode$mode_4];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_3$warning$warning$warning_4];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                    data_link_status_read$node_number      = 22;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_3$error$error$error_5];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_3$mode$mode$mode_5];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_3$warning$warning$warning_5];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                    data_link_status_read$node_number      = 23;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_3$error$error$error_6];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_3$mode$mode$mode_6];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_3$warning$warning$warning_6];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                    data_link_status_read$node_number      = 24;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_3$error$error$error_7];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_3$mode$mode$mode_7];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_3$warning$warning$warning_7];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                } else if (cnt ==4) {
+                    data_link_status_read$node_number      = 25;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_4$error$error$error_0];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_4$mode$mode$mode_0];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_4$warning$warning$warning_0];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                    data_link_status_read$node_number      = 26;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_4$error$error$error_1];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_4$mode$mode$mode_1];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_4$warning$warning$warning_1];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                    data_link_status_read$node_number      = 27;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_4$error$error$error_2];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_4$mode$mode$mode_2];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_4$warning$warning$warning_2];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                    data_link_status_read$node_number      = 28;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_4$error$error$error_3];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_4$mode$mode$mode_3];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_4$warning$warning$warning_3];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                    data_link_status_read$node_number      = 29;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_4$error$error$error_4];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_4$mode$mode$mode_4];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_4$warning$warning$warning_4];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                    data_link_status_read$node_number      = 30;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_4$error$error$error_5];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_4$mode$mode$mode_5];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_4$warning$warning$warning_5];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                    data_link_status_read$node_number      = 31;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_4$error$error$error_6];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_4$mode$mode$mode_6];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_4$warning$warning$warning_6];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                    data_link_status_read$node_number      = 32;
+                    data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_4$error$error$error_7];
+                    data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_4$mode$mode$mode_7];
+                    data_link_status_read$warning_status   = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_WARNING[finsCommand$dataLinkStatusReadCommand$response$status_4$warning$warning$warning_7];
+                    c$omron_fins_data_link_status_read_log = data_link_status_read;
+                    OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
+                    delete c$omron_fins_data_link_status_read_log;
+
+                }
+
+                ++cnt;
+            }
         }
-
-        # Fire the event and tidy up
-        OMRON_FINS::emit_omron_fins_detail_log(c);
-        delete c$omron_fins_detail_log;
     }
 
     function process_cycle_time_read_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {

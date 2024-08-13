@@ -164,12 +164,21 @@ type DataLinkStatusRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type DataLinkStatusRead_Command = unit {
-    data    : bytes &eod;
+    : bytes &eod; # Note: There is no data associated with the Data Link Status Read command - hence the anonymous field
 };
 
 type DataLinkStatusRead_Response = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    data    : bytes &eod;
+    statusFlags  : bitfield(8) {
+        slaveMaster : 0 &convert=OMRON_FINS_ENUMS::DataLinkStatusReadMasterSlave($$);
+        reserved    : 1..6;
+        dataLinks   : 7 &convert=OMRON_FINS_ENUMS::DataLinkStatusReadDataLinks($$);
+    };
+    masterNodeNumber : uint8;
+    status_1         : OMRON_FINS_TYPES::Status();
+    status_2         : OMRON_FINS_TYPES::Status();
+    status_3         : OMRON_FINS_TYPES::Status();
+    status_4         : OMRON_FINS_TYPES::Status();
 };
 
 #

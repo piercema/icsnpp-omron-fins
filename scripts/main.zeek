@@ -9,20 +9,26 @@
 module OMRON_FINS;
 
 export {
-    redef enum Log::ID += { LOG_GENERAL_LOG, LOG_DETAIL_LOG, LOG_NETWORK_STATUS_READ_LOG };
+    redef enum Log::ID += { LOG_GENERAL_LOG, 
+                            LOG_DETAIL_LOG, 
+                            LOG_NETWORK_STATUS_READ_LOG,
+                            LOG_DATA_LINK_STATUS_READ_LOG };
 
     # Log policies for log filtering
     global log_policy_general: Log::PolicyHook;
     global log_policy_detail:  Log::PolicyHook;
     global log_policy_network_status_read:  Log::PolicyHook;
+    global log_policy_data_link_status_read:  Log::PolicyHook;
 
     global log_general_log: event(rec: general_log);
     global log_detail_log: event(rec: detail_log);
     global log_network_status_read_log: event(rec: network_status_read_log);
+    global log_data_link_status_read_log: event(rec: data_link_status_read_log);
 
     global emit_omron_fins_general_log: function(c: connection);
     global emit_omron_fins_detail_log: function(c: connection);
     global emit_omron_fins_network_status_read_log: function(c: connection);
+    global emit_omron_fins_data_link_status_read_log: function(c: connection);
 
 }
 
@@ -32,6 +38,7 @@ redef record connection += {
     omron_fins_general_log: general_log &optional;
     omron_fins_detail_log: detail_log &optional;
     omron_fins_network_status_read_log: network_status_read_log &optional;
+    omron_fins_data_link_status_read_log: data_link_status_read_log &optional;
 };
 
 #Put protocol detection information here
@@ -54,6 +61,12 @@ event zeek_init() &priority=5 {
                       $ev=log_network_status_read_log,
                       $path="omron_fins_network_status_read",
                       $policy=log_policy_network_status_read]);
+
+    Log::create_stream(OMRON_FINS::LOG_DATA_LINK_STATUS_READ_LOG,
+                      [$columns=data_link_status_read_log,
+                      $ev=log_data_link_status_read_log,
+                      $path="omron_fins_data_link_status_read",
+                      $policy=log_policy_data_link_status_read]);
 }
 
 function emit_omron_fins_general_log(c: connection) {
@@ -76,4 +89,11 @@ function emit_omron_fins_network_status_read_log(c: connection) {
         return;
 
     Log::write(OMRON_FINS::LOG_NETWORK_STATUS_READ_LOG, c$omron_fins_network_status_read_log);
+}
+
+function emit_omron_fins_data_link_status_read_log(c: connection) {
+    if (! c?$omron_fins_data_link_status_read_log )
+        return;
+
+    Log::write(OMRON_FINS::LOG_DATA_LINK_STATUS_READ_LOG, c$omron_fins_data_link_status_read_log);
 }

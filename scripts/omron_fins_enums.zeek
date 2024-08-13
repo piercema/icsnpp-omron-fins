@@ -393,7 +393,48 @@ export{
     # Network Status: Non Fatal Error Status
     #
     const NON_FATAL_ERROR_STATUS = {
-        [OMRON_FINS_ENUMS::NonFatalErrorStatus_NON_FATAL_ERROR_OFF] = "OFF",
-        [OMRON_FINS_ENUMS::NonFatalErrorStatus_NON_FATAL_ERROR_ON]  = "ON",
+        [OMRON_FINS_ENUMS::NonFatalErrorStatus_NON_FATAL_ERROR_OFF] = "Off",
+        [OMRON_FINS_ENUMS::NonFatalErrorStatus_NON_FATAL_ERROR_ON]  = "On",
     }&default = "Unknown";
+
+    #
+    # Data Link Status Read: Master/Slave
+    #
+    const DATA_LINK_STATUS_READ_MASTER_SLAVE = {
+        [OMRON_FINS_ENUMS::DataLinkStatusReadMasterSlave_SLAVE]  = "Slave",
+        [OMRON_FINS_ENUMS::DataLinkStatusReadMasterSlave_MASTER] = "Master",
+    }&default = "Unknown";
+
+    #
+    # Data Link Status Read: Data Links
+    #
+    const DATA_LINK_STATUS_READ_DATA_LINKS = {
+        [OMRON_FINS_ENUMS::DataLinkStatusReadDataLinks_NOT_ACTIVE] = "Not active",
+        [OMRON_FINS_ENUMS::DataLinkStatusReadDataLinks_ACTIVE]     = "Active",
+    }&default = "Unknown";
+
+    #
+    # Data Link Status Read: Error
+    #
+    const DATA_LINK_STATUS_READ_ERROR = {
+        [OMRON_FINS_ENUMS::DataLinkStatusReadError_NORMAL] = "Normal",
+        [OMRON_FINS_ENUMS::DataLinkStatusReadError_ERROR]  = "Error",
+    }&default = "Unknown";
+
+    #
+    # Data Link Status Read: Mode
+    #
+    const DATA_LINK_STATUS_READ_MODE = {
+        [OMRON_FINS_ENUMS::DataLinkStatusReadMode_STOP] = "Stop",
+        [OMRON_FINS_ENUMS::DataLinkStatusReadMode_RUN]  = "Run",
+    }&default = "Unknown";
+
+    #
+    # Data Link Status Read: Warning
+    #
+    const DATA_LINK_STATUS_READ_WARNING = {
+        [OMRON_FINS_ENUMS::DataLinkStatusReadWarning_NORMAL]  = "Normal",
+        [OMRON_FINS_ENUMS::DataLinkStatusReadWarning_WARNING] = "Warning",
+    }&default = "Unknown";
+
 }
