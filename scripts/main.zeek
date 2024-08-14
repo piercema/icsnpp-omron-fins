@@ -9,6 +9,8 @@
 module OMRON_FINS;
 
 export {
+    const omron_fins_ports_udp: set[port] = { 9600/udp } &redef;
+
     redef enum Log::ID += { LOG_GENERAL_LOG, 
                             LOG_DETAIL_LOG, 
                             LOG_NETWORK_STATUS_READ_LOG,
@@ -43,6 +45,8 @@ redef record connection += {
 
 #Put protocol detection information here
 event zeek_init() &priority=5 {
+    Analyzer::register_for_ports(Analyzer::ANALYZER_OMRON_FINS_UDP, omron_fins_ports_udp);
+
     # initialize logging streams for all omron_fins logs
     Log::create_stream(OMRON_FINS::LOG_GENERAL_LOG,
                       [$columns=general_log,
