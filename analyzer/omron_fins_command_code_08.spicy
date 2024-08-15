@@ -1,0 +1,64 @@
+module OMRON_FINS_COMMAND_CODE_08;
+
+import spicy;
+import OMRON_FINS_ENUMS;
+import OMRON_FINS_FUNCTIONS;
+import OMRON_FINS_TYPES;
+
+#
+# Loop-back Test Internode Echo Test
+#
+type LoopBackTest = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : LoopBackTest_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: LoopBackTest_Response();
+    };
+};
+
+type LoopBackTest_Command = unit {
+    data : bytes &eod;
+};
+
+type LoopBackTest_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data : bytes &eod;
+};
+
+#
+# Broadcast Test Results Read
+#
+type BroadcastTestResultsRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : BroadcastTestResultsRead_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: BroadcastTestResultsRead_Response();
+    };
+};
+
+type BroadcastTestResultsRead_Command = unit {
+    data : bytes &eod;
+};
+
+type BroadcastTestResultsRead_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data : bytes &eod;
+};
+
+#
+# Broadcast Test Data Send
+#
+type BroadcastTestDataSend = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : BroadcastTestDataSend_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: BroadcastTestDataSend_Response();
+    };
+};
+
+type BroadcastTestDataSend_Command = unit {
+    data : bytes &eod;
+};
+
+type BroadcastTestDataSend_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data : bytes &eod;
+};
+

@@ -68,6 +68,15 @@ module OMRON_FINS;
             case OMRON_FINS_ENUMS::CommandCode_DATA_LINK_STATUS_READ:
                 process_data_link_status_read_detail(c, finsCommand, omron_fins_link_id);
                 break;
+            case OMRON_FINS_ENUMS::CommandCode_LOOP_BACK_TEST:
+                process_loop_back_test_detail(c, finsCommand, omron_fins_link_id);
+                break;
+            case OMRON_FINS_ENUMS::CommandCode_BROADCAST_TEST_RESULTS_READ:
+                process_broadcast_test_results_read_detail(c, finsCommand, omron_fins_link_id);
+                break;
+            case OMRON_FINS_ENUMS::CommandCode_BROADCAST_TEST_DATA_SEND:
+                process_broadcast_test_data_send_detail(c, finsCommand, omron_fins_link_id);
+                break;
             case OMRON_FINS_ENUMS::CommandCode_CYCLE_TIME_READ:
                 process_cycle_time_read_detail(c, finsCommand, omron_fins_link_id);
                 break;
