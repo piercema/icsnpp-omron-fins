@@ -16,12 +16,12 @@ type LoopBackTest = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type LoopBackTest_Command = unit {
-    data : bytes &eod;
+    testData : bytes &eod &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
 };
 
 type LoopBackTest_Response = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    data : bytes &eod;
+    testData : bytes &eod &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
 };
 
 #

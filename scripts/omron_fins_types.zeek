@@ -116,6 +116,9 @@ module OMRON_FINS;
         average_cycle_time                 : double &log &optional; 
         max_cycle_time                     : double &log &optional; 
         min_cycle_time                     : double &log &optional; 
+
+        # Loopback Test
+        test_data                          : string &log &optional;
     };
 
     type network_status_read_log: record {
