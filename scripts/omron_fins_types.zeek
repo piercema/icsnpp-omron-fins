@@ -119,6 +119,9 @@ module OMRON_FINS;
 
         # Loopback Test
         test_data                          : string &log &optional;
+
+        # Broadcast Test Results Read
+        number_of_receptions               : count &log &optional;
     };
 
     type network_status_read_log: record {
