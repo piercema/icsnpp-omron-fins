@@ -169,12 +169,29 @@ type DataLinkStatusRead_Command = unit {
 
 type DataLinkStatusRead_Response = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+
+    #
+    # Status Flags
+    #
+    # Bit  7   6   5   4   3   2   1   0
+    #    ---------------------------------
+    #    |   | 0 | 0 | 0 | 0 | 0 | 0 |   |
+    #    ---------------------------------
+    #      |                           |________ Slave/Master (0: Slave; 1: Master)
+    #      |____________________________________ Data Links (0: Not active; 1: Active) 
+    #
     statusFlags  : bitfield(8) {
         slaveMaster : 0 &convert=OMRON_FINS_ENUMS::DataLinkStatusReadMasterSlave($$);
         reserved    : 1..6;
         dataLinks   : 7 &convert=OMRON_FINS_ENUMS::DataLinkStatusReadDataLinks($$);
     };
+
     masterNodeNumber : uint8;
+
+    #
+    # For details on the Status 1 through 4 response, see Section 4-10 page 80 of the 
+    # W22FE12_FINS_Commands_Reference_Manual_10_Dec_2009.pdf documentation
+    #
     status_1         : OMRON_FINS_TYPES::Status();
     status_2         : OMRON_FINS_TYPES::Status();
     status_3         : OMRON_FINS_TYPES::Status();

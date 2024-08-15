@@ -323,13 +323,28 @@ module OMRON_FINS;
 
             data_link_status_read$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$dataLinkStatusReadCommand$response$responseCode];
 
+            #
+            # Status Flags
+            #
+            # Bit  7   6   5   4   3   2   1   0
+            #    ---------------------------------
+            #    |   | 0 | 0 | 0 | 0 | 0 | 0 |   |
+            #    ---------------------------------
+            #      |                           |--------> Slave/Master (0: Slave; 1: Master)
+            #      |------------------------------------> Data Links (0: Not active; 1: Active) 
+            #
             data_link_status_read$data_links         = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_DATA_LINKS[finsCommand$dataLinkStatusReadCommand$response$statusFlags$dataLinks];
             data_link_status_read$node_setting       = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MASTER_SLAVE[finsCommand$dataLinkStatusReadCommand$response$statusFlags$slaveMaster];
+
             data_link_status_read$master_node_number = finsCommand$dataLinkStatusReadCommand$response$masterNodeNumber;
 
+
+            #
+            # For details on the Status 1 through 4 response, see Section 4-10 page 80 of the W22FE12_FINS_Commands_Reference_Manual_10_Dec_2009.pdf documentation
+            #
             local cnt = 1;
             while (cnt <= 4) {
-                if (cnt == 1) {
+                if (cnt == 1) { # Status 1
                     data_link_status_read$node_number      = 1;
                     data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_1$error$error$error_0];
                     data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_1$mode$mode$mode_0];
@@ -394,7 +409,7 @@ module OMRON_FINS;
                     OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
                     delete c$omron_fins_data_link_status_read_log;
 
-                } else if (cnt == 2) {
+                } else if (cnt == 2) { # Status 2
                     data_link_status_read$node_number      = 9;
                     data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_2$error$error$error_0];
                     data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_2$mode$mode$mode_0];
@@ -459,7 +474,7 @@ module OMRON_FINS;
                     OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
                     delete c$omron_fins_data_link_status_read_log;
 
-                } else if (cnt == 3) {
+                } else if (cnt == 3) { # Status 3
                     data_link_status_read$node_number      = 17;
                     data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_3$error$error$error_0];
                     data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_3$mode$mode$mode_0];
@@ -524,7 +539,7 @@ module OMRON_FINS;
                     OMRON_FINS::emit_omron_fins_data_link_status_read_log(c);
                     delete c$omron_fins_data_link_status_read_log;
 
-                } else if (cnt ==4) {
+                } else if (cnt ==4) { # Status 4
                     data_link_status_read$node_number      = 25;
                     data_link_status_read$error_status     = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_ERROR[finsCommand$dataLinkStatusReadCommand$response$status_4$error$error$error_0];
                     data_link_status_read$mode_status      = OMRON_FINS_ENUMS::DATA_LINK_STATUS_READ_MODE[finsCommand$dataLinkStatusReadCommand$response$status_4$mode$mode$mode_0];
