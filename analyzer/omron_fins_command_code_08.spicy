@@ -54,11 +54,10 @@ type BroadcastTestDataSend = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type BroadcastTestDataSend_Command = unit {
-    data : bytes &eod;
+    testData : bytes &eod &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
 };
 
 type BroadcastTestDataSend_Response = unit {
-    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    data : bytes &eod;
+    : bytes &eod; # Note: There is no data associated with the Broadcast Test Data Send command - hence the anonymous field
 };
 
