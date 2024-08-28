@@ -88,7 +88,7 @@ export{
         [OMRON_FINS_ENUMS::CommandCode_BROADCAST_TEST_RESULTS_READ]   = "Broadcast Test Results Read (0x0802)",
         [OMRON_FINS_ENUMS::CommandCode_BROADCAST_TEST_DATA_SEND]      = "Broadcast Test Data Send (0x0803)" ,
 
-        [OMRON_FINS_ENUMS::CommandCode_MESSAGE_READ_MESSAGE_WRITE_FAL_FALS_READ] = "Message Read | Message Clear | FAL/FALS Read (0x0920)",
+        [OMRON_FINS_ENUMS::CommandCode_MESSAGE_READ_MESSAGE_CLEAR_FAL_FALS_READ] = "Message Read | Message Clear | FAL/FALS Read (0x0920)",
 
         [OMRON_FINS_ENUMS::CommandCode_ACCESS_RIGHT_ACQUIRE]          = "Access Right Acquire (0x0C01)",
         [OMRON_FINS_ENUMS::CommandCode_ACCESS_RIGHT_FORCED_ACQUIRE]   = "Access Right Forced Acquire (0x0C02)",
@@ -437,4 +437,12 @@ export{
         [OMRON_FINS_ENUMS::DataLinkStatusReadWarning_WARNING] = "Warning",
     }&default = "Unknown";
 
+    #
+    # Message Read, Message Clear, Fal/Fals Read: Message no. parameter
+    #
+    const MESSAGE_NO_PARAMETER = {
+        [OMRON_FINS_ENUMS::MessageNoParameter_MESSAGE_READ]  = "Message Read",
+        [OMRON_FINS_ENUMS::MessageNoParameter_MESSAGE_CLEAR] = "Message Clear",
+        [OMRON_FINS_ENUMS::MessageNoParameter_FAL_FALS_READ] = "FAL/FALS Read",
+    }&default = "Unknown";
 }

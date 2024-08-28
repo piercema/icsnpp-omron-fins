@@ -212,3 +212,24 @@ type Status = unit {
     mode    : Mode;
     warning : Warning;
 };
+
+#
+# MessageRead, Message Clear, and Fal/Fals Read
+#
+type MessageNoParameter = bitfield(16) {
+        messageType            : 14..15 &convert=OMRON_FINS_ENUMS::MessageNoParameter($$);
+        reserved_or_falFals_13 : 13;
+        reserved_or_falFals_12 : 12;
+        reserved_or_falFals_11 : 11;
+        reserved_or_falFals_10 : 10;
+        reserved_or_falFals_9  : 9;
+        reserved_or_falFals_8  : 8;
+        messageNo_or_falFals_7 : 7;
+        messageNo_or_falFals_6 : 6;
+        messageNo_or_falFals_5 : 5;
+        messageNo_or_falFals_4 : 4;
+        messageNo_or_falFals_3 : 3;
+        messageNo_or_falFals_2 : 2;
+        messageNo_or_falFals_1 : 1;
+        messageNo_or_falFals_0 : 0;
+    };

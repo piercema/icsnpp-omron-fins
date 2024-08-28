@@ -77,6 +77,9 @@ module OMRON_FINS;
             case OMRON_FINS_ENUMS::CommandCode_BROADCAST_TEST_DATA_SEND:
                 process_broadcast_test_data_send_detail(c, finsCommand, omron_fins_link_id);
                 break;
+            case OMRON_FINS_ENUMS::CommandCode_MESSAGE_READ_MESSAGE_CLEAR_FAL_FALS_READ:
+                process_message_read_message_clear_fal_fals_read(c, finsCommand, omron_fins_link_id);
+                break;
             case OMRON_FINS_ENUMS::CommandCode_CYCLE_TIME_READ:
                 process_cycle_time_read_detail(c, finsCommand, omron_fins_link_id);
                 break;

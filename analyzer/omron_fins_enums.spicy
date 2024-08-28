@@ -89,7 +89,7 @@ public type CommandCode = enum {
     BROADCAST_TEST_RESULTS_READ   = 0x0802,
     BROADCAST_TEST_DATA_SEND      = 0x0803,
 
-    MESSAGE_READ_MESSAGE_WRITE_FAL_FALS_READ = 0x0920,
+    MESSAGE_READ_MESSAGE_CLEAR_FAL_FALS_READ = 0x0920,
 
     ACCESS_RIGHT_ACQUIRE          = 0x0C01,
     ACCESS_RIGHT_FORCED_ACQUIRE   = 0x0C02,
@@ -438,4 +438,22 @@ public type DataLinkStatusReadMode = enum {
 public type DataLinkStatusReadWarning = enum {
     NORMAL  = 0x00,
     WARNING = 0x01,
+};
+
+#
+# Message Read, Message Clear, Fal/Fals Read: Message no. parameter
+#
+# The Message Read, Message Clear, and Fal/Fals commands share the same command 
+# code (0x0929).  They commands are distinguished by bits 14 and 15 of the two-byte
+# parameter following the command code and the response code.  Bits 14 and 15 are 
+# as follows:
+#   Bit 15 14
+#        0  0 - Read Message  
+#        0  1 - Message Clear 
+#        1  0 - Fal/Fals Read
+#
+public type MessageNoParameter = enum {
+    MESSAGE_READ  = 0, # Binary 00
+    MESSAGE_CLEAR = 1, # Binary 01
+    FAL_FALS_READ = 2, # Binary 10
 };
