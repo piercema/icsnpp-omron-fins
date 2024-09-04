@@ -457,3 +457,8 @@ public type MessageNoParameter = enum {
     MESSAGE_CLEAR = 1, # Binary 01
     FAL_FALS_READ = 2, # Binary 10
 };
+
+public type Enabled = enum {
+    TRUE  = 1,
+    FALSE = 0,
+};

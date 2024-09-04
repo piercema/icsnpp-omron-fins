@@ -445,4 +445,9 @@ export{
         [OMRON_FINS_ENUMS::MessageNoParameter_MESSAGE_CLEAR] = "Message Clear",
         [OMRON_FINS_ENUMS::MessageNoParameter_FAL_FALS_READ] = "FAL/FALS Read",
     }&default = "Unknown";
+
+    const ENABLED = {
+        [OMRON_FINS_ENUMS::Enabled_TRUE]  = "True",
+        [OMRON_FINS_ENUMS::Enabled_FALSE] = "False",
+    }&default = "Unknown";
 }

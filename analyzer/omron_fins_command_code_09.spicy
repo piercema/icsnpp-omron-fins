@@ -17,14 +17,14 @@ import OMRON_FINS_TYPES;
 #        0  1 - Message Clear 
 #        1  0 - Fal/Fals Read
 # 
-type MessageRead_MessageWrite_FalFalsRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+type MessageRead_MessageClear_FalFalsRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
     switch(dataType) {
-        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : MessageRead_MessageWrite_FalFalsRead_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: MessageRead_MessageWrite_FalFalsRead_Response();
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : MessageRead_MessageClear_FalFalsRead_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: MessageRead_MessageClear_FalFalsRead_Response();
     };
 };
 
-type MessageRead_MessageWrite_FalFalsRead_Command = unit {
+type MessageRead_MessageClear_FalFalsRead_Command = unit {
     messageNoParameter : OMRON_FINS_TYPES::MessageNoParameter;
     switch(self.messageNoParameter.messageType) {
         OMRON_FINS_ENUMS::MessageNoParameter::MESSAGE_READ  -> message_read_command  : MessageRead_Command(self.messageNoParameter);
@@ -33,23 +33,30 @@ type MessageRead_MessageWrite_FalFalsRead_Command = unit {
     };
 
     on %done {
-        print self;
+#KILLME        print self;
     }
 
 };
 
-type MessageRead_MessageWrite_FalFalsRead_Response = unit {
-    responseCode       : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    restOfData         : bytes &eod;
+type MessageRead_MessageClear_FalFalsRead_Response = unit {
+    var messageType : OMRON_FINS_ENUMS::MessageNoParameter = OMRON_FINS_ENUMS::MessageNoParameter(1);
 
-    messageRead_FalFalsRead : MessageRead_FalFalsRead(self.restOfData) if (|self.restOfData| > 0);
+    responseCode    : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    restOfData      : bytes &eod;
+
+    on restOfData {
+        if (|self.restOfData| > 0) {
+            self.messageType = OMRON_FINS_ENUMS::MessageNoParameter(*self.restOfData.at(0) >> 6);
+            #KILLME self.messageType = OMRON_FINS_ENUMS::MessageNoParameter(2);
+        }
+    }
+
+    messageRead_FalFalsRead : MessageRead_FalFalsRead(self.messageType, self.restOfData) if (|self.restOfData| > 0);
 };
 
-type MessageRead_FalFalsRead = unit(restOfData : bytes) {
+type MessageRead_FalFalsRead = unit(messageType: OMRON_FINS_ENUMS::MessageNoParameter, restOfData : bytes) {
 
-    var messageType : OMRON_FINS_ENUMS::MessageNoParameter = OMRON_FINS_ENUMS::MessageNoParameter(*restOfData.at(0) >> 6);
-    #KILLME var messageType : OMRON_FINS_ENUMS::MessageNoParameter = OMRON_FINS_ENUMS::MessageNoParameter(2);
-    switch(self.messageType) {
+    switch(messageType) {
         OMRON_FINS_ENUMS::MessageNoParameter::MESSAGE_READ  -> message_read_response  : MessageRead_Response(restOfData);
         OMRON_FINS_ENUMS::MessageNoParameter::FAL_FALS_READ -> fal_fals_read_response : FalFalsRead_Response(restOfData);
         *                                                   -> unknown_message_type   : bytes &eod;
@@ -66,14 +73,14 @@ type MessageRead_Command = unit(messageNoParameter : OMRON_FINS_TYPES::MessageNo
 type MessageRead_Response = unit(restOfData : bytes) {
     var messageNoBits  : uint8;
 
-    var messageNoBit_0 : bool;
-    var messageNoBit_1 : bool;
-    var messageNoBit_2 : bool;
-    var messageNoBit_3 : bool;
-    var messageNoBit_4 : bool;
-    var messageNoBit_5 : bool;
-    var messageNoBit_6 : bool;
-    var messageNoBit_7 : bool;
+    var messageNoBit_0 : OMRON_FINS_ENUMS::Enabled;
+    var messageNoBit_1 : OMRON_FINS_ENUMS::Enabled;
+    var messageNoBit_2 : OMRON_FINS_ENUMS::Enabled;
+    var messageNoBit_3 : OMRON_FINS_ENUMS::Enabled;
+    var messageNoBit_4 : OMRON_FINS_ENUMS::Enabled;
+    var messageNoBit_5 : OMRON_FINS_ENUMS::Enabled;
+    var messageNoBit_6 : OMRON_FINS_ENUMS::Enabled;
+    var messageNoBit_7 : OMRON_FINS_ENUMS::Enabled;
 
     var messageNo_0    : string;
     var messageNo_1    : string;
@@ -89,40 +96,43 @@ type MessageRead_Response = unit(restOfData : bytes) {
         self.messageNoBits = *restOfData.at(1);
         #KILLME self.messageNoBits = 0x07;
 
-        self.messageNoBit_0 = (self.messageNoBits & 0x01) != 0;
-        if (self.messageNoBit_0) {
+        self.messageNoBit_0 = OMRON_FINS_ENUMS::Enabled((self.messageNoBits & 0x01));
+        if (self.messageNoBit_0 == OMRON_FINS_ENUMS::Enabled::TRUE) {
             self.messageNo_0 = restOfData.sub(2,34).decode();
         }
 
-        self.messageNoBit_1 = (self.messageNoBits & 0x02) != 0;
-        if (self.messageNoBit_1) {
+        self.messageNoBit_1 = OMRON_FINS_ENUMS::Enabled((self.messageNoBits & 0x02) >> 1);
+        if (self.messageNoBit_1 == OMRON_FINS_ENUMS::Enabled::TRUE) {
             self.messageNo_1 = restOfData.sub(34,66).decode();
         }
 
-        self.messageNoBit_2 = (self.messageNoBits & 0x04) != 0;
-        if (self.messageNoBit_2) {
+        self.messageNoBit_2 = OMRON_FINS_ENUMS::Enabled((self.messageNoBits & 0x04) >> 2);
+        if (self.messageNoBit_2 == OMRON_FINS_ENUMS::Enabled::TRUE) {
             self.messageNo_2 = restOfData.sub(66,98).decode();
         }
 
-        self.messageNoBit_3 = (self.messageNoBits & 0x08) != 0;
-        if (self.messageNoBit_3) {
+        self.messageNoBit_3 = OMRON_FINS_ENUMS::Enabled((self.messageNoBits & 0x08) >> 3);
+        if (self.messageNoBit_3 == OMRON_FINS_ENUMS::Enabled::TRUE) {
             self.messageNo_3 = restOfData.sub(98,130).decode();
         }
 
-        self.messageNoBit_4 = (self.messageNoBits & 0x10) != 0;
-        if (self.messageNoBit_4) {
+        self.messageNoBit_4 = OMRON_FINS_ENUMS::Enabled((self.messageNoBits & 0x10) >> 4);
+        if (self.messageNoBit_4 == OMRON_FINS_ENUMS::Enabled::TRUE) {
             self.messageNo_4 = restOfData.sub(130,162).decode();
         }
-        self.messageNoBit_5 = (self.messageNoBits & 0x20) != 0;
-        if (self.messageNoBit_5) {
+
+        self.messageNoBit_5 = OMRON_FINS_ENUMS::Enabled((self.messageNoBits & 0x20) >> 5);
+        if (self.messageNoBit_5 == OMRON_FINS_ENUMS::Enabled::TRUE) {
             self.messageNo_5 = restOfData.sub(162,194).decode();
         }
-        self.messageNoBit_6 = (self.messageNoBits & 0x40) != 0;
-        if (self.messageNoBit_6) {
+
+        self.messageNoBit_6 = OMRON_FINS_ENUMS::Enabled((self.messageNoBits & 0x40) >> 6);
+        if (self.messageNoBit_6 == OMRON_FINS_ENUMS::Enabled::TRUE) {
             self.messageNo_6 = restOfData.sub(194,226).decode();
         }
-        self.messageNoBit_7 = (self.messageNoBits & 0x80) != 0;
-        if (self.messageNoBit_7) {
+
+        self.messageNoBit_7 = OMRON_FINS_ENUMS::Enabled((self.messageNoBits & 0x80) >> 7);
+        if (self.messageNoBit_7 == OMRON_FINS_ENUMS::Enabled::TRUE) {
             self.messageNo_7 = restOfData.sub(226,258).decode();
         }
 
@@ -151,20 +161,20 @@ type FalFalsRead_Command = unit(messageNoParameter : OMRON_FINS_TYPES::MessageNo
 type FalFalsRead_Response = unit(restOfData : bytes) {
     var falFalsNoBits  : uint16;
 
-    var falFalsNoBit_0  : bool;
-    var falFalsNoBit_1  : bool;
-    var falFalsNoBit_2  : bool;
-    var falFalsNoBit_3  : bool;
-    var falFalsNoBit_4  : bool;
-    var falFalsNoBit_5  : bool;
-    var falFalsNoBit_6  : bool;
-    var falFalsNoBit_7  : bool;
-    var falFalsNoBit_8  : bool;
-    var falFalsNoBit_9  : bool;
-    var falFalsNoBit_10 : bool;
-    var falFalsNoBit_11 : bool;
-    var falFalsNoBit_12 : bool;
-    var falFalsNoBit_13 : bool;
+    var falFalsNoBit_0  : OMRON_FINS_ENUMS::Enabled;
+    var falFalsNoBit_1  : OMRON_FINS_ENUMS::Enabled;
+    var falFalsNoBit_2  : OMRON_FINS_ENUMS::Enabled;
+    var falFalsNoBit_3  : OMRON_FINS_ENUMS::Enabled;
+    var falFalsNoBit_4  : OMRON_FINS_ENUMS::Enabled;
+    var falFalsNoBit_5  : OMRON_FINS_ENUMS::Enabled;
+    var falFalsNoBit_6  : OMRON_FINS_ENUMS::Enabled;
+    var falFalsNoBit_7  : OMRON_FINS_ENUMS::Enabled;
+    var falFalsNoBit_8  : OMRON_FINS_ENUMS::Enabled;
+    var falFalsNoBit_9  : OMRON_FINS_ENUMS::Enabled;
+    var falFalsNoBit_10 : OMRON_FINS_ENUMS::Enabled;
+    var falFalsNoBit_11 : OMRON_FINS_ENUMS::Enabled;
+    var falFalsNoBit_12 : OMRON_FINS_ENUMS::Enabled;
+    var falFalsNoBit_13 : OMRON_FINS_ENUMS::Enabled;
 
     var falFalsNo_0     : string;
     var falFalsNo_1     : string;
@@ -186,77 +196,77 @@ type FalFalsRead_Response = unit(restOfData : bytes) {
         self.falFalsNoBits = (*restOfData.at(1) << 8) | *restOfData.at(0);
         #KILLME self.falFalsNoBits = 0x01;
 
-        self.falFalsNoBit_0 = (self.falFalsNoBits & 0x0001) != 0;
-        if (self.falFalsNoBit_0) {
+        self.falFalsNoBit_0 = OMRON_FINS_ENUMS::Enabled((self.falFalsNoBits & 0x0001));
+        if (self.falFalsNoBit_0 == OMRON_FINS_ENUMS::Enabled::TRUE) {
             self.falFalsNo_0 = restOfData.sub(2,18).decode();
         }
 
-        self.falFalsNoBit_1 = (self.falFalsNoBits & 0x0002) != 0;
-        if (self.falFalsNoBit_1) {
+        self.falFalsNoBit_1 = OMRON_FINS_ENUMS::Enabled((self.falFalsNoBits & 0x0002) >> 1);
+        if (self.falFalsNoBit_1 == OMRON_FINS_ENUMS::Enabled::TRUE) {
             self.falFalsNo_1 = restOfData.sub(18,34).decode();
         }
 
-        self.falFalsNoBit_2 = (self.falFalsNoBits & 0x0004) != 0;
-        if (self.falFalsNoBit_2) {
+        self.falFalsNoBit_2 = OMRON_FINS_ENUMS::Enabled((self.falFalsNoBits & 0x0004) >> 2);
+        if (self.falFalsNoBit_2 == OMRON_FINS_ENUMS::Enabled::TRUE) {
             self.falFalsNo_2 = restOfData.sub(34,50).decode();
         }
 
-        self.falFalsNoBit_3 = (self.falFalsNoBits & 0x0008) != 0;
-        if (self.falFalsNoBit_3) {
+        self.falFalsNoBit_3 = OMRON_FINS_ENUMS::Enabled((self.falFalsNoBits & 0x0008) >> 3);
+        if (self.falFalsNoBit_3 == OMRON_FINS_ENUMS::Enabled::TRUE) {
             self.falFalsNo_3 = restOfData.sub(50,66).decode();
         }
 
-        self.falFalsNoBit_4 = (self.falFalsNoBits & 0x0010) != 0;
-        if (self.falFalsNoBit_4) {
+        self.falFalsNoBit_4 = OMRON_FINS_ENUMS::Enabled((self.falFalsNoBits & 0x0010) >> 4);
+        if (self.falFalsNoBit_4 == OMRON_FINS_ENUMS::Enabled::TRUE) {
             self.falFalsNo_4 = restOfData.sub(66,82).decode();
         }
 
-        self.falFalsNoBit_5 = (self.falFalsNoBits & 0x0020) != 0;
-        if (self.falFalsNoBit_5) {
+        self.falFalsNoBit_5 = OMRON_FINS_ENUMS::Enabled((self.falFalsNoBits & 0x0020) >> 5);
+        if (self.falFalsNoBit_5 == OMRON_FINS_ENUMS::Enabled::TRUE) {
             self.falFalsNo_5 = restOfData.sub(82,98).decode();
         }
 
-        self.falFalsNoBit_6 = (self.falFalsNoBits & 0x0040) != 0;
-        if (self.falFalsNoBit_6) {
+        self.falFalsNoBit_6 = OMRON_FINS_ENUMS::Enabled((self.falFalsNoBits & 0x0040) >> 6);
+        if (self.falFalsNoBit_6 == OMRON_FINS_ENUMS::Enabled::TRUE) {
             self.falFalsNo_6 = restOfData.sub(98,114).decode();
         }
 
-        self.falFalsNoBit_7 = (self.falFalsNoBits & 0x0080) != 0;
-        if (self.falFalsNoBit_7) {
+        self.falFalsNoBit_7 = OMRON_FINS_ENUMS::Enabled((self.falFalsNoBits & 0x0080) >> 7);
+        if (self.falFalsNoBit_7 == OMRON_FINS_ENUMS::Enabled::TRUE) {
             self.falFalsNo_7 = restOfData.sub(114,130).decode();
         }
 
-        self.falFalsNoBit_8 = (self.falFalsNoBits & 0x0100) != 0;
-        if (self.falFalsNoBit_8) {
+        self.falFalsNoBit_8 = OMRON_FINS_ENUMS::Enabled((self.falFalsNoBits & 0x0100) >> 8);
+        if (self.falFalsNoBit_8 == OMRON_FINS_ENUMS::Enabled::TRUE) {
             self.falFalsNo_8 = restOfData.sub(130,146).decode();
         }
 
-        self.falFalsNoBit_9 = (self.falFalsNoBits & 0x0200) != 0;
-        if (self.falFalsNoBit_9) {
+        self.falFalsNoBit_9 = OMRON_FINS_ENUMS::Enabled((self.falFalsNoBits & 0x0200) >> 9);
+        if (self.falFalsNoBit_9 == OMRON_FINS_ENUMS::Enabled::TRUE) {
             self.falFalsNo_9 = restOfData.sub(146,162).decode();
         }
 
-        self.falFalsNoBit_10 = (self.falFalsNoBits & 0x0400) != 0;
-        if (self.falFalsNoBit_10) {
+        self.falFalsNoBit_10 = OMRON_FINS_ENUMS::Enabled((self.falFalsNoBits & 0x0400) >> 10);
+        if (self.falFalsNoBit_10 == OMRON_FINS_ENUMS::Enabled::TRUE) {
             self.falFalsNo_10 = restOfData.sub(162,178).decode();
         }
 
-        self.falFalsNoBit_11 = (self.falFalsNoBits & 0x0800) != 0;
-        if (self.falFalsNoBit_11) {
+        self.falFalsNoBit_11 = OMRON_FINS_ENUMS::Enabled((self.falFalsNoBits & 0x0800) >> 11);
+        if (self.falFalsNoBit_11 == OMRON_FINS_ENUMS::Enabled::TRUE) {
             self.falFalsNo_11 = restOfData.sub(178,194).decode();
         }
 
-        self.falFalsNoBit_12 = (self.falFalsNoBits & 0x1000) != 0;
-        if (self.falFalsNoBit_12) {
+        self.falFalsNoBit_12 = OMRON_FINS_ENUMS::Enabled((self.falFalsNoBits & 0x1000) >> 12);
+        if (self.falFalsNoBit_12 == OMRON_FINS_ENUMS::Enabled::TRUE) {
             self.falFalsNo_12 = restOfData.sub(194,210).decode();
         }
 
-        self.falFalsNoBit_13 = (self.falFalsNoBits & 0x2000) != 0;
-        if (self.falFalsNoBit_13) {
+        self.falFalsNoBit_13 = OMRON_FINS_ENUMS::Enabled((self.falFalsNoBits & 0x2000) >> 13);
+        if (self.falFalsNoBit_13 == OMRON_FINS_ENUMS::Enabled::TRUE) {
             self.falFalsNo_13 = restOfData.sub(210,226).decode();
         }
 
-       print self;
+#KILLME       print self;
     }
 };
 

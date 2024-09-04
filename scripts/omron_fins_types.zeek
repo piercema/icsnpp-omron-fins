@@ -122,6 +122,55 @@ module OMRON_FINS;
 
         # Broadcast Test Results Read
         number_of_receptions               : count &log &optional;
+
+        # Message Read | Message Clear | FAL/FALS Read
+        command                            : string &log &optional;
+        message_no_0                       : string &log &optional;
+        message_no_1                       : string &log &optional;
+        message_no_2                       : string &log &optional;
+        message_no_3                       : string &log &optional;
+        message_no_4                       : string &log &optional;
+        message_no_5                       : string &log &optional;
+        message_no_6                       : string &log &optional;
+        message_no_7                       : string &log &optional;
+        message_0                          : string &log &optional;
+        message_1                          : string &log &optional;
+        message_2                          : string &log &optional;
+        message_3                          : string &log &optional;
+        message_4                          : string &log &optional;
+        message_5                          : string &log &optional;
+        message_6                          : string &log &optional;
+        message_7                          : string &log &optional;
+
+        fal_fals_no_0                       : string &log &optional;
+        fal_fals_no_1                       : string &log &optional;
+        fal_fals_no_2                       : string &log &optional;
+        fal_fals_no_3                       : string &log &optional;
+        fal_fals_no_4                       : string &log &optional;
+        fal_fals_no_5                       : string &log &optional;
+        fal_fals_no_6                       : string &log &optional;
+        fal_fals_no_7                       : string &log &optional;
+        fal_fals_no_8                       : string &log &optional;
+        fal_fals_no_9                       : string &log &optional;
+        fal_fals_no_10                      : string &log &optional;
+        fal_fals_no_11                      : string &log &optional;
+        fal_fals_no_12                      : string &log &optional;
+        fal_fals_no_13                      : string &log &optional;
+        fal_fals_0                          : string &log &optional;
+        fal_fals_1                          : string &log &optional;
+        fal_fals_2                          : string &log &optional;
+        fal_fals_3                          : string &log &optional;
+        fal_fals_4                          : string &log &optional;
+        fal_fals_5                          : string &log &optional;
+        fal_fals_6                          : string &log &optional;
+        fal_fals_7                          : string &log &optional;
+        fal_fals_8                          : string &log &optional;
+        fal_fals_9                          : string &log &optional;
+        fal_fals_10                         : string &log &optional;
+        fal_fals_11                         : string &log &optional;
+        fal_fals_12                         : string &log &optional;
+        fal_fals_13                         : string &log &optional;
+
     };
 
     type network_status_read_log: record {

@@ -217,19 +217,19 @@ type Status = unit {
 # MessageRead, Message Clear, and Fal/Fals Read
 #
 type MessageNoParameter = bitfield(16) {
-        messageType            : 14..15 &convert=OMRON_FINS_ENUMS::MessageNoParameter($$);
-        reserved_or_falFals_13 : 13;
-        reserved_or_falFals_12 : 12;
-        reserved_or_falFals_11 : 11;
-        reserved_or_falFals_10 : 10;
-        reserved_or_falFals_9  : 9;
-        reserved_or_falFals_8  : 8;
-        messageNo_or_falFals_7 : 7;
-        messageNo_or_falFals_6 : 6;
-        messageNo_or_falFals_5 : 5;
-        messageNo_or_falFals_4 : 4;
-        messageNo_or_falFals_3 : 3;
-        messageNo_or_falFals_2 : 2;
-        messageNo_or_falFals_1 : 1;
-        messageNo_or_falFals_0 : 0;
+        messageType                  : 14..15 &convert=OMRON_FINS_ENUMS::MessageNoParameter($$);
+        reservedBit_or_falFalsBit_13 : 13     &convert=OMRON_FINS_ENUMS::Enabled($$);
+        reservedBit_or_falFalsBit_12 : 12     &convert=OMRON_FINS_ENUMS::Enabled($$);
+        reservedBit_or_falFalsBit_11 : 11     &convert=OMRON_FINS_ENUMS::Enabled($$);
+        reservedBit_or_falFalsBit_10 : 10     &convert=OMRON_FINS_ENUMS::Enabled($$);
+        reservedBit_or_falFalsBit_9  : 9      &convert=OMRON_FINS_ENUMS::Enabled($$);
+        reservedBit_or_falFalsBit_8  : 8      &convert=OMRON_FINS_ENUMS::Enabled($$);
+        messageNoBit_or_falFalsBit_7 : 7      &convert=OMRON_FINS_ENUMS::Enabled($$);
+        messageNoBit_or_falFalsBit_6 : 6      &convert=OMRON_FINS_ENUMS::Enabled($$);
+        messageNoBit_or_falFalsBit_5 : 5      &convert=OMRON_FINS_ENUMS::Enabled($$);
+        messageNoBit_or_falFalsBit_4 : 4      &convert=OMRON_FINS_ENUMS::Enabled($$);
+        messageNoBit_or_falFalsBit_3 : 3      &convert=OMRON_FINS_ENUMS::Enabled($$);
+        messageNoBit_or_falFalsBit_2 : 2      &convert=OMRON_FINS_ENUMS::Enabled($$);
+        messageNoBit_or_falFalsBit_1 : 1      &convert=OMRON_FINS_ENUMS::Enabled($$);
+        messageNoBit_or_falFalsBit_0 : 0      &convert=OMRON_FINS_ENUMS::Enabled($$);
     };

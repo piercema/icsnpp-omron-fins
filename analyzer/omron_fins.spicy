@@ -89,7 +89,7 @@ public type Command = unit(finsHeader: FINS_Header) {
         OMRON_FINS_ENUMS::CommandCode::LOOP_BACK_TEST                           -> loopBackTestCommand                       : OMRON_FINS_COMMAND_CODE_08::LoopBackTest(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::BROADCAST_TEST_RESULTS_READ              -> broadcastTestResultsReadCommand           : OMRON_FINS_COMMAND_CODE_08::BroadcastTestResultsRead(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::BROADCAST_TEST_DATA_SEND                 -> broadcastTestDataSendCommand              : OMRON_FINS_COMMAND_CODE_08::BroadcastTestDataSend(finsHeader.icf.dataType); 
-        OMRON_FINS_ENUMS::CommandCode::MESSAGE_READ_MESSAGE_CLEAR_FAL_FALS_READ -> messageReadMessageClearFalFalsReadCommand : OMRON_FINS_COMMAND_CODE_09::MessageRead_MessageWrite_FalFalsRead(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::MESSAGE_READ_MESSAGE_CLEAR_FAL_FALS_READ -> messageReadMessageClearFalFalsReadCommand : OMRON_FINS_COMMAND_CODE_09::MessageRead_MessageClear_FalFalsRead(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::ACCESS_RIGHT_ACQUIRE                     -> restofdata_29 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::ACCESS_RIGHT_FORCED_ACQUIRE              -> restofdata_30 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::ACCESS_RIGHT_RELEASE                     -> restofdata_31 : bytes &eod;
