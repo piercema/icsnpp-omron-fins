@@ -16,7 +16,7 @@ type AccessRightAcquire = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type AccessRightAcquire_Command = unit {
-    : bytes &eod;
+    programNo : uint16;
 };
 
 type AccessRightAcquire_Response = unit {
@@ -35,7 +35,7 @@ type AccessRightForcedAcquire = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type AccessRightForcedAcquire_Command = unit {
-    : bytes &eod;
+    programNo : uint16;
 };
 
 type AccessRightForcedAcquire_Response = unit {
@@ -54,7 +54,7 @@ type AccessRightRelease = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type AccessRightRelease_Command = unit {
-    : bytes &eod;
+    programNo : uint16;
 };
 
 type AccessRightRelease_Response = unit {
