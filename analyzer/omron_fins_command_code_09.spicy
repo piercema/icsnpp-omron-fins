@@ -73,7 +73,7 @@ type MessageRead_FalFalsRead = unit(messageType: OMRON_FINS_ENUMS::MessageType, 
 # Message Read Command/Response
 #
 type MessageRead_Command = unit(messageNoParameter : OMRON_FINS_TYPES::MessageNoParameter) {
-    : bytes &eod;
+    : bytes &eod; # Note: There is no data associated with the Message Read command - hence the anonymous field.
 };
 
 type MessageRead_Response = unit(restOfData : bytes) {
@@ -140,8 +140,6 @@ type MessageRead_Response = unit(restOfData : bytes) {
         if (self.messageNoBit_7 == OMRON_FINS_ENUMS::Enabled::TRUE) {
             self.messageNo_7 = restOfData.sub(226,258).decode();
         }
-
-#        print self;
     }
 };
 
@@ -149,18 +147,18 @@ type MessageRead_Response = unit(restOfData : bytes) {
 # Message Clear Command/Response
 #
 type MessageClear_Command = unit(messageNoParameter : OMRON_FINS_TYPES::MessageNoParameter) {
-    : bytes &eod;
+    : bytes &eod; # Note: There is no data associated with the Messsage Clear command - hence the anonymous field
 };
 
 type MessageClear_Response = unit(messageNoParameter : OMRON_FINS_TYPES::MessageNoParameter) {
-    : bytes &eod;
+    : bytes &eod; # Note: There is no data associated with the Message Clear response - hence the anonymous field
 };
 
 #
 # FAL/FALS Read Command/Reponse
 #
 type FalFalsRead_Command = unit(messageNoParameter : OMRON_FINS_TYPES::MessageNoParameter) {
-    : bytes &eod;
+    : bytes &eod; # Note: There is no data associated with the FAL/FALS Read command - hence the anonymous field
 };
 
 type FalFalsRead_Response = unit(restOfData : bytes) {
