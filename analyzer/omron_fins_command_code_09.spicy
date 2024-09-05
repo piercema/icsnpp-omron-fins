@@ -38,6 +38,18 @@ type MessageRead_MessageClear_FalFalsRead_Command = unit {
 
 };
 
+#
+# Processing the MESSAGE READ, MESSAGE CLEAR, and FAL FALS READ repsponse is more complex than your standard Spicy
+# parsing.  The response for MESSAGE CLEAR only contains a response code, while the response for MESSAGE READ 
+# and FAL FALS READ contain additional information (Message No parameter or FAL/FALS No).  From the additional
+# information, the messageType (MESSAGE READ or FAL FALS READ) can be determined.  In order to correctly process
+# the response, we default to a messageType of MESSAGE CLEAR, parse the responseCode, then parse the restOfData (if any).
+# Parsing the restOfData is necessary in order to keep the parser from erroring out with a 'ERROR: expecting 1 bytes 
+# for unpacking value (0 bytes available)' if we try to parse a unit8 that may or may not exist.
+# If self.restOfData has a length greater than 0, the messageType is determined by right shifting the 0th element
+# of the self.restOfData vector.  Further processing for the messageType(s) MESSAGE READ and FAL FALS READ is
+# done by accessing data in the self.restOfData.  Bottom line, it's not pretty, but it works :-)
+#
 type MessageRead_MessageClear_FalFalsRead_Response = unit {
     var messageType : OMRON_FINS_ENUMS::MessageType = OMRON_FINS_ENUMS::MessageType(1);
 
