@@ -43,7 +43,7 @@ type MessageRead_MessageClear_FalFalsRead_Command = unit {
 # for unpacking value (0 bytes available)' if we try to parse a unit8 that may or may not exist.
 # If self.restOfData has a length greater than 0, the messageType is determined by right shifting the 0th element
 # of the self.restOfData vector.  Further processing for the messageType(s) MESSAGE READ and FAL FALS READ is
-# done by accessing data in the self.restOfData.  Bottom line, it's not pretty, but it works :-)
+# done by accessing data in the self.restOfData vector.  Bottom line, it's not pretty, but it works :-)
 #
 type MessageRead_MessageClear_FalFalsRead_Response = unit {
     var messageType : OMRON_FINS_ENUMS::MessageType = OMRON_FINS_ENUMS::MessageType(1);
