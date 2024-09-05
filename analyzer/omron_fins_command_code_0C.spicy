@@ -1,0 +1,63 @@
+module OMRON_FINS_COMMAND_CODE_0C;
+
+import spicy;
+import OMRON_FINS_ENUMS;
+import OMRON_FINS_FUNCTIONS;
+import OMRON_FINS_TYPES;
+
+#
+# Access Right Acquire
+#
+type AccessRightAcquire = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : AccessRightAcquire_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: AccessRightAcquire_Response();
+    };
+};
+
+type AccessRightAcquire_Command = unit {
+    : bytes &eod;
+};
+
+type AccessRightAcquire_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    : bytes &eod;
+};
+
+#
+# Access Right Forced Acquire
+#
+type AccessRightForcedAcquire = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : AccessRightForcedAcquire_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: AccessRightForcedAcquire_Response();
+    };
+};
+
+type AccessRightForcedAcquire_Command = unit {
+    : bytes &eod;
+};
+
+type AccessRightForcedAcquire_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    : bytes &eod;
+};
+
+#
+# Access Right Release
+#
+type AccessRightRelease = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : AccessRightRelease_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: AccessRightRelease_Response();
+    };
+};
+
+type AccessRightRelease_Command = unit {
+    : bytes &eod;
+};
+
+type AccessRightRelease_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    : bytes &eod;
+};

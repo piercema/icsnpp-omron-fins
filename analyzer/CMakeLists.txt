@@ -16,6 +16,7 @@ spicy_add_analyzer(
             omron_fins_command_code_07.spicy  
             omron_fins_command_code_08.spicy  
             omron_fins_command_code_09.spicy
+            omron_fins_command_code_0C.spicy
             omron_fins_command_code_26.spicy
     SCRIPTS __load__.zeek 
             main.zeek 
@@ -33,6 +34,7 @@ spicy_add_analyzer(
             omron_fins_command_code_07.zeek  
             omron_fins_command_code_08.zeek  
             omron_fins_command_code_09.zeek
+            omron_fins_command_code_0C.zeek
             omron_fins_command_code_26.zeek
     ENV HILTI_CXX_FLAGS=-fno-var-tracking-assignments
 )
