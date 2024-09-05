@@ -27,9 +27,9 @@ type MessageRead_MessageClear_FalFalsRead = unit(dataType: OMRON_FINS_ENUMS::Dat
 type MessageRead_MessageClear_FalFalsRead_Command = unit {
     messageNoParameter : OMRON_FINS_TYPES::MessageNoParameter;
     switch(self.messageNoParameter.messageType) {
-        OMRON_FINS_ENUMS::MessageNoParameter::MESSAGE_READ  -> message_read_command  : MessageRead_Command(self.messageNoParameter);
-        OMRON_FINS_ENUMS::MessageNoParameter::MESSAGE_CLEAR -> message_clear_command : MessageClear_Command(self.messageNoParameter);
-        OMRON_FINS_ENUMS::MessageNoParameter::FAL_FALS_READ -> fal_fals_read_command : FalFalsRead_Command(self.messageNoParameter);
+        OMRON_FINS_ENUMS::MessageType::MESSAGE_READ  -> message_read_command  : MessageRead_Command(self.messageNoParameter);
+        OMRON_FINS_ENUMS::MessageType::MESSAGE_CLEAR -> message_clear_command : MessageClear_Command(self.messageNoParameter);
+        OMRON_FINS_ENUMS::MessageType::FAL_FALS_READ -> fal_fals_read_command : FalFalsRead_Command(self.messageNoParameter);
     };
 
     on %done {
@@ -39,26 +39,26 @@ type MessageRead_MessageClear_FalFalsRead_Command = unit {
 };
 
 type MessageRead_MessageClear_FalFalsRead_Response = unit {
-    var messageType : OMRON_FINS_ENUMS::MessageNoParameter = OMRON_FINS_ENUMS::MessageNoParameter(1);
+    var messageType : OMRON_FINS_ENUMS::MessageType = OMRON_FINS_ENUMS::MessageType(1);
 
     responseCode    : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
     restOfData      : bytes &eod;
 
     on restOfData {
         if (|self.restOfData| > 0) {
-            self.messageType = OMRON_FINS_ENUMS::MessageNoParameter(*self.restOfData.at(0) >> 6);
-            #KILLME self.messageType = OMRON_FINS_ENUMS::MessageNoParameter(2);
+            self.messageType = OMRON_FINS_ENUMS::MessageType(*self.restOfData.at(0) >> 6);
+            #KILLME self.messageType = OMRON_FINS_ENUMS::MessageType(2);
         }
     }
 
     messageRead_FalFalsRead : MessageRead_FalFalsRead(self.messageType, self.restOfData) if (|self.restOfData| > 0);
 };
 
-type MessageRead_FalFalsRead = unit(messageType: OMRON_FINS_ENUMS::MessageNoParameter, restOfData : bytes) {
+type MessageRead_FalFalsRead = unit(messageType: OMRON_FINS_ENUMS::MessageType, restOfData : bytes) {
 
     switch(messageType) {
-        OMRON_FINS_ENUMS::MessageNoParameter::MESSAGE_READ  -> message_read_response  : MessageRead_Response(restOfData);
-        OMRON_FINS_ENUMS::MessageNoParameter::FAL_FALS_READ -> fal_fals_read_response : FalFalsRead_Response(restOfData);
+        OMRON_FINS_ENUMS::MessageType::MESSAGE_READ  -> message_read_response  : MessageRead_Response(restOfData);
+        OMRON_FINS_ENUMS::MessageType::FAL_FALS_READ -> fal_fals_read_response : FalFalsRead_Response(restOfData);
         *                                                   -> unknown_message_type   : bytes &eod;
     };
 };

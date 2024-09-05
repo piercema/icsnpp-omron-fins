@@ -7,7 +7,7 @@ module OMRON_FINS;
         info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
 
         # Message type
-        info_detail_log$command = OMRON_FINS_ENUMS::MESSAGE_NO_PARAMETER[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageType];
+        info_detail_log$command = OMRON_FINS_ENUMS::MESSAGE_TYPE[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageType];
 
         # Message bits set
         info_detail_log$message_no_0 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_0];
@@ -32,7 +32,7 @@ module OMRON_FINS;
         info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
 
         # Message type
-        info_detail_log$command = OMRON_FINS_ENUMS::MESSAGE_NO_PARAMETER[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageType];
+        info_detail_log$command = OMRON_FINS_ENUMS::MESSAGE_TYPE[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageType];
 
         # Message bits set
         info_detail_log$message_no_0 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_0];
@@ -57,7 +57,7 @@ module OMRON_FINS;
         info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
 
         # Message type
-        info_detail_log$command = OMRON_FINS_ENUMS::MESSAGE_NO_PARAMETER[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageType];
+        info_detail_log$command = OMRON_FINS_ENUMS::MESSAGE_TYPE[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageType];
 
         # Message bits set
         info_detail_log$fal_fals_no_0  = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_0];
@@ -91,7 +91,7 @@ module OMRON_FINS;
         info_detail_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$messageReadMessageClearFalFalsReadCommand$response$responseCode];
 
         # Message type
-        info_detail_log$command = OMRON_FINS_ENUMS::MESSAGE_NO_PARAMETER[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageType];
+        info_detail_log$command = OMRON_FINS_ENUMS::MESSAGE_TYPE[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageType];
 
         # Message bit set
         info_detail_log$message_no_0 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$message_read_response$messageNoBit_0];
@@ -129,7 +129,7 @@ module OMRON_FINS;
         info_detail_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$messageReadMessageClearFalFalsReadCommand$response$responseCode];
 
         # Message type
-        info_detail_log$command = OMRON_FINS_ENUMS::MESSAGE_NO_PARAMETER[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageType];
+        info_detail_log$command = OMRON_FINS_ENUMS::MESSAGE_TYPE[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageType];
 
         # Fire the event and tidy up
         OMRON_FINS::emit_omron_fins_detail_log(c);
@@ -147,7 +147,7 @@ module OMRON_FINS;
         info_detail_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$messageReadMessageClearFalFalsReadCommand$response$responseCode];
 
         # Message type
-        info_detail_log$command = OMRON_FINS_ENUMS::MESSAGE_NO_PARAMETER[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageType];
+        info_detail_log$command = OMRON_FINS_ENUMS::MESSAGE_TYPE[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageType];
 
         # Message bit set
         info_detail_log$fal_fals_no_0  = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$fal_fals_read_response$falFalsNoBit_0];
@@ -189,26 +189,26 @@ module OMRON_FINS;
     function process_message_read_message_clear_fal_fals_read_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
             switch (finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageType) {
-                case OMRON_FINS_ENUMS::MessageNoParameter_MESSAGE_READ:
+                case OMRON_FINS_ENUMS::MessageType_MESSAGE_READ:
                     process_message_read_command_detail(c, finsCommand, link_id);
                     break;
-                case OMRON_FINS_ENUMS::MessageNoParameter_MESSAGE_CLEAR:
+                case OMRON_FINS_ENUMS::MessageType_MESSAGE_CLEAR:
                     process_message_clear_command_detail(c, finsCommand, link_id);
                     break;
-                case OMRON_FINS_ENUMS::MessageNoParameter_FAL_FALS_READ:
+                case OMRON_FINS_ENUMS::MessageType_FAL_FALS_READ:
                     process_fal_fals_read_command_detail(c, finsCommand, link_id);
                     break;
             }
 
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
             switch (finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageType) {
-                case OMRON_FINS_ENUMS::MessageNoParameter_MESSAGE_READ:
+                case OMRON_FINS_ENUMS::MessageType_MESSAGE_READ:
                     process_message_read_response_detail(c, finsCommand, link_id);
                     break;
-                case OMRON_FINS_ENUMS::MessageNoParameter_MESSAGE_CLEAR:
+                case OMRON_FINS_ENUMS::MessageType_MESSAGE_CLEAR:
                     process_message_clear_response_detail(c, finsCommand, link_id);
                     break;
-                case OMRON_FINS_ENUMS::MessageNoParameter_FAL_FALS_READ:
+                case OMRON_FINS_ENUMS::MessageType_FAL_FALS_READ:
                     process_fal_fals_read_response_detail(c, finsCommand, link_id);
                     break;
             }

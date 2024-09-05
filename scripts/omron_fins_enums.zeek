@@ -440,10 +440,10 @@ export{
     #
     # Message Read, Message Clear, Fal/Fals Read: Message no. parameter
     #
-    const MESSAGE_NO_PARAMETER = {
-        [OMRON_FINS_ENUMS::MessageNoParameter_MESSAGE_READ]  = "Message Read",
-        [OMRON_FINS_ENUMS::MessageNoParameter_MESSAGE_CLEAR] = "Message Clear",
-        [OMRON_FINS_ENUMS::MessageNoParameter_FAL_FALS_READ] = "FAL/FALS Read",
+    const MESSAGE_TYPE = {
+        [OMRON_FINS_ENUMS::MessageType_MESSAGE_READ]  = "Message Read",
+        [OMRON_FINS_ENUMS::MessageType_MESSAGE_CLEAR] = "Message Clear",
+        [OMRON_FINS_ENUMS::MessageType_FAL_FALS_READ] = "FAL/FALS Read",
     }&default = "Unknown";
 
     const ENABLED = {

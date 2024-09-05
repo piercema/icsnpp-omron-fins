@@ -452,7 +452,7 @@ public type DataLinkStatusReadWarning = enum {
 #        0  1 - Message Clear 
 #        1  0 - Fal/Fals Read
 #
-public type MessageNoParameter = enum {
+public type MessageType = enum {
     MESSAGE_READ  = 0, # Binary 00
     MESSAGE_CLEAR = 1, # Binary 01
     FAL_FALS_READ = 2, # Binary 10
