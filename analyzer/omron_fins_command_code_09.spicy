@@ -6,7 +6,7 @@ import OMRON_FINS_FUNCTIONS;
 import OMRON_FINS_TYPES;
 
 #
-# MESSAGE_READ_MESSAGE_WRITE_FAL_FALS_READ
+# MESSAGE_READ_MESSAGE_CLEAR_FAL_FALS_READ
 #
 # The Message Read, Message Clear, and Fal/Fals commands share the same command 
 # code (0x0929).  They commands are distinguished by bits 14 and 15 of the two-byte
