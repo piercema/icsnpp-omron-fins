@@ -1,0 +1,63 @@
+module OMRON_FINS_COMMAND_CODE_21;
+
+import spicy;
+import OMRON_FINS_ENUMS;
+import OMRON_FINS_FUNCTIONS;
+import OMRON_FINS_TYPES;
+
+#
+# ErrorClear
+#
+type ErrorClear = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ErrorClear_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ErrorClear_Response();
+    };
+};
+
+type ErrorClear_Command = unit {
+    data         : bytes &eod;
+};
+
+type ErrorClear_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data         : bytes &eod;
+};
+
+#
+# ErrorLogRead
+#
+type ErrorLogRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ErrorLogRead_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ErrorLogRead_Response();
+    };
+};
+
+type ErrorLogRead_Command = unit {
+    data         : bytes &eod;
+};
+
+type ErrorLogRead_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data         : bytes &eod;
+};
+
+#
+# ErrorLogClear
+#
+type ErrorLogClear = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ErrorLogClear_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ErrorLogClear_Response();
+    };
+};
+
+type ErrorLogClear_Command = unit {
+    data         : bytes &eod;
+};
+
+type ErrorLogClear_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data         : bytes &eod;
+};

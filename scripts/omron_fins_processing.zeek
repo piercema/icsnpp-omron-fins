@@ -89,6 +89,15 @@ module OMRON_FINS;
             case OMRON_FINS_ENUMS::CommandCode_ACCESS_RIGHT_RELEASE:
                 process_access_right_release_detail(c, finsCommand, omron_fins_link_id);
                 break;
+            case OMRON_FINS_ENUMS::CommandCode_ERROR_CLEAR:
+                process_error_clear_detail(c, finsCommand, omron_fins_link_id);
+                break;
+            case OMRON_FINS_ENUMS::CommandCode_ERROR_LOG_READ:
+                process_error_log_read_detail(c, finsCommand, omron_fins_link_id);
+                break;
+            case OMRON_FINS_ENUMS::CommandCode_ERROR_LOG_CLEAR:
+                process_error_log_clear_detail(c, finsCommand, omron_fins_link_id);
+                break;
             case OMRON_FINS_ENUMS::CommandCode_CYCLE_TIME_READ:
                 process_cycle_time_read_detail(c, finsCommand, omron_fins_link_id);
                 break;

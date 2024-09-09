@@ -14,6 +14,7 @@ import OMRON_FINS_COMMAND_CODE_07;
 import OMRON_FINS_COMMAND_CODE_08;
 import OMRON_FINS_COMMAND_CODE_09;
 import OMRON_FINS_COMMAND_CODE_0C;
+import OMRON_FINS_COMMAND_CODE_21;
 import OMRON_FINS_COMMAND_CODE_26;
 
 public type Messages = unit {
@@ -91,12 +92,12 @@ public type Command = unit(finsHeader: FINS_Header) {
         OMRON_FINS_ENUMS::CommandCode::BROADCAST_TEST_RESULTS_READ              -> broadcastTestResultsReadCommand           : OMRON_FINS_COMMAND_CODE_08::BroadcastTestResultsRead(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::BROADCAST_TEST_DATA_SEND                 -> broadcastTestDataSendCommand              : OMRON_FINS_COMMAND_CODE_08::BroadcastTestDataSend(finsHeader.icf.dataType); 
         OMRON_FINS_ENUMS::CommandCode::MESSAGE_READ_MESSAGE_CLEAR_FAL_FALS_READ -> messageReadMessageClearFalFalsReadCommand : OMRON_FINS_COMMAND_CODE_09::MessageRead_MessageClear_FalFalsRead(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::ACCESS_RIGHT_ACQUIRE                     -> accessRightAcquireCommand                : OMRON_FINS_COMMAND_CODE_0C::AccessRightAcquire(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::ACCESS_RIGHT_FORCED_ACQUIRE              -> accessRightForcedAcquireCommand          : OMRON_FINS_COMMAND_CODE_0C::AccessRightForcedAcquire(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::ACCESS_RIGHT_RELEASE                     -> accessRightReleaseCommand                : OMRON_FINS_COMMAND_CODE_0C::AccessRightRelease(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::ERROR_CLEAR                              -> restofdata_32 : bytes &eod;
-        OMRON_FINS_ENUMS::CommandCode::ERROR_LOG_READ                           -> restofdata_33 : bytes &eod;
-        OMRON_FINS_ENUMS::CommandCode::ERROR_LOG_CLEAR                          -> restofdata_34 : bytes &eod;
+        OMRON_FINS_ENUMS::CommandCode::ACCESS_RIGHT_ACQUIRE                     -> accessRightAcquireCommand                 : OMRON_FINS_COMMAND_CODE_0C::AccessRightAcquire(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::ACCESS_RIGHT_FORCED_ACQUIRE              -> accessRightForcedAcquireCommand           : OMRON_FINS_COMMAND_CODE_0C::AccessRightForcedAcquire(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::ACCESS_RIGHT_RELEASE                     -> accessRightReleaseCommand                 : OMRON_FINS_COMMAND_CODE_0C::AccessRightRelease(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::ERROR_CLEAR                              -> errorClearCommand                         : OMRON_FINS_COMMAND_CODE_21::ErrorClear(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::ERROR_LOG_READ                           -> errorLogReadCommand                       : OMRON_FINS_COMMAND_CODE_21::ErrorLogRead(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::ERROR_LOG_CLEAR                          -> errorLogClearCommand                      : OMRON_FINS_COMMAND_CODE_21::ErrorLogClear(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::FILE_NAME_READ                           -> restofdata_35 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::SINGLE_FILE_READ                         -> restofdata_36 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::SINGLE_FILE_WRITE                        -> restofdata_37 : bytes &eod;
