@@ -94,9 +94,6 @@ public type Command = unit(finsHeader: FINS_Header) {
         OMRON_FINS_ENUMS::CommandCode::ACCESS_RIGHT_ACQUIRE                     -> accessRightAcquireCommand                : OMRON_FINS_COMMAND_CODE_0C::AccessRightAcquire(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::ACCESS_RIGHT_FORCED_ACQUIRE              -> accessRightForcedAcquireCommand          : OMRON_FINS_COMMAND_CODE_0C::AccessRightForcedAcquire(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::ACCESS_RIGHT_RELEASE                     -> accessRightReleaseCommand                : OMRON_FINS_COMMAND_CODE_0C::AccessRightRelease(finsHeader.icf.dataType);
-        #OMRON_FINS_ENUMS::CommandCode::ACCESS_RIGHT_ACQUIRE                     -> mydata0 : bytes &eod;
-        #OMRON_FINS_ENUMS::CommandCode::ACCESS_RIGHT_FORCED_ACQUIRE              -> mydata1 : bytes &eod;
-        #OMRON_FINS_ENUMS::CommandCode::ACCESS_RIGHT_RELEASE                     -> mydata2 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::ERROR_CLEAR                              -> restofdata_32 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::ERROR_LOG_READ                           -> restofdata_33 : bytes &eod;
         OMRON_FINS_ENUMS::CommandCode::ERROR_LOG_CLEAR                          -> restofdata_34 : bytes &eod;
