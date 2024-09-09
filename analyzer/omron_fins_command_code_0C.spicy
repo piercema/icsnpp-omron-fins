@@ -20,8 +20,20 @@ type AccessRightAcquire_Command = unit {
 };
 
 type AccessRightAcquire_Response = unit {
+    var networkAddress : uint8;
+    var nodeNumber     : uint8;
+    var unitAddress    : uint8;
+
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    : bytes &eod;
+    restOfData   : bytes &eod;
+
+    on %done {
+        if (|self.restOfData| > 0) {
+            self.networkAddress = *self.restOfData.at(0);
+            self.nodeNumber     = *self.restOfData.at(1);
+            self.unitAddress    = *self.restOfData.at(2);
+        }
+    }
 };
 
 #

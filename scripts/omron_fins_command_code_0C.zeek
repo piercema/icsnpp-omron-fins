@@ -10,8 +10,10 @@ module OMRON_FINS;
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
             info_detail_log$program_no = finsCommand$accessRightAcquireCommand$command$programNo;
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
-            print "process_access_right_acquire_detail: RESPONSE";
-            info_detail_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$accessRightAcquireCommand$response$responseCode];
+            info_detail_log$response_code   = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$accessRightAcquireCommand$response$responseCode];
+            info_detail_log$acquire_network_address = finsCommand$accessRightAcquireCommand$response$networkAddress;
+            info_detail_log$acquire_unit_address    = finsCommand$accessRightAcquireCommand$response$unitAddress;
+            info_detail_log$acquire_node_number     = finsCommand$accessRightAcquireCommand$response$nodeNumber;
         }
 
         # Fire the event and tidy up
@@ -29,7 +31,6 @@ module OMRON_FINS;
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
             info_detail_log$program_no = finsCommand$accessRightForcedAcquireCommand$command$programNo;
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
-            print "process_access_right_acquire_forced_detail: RESPONSE";
             info_detail_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$accessRightForcedAcquireCommand$response$responseCode];
         }
 
@@ -48,7 +49,6 @@ module OMRON_FINS;
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
             info_detail_log$program_no = finsCommand$accessRightReleaseCommand$command$programNo;
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
-            print "process_access_right_release_detail: RESPONSE";
             info_detail_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$accessRightReleaseCommand$response$responseCode];
         }
 

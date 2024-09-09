@@ -171,6 +171,11 @@ module OMRON_FINS;
         fal_fals_12                         : string &log &optional;
         fal_fals_13                         : string &log &optional;
 
+        # Access Right Acquire
+        acquire_network_address                     : count   &log &optional;
+        acquire_node_number                         : count   &log &optional;
+        acquire_unit_address                        : count   &log &optional;
+
     };
 
     type network_status_read_log: record {
