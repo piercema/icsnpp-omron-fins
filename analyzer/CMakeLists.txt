@@ -7,6 +7,7 @@ spicy_add_analyzer(
             omron_fins.spicy  
             omron_fins.evt  
             omron_fins_enums.spicy  
+            omron_fins_error_codes.spicy  
             omron_fins_command_code_01.spicy  
             omron_fins_command_code_02.spicy  
             omron_fins_command_code_03.spicy  
