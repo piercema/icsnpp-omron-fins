@@ -1,0 +1,291 @@
+module OMRON_FINS_COMMAND_CODE_22;
+
+import spicy;
+import OMRON_FINS_ENUMS;
+import OMRON_FINS_FUNCTIONS;
+import OMRON_FINS_TYPES;
+
+#
+# FileNameRead
+#
+type FileNameRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : FileNameRead_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: FileNameRead_Response();
+    };
+};
+
+type FileNameRead_Command = unit {
+    data         : bytes &eod;
+};
+
+type FileNameRead_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data         : bytes &eod;
+};
+
+#
+# SingleFileRead
+#
+type SingleFileRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : SingleFileRead_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: SingleFileRead_Response();
+    };
+};
+
+type SingleFileRead_Command = unit {
+    data         : bytes &eod;
+};
+
+type SingleFileRead_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data         : bytes &eod;
+};
+
+#
+# SingleFileWrite
+#
+type SingleFileWrite = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : SingleFileWrite_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: SingleFileWrite_Response();
+    };
+};
+
+type SingleFileWrite_Command = unit {
+    data         : bytes &eod;
+};
+
+type SingleFileWrite_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data         : bytes &eod;
+};
+
+#
+# MemoryCardFormat
+#
+type MemoryCardFormat = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : MemoryCardFormat_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: MemoryCardFormat_Reponse();
+    };
+};
+
+type MemoryCardFormat_Command = unit {
+    data         : bytes &eod;
+};
+
+type MemoryCardFormat_Reponse = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data         : bytes &eod;
+};
+
+#
+# FileDelete
+#
+type FileDelete = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : FileDelete_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: FileDelete_Reponse();
+    };
+};
+
+type FileDelete_Command = unit {
+    data         : bytes &eod;
+};
+
+type FileDelete_Reponse = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data         : bytes &eod;
+};
+
+#
+# VolumeLabelCreateDelete
+#
+type VolumeLabelCreateDelete = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : VolumeLabelCreateDelete_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: VolumeLabelCreateDelete_Reponse();
+    };
+};
+
+type VolumeLabelCreateDelete_Command = unit {
+    data         : bytes &eod;
+};
+
+type VolumeLabelCreateDelete_Reponse = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data         : bytes &eod;
+};
+
+#
+# FileCopy
+#
+type FileCopy = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : FileCopy_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: FileCopy_Reponse();
+    };
+};
+
+type FileCopy_Command = unit {
+    data         : bytes &eod;
+};
+
+type FileCopy_Reponse = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data         : bytes &eod;
+};
+
+#
+# FileNameChange
+#
+type FileNameChange = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : FileNameChange_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: FileNameChange_Reponse();
+    };
+};
+
+type FileNameChange_Command = unit {
+    data         : bytes &eod;
+};
+
+type FileNameChange_Reponse = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data         : bytes &eod;
+};
+
+#
+# FileDataCheck
+#
+type FileDataCheck = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : FileDataCheck_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: FileDataCheck_Reponse();
+    };
+};
+
+type FileDataCheck_Command = unit {
+    data         : bytes &eod;
+};
+
+type FileDataCheck_Reponse = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data         : bytes &eod;
+};
+
+#
+# MemoryAreaFileTransfer
+#
+type MemoryAreaFileTransfer = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : MemoryAreaFileTransfer_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: MemoryAreaFileTransfer_Reponse();
+    };
+};
+
+type MemoryAreaFileTransfer_Command = unit {
+    data         : bytes &eod;
+};
+
+type MemoryAreaFileTransfer_Reponse = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data         : bytes &eod;
+};
+
+#
+# ParameterAreaFileTransfer
+#
+type ParameterAreaFileTransfer = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ParameterAreaFileTransfer_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ParameterAreaFileTransfer_Reponse();
+    };
+};
+
+type ParameterAreaFileTransfer_Command = unit {
+    data         : bytes &eod;
+};
+
+type ParameterAreaFileTransfer_Reponse = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data         : bytes &eod;
+};
+
+#
+# ProgramAreaFileTransfer
+#
+type ProgramAreaFileTransfer = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ProgramAreaFileTransfer_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ProgramAreaFileTransfer_Reponse();
+    };
+};
+
+type ProgramAreaFileTransfer_Command = unit {
+    data         : bytes &eod;
+};
+
+type ProgramAreaFileTransfer_Reponse = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data         : bytes &eod;
+};
+
+#
+# FileMemoryIndexRead
+#
+type FileMemoryIndexRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : FileMemoryIndexRead_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: FileMemoryIndexRead_Reponse();
+    };
+};
+
+type FileMemoryIndexRead_Command = unit {
+    data         : bytes &eod;
+};
+
+type FileMemoryIndexRead_Reponse = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data         : bytes &eod;
+};
+
+#
+# FileMemoryRead
+#
+type FileMemoryRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : FileMemoryRead_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: FileMemoryRead_Reponse();
+    };
+};
+
+type FileMemoryRead_Command = unit {
+    data         : bytes &eod;
+};
+
+type FileMemoryRead_Reponse = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data         : bytes &eod;
+};
+
+#
+# FileMemoryWrite
+#
+type FileMemoryWrite = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : FileMemoryWrite_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: FileMemoryWrite_Reponse();
+    };
+};
+
+type FileMemoryWrite_Command = unit {
+    data         : bytes &eod;
+};
+
+type FileMemoryWrite_Reponse = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data         : bytes &eod;
+};
