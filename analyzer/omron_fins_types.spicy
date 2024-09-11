@@ -1,6 +1,7 @@
 module OMRON_FINS_TYPES;
 
 import OMRON_FINS_ENUMS;
+import OMRON_FINS_ERROR_CODES;
 import OMRON_FINS_FUNCTIONS;
 
 #
@@ -233,3 +234,17 @@ type MessageNoParameter = bitfield(16) {
         messageNoBit_or_falFalsBit_1 : 1      &convert=OMRON_FINS_ENUMS::Enabled($$);
         messageNoBit_or_falFalsBit_0 : 0      &convert=OMRON_FINS_ENUMS::Enabled($$);
     };
+
+#
+# Error noOfRecords
+#
+type ErrorRecord = unit {
+    errorCode1 : uint16 &convert=OMRON_FINS_ERROR_CODES::ErrorCode($$);
+    errorCode2 : uint16 &convert=OMRON_FINS_ERROR_CODES::ErrorCode($$);
+    minute     : uint8;
+    second     : uint8;
+    day        : uint8;
+    hour       : uint8;
+    year       : uint8;
+    month      : uint8;
+};

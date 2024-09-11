@@ -176,9 +176,6 @@ module OMRON_FINS;
         acquire_node_number                 : count   &log &optional;
         acquire_unit_address                : count   &log &optional;
 
-        # Error clear
-        error_reset_fal_no                   : string &log &optional;
-
     };
 
     type network_status_read_log: record {
@@ -218,4 +215,18 @@ module OMRON_FINS;
         error_status       : string &log &optional;
         mode_status        : string &log &optional;
         warning_status     : string &log &optional;
+    };
+
+     type detail_error_log: record {
+        ts                 : time    &log;
+        uid                : string  &log;
+        id                 : conn_id &log;
+        omron_fins_link_id : string  &log &optional;
+        command_code       : string  &log &optional;
+        icf_data_type      : string  &log &optional;
+        response_code      : string  &log &optional;
+
+        # Error clear
+        error_reset_fal_no : string &log &optional;
+
     };

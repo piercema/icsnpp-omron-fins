@@ -35,12 +35,17 @@ type ErrorLogRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type ErrorLogRead_Command = unit {
-    data         : bytes &eod;
+    beginningRecordNo : uint16;
+    noOfRecords       : uint16;
 };
 
 type ErrorLogRead_Response = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    data         : bytes &eod;
+    maxNoStoredRecords : uint16;
+    noOfStoredRecords  : uint16;
+    noOfRecords        : uint16;
+    errorRecords       : OMRON_FINS_TYPES::ErrorRecord[self.noOfRecords];
+
 };
 
 #
