@@ -227,6 +227,19 @@ module OMRON_FINS;
         response_code      : string  &log &optional;
 
         # Error clear
-        error_reset_fal_no : string &log &optional;
+        error_reset_fal_no    : string &log &optional;
 
+        # Error Log Read
+        beginning_record_no   : count  &log &optional;
+        max_no_stored_records : count  &log &optional;
+        no_of_stored_records  : count  &log &optional;
+        no_of_records         : count  &log &optional;
+        error_code_1          : string &log &optional;
+        error_code_2          : string &log &optional;
+        minute                : count  &log &optional;
+        second                : count  &log &optional;
+        day                   : count  &log &optional;
+        hour                  : count  &log &optional;
+        year                  : count  &log &optional;
+        month                 : count  &log &optional;
     };
