@@ -6,8 +6,8 @@ import spicy;
 # Error Codes
 #
 public type ErrorCode = enum {
-    ERRORS_CLEARED       = 0xFFFE,
-    POWER_INTERUPT_ERROR = 0x0002,
+    ERROR_CLEARED         = 0xFFFE,
+    POWER_INTERRUPT_ERROR = 0x0002,
 
     SYSMAC_BUS_ERROR_0 = 0x00A0,
     SYSMAC_BUS_ERROR_1 = 0x00A1,

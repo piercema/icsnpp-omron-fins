@@ -23,6 +23,7 @@ spicy_add_analyzer(
     SCRIPTS __load__.zeek 
             main.zeek 
             omron_fins_enums.zeek 
+            omron_fins_error_codes.zeek
             omron_fins_processing.zeek 
             omron_fins_event_processing.zeek 
             omron_fins_types.zeek 

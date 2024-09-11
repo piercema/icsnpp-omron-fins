@@ -2,6 +2,7 @@ module OMRON_FINS_COMMAND_CODE_21;
 
 import spicy;
 import OMRON_FINS_ENUMS;
+import OMRON_FINS_ERROR_CODES;
 import OMRON_FINS_FUNCTIONS;
 import OMRON_FINS_TYPES;
 
@@ -16,12 +17,11 @@ type ErrorClear = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type ErrorClear_Command = unit {
-    data         : bytes &eod;
+    errorResetFalNo : uint16 &convert=OMRON_FINS_ERROR_CODES::ErrorCode($$);
 };
 
 type ErrorClear_Response = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    data         : bytes &eod;
 };
 
 #

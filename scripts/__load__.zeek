@@ -1,6 +1,7 @@
 
 # Load supporting enums and types
 @load ./omron_fins_enums
+@load ./omron_fins_error_codes
 @load ./omron_fins_types
 
 @load ./main

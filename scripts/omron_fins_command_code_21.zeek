@@ -8,10 +8,9 @@ module OMRON_FINS;
         info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
 
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
-            print "process_error_clear_detail: COMMAND";
+            info_detail_log$error_reset_fal_no = OMRON_FINS_ERROR_CODES::ERROR_CODES[finsCommand$errorClearCommand$command$errorResetFalNo];
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
             info_detail_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$errorClearCommand$response$responseCode];
-            print "process_error_clear_detail: RESPONSE";
         }
 
         # Fire the event and tidy up
