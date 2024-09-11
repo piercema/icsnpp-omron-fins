@@ -59,10 +59,9 @@ type ErrorLogClear = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type ErrorLogClear_Command = unit {
-    data         : bytes &eod;
+    : bytes &eod; # Note: There is no data associated with the Error Log Clear command - hence the anonymous field
 };
 
 type ErrorLogClear_Response = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    data         : bytes &eod;
 };
