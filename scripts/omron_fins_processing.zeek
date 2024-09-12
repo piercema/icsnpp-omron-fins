@@ -126,7 +126,7 @@ module OMRON_FINS;
                 process_file_data_check_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_MEMORY_AREA_FILE_TRANSER:
-                process_memory_area_read_detail(c, finsCommand, omron_fins_link_id);
+                process_memory_area_file_transfer_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_PARAMETER_AREA_FILE_TRANSFER:
                 process_parameter_area_file_transfer_detail(c, finsCommand, omron_fins_link_id);
