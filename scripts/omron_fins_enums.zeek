@@ -450,4 +450,11 @@ export{
         [OMRON_FINS_ENUMS::Enabled_TRUE]  = "True",
         [OMRON_FINS_ENUMS::Enabled_FALSE] = "False",
     }&default = "Unknown";
+
+    const PARAMETER_CODE = {
+        [OMRON_FINS_ENUMS::ParameterCode_WRITE_NEW_FILE]            = "Write a new file.",
+        [OMRON_FINS_ENUMS::ParameterCode_WRITE_NEW_FILE_OVERWRITE]  = "Write a new file - overwrite if it already exists",
+        [OMRON_FINS_ENUMS::ParameterCode_ADD_DATA_TO_EXISTING_FILE] = "Add data to an existing file",
+        [OMRON_FINS_ENUMS::ParameterCode_OVERWRITE_FILE]            = "Overwrite existing file.",
+    }&default = "Unknown";
 }
