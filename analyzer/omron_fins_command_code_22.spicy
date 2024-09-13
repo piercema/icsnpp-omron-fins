@@ -16,12 +16,16 @@ type FileNameRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type FileNameRead_Command = unit {
-    data         : bytes &eod;
+    diskNo                : uint16;
+    beginningFilePosition : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    noOfFiles             : uint16;
 };
 
 type FileNameRead_Response = unit {
-    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    data         : bytes &eod;
+    responseCode  : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    diskData      : OMRON_FINS_TYPES::DiskData;
+    noOfFiles     : OMRON_FINS_TYPES::NoOfFiles;
+    fileData      : OMRON_FINS_TYPES::FileData[self.noOfFiles.filesRead];
 };
 
 #

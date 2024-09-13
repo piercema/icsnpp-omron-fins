@@ -243,3 +243,36 @@ module OMRON_FINS;
         year                  : count  &log &optional;
         month                 : count  &log &optional;
     };
+
+    type detail_file_log: record {
+        ts                      : time    &log;
+        uid                     : string  &log;
+        id                      : conn_id &log;
+        omron_fins_link_id      : string  &log &optional;
+        command_code            : string  &log &optional;
+        icf_data_type           : string  &log &optional;
+        response_code           : string  &log &optional;
+
+        # File Name Read
+        disk_no                 : count  &log &optional;
+        beginning_file_position : string &log &optional;
+        no_of_files             : count  &log &optional;
+
+        volume_label            : string &log &optional;
+        year                    : count  &log &optional;
+        month                   : count  &log &optional;
+        day                     : count  &log &optional;
+        hour                    : count  &log &optional;
+        minute                  : count  &log &optional;
+        second                  : count  &log &optional;
+
+        total_capacity          : count  &log &optional;
+        unused_capacity         : count  &log &optional;
+        total_no_files          : count  &log &optional;
+        no_files_read              : count  &log &optional;
+
+        last_file               : count  &log &optional;
+
+        file_name               : string &log &optional;
+        file_capacity           : count  &log &optional;
+    };

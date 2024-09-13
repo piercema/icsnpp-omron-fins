@@ -15,7 +15,8 @@ export {
                             LOG_DETAIL_LOG, 
                             LOG_NETWORK_STATUS_READ_LOG,
                             LOG_DATA_LINK_STATUS_READ_LOG,
-                            LOG_ERROR_LOG };
+                            LOG_ERROR_LOG,
+                            LOG_FILE_LOG };
 
     # Log policies for log filtering
     global log_policy_general: Log::PolicyHook;
@@ -23,18 +24,21 @@ export {
     global log_policy_network_status_read:  Log::PolicyHook;
     global log_policy_data_link_status_read:  Log::PolicyHook;
     global log_policy_error:  Log::PolicyHook;
+    global log_policy_file:  Log::PolicyHook;
 
     global log_general_log: event(rec: general_log);
     global log_detail_log: event(rec: detail_log);
     global log_network_status_read_log: event(rec: network_status_read_log);
     global log_data_link_status_read_log: event(rec: data_link_status_read_log);
     global log_error_log: event(rec: detail_error_log);
+    global log_file_log: event(rec: detail_file_log);
 
     global emit_omron_fins_general_log: function(c: connection);
     global emit_omron_fins_detail_log: function(c: connection);
     global emit_omron_fins_network_status_read_log: function(c: connection);
     global emit_omron_fins_data_link_status_read_log: function(c: connection);
     global emit_omron_fins_error_log: function(c: connection);
+    global emit_omron_fins_file_log: function(c: connection);
 
 }
 
@@ -46,6 +50,7 @@ redef record connection += {
     omron_fins_network_status_read_log: network_status_read_log &optional;
     omron_fins_data_link_status_read_log: data_link_status_read_log &optional;
     omron_fins_error_log: detail_error_log &optional;
+    omron_fins_file_log: detail_file_log &optional;
 };
 
 #Put protocol detection information here
@@ -82,6 +87,12 @@ event zeek_init() &priority=5 {
                       $ev=log_error_log,
                       $path="omron_fins_error",
                       $policy=log_policy_error]);
+
+    Log::create_stream(OMRON_FINS::LOG_FILE_LOG,
+                      [$columns=detail_file_log,
+                      $ev=log_file_log,
+                      $path="omron_fins_file",
+                      $policy=log_policy_file]);
 }
 
 function emit_omron_fins_general_log(c: connection) {
@@ -118,4 +129,11 @@ function emit_omron_fins_error_log(c: connection) {
         return;
 
     Log::write(OMRON_FINS::LOG_ERROR_LOG, c$omron_fins_error_log);
+}
+
+function emit_omron_fins_file_log(c: connection) {
+    if (! c?$omron_fins_file_log )
+        return;
+
+    Log::write(OMRON_FINS::LOG_FILE_LOG, c$omron_fins_file_log);
 }

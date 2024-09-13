@@ -248,3 +248,53 @@ type ErrorRecord = unit {
     year       : uint8;
     month      : uint8;
 };
+
+#
+# FileNameRead: DiskData
+#
+type DiskData = unit {
+    volumeLabel    : bytes &size=12;
+    dateTime       : DateTime;
+    totalCapacity  : uint32;
+    unusedCapacity : uint32;
+    totalNoFiles   : uint16;
+};
+
+#
+# FileNameRead: DateTime
+#
+type DateTime = unit {
+    dateTime : bitfield(32) {
+        year   : 25..31;
+        month  : 21..24;
+        day    : 16..20;
+        hour   : 11..15;
+        minute : 5..10;
+        second : 0..4;
+    };
+};
+
+#
+# FileNameRead: NoOfFiles
+#
+type NoOfFiles = unit {
+    var filesRead : uint64;
+    numOfFiles : bitfield(16) {
+        lastFile    : 15;
+        noFilesRead : 0..14;
+    };
+
+    on %done {
+        self.filesRead = self.numOfFiles.noFilesRead;
+    }
+};
+
+#
+# FileNameRead: FileData
+#
+type FileData = unit {
+   fileName     : bytes &size=12;
+   dateTime     : DateTime;
+   fileCapacity : uint32; 
+};
+
