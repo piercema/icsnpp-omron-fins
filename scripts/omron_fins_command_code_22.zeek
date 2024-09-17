@@ -76,11 +76,18 @@ module OMRON_FINS;
         info_file_log = process_command_and_datatype_file(info_file_log, finsCommand);
 
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
-            print "process_single_file_read_detail -> COMMAND";
+            info_file_log$disk_no = finsCommand$singleFileReadCommand$command$diskNo;
+            info_file_log$file_name = finsCommand$singleFileReadCommand$command$fileName;
+            info_file_log$file_position = finsCommand$singleFileReadCommand$command$filePosition;
+            info_file_log$data_length = finsCommand$singleFileReadCommand$command$dataLength;
 
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
             info_file_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$singleFileReadCommand$response$responseCode];
-            print "process_single_file_read_detail -> RESPONSE";
+            info_file_log$file_capacity = finsCommand$singleFileReadCommand$response$fileCapacity;
+            info_file_log$file_position = finsCommand$singleFileReadCommand$response$filePosition;
+            info_file_log$data_length = finsCommand$singleFileReadCommand$response$dataLength;
+            info_file_log$file_data = finsCommand$singleFileReadCommand$response$fileData;
+
         }
 
         # Fire the event and tidy up

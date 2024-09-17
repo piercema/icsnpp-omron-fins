@@ -50,7 +50,7 @@ type SingleFileRead_Response = unit {
     fileCapacity : uint32;
     filePosition : uint32;
     dataLength   : uint16;
-    fileData     : bytes &size=self.dataLength;
+    fileData     : bytes &size=self.dataLength &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
 };
 
 #
@@ -69,7 +69,7 @@ type SingleFileWrite_Command = unit {
 #    fileName      : bytes &size=12;
 #    filePosition  : uint32;
 #    dataLength    : uint16;
-#    fileData      : bytes &size=self.dataLength;
+#    fileData      : bytes &size=self.dataLength &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);;
 };
 
 type SingleFileWrite_Response = unit {

@@ -269,10 +269,15 @@ module OMRON_FINS;
         total_capacity          : count  &log &optional;
         unused_capacity         : count  &log &optional;
         total_no_files          : count  &log &optional;
-        no_files_read              : count  &log &optional;
+        no_files_read           : count  &log &optional;
 
         last_file               : count  &log &optional;
 
         file_name               : string &log &optional;
         file_capacity           : count  &log &optional;
+
+        # Single File Read
+        file_position           : count  &log &optional;
+        data_length             : count  &log &optional;
+        file_data               : string &log &optional;
     };
