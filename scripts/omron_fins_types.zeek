@@ -280,4 +280,7 @@ module OMRON_FINS;
         file_position           : count  &log &optional;
         data_length             : count  &log &optional;
         file_data               : string &log &optional;
+
+        # Single File Write
+        parameter_code          : string &log &optional;
     };

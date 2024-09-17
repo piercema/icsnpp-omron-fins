@@ -64,17 +64,16 @@ type SingleFileWrite = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type SingleFileWrite_Command = unit {
-#    diskNo        : uint16;
-#    parameterCode : uint16 &convert=OMRON_FINS_ENUMS::ParameterCode($$);
-#    fileName      : bytes &size=12;
-#    filePosition  : uint32;
-#    dataLength    : uint16;
-#    fileData      : bytes &size=self.dataLength &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);;
+    diskNo        : uint16;
+    parameterCode : uint16 &convert=OMRON_FINS_ENUMS::ParameterCode($$);
+    fileName      : bytes &size=12;
+    filePosition  : uint32;
+    dataLength    : uint16;
+    fileData      : bytes &size=self.dataLength &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
 };
 
 type SingleFileWrite_Response = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    data         : bytes &eod;
 };
 
 #
