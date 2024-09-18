@@ -18,6 +18,9 @@ export {
                             LOG_ERROR_LOG,
                             LOG_FILE_LOG };
 
+    # Callback event for integrating with the file analysis framework
+    global get_file_handle: function(c: connection, is_orig: bool): string;
+
     # Log policies for log filtering
     global log_policy_general: Log::PolicyHook;
     global log_policy_detail:  Log::PolicyHook;
@@ -55,6 +58,11 @@ redef record connection += {
 
 #Put protocol detection information here
 event zeek_init() &priority=5 {
+
+    # register with the file analysis framework
+    Files::register_protocol(Analyzer::ANALYZER_OMRON_FINS_UDP,
+                            [$get_file_handle = OMRON_FINS::get_file_handle]);
+
     Analyzer::register_for_ports(Analyzer::ANALYZER_OMRON_FINS_UDP, omron_fins_ports_udp);
 
     # initialize logging streams for all omron_fins logs
@@ -136,4 +144,13 @@ function emit_omron_fins_file_log(c: connection) {
         return;
 
     Log::write(OMRON_FINS::LOG_FILE_LOG, c$omron_fins_file_log);
+}
+
+# 
+# A simple get_file_handle implementation taken from the main.zeek script
+# generated using command:
+#     zkg create --feature spicy-protocol-analyzer --packagedir my_protocol
+#
+function get_file_handle(c: connection, is_orig: bool): string {
+    return cat(Analyzer::ANALYZER_OMRON_FINS_UDP, c$start_time, c$id, is_orig, c$orig);
 }

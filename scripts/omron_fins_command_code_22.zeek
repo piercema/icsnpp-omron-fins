@@ -86,7 +86,7 @@ module OMRON_FINS;
             info_file_log$file_capacity = finsCommand$singleFileReadCommand$response$fileCapacity;
             info_file_log$file_position = finsCommand$singleFileReadCommand$response$filePosition;
             info_file_log$data_length = finsCommand$singleFileReadCommand$response$dataLength;
-            info_file_log$file_data = finsCommand$singleFileReadCommand$response$fileData;
+            info_file_log$fuid = finsCommand$singleFileReadCommand$response$fuid;
 
         }
 
@@ -108,7 +108,7 @@ module OMRON_FINS;
             info_file_log$file_name = finsCommand$singleFileWriteCommand$command$fileName;
             info_file_log$file_position = finsCommand$singleFileWriteCommand$command$filePosition;
             info_file_log$data_length = finsCommand$singleFileWriteCommand$command$dataLength;
-            info_file_log$file_data = finsCommand$singleFileWriteCommand$command$fileData;
+            info_file_log$fuid = finsCommand$singleFileWriteCommand$command$fuid;
 
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
             info_file_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$singleFileWriteCommand$response$responseCode];

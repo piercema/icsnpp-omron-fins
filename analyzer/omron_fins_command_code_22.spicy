@@ -1,6 +1,7 @@
 module OMRON_FINS_COMMAND_CODE_22;
 
 import spicy;
+import zeek;
 import OMRON_FINS_ENUMS;
 import OMRON_FINS_FUNCTIONS;
 import OMRON_FINS_TYPES;
@@ -46,11 +47,19 @@ type SingleFileRead_Command = unit {
 };
 
 type SingleFileRead_Response = unit {
+    var fuid     : string;
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
     fileCapacity : uint32;
     filePosition : uint32;
     dataLength   : uint16;
-    fileData     : bytes &size=self.dataLength &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
+    fileData     : bytes &size=self.dataLength;
+
+    on %done {
+        self.fuid = zeek::file_begin();
+        zeek::file_set_size(self.dataLength);
+        zeek::file_data_in(self.fileData);
+        zeek::file_end();
+    }
 };
 
 #
@@ -64,12 +73,21 @@ type SingleFileWrite = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type SingleFileWrite_Command = unit {
+    var fuid      : string;
     diskNo        : uint16;
     parameterCode : uint16 &convert=OMRON_FINS_ENUMS::ParameterCode($$);
     fileName      : bytes &size=12;
     filePosition  : uint32;
     dataLength    : uint16;
-    fileData      : bytes &size=self.dataLength &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
+    fileData      : bytes &size=self.dataLength;
+
+    on %done {
+        self.fuid = zeek::file_begin();
+        zeek::file_set_size(self.dataLength);
+        zeek::file_data_in(self.fileData);
+        zeek::file_end();
+    }
+
 };
 
 type SingleFileWrite_Response = unit {
