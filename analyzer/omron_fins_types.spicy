@@ -298,3 +298,6 @@ type FileData = unit {
    fileCapacity : uint32; 
 };
 
+type FileName = unit {
+    fileName : bytes &size=12;
+};

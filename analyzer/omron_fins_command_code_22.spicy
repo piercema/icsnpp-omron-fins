@@ -123,12 +123,14 @@ type FileDelete = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type FileDelete_Command = unit {
-    data         : bytes &eod;
+    diskNo    : uint16;
+    noOfFiles : uint16;
+    fileNames : OMRON_FINS_TYPES::FileName[self.noOfFiles];
 };
 
 type FileDelete_Reponse = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    data         : bytes &eod;
+    noOfFiles    : uint16;
 };
 
 #

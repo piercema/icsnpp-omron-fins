@@ -139,23 +139,40 @@ module OMRON_FINS;
     }
     
     function process_file_delete_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
-        c = set_session_file_log(c);
 
-        local info_file_log = c$omron_fins_file_log;
-        info_file_log$omron_fins_link_id = link_id;
-        info_file_log = process_command_and_datatype_file(info_file_log, finsCommand);
+        local info_file_log : detail_file_log;
 
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
-            print "process_file_delete_detail -> COMMAND";
+            # Loop over the filenames generating a log record for each one
+            for (i in finsCommand$fileDeleteCommand$command$fileNames) {
+                c = set_session_file_log(c);
+                info_file_log = c$omron_fins_file_log;
+                info_file_log$omron_fins_link_id = link_id;
+                info_file_log = process_command_and_datatype_file(info_file_log, finsCommand);
+
+                info_file_log$disk_no     = finsCommand$fileDeleteCommand$command$diskNo;
+                info_file_log$no_of_files = finsCommand$fileDeleteCommand$command$noOfFiles;
+                info_file_log$file_name   = finsCommand$fileDeleteCommand$command$fileNames[i]$fileName;
+
+                # Fire the event and tidy up
+                OMRON_FINS::emit_omron_fins_file_log(c);
+                delete c$omron_fins_file_log;
+            }
 
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
-            #info_file_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$memoryAreaReadCommand$response$responseCode];
-            print "process_file_delete_detail -> RESPONSE";
+            c = set_session_file_log(c);
+            info_file_log = c$omron_fins_file_log;
+            info_file_log$omron_fins_link_id = link_id;
+            info_file_log = process_command_and_datatype_file(info_file_log, finsCommand);
+
+            info_file_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$fileDeleteCommand$response$responseCode];
+            info_file_log$no_of_files   = finsCommand$fileDeleteCommand$response$noOfFiles;
+
+            # Fire the event and tidy up
+            OMRON_FINS::emit_omron_fins_file_log(c);
+            delete c$omron_fins_file_log;
         }
 
-        # Fire the event and tidy up
-        OMRON_FINS::emit_omron_fins_file_log(c);
-        delete c$omron_fins_file_log;
     }
 
     function process_volume_label_create_delete_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
