@@ -204,8 +204,8 @@ module OMRON_FINS;
         info_file_log = process_command_and_datatype_file(info_file_log, finsCommand);
 
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
-            info_file_log$disk_no = finsCommand$fileCopyCommand$command$srcDiskNo;
-            info_file_log$file_name = finsCommand$fileCopyCommand$command$srcFileName$fileName;
+            info_file_log$src_disk_no = finsCommand$fileCopyCommand$command$srcDiskNo;
+            info_file_log$src_file_name = finsCommand$fileCopyCommand$command$srcFileName$fileName;
             info_file_log$dst_disk_no = finsCommand$fileCopyCommand$command$dstDiskNo;
             info_file_log$dst_file_name = finsCommand$fileCopyCommand$command$dstFileName$fileName;
 

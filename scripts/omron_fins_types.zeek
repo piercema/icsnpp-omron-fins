@@ -285,6 +285,8 @@ module OMRON_FINS;
         parameter_code          : string &log &optional;
 
         # File Copy
+        src_disk_no             : count  &log &optional;
+        src_file_name           : string &log &optional;
         dst_disk_no             : count  &log &optional;
         dst_file_name           : string &log &optional;
     };
