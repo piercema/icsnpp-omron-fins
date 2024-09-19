@@ -283,4 +283,8 @@ module OMRON_FINS;
 
         # Single File Write
         parameter_code          : string &log &optional;
+
+        # File Copy
+        dst_disk_no             : count  &log &optional;
+        dst_file_name           : string &log &optional;
     };

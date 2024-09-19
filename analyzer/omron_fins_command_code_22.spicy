@@ -171,12 +171,14 @@ type FileCopy = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type FileCopy_Command = unit {
-    data         : bytes &eod;
+    srcDiskNo   : uint16;
+    srcFileName : OMRON_FINS_TYPES::FileName;
+    dstDiskNo   : uint16;
+    dstFileName : OMRON_FINS_TYPES::FileName;
 };
 
 type FileCopy_Reponse = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    data         : bytes &eod;
 };
 
 #

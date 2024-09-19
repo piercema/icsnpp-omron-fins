@@ -204,11 +204,13 @@ module OMRON_FINS;
         info_file_log = process_command_and_datatype_file(info_file_log, finsCommand);
 
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
-            print "process_file_copy_detail -> COMMAND";
+            info_file_log$disk_no = finsCommand$fileCopyCommand$command$srcDiskNo;
+            info_file_log$file_name = finsCommand$fileCopyCommand$command$srcFileName$fileName;
+            info_file_log$dst_disk_no = finsCommand$fileCopyCommand$command$dstDiskNo;
+            info_file_log$dst_file_name = finsCommand$fileCopyCommand$command$dstFileName$fileName;
 
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
-            #info_file_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$memoryAreaReadCommand$response$responseCode];
-            print "process_file_copy_detail -> RESPONSE";
+            info_file_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$fileCopyCommand$response$responseCode];
         }
 
         # Fire the event and tidy up
