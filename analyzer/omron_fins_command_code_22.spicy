@@ -192,12 +192,13 @@ type FileNameChange = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type FileNameChange_Command = unit {
-    data         : bytes &eod;
+    diskNo      : uint16;
+    newFileName : OMRON_FINS_TYPES::FileName;
+    oldFileName : OMRON_FINS_TYPES::FileName;
 };
 
 type FileNameChange_Reponse = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    data         : bytes &eod;
 };
 
 #

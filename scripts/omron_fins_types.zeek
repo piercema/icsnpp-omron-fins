@@ -289,4 +289,8 @@ module OMRON_FINS;
         src_file_name           : string &log &optional;
         dst_disk_no             : count  &log &optional;
         dst_file_name           : string &log &optional;
+
+        # File Name Change
+        old_file_name           : string &log &optional;
+        new_file_name           : string &log &optional;
     };
