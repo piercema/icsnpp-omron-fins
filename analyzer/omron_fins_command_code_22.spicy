@@ -75,7 +75,7 @@ type SingleFileWrite = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 type SingleFileWrite_Command = unit {
     var fuid      : string;
     diskNo        : uint16;
-    parameterCode : uint16 &convert=OMRON_FINS_ENUMS::ParameterCode($$);
+    parameterCode : uint16 &convert=OMRON_FINS_ENUMS::FileParameterCode($$);
     fileName      : bytes &size=12;
     filePosition  : uint32;
     dataLength    : uint16;

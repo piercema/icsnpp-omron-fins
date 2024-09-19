@@ -463,7 +463,7 @@ public type Enabled = enum {
     FALSE = 0,
 };
 
-public type ParameterCode = enum {
+public type FileParameterCode = enum {
     WRITE_NEW_FILE            = 0x0000,
     WRITE_NEW_FILE_OVERWRITE  = 0x0001,
     ADD_DATA_TO_EXISTING_FILE = 0x0002,

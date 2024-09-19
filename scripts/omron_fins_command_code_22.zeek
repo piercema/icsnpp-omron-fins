@@ -104,7 +104,7 @@ module OMRON_FINS;
 
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
             info_file_log$disk_no = finsCommand$singleFileWriteCommand$command$diskNo;
-            info_file_log$parameter_code = OMRON_FINS_ENUMS::PARAMETER_CODE[finsCommand$singleFileWriteCommand$command$parameterCode];
+            info_file_log$parameter_code = OMRON_FINS_ENUMS::FILE_PARAMETER_CODE[finsCommand$singleFileWriteCommand$command$parameterCode];
             info_file_log$file_name = finsCommand$singleFileWriteCommand$command$fileName;
             info_file_log$file_position = finsCommand$singleFileWriteCommand$command$filePosition;
             info_file_log$data_length = finsCommand$singleFileWriteCommand$command$dataLength;
