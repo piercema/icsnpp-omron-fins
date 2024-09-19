@@ -144,12 +144,20 @@ type VolumeLabelCreateDelete = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type VolumeLabelCreateDelete_Command = unit {
-    data         : bytes &eod;
+    var volumeLabel : string;
+    diskNo          : uint16;
+    parameterCode   : uint16 &convert=OMRON_FINS_ENUMS::VolumeParameterCode($$);
+    data            : bytes &eod;
+
+    on %done {
+        if (|self.data| > 0) {
+            self.volumeLabel = self.data.decode();
+        }
+    }
 };
 
 type VolumeLabelCreateDelete_Reponse = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    data         : bytes &eod;
 };
 
 #

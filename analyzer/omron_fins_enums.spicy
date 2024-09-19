@@ -469,3 +469,9 @@ public type ParameterCode = enum {
     ADD_DATA_TO_EXISTING_FILE = 0x0002,
     OVERWRITE_FILE            = 0x0003,
 };
+
+public type VolumeParameterCode = enum {
+    CREATE_NEW_VOLUME_LABEL                = 0x0000,
+    CREATE_NEW_VOLUME_LABEL_WITH_OVERWRITE = 0x0001,
+    DELETE_VOLUME_LABEL                    = 0x0002
+};

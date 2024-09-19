@@ -457,4 +457,11 @@ export{
         [OMRON_FINS_ENUMS::ParameterCode_ADD_DATA_TO_EXISTING_FILE] = "Add data to an existing file",
         [OMRON_FINS_ENUMS::ParameterCode_OVERWRITE_FILE]            = "Overwrite existing file.",
     }&default = "Unknown";
+
+    const VOLUME_PARAMETER_CODE = {
+        [OMRON_FINS_ENUMS::VolumeParameterCode_CREATE_NEW_VOLUME_LABEL]                = "Create new volume label.",
+        [OMRON_FINS_ENUMS::VolumeParameterCode_CREATE_NEW_VOLUME_LABEL_WITH_OVERWRITE] = "Create new volume label - overwrite if it already exists",
+        [OMRON_FINS_ENUMS::VolumeParameterCode_DELETE_VOLUME_LABEL]                    = "Delete existing volume label.",
+    }&default = "Unknown";
+
 }
