@@ -212,12 +212,12 @@ type FileDataCheck = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type FileDataCheck_Command = unit {
-    data         : bytes &eod;
+    diskNo      : uint16;
+    fileName : OMRON_FINS_TYPES::FileName;
 };
 
 type FileDataCheck_Reponse = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    data         : bytes &eod;
 };
 
 #
