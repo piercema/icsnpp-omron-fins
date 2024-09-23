@@ -267,11 +267,16 @@ module OMRON_FINS;
         info_file_log = process_command_and_datatype_file(info_file_log, finsCommand);
 
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
-            print "process_memory_area_file_transfer_detail -> COMMAND";
+            info_file_log$parameter_code = OMRON_FINS_ENUMS::FILE_TRANSFER_PARAMETER_CODE[finsCommand$memoryAreaFileTransferCommand$command$parameterCode];
+            info_file_log$parameter_area_code = OMRON_FINS_ENUMS::MEMORY_AREA[finsCommand$memoryAreaFileTransferCommand$command$parameterAreaCode];
+            info_file_log$beginning_address = finsCommand$memoryAreaFileTransferCommand$command$beginningAddress;
+            info_file_log$no_of_words = finsCommand$memoryAreaFileTransferCommand$command$noOfWords;
+            info_file_log$disk_no = finsCommand$memoryAreaFileTransferCommand$command$diskNo;
+            info_file_log$file_name = finsCommand$memoryAreaFileTransferCommand$command$fileName$fileName;
 
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
-            #info_file_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$memoryAreaReadCommand$response$responseCode];
-            print "process_memory_area_file_transfer_detail -> RESPONSE";
+            info_file_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$memoryAreaFileTransferCommand$response$responseCode];
+            info_file_log$no_of_words = finsCommand$memoryAreaFileTransferCommand$response$noOfWords;
         }
 
         # Fire the event and tidy up

@@ -293,4 +293,8 @@ module OMRON_FINS;
         # File Name Change
         old_file_name           : string &log &optional;
         new_file_name           : string &log &optional;
+
+        parameter_area_code     : string &log &optional;
+        beginning_address       : string &log &optional;
+        no_of_words             : count  &log &optional;
     };

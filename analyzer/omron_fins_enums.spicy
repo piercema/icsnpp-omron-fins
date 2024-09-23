@@ -475,3 +475,9 @@ public type VolumeParameterCode = enum {
     CREATE_NEW_VOLUME_LABEL_WITH_OVERWRITE = 0x0001,
     DELETE_VOLUME_LABEL                    = 0x0002
 };
+
+public type FileTransferParameterCode = enum {
+    PC_AREA_TO_FILE_DEVICE = 0x0000,
+    FILE_DEVICE_TO_PC_AREA = 0x0001,
+    DATA_COMPARED          = 0x0002
+};
