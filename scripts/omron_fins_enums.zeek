@@ -465,9 +465,9 @@ export{
     }&default = "Unknown";
 
     const FILE_TRANSFER_PARAMETER_CODE = {
-        [OMRON_FINS_ENUMS::FileTransferParameterCode_PC_AREA_TO_FILE_DEVICE] = "Transfer from PC area to file device",
-        [OMRON_FINS_ENUMS::FileTransferParameterCode_FILE_DEVICE_TO_PC_AREA] = "Transfer from file device to PC area",
-        [OMRON_FINS_ENUMS::FileTransferParameterCode_DATA_COMPARED]          = "Data compared",
+        [OMRON_FINS_ENUMS::FileTransferParameterCode_PC_AREA_TO_FILE_DEVICE] = "Transfer from PC area to file device (0x0000)",
+        [OMRON_FINS_ENUMS::FileTransferParameterCode_FILE_DEVICE_TO_PC_AREA] = "Transfer from file device to PC area (0x0001)",
+        [OMRON_FINS_ENUMS::FileTransferParameterCode_DATA_COMPARED]          = "Data compared (0x0002)",
     }&default = "Unknown";
 
 }
