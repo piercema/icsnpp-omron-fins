@@ -297,4 +297,7 @@ module OMRON_FINS;
         parameter_area_code     : string &log &optional;
         beginning_address       : string &log &optional;
         no_of_words             : count  &log &optional;
+
+        memory_area_code        : string &log &optional;
+        no_of_items             : count  &log &optional;
     };

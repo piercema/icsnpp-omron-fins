@@ -231,12 +231,17 @@ type MemoryAreaFileTransfer = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type MemoryAreaFileTransfer_Command = unit {
-    data         : bytes &eod;
+    parameterCode     : uint16 &convert=OMRON_FINS_ENUMS::FileTransferParameterCode($$);
+    memoryAreaCode    : uint8  &convert=OMRON_FINS_ENUMS::MemoryArea($$);
+    beginningAddress  : bytes  &size=3  &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
+    noOfItems         : uint16;
+    diskNo            : uint16;
+    fileName          : OMRON_FINS_TYPES::FileName;
 };
 
 type MemoryAreaFileTransfer_Reponse = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    data         : bytes &eod;
+    noOfItems    : uint16;
 };
 
 #
