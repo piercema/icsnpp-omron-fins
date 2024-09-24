@@ -300,4 +300,8 @@ module OMRON_FINS;
 
         memory_area_code        : string &log &optional;
         no_of_items             : count  &log &optional;
+
+        program_no              : string &log &optional;
+        no_of_bytes             : count  &log &optional;
+        beginning_word          : string &log &optional;
     };

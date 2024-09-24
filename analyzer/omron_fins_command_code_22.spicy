@@ -279,12 +279,17 @@ type ProgramAreaFileTransfer = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type ProgramAreaFileTransfer_Command = unit {
-    data         : bytes &eod;
+    parameterCode : uint16 &convert=OMRON_FINS_ENUMS::FileTransferParameterCode($$);
+    programNo     : uint16 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    beginningWord : uint32 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    noOfBytes     : uint32;
+    diskNo        : uint16;
+    fileName      : OMRON_FINS_TYPES::FileName;
 };
 
 type ProgramAreaFileTransfer_Reponse = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    data         : bytes &eod;
+    dataLength   : uint32;
 };
 
 #
