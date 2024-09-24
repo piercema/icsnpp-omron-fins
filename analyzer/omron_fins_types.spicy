@@ -293,7 +293,7 @@ type NoOfFiles = unit {
 # FileNameRead: FileData
 #
 type FileData = unit {
-   fileName     : bytes &size=12;
+   fileName     : FileName;
    dateTime     : DateTime;
    fileCapacity : uint32; 
 };

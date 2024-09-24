@@ -41,7 +41,7 @@ type SingleFileRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 
 type SingleFileRead_Command = unit {
     diskNo       : uint16;
-    fileName     : bytes &size=12;
+    fileName     : OMRON_FINS_TYPES::FileName;
     filePosition : uint32;
     dataLength   : uint16;
 };
@@ -76,7 +76,7 @@ type SingleFileWrite_Command = unit {
     var fuid      : string;
     diskNo        : uint16;
     parameterCode : uint16 &convert=OMRON_FINS_ENUMS::FileParameterCode($$);
-    fileName      : bytes &size=12;
+    fileName      : OMRON_FINS_TYPES::FileName;
     filePosition  : uint32;
     dataLength    : uint16;
     fileData      : bytes &size=self.dataLength;

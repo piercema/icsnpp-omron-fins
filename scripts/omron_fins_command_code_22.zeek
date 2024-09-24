@@ -52,7 +52,7 @@ module OMRON_FINS;
                 info_file_log$omron_fins_link_id = link_id;
                 info_file_log = process_command_and_datatype_file(info_file_log, finsCommand);
 
-                info_file_log$file_name = finsCommand$fileNameReadCommand$response$fileData[i]$fileName;
+                info_file_log$file_name = finsCommand$fileNameReadCommand$response$fileData[i]$fileName$fileName;
                 info_file_log$year = finsCommand$fileNameReadCommand$response$fileData[i]$dateTime$dateTime$year + 1980;
                 info_file_log$month = finsCommand$fileNameReadCommand$response$fileData[i]$dateTime$dateTime$month;
                 info_file_log$day = finsCommand$fileNameReadCommand$response$fileData[i]$dateTime$dateTime$day;
@@ -77,7 +77,7 @@ module OMRON_FINS;
 
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
             info_file_log$disk_no = finsCommand$singleFileReadCommand$command$diskNo;
-            info_file_log$file_name = finsCommand$singleFileReadCommand$command$fileName;
+            info_file_log$file_name = finsCommand$singleFileReadCommand$command$fileName$fileName;
             info_file_log$file_position = finsCommand$singleFileReadCommand$command$filePosition;
             info_file_log$data_length = finsCommand$singleFileReadCommand$command$dataLength;
 
@@ -105,7 +105,7 @@ module OMRON_FINS;
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
             info_file_log$disk_no = finsCommand$singleFileWriteCommand$command$diskNo;
             info_file_log$parameter_code = OMRON_FINS_ENUMS::FILE_PARAMETER_CODE[finsCommand$singleFileWriteCommand$command$parameterCode];
-            info_file_log$file_name = finsCommand$singleFileWriteCommand$command$fileName;
+            info_file_log$file_name = finsCommand$singleFileWriteCommand$command$fileName$fileName;
             info_file_log$file_position = finsCommand$singleFileWriteCommand$command$filePosition;
             info_file_log$data_length = finsCommand$singleFileWriteCommand$command$dataLength;
             info_file_log$fuid = finsCommand$singleFileWriteCommand$command$fuid;
