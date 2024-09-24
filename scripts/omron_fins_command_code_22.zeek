@@ -273,12 +273,10 @@ module OMRON_FINS;
             info_file_log$no_of_items = finsCommand$memoryAreaFileTransferCommand$command$noOfItems;
             info_file_log$disk_no = finsCommand$memoryAreaFileTransferCommand$command$diskNo;
             info_file_log$file_name = finsCommand$memoryAreaFileTransferCommand$command$fileName$fileName;
-            print "process_memory_area_file_transfer_detail -> COMMAND";
 
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
             info_file_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$memoryAreaFileTransferCommand$response$responseCode];
             info_file_log$no_of_items = finsCommand$memoryAreaFileTransferCommand$response$noOfItems;
-            print "process_memory_area_file_transfer_detail -> COMMAND";
         }
 
         # Fire the event and tidy up
