@@ -308,160 +308,160 @@ export{
     # Controller Data
     #
     const CONTROLLER_DATA = {
-        [OMRON_FINS_ENUMS::ControllerData_CONTROLLER_MODEL] = "Controller model Controller version Area data (00)",
-        [OMRON_FINS_ENUMS::ControllerData_CPU_BUS_UNIT]     = "CPU Bus Unit configuration Remote I/O data PC status (01)",
+        [OMRON_FINS_ENUMS::ControllerData_CONTROLLER_MODEL] = "Controller model Controller version Area data (0x00)",
+        [OMRON_FINS_ENUMS::ControllerData_CPU_BUS_UNIT]     = "CPU Bus Unit configuration Remote I/O data PC status (0x01)",
     }&default = "Unknown";
 
     #
     # Kind of Memory Card
     #
     const KIND_OF_MEMORYCARD = {
-        [OMRON_FINS_ENUMS::KindOfMemoryCard_NO_MEMORY_CARD] = "No Memory Card (00)",
-        [OMRON_FINS_ENUMS::KindOfMemoryCard_SPRAM]          = "SPRAM (01)",
-        [OMRON_FINS_ENUMS::KindOfMemoryCard_EPROM]          = "EPROM (02)",
-        [OMRON_FINS_ENUMS::KindOfMemoryCard_EEPROM]         = "EEPROM (03)",
+        [OMRON_FINS_ENUMS::KindOfMemoryCard_NO_MEMORY_CARD] = "No Memory Card (0x00)",
+        [OMRON_FINS_ENUMS::KindOfMemoryCard_SPRAM]          = "SPRAM (0x01)",
+        [OMRON_FINS_ENUMS::KindOfMemoryCard_EPROM]          = "EPROM (0x02)",
+        [OMRON_FINS_ENUMS::KindOfMemoryCard_EEPROM]         = "EEPROM (0x03)",
     }&default = "Unknown";
 
     #
     # Controller Status Read Status
     #
     const CONTROLLER_STATUS_READ_STATUS = {
-        [OMRON_FINS_ENUMS::ControllerStatusReadStatus_STOP] = "Stop (Program Not Executing)",
-        [OMRON_FINS_ENUMS::ControllerStatusReadStatus_RUN]  = "Run (Program Executing)",
-        [OMRON_FINS_ENUMS::ControllerStatusReadStatus_CPU]  = "CPU (On Standby)",
+        [OMRON_FINS_ENUMS::ControllerStatusReadStatus_STOP] = "Stop (Program Not Executing) (0x00)",
+        [OMRON_FINS_ENUMS::ControllerStatusReadStatus_RUN]  = "Run (Program Executing) (0x01)",
+        [OMRON_FINS_ENUMS::ControllerStatusReadStatus_CPU]  = "CPU (On Standby) (0x80)",
     }&default = "Unknown";
 
     #
     # Controller Status Read Mode
     #
     const CONTROLLER_STATUS_READ_MODE = {
-        [OMRON_FINS_ENUMS::ControllerStatusReadMode_PROGRAM] = "PROGRAM",
-        [OMRON_FINS_ENUMS::ControllerStatusReadMode_DEBUG]   = "DEBUG",
-        [OMRON_FINS_ENUMS::ControllerStatusReadMode_MONITOR] = "MONITOR",
-        [OMRON_FINS_ENUMS::ControllerStatusReadMode_RUN]     = "RUN",
+        [OMRON_FINS_ENUMS::ControllerStatusReadMode_PROGRAM] = "PROGRAM (0x00)",
+        [OMRON_FINS_ENUMS::ControllerStatusReadMode_DEBUG]   = "DEBUG (0x01)",
+        [OMRON_FINS_ENUMS::ControllerStatusReadMode_MONITOR] = "MONITOR (0x02)",
+        [OMRON_FINS_ENUMS::ControllerStatusReadMode_RUN]     = "RUN (0x04)",
     }&default = "Unknown";
 
     #
     # Cycle Time Read Parameter
     #
     const CYCLE_TIME_READ_PARAMETER = {
-        [OMRON_FINS_ENUMS::CycleTimeReadParameter_INIT] = "Initialize cycle time",
-        [OMRON_FINS_ENUMS::CycleTimeReadParameter_READ] = "Read the cycle time",
+        [OMRON_FINS_ENUMS::CycleTimeReadParameter_INIT] = "Initialize cycle time (0x00)",
+        [OMRON_FINS_ENUMS::CycleTimeReadParameter_READ] = "Read the cycle time (0x01)",
     }&default = "Unknown";
 
     #
     # Network Status: In Network
     #
     const IN_NETWORK = {
-        [OMRON_FINS_ENUMS::InNetwork_NOT_IN_NETWORK] = "Not in network",
-        [OMRON_FINS_ENUMS::InNetwork_IN_NETWORK]     = "In network",
+        [OMRON_FINS_ENUMS::InNetwork_NOT_IN_NETWORK] = "Not in network (0x00)",
+        [OMRON_FINS_ENUMS::InNetwork_IN_NETWORK]     = "In network (0x01)",
     }&default = "Unknown";
 
     #
     # Network Status: Exit Status
     #
     const EXIT_STATUS = {
-        [OMRON_FINS_ENUMS::ExitStatus_NORMAL] = "Normal exit",
-        [OMRON_FINS_ENUMS::ExitStatus_ERROR]  = "Exited due to error",
+        [OMRON_FINS_ENUMS::ExitStatus_NORMAL] = "Normal exit (0x00)",
+        [OMRON_FINS_ENUMS::ExitStatus_ERROR]  = "Exited due to error (0x01)",
     }&default = "Unknown";
 
     #
     # Network Status: Polling
     #
     const POLLING = {
-        [OMRON_FINS_ENUMS::Polling_RESPONDS_TO_POLLING]          = "Responds to polling",
-        [OMRON_FINS_ENUMS::Polling_DOES_NOT_RESPOND_TO_POLLING]  = "Does not respond to polling",
+        [OMRON_FINS_ENUMS::Polling_RESPONDS_TO_POLLING]          = "Responds to polling (0x00)",
+        [OMRON_FINS_ENUMS::Polling_DOES_NOT_RESPOND_TO_POLLING]  = "Does not respond to polling (0x01)",
     }&default = "Unknown";
 
     #
     # Network Status: Cyclic Operation
     #
     const CYCLIC_OPERATION = {
-        [OMRON_FINS_ENUMS::CyclicOperation_STOPPED] = "Stopped",
-        [OMRON_FINS_ENUMS::CyclicOperation_ACTIVE]  = "Active",
+        [OMRON_FINS_ENUMS::CyclicOperation_STOPPED] = "Stopped (0x00)",
+        [OMRON_FINS_ENUMS::CyclicOperation_ACTIVE]  = "Active (0x01)",
     }&default = "Unknown";
 
     #
     # Network Status: Cyclic Transmission Status
     #
     const CYCLIC_TRANSMISSION_STATUS = {
-        [OMRON_FINS_ENUMS::CyclicTransmissionStatus_NO_TRANSMISSSION] = "No Transmission",
-        [OMRON_FINS_ENUMS::CyclicTransmissionStatus_TRANSMISSION]     = "Transmission",
+        [OMRON_FINS_ENUMS::CyclicTransmissionStatus_NO_TRANSMISSSION] = "No Transmission (0x00)",
+        [OMRON_FINS_ENUMS::CyclicTransmissionStatus_TRANSMISSION]     = "Transmission (0x01)",
     }&default = "Unknown";
 
     #
     # Network Status: Non Fatal Error Status
     #
     const NON_FATAL_ERROR_STATUS = {
-        [OMRON_FINS_ENUMS::NonFatalErrorStatus_NON_FATAL_ERROR_OFF] = "Off",
-        [OMRON_FINS_ENUMS::NonFatalErrorStatus_NON_FATAL_ERROR_ON]  = "On",
+        [OMRON_FINS_ENUMS::NonFatalErrorStatus_NON_FATAL_ERROR_OFF] = "Off (0x00)",
+        [OMRON_FINS_ENUMS::NonFatalErrorStatus_NON_FATAL_ERROR_ON]  = "On (0x01)",
     }&default = "Unknown";
 
     #
     # Data Link Status Read: Master/Slave
     #
     const DATA_LINK_STATUS_READ_MASTER_SLAVE = {
-        [OMRON_FINS_ENUMS::DataLinkStatusReadMasterSlave_SLAVE]  = "Slave",
-        [OMRON_FINS_ENUMS::DataLinkStatusReadMasterSlave_MASTER] = "Master",
+        [OMRON_FINS_ENUMS::DataLinkStatusReadMasterSlave_SLAVE]  = "Slave (0x00)",
+        [OMRON_FINS_ENUMS::DataLinkStatusReadMasterSlave_MASTER] = "Master (0x01)",
     }&default = "Unknown";
 
     #
     # Data Link Status Read: Data Links
     #
     const DATA_LINK_STATUS_READ_DATA_LINKS = {
-        [OMRON_FINS_ENUMS::DataLinkStatusReadDataLinks_NOT_ACTIVE] = "Not active",
-        [OMRON_FINS_ENUMS::DataLinkStatusReadDataLinks_ACTIVE]     = "Active",
+        [OMRON_FINS_ENUMS::DataLinkStatusReadDataLinks_NOT_ACTIVE] = "Not active (0x00)",
+        [OMRON_FINS_ENUMS::DataLinkStatusReadDataLinks_ACTIVE]     = "Active (0x01)",
     }&default = "Unknown";
 
     #
     # Data Link Status Read: Error
     #
     const DATA_LINK_STATUS_READ_ERROR = {
-        [OMRON_FINS_ENUMS::DataLinkStatusReadError_NORMAL] = "Normal",
-        [OMRON_FINS_ENUMS::DataLinkStatusReadError_ERROR]  = "Error",
+        [OMRON_FINS_ENUMS::DataLinkStatusReadError_NORMAL] = "Normal (0x00)",
+        [OMRON_FINS_ENUMS::DataLinkStatusReadError_ERROR]  = "Error (0x01)",
     }&default = "Unknown";
 
     #
     # Data Link Status Read: Mode
     #
     const DATA_LINK_STATUS_READ_MODE = {
-        [OMRON_FINS_ENUMS::DataLinkStatusReadMode_STOP] = "Stop",
-        [OMRON_FINS_ENUMS::DataLinkStatusReadMode_RUN]  = "Run",
+        [OMRON_FINS_ENUMS::DataLinkStatusReadMode_STOP] = "Stop (0x00)",
+        [OMRON_FINS_ENUMS::DataLinkStatusReadMode_RUN]  = "Run (0x01)",
     }&default = "Unknown";
 
     #
     # Data Link Status Read: Warning
     #
     const DATA_LINK_STATUS_READ_WARNING = {
-        [OMRON_FINS_ENUMS::DataLinkStatusReadWarning_NORMAL]  = "Normal",
-        [OMRON_FINS_ENUMS::DataLinkStatusReadWarning_WARNING] = "Warning",
+        [OMRON_FINS_ENUMS::DataLinkStatusReadWarning_NORMAL]  = "Normal (0x00)",
+        [OMRON_FINS_ENUMS::DataLinkStatusReadWarning_WARNING] = "Warning (0x01)",
     }&default = "Unknown";
 
     #
     # Message Read, Message Clear, Fal/Fals Read: Message no. parameter
     #
     const MESSAGE_TYPE = {
-        [OMRON_FINS_ENUMS::MessageType_MESSAGE_READ]  = "Message Read",
-        [OMRON_FINS_ENUMS::MessageType_MESSAGE_CLEAR] = "Message Clear",
-        [OMRON_FINS_ENUMS::MessageType_FAL_FALS_READ] = "FAL/FALS Read",
+        [OMRON_FINS_ENUMS::MessageType_MESSAGE_READ]  = "Message Read (0)",
+        [OMRON_FINS_ENUMS::MessageType_MESSAGE_CLEAR] = "Message Clear (1)",
+        [OMRON_FINS_ENUMS::MessageType_FAL_FALS_READ] = "FAL/FALS Read (2)",
     }&default = "Unknown";
 
     const ENABLED = {
-        [OMRON_FINS_ENUMS::Enabled_TRUE]  = "True",
-        [OMRON_FINS_ENUMS::Enabled_FALSE] = "False",
+        [OMRON_FINS_ENUMS::Enabled_TRUE]  = "True (1)",
+        [OMRON_FINS_ENUMS::Enabled_FALSE] = "False (0)",
     }&default = "Unknown";
 
     const FILE_PARAMETER_CODE = {
-        [OMRON_FINS_ENUMS::FileParameterCode_WRITE_NEW_FILE]            = "Write a new file.",
-        [OMRON_FINS_ENUMS::FileParameterCode_WRITE_NEW_FILE_OVERWRITE]  = "Write a new file - overwrite if it already exists",
-        [OMRON_FINS_ENUMS::FileParameterCode_ADD_DATA_TO_EXISTING_FILE] = "Add data to an existing file",
-        [OMRON_FINS_ENUMS::FileParameterCode_OVERWRITE_FILE]            = "Overwrite existing file.",
+        [OMRON_FINS_ENUMS::FileParameterCode_WRITE_NEW_FILE]            = "Write a new file (0x0000)",
+        [OMRON_FINS_ENUMS::FileParameterCode_WRITE_NEW_FILE_OVERWRITE]  = "Write a new file - overwrite if it already exists (0x0001)",
+        [OMRON_FINS_ENUMS::FileParameterCode_ADD_DATA_TO_EXISTING_FILE] = "Add data to an existing file (0x0002)",
+        [OMRON_FINS_ENUMS::FileParameterCode_OVERWRITE_FILE]            = "Overwrite existing file (0x0003)",
     }&default = "Unknown";
 
     const VOLUME_PARAMETER_CODE = {
-        [OMRON_FINS_ENUMS::VolumeParameterCode_CREATE_NEW_VOLUME_LABEL]                = "Create new volume label.",
-        [OMRON_FINS_ENUMS::VolumeParameterCode_CREATE_NEW_VOLUME_LABEL_WITH_OVERWRITE] = "Create new volume label - overwrite if it already exists",
-        [OMRON_FINS_ENUMS::VolumeParameterCode_DELETE_VOLUME_LABEL]                    = "Delete existing volume label.",
+        [OMRON_FINS_ENUMS::VolumeParameterCode_CREATE_NEW_VOLUME_LABEL]                = "Create new volume label (0x0000)",
+        [OMRON_FINS_ENUMS::VolumeParameterCode_CREATE_NEW_VOLUME_LABEL_WITH_OVERWRITE] = "Create new volume label - overwrite if it already exists (0x0001)",
+        [OMRON_FINS_ENUMS::VolumeParameterCode_DELETE_VOLUME_LABEL]                    = "Delete existing volume label (0x0002)",
     }&default = "Unknown";
 
     const FILE_TRANSFER_PARAMETER_CODE = {
