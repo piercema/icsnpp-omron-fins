@@ -301,3 +301,13 @@ type FileData = unit {
 type FileName = unit {
     fileName : bytes &size=12;
 };
+
+type DataTypeControlData = unit {
+    dataType : bitfield(8) {
+        lastBlock : 7     &convert=OMRON_FINS_ENUMS::Enabled($$);
+        protected : 6     &convert=OMRON_FINS_ENUMS::Enabled($$);
+        reserved  : 3..5;
+        dataType  : 0..2  &convert=OMRON_FINS_ENUMS::ControlDataType($$);
+    };
+    controlData : uint8;
+};

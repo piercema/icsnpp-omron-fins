@@ -304,4 +304,14 @@ module OMRON_FINS;
         program_no              : string &log &optional;
         no_of_bytes             : count  &log &optional;
         beginning_word          : string &log &optional;
+
+        beginning_block_no      : count  &log &optional;
+        no_of_blocks            : count  &log &optional;
+        remaining_blocks        : count  &log &optional;
+        total_no_of_blocks      : count  &log &optional;
+        memory_type             : string &log &optional;
+        data_type               : string &log &optional;
+        last_block              : string &log &optional;
+        protected               : string &log &optional;
+        control_data            : count  &log &optional;
     };

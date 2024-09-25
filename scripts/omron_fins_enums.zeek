@@ -470,4 +470,15 @@ export{
         [OMRON_FINS_ENUMS::FileTransferParameterCode_DATA_COMPARED]          = "Data compared (0x0002)",
     }&default = "Unknown";
 
+    const MEMORY_TYPE = {
+        [OMRON_FINS_ENUMS::MemoryType_RAM]     = "RAM (0x00)",
+        [OMRON_FINS_ENUMS::MemoryType_RAM_ROM] = "First half RAM; second half ROM (0x01)",
+    }&default = "Unknown";
+
+    const CONTROL_DATA_TYPE = {
+        [OMRON_FINS_ENUMS::ControlDataType_EMPTY]        = "Empty (0)",
+        [OMRON_FINS_ENUMS::ControlDataType_IO_DATA]      = "I/O data (1)",
+        [OMRON_FINS_ENUMS::ControlDataType_USER_PROGRAM] = "User program (2)",
+        [OMRON_FINS_ENUMS::ControlDataType_COMMENTS]     = "Comments (3)",
+    }&default = "Unknown";
 }

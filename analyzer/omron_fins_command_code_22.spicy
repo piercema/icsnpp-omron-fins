@@ -303,12 +303,16 @@ type FileMemoryIndexRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type FileMemoryIndexRead_Command = unit {
-    data         : bytes &eod;
+    beginningBlockNo : uint16;
+    noOfBlocks       : uint8;
 };
 
 type FileMemoryIndexRead_Reponse = unit {
-    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    data         : bytes &eod;
+    responseCode        : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    noOfBlocksRemaining : uint16;
+    totalNoOfBLocks     : uint16;
+    memoryType          : uint8 &convert=OMRON_FINS_ENUMS::MemoryType($$);
+    dataTypeControlData : OMRON_FINS_TYPES::DataTypeControlData[];
 };
 
 #

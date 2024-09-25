@@ -335,23 +335,49 @@ module OMRON_FINS;
     }
 
     function process_file_memory_index_read_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
+        local info_file_log : detail_file_log;
         c = set_session_file_log(c);
 
-        local info_file_log = c$omron_fins_file_log;
-        info_file_log$omron_fins_link_id = link_id;
-        info_file_log = process_command_and_datatype_file(info_file_log, finsCommand);
 
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
-            print "process_file_memory_index_read_detail -> COMMAND";
+            # Setup detail file log
+            c = set_session_file_log(c);
+
+            info_file_log = c$omron_fins_file_log;
+            info_file_log$omron_fins_link_id = link_id;
+            info_file_log = process_command_and_datatype_file(info_file_log, finsCommand);
+
+            info_file_log$beginning_block_no = finsCommand$fileMemoryIndexReadCommand$command$beginningBlockNo;
+            info_file_log$no_of_blocks = finsCommand$fileMemoryIndexReadCommand$command$noOfBlocks;
+
+            # Fire the event and tidy up
+            OMRON_FINS::emit_omron_fins_file_log(c);
+            delete c$omron_fins_file_log;
 
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
-            #info_file_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$memoryAreaReadCommand$response$responseCode];
-            print "process_file_memory_index_read_detail -> RESPONSE";
+            for (i in finsCommand$fileMemoryIndexReadCommand$response$dataTypeControlData) {
+                # Setup detail file log
+                c = set_session_file_log(c);
+
+                info_file_log = c$omron_fins_file_log;
+                info_file_log$omron_fins_link_id = link_id;
+                info_file_log = process_command_and_datatype_file(info_file_log, finsCommand);
+
+                info_file_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$fileMemoryIndexReadCommand$response$responseCode];
+                info_file_log$remaining_blocks = finsCommand$fileMemoryIndexReadCommand$response$noOfBlocksRemaining;
+                info_file_log$total_no_of_blocks = finsCommand$fileMemoryIndexReadCommand$response$totalNoOfBLocks;
+                info_file_log$memory_type = OMRON_FINS_ENUMS::MEMORY_TYPE[finsCommand$fileMemoryIndexReadCommand$response$memoryType];
+                info_file_log$data_type = OMRON_FINS_ENUMS::CONTROL_DATA_TYPE[finsCommand$fileMemoryIndexReadCommand$response$dataTypeControlData[i]$dataType$dataType];
+                info_file_log$last_block = OMRON_FINS_ENUMS::ENABLED[finsCommand$fileMemoryIndexReadCommand$response$dataTypeControlData[i]$dataType$lastBlock];
+                info_file_log$protected = OMRON_FINS_ENUMS::ENABLED[finsCommand$fileMemoryIndexReadCommand$response$dataTypeControlData[i]$dataType$protected];
+                info_file_log$control_data = finsCommand$fileMemoryIndexReadCommand$response$dataTypeControlData[i]$controlData;
+
+                # Fire the event and tidy up
+                OMRON_FINS::emit_omron_fins_file_log(c);
+                delete c$omron_fins_file_log;
+            }
         }
 
-        # Fire the event and tidy up
-        OMRON_FINS::emit_omron_fins_file_log(c);
-        delete c$omron_fins_file_log;
     }
 
     function process_file_memory_read_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {

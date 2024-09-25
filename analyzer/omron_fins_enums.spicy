@@ -481,3 +481,15 @@ public type FileTransferParameterCode = enum {
     FILE_DEVICE_TO_PC_AREA = 0x0001,
     DATA_COMPARED          = 0x0002
 };
+
+public type MemoryType = enum {
+    RAM     = 0x00,
+    RAM_ROM = 0x01,
+};
+
+public type ControlDataType = enum {
+    EMPTY        = 0,
+    IO_DATA      = 1,
+    USER_PROGRAM = 2,
+    COMMENTS     = 3
+};
