@@ -323,15 +323,20 @@ type FileMemoryRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
         OMRON_FINS_ENUMS::DataType::COMMAND  -> command : FileMemoryRead_Command();
         OMRON_FINS_ENUMS::DataType::RESPONSE -> response: FileMemoryRead_Reponse();
     };
+
+    on %done {
+        print self;
+    }
 };
 
 type FileMemoryRead_Command = unit {
-    data         : bytes &eod;
+    blockNo : uint16;
 };
 
 type FileMemoryRead_Reponse = unit {
-    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    data         : bytes &eod;
+    responseCode        : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    dataTypeControlData : OMRON_FINS_TYPES::DataTypeControlData;
+    data                : bytes &eod &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
 };
 
 #

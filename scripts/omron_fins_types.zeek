@@ -314,4 +314,7 @@ module OMRON_FINS;
         last_block              : string &log &optional;
         protected               : string &log &optional;
         control_data            : count  &log &optional;
+
+        block_no                : count  &log &optional;
+        memory_data             : string &log &optional;
     };
