@@ -389,7 +389,6 @@ module OMRON_FINS;
 
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
             info_file_log$block_no = finsCommand$fileMemoryReadCommand$command$blockNo;
-            print "process_file_memory_read_detail -> COMMAND";
 
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
             info_file_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$fileMemoryReadCommand$response$responseCode];
@@ -398,7 +397,6 @@ module OMRON_FINS;
             info_file_log$protected = OMRON_FINS_ENUMS::ENABLED[finsCommand$fileMemoryReadCommand$response$dataTypeControlData$dataType$protected];
             info_file_log$control_data = finsCommand$fileMemoryReadCommand$response$dataTypeControlData$controlData;
             info_file_log$memory_data = finsCommand$fileMemoryReadCommand$response$data;
-            print "process_file_memory_read_detail -> RESPONSE";
         }
 
         # Fire the event and tidy up

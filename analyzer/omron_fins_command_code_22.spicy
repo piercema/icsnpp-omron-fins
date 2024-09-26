@@ -323,10 +323,6 @@ type FileMemoryRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
         OMRON_FINS_ENUMS::DataType::COMMAND  -> command : FileMemoryRead_Command();
         OMRON_FINS_ENUMS::DataType::RESPONSE -> response: FileMemoryRead_Reponse();
     };
-
-    on %done {
-        print self;
-    }
 };
 
 type FileMemoryRead_Command = unit {
