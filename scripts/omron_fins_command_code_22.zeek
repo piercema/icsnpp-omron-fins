@@ -412,11 +412,15 @@ module OMRON_FINS;
         info_file_log = process_command_and_datatype_file(info_file_log, finsCommand);
 
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
-            print "process_file_memory_write_detail -> COMMAND";
+            info_file_log$data_type = OMRON_FINS_ENUMS::CONTROL_DATA_TYPE[finsCommand$fileMemoryWriteCommand$command$dataTypeControlData$dataType$dataType];
+            info_file_log$last_block = OMRON_FINS_ENUMS::ENABLED[finsCommand$fileMemoryWriteCommand$command$dataTypeControlData$dataType$lastBlock];
+            info_file_log$protected = OMRON_FINS_ENUMS::ENABLED[finsCommand$fileMemoryWriteCommand$command$dataTypeControlData$dataType$protected];
+            info_file_log$control_data = finsCommand$fileMemoryWriteCommand$command$dataTypeControlData$controlData;
+            info_file_log$block_no = finsCommand$fileMemoryWriteCommand$command$blockNo;
+            info_file_log$memory_data = finsCommand$fileMemoryWriteCommand$command$data;
 
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
-            #info_file_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$memoryAreaReadCommand$response$responseCode];
-            print "process_file_memory_write_detail -> RESPONSE";
+            info_file_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$fileMemoryWriteCommand$response$responseCode];
         }
 
         # Fire the event and tidy up

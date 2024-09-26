@@ -346,10 +346,11 @@ type FileMemoryWrite = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type FileMemoryWrite_Command = unit {
-    data         : bytes &eod;
+    dataTypeControlData : OMRON_FINS_TYPES::DataTypeControlData;
+    blockNo             : uint16;
+    data                : bytes &eod &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
 };
 
 type FileMemoryWrite_Reponse = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    data         : bytes &eod;
 };
