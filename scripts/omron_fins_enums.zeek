@@ -116,7 +116,7 @@ export{
 
         [OMRON_FINS_ENUMS::CommandCode_FORCED_SET_RESET]              = "Forced Set Reset (0x2301)",
         [OMRON_FINS_ENUMS::CommandCode_FORCED_SET_RESET_CANCEL]       = "Forced Set Reset Cancel (0x2302)",
-        [OMRON_FINS_ENUMS::CommandCode_MULTIPOINT_FORCED_STATUS_READ] = "Multipoint Foreced Status Read (0x230A)",
+        [OMRON_FINS_ENUMS::CommandCode_MULTIPLE_FORCED_STATUS_READ]   = "Multiple Forced Status Read (0x230A)",
 
         [OMRON_FINS_ENUMS::CommandCode_NAME_SET]                      = "Name Set (0x2601)",
         [OMRON_FINS_ENUMS::CommandCode_NAME_DELETE]                   = "Name Delete (0x2602)",

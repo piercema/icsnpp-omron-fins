@@ -117,7 +117,7 @@ public type CommandCode = enum {
 
     FORCED_SET_RESET              = 0x2301,
     FORCED_SET_RESET_CANCEL       = 0x2302,
-    MULTIPOINT_FORCED_STATUS_READ = 0x230A,
+    MULTIPLE_FORCED_STATUS_READ   = 0x230A,
 
     NAME_SET                      = 0x2601,
     NAME_DELETE                   = 0x2602,

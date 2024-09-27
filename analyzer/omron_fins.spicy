@@ -16,6 +16,7 @@ import OMRON_FINS_COMMAND_CODE_09;
 import OMRON_FINS_COMMAND_CODE_0C;
 import OMRON_FINS_COMMAND_CODE_21;
 import OMRON_FINS_COMMAND_CODE_22;
+import OMRON_FINS_COMMAND_CODE_23;
 import OMRON_FINS_COMMAND_CODE_26;
 
 public type Messages = unit {
@@ -114,12 +115,12 @@ public type Command = unit(finsHeader: FINS_Header) {
         OMRON_FINS_ENUMS::CommandCode::FILE_MEMORY_INDEX_READ                   -> fileMemoryIndexReadCommand                : OMRON_FINS_COMMAND_CODE_22::FileMemoryIndexRead(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::FILE_MEMORY_READ                         -> fileMemoryReadCommand                     : OMRON_FINS_COMMAND_CODE_22::FileMemoryRead(finsHeader.icf.dataType);
         OMRON_FINS_ENUMS::CommandCode::FILE_MEMORY_WRITE                        -> fileMemoryWriteCommand                    : OMRON_FINS_COMMAND_CODE_22::FileMemoryWrite(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::FORCED_SET_RESET                         -> restofdata_50 : bytes &eod;
-        OMRON_FINS_ENUMS::CommandCode::FORCED_SET_RESET_CANCEL                  -> restofdata_51 : bytes &eod;
-        OMRON_FINS_ENUMS::CommandCode::MULTIPOINT_FORCED_STATUS_READ            -> restofdata_52 : bytes &eod;
-        OMRON_FINS_ENUMS::CommandCode::NAME_SET                                 -> nameSetCommand                 : OMRON_FINS_COMMAND_CODE_26::NameSet(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::NAME_DELETE                              -> nameDeleteCommand              : OMRON_FINS_COMMAND_CODE_26::NameDelete(finsHeader.icf.dataType);
-        OMRON_FINS_ENUMS::CommandCode::NAME_READ                                -> nameReadCommand                : OMRON_FINS_COMMAND_CODE_26::NameRead(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::FORCED_SET_RESET                         -> forcedSetResetCommand                     : OMRON_FINS_COMMAND_CODE_23::ForcedSetReset(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::FORCED_SET_RESET_CANCEL                  -> forcedSetResetCancelCommand               : OMRON_FINS_COMMAND_CODE_23::ForcedSetResetCancel(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::MULTIPLE_FORCED_STATUS_READ              -> multipleForcedStatusReadCommand           : OMRON_FINS_COMMAND_CODE_23::MultipleForcedStatusRead(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::NAME_SET                                 -> nameSetCommand                            : OMRON_FINS_COMMAND_CODE_26::NameSet(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::NAME_DELETE                              -> nameDeleteCommand                         : OMRON_FINS_COMMAND_CODE_26::NameDelete(finsHeader.icf.dataType);
+        OMRON_FINS_ENUMS::CommandCode::NAME_READ                                -> nameReadCommand                           : OMRON_FINS_COMMAND_CODE_26::NameRead(finsHeader.icf.dataType);
     };
 
     on %init {

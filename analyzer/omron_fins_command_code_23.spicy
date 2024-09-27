@@ -1,0 +1,64 @@
+module OMRON_FINS_COMMAND_CODE_23;
+
+import spicy;
+import OMRON_FINS_ENUMS;
+import OMRON_FINS_FUNCTIONS;
+import OMRON_FINS_TYPES;
+
+#
+# Forced Set/Reset
+#
+type ForcedSetReset = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ForcedSetReset_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ForcedSetReset_Response();
+    };
+};
+
+type ForcedSetReset_Command = unit {
+    data : bytes &eod;
+};
+
+type ForcedSetReset_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data         : bytes &eod;
+};
+
+#
+# Forced Set/Reset Cancel
+#
+type ForcedSetResetCancel = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ForcedSetResetCancel_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ForcedSetResetCancel_Response();
+    };
+};
+
+type ForcedSetResetCancel_Command = unit {
+    data : bytes &eod;
+};
+
+type ForcedSetResetCancel_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data         : bytes &eod;
+};
+
+#
+# Multiple Forced Status Read
+#
+type MultipleForcedStatusRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
+    switch(dataType) {
+        OMRON_FINS_ENUMS::DataType::COMMAND  -> command : MultipleForcedStatusRead_Command();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: MultipleForcedStatusRead_Response();
+    };
+};
+
+type MultipleForcedStatusRead_Command = unit {
+    data : bytes &eod;
+};
+
+type MultipleForcedStatusRead_Response = unit {
+    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    data         : bytes &eod;
+};
+

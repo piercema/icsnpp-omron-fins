@@ -18,6 +18,7 @@
 @load ./omron_fins_command_code_0C
 @load ./omron_fins_command_code_21
 @load ./omron_fins_command_code_22
+@load ./omron_fins_command_code_23
 @load ./omron_fins_command_code_26
 @load ./omron_fins_processing
 @load ./omron_fins_event_processing
