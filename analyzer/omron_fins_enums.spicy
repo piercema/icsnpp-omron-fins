@@ -493,3 +493,11 @@ public type ControlDataType = enum {
     USER_PROGRAM = 2,
     COMMENTS     = 3
 };
+
+public type SetResetSpecification = enum {
+    FORCE_RESET                = 0x0000,
+    FORCE_SET                  = 0x0001,
+    FORCED_STATUS_RELEASED_OFF = 0x8000,
+    FORCED_STATUS_RELEASED_ON  = 0x8001,
+    FORCED_STATUS_RELEASED     = 0xFFFF
+};

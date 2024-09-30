@@ -481,4 +481,12 @@ export{
         [OMRON_FINS_ENUMS::ControlDataType_USER_PROGRAM] = "User program (2)",
         [OMRON_FINS_ENUMS::ControlDataType_COMMENTS]     = "Comments (3)",
     }&default = "Unknown";
+
+    const SET_RESET_SPECIFICATION = {
+        [OMRON_FINS_ENUMS::SetResetSpecification_FORCE_RESET]                = "Force-reset OFF (0x0000)",
+        [OMRON_FINS_ENUMS::SetResetSpecification_FORCE_SET]                  = "Force-reset ON (0x0001)",
+        [OMRON_FINS_ENUMS::SetResetSpecification_FORCED_STATUS_RELEASED_OFF] = "Forced status released and bit turned OFF (0x8000)",
+        [OMRON_FINS_ENUMS::SetResetSpecification_FORCED_STATUS_RELEASED_ON]  = "Forced status released and bit turned ON (0x8001)",
+        [OMRON_FINS_ENUMS::SetResetSpecification_FORCED_STATUS_RELEASED]     = "Forced status released (xFFFF)",
+    }&default = "Unknown";
 }

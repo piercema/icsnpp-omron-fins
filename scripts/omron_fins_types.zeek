@@ -172,9 +172,14 @@ module OMRON_FINS;
         fal_fals_13                         : string &log &optional;
 
         # Access Right Acquire
-        acquire_network_address             : count   &log &optional;
-        acquire_node_number                 : count   &log &optional;
-        acquire_unit_address                : count   &log &optional;
+        acquire_network_address             : count  &log &optional;
+        acquire_node_number                 : count  &log &optional;
+        acquire_unit_address                : count  &log &optional;
+
+        # Set/Reset details
+        no_of_bits                          : count  &log &optional;
+        set_reset_specification             : string &log &optional;
+        bit_flag                            : count  &log &optional;
 
     };
 

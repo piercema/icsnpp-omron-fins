@@ -16,12 +16,12 @@ type ForcedSetReset = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type ForcedSetReset_Command = unit {
-    data : bytes &eod;
+    noOfBits : uint16;
+    forcedSetResetData :OMRON_FINS_TYPES::ForcedSetResetData[]; 
 };
 
 type ForcedSetReset_Response = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    data         : bytes &eod;
 };
 
 #

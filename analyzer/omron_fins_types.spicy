@@ -1,5 +1,6 @@
 module OMRON_FINS_TYPES;
 
+import spicy;
 import OMRON_FINS_ENUMS;
 import OMRON_FINS_ERROR_CODES;
 import OMRON_FINS_FUNCTIONS;
@@ -310,4 +311,15 @@ type DataTypeControlData = unit {
         dataType  : 0..2  &convert=OMRON_FINS_ENUMS::ControlDataType($$);
     };
     controlData : uint8;
+};
+
+type ForcedSetResetData = unit {
+    var bitFlag           : uint64;
+    setResetSpecification : uint16 &convert=OMRON_FINS_ENUMS::SetResetSpecification($$);
+    memoryAreaCode        : uint8 &convert=OMRON_FINS_ENUMS::MemoryArea($$);
+    bitFlagBytes          : bytes &size=3;
+
+    on %done {
+       self.bitFlag = self.bitFlagBytes.to_uint(spicy::ByteOrder::Network);
+    }
 };
