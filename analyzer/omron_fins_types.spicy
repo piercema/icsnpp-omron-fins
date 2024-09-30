@@ -314,12 +314,15 @@ type DataTypeControlData = unit {
 };
 
 type ForcedSetResetData = unit {
-    var bitFlag           : uint64;
+    # Variable to hold the 3 byte bit flag as a uint
+    var bitFlag          : uint64;
+
     setResetSpecification : uint16 &convert=OMRON_FINS_ENUMS::SetResetSpecification($$);
     memoryAreaCode        : uint8 &convert=OMRON_FINS_ENUMS::MemoryArea($$);
     bitFlagBytes          : bytes &size=3;
 
     on %done {
+       # Convert the 3 byte bitFlag to a uint
        self.bitFlag = self.bitFlagBytes.to_uint(spicy::ByteOrder::Network);
     }
 };
