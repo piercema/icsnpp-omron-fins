@@ -35,12 +35,11 @@ type ForcedSetResetCancel = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type ForcedSetResetCancel_Command = unit {
-    data : bytes &eod;
+    : bytes &eod; # Note: There is no data associated with the Forced Set Reset Cancel command - hence the anonymous field
 };
 
 type ForcedSetResetCancel_Response = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    data         : bytes &eod;
 };
 
 #

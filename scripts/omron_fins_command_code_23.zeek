@@ -43,12 +43,10 @@ module OMRON_FINS;
         info_detail_log$omron_fins_link_id = link_id;
         info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
 
-        if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
-            print "process_forced_set_reset_cancel_detail - COMMAND";
+        # Note: For the Forced Set/Reset command, there is no data to process; therefore we only process the response
 
-        } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
+        if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
             info_detail_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$forcedSetResetCancelCommand$response$responseCode];
-            print "process_forced_set_reset_cancel_detail - RESPONSE";
         }
 
         # Fire the event and tidy up
