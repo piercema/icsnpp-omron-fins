@@ -53,11 +53,17 @@ type MultipleForcedStatusRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 };
 
 type MultipleForcedStatusRead_Command = unit {
-    data : bytes &eod;
+    memoryAreaCode   : uint8 &convert=OMRON_FINS_ENUMS::MemoryArea($$);
+    beginningAddress : bytes &size=3  &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
+    noOfUnits        : uint16;
+
 };
 
 type MultipleForcedStatusRead_Response = unit {
-    responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    data         : bytes &eod;
+    responseCode     : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
+    memoryAreaCode   : uint8 &convert=OMRON_FINS_ENUMS::MemoryArea($$);
+    beginningAddress : bytes &size=3  &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
+    noOfUnits        : uint16;
+    data             : bytes &eod  &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
 };
 

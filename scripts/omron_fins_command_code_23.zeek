@@ -62,11 +62,16 @@ module OMRON_FINS;
         info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
 
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
-            print "process_multiple_forced_status_read_detail - COMMAND";
+            info_detail_log$memory_area_code = OMRON_FINS_ENUMS::MEMORY_AREA[finsCommand$multipleForcedStatusReadCommand$command$memoryAreaCode];
+            info_detail_log$beginning_address = finsCommand$multipleForcedStatusReadCommand$command$beginningAddress;
+            info_detail_log$no_of_units = finsCommand$multipleForcedStatusReadCommand$command$noOfUnits;
 
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
             info_detail_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$multipleForcedStatusReadCommand$response$responseCode];
-            print "process_multiple_forced_status_read_detail - RESPONSE";
+            info_detail_log$memory_area_code = OMRON_FINS_ENUMS::MEMORY_AREA[finsCommand$multipleForcedStatusReadCommand$response$memoryAreaCode];
+            info_detail_log$beginning_address = finsCommand$multipleForcedStatusReadCommand$response$beginningAddress;
+            info_detail_log$no_of_units = finsCommand$multipleForcedStatusReadCommand$response$noOfUnits;
+            info_detail_log$data = finsCommand$multipleForcedStatusReadCommand$response$data;
         }
 
         # Fire the event and tidy up
