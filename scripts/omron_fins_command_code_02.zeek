@@ -73,7 +73,6 @@ module OMRON_FINS;
     }
 
     function process_data_link_table_read_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
-        c = set_session_detail_log(c);
 
         local info_detail_log: detail_log;
 
@@ -123,7 +122,6 @@ module OMRON_FINS;
     }
 
     function process_data_link_table_write_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
-        c = set_session_detail_log(c);
 
         local info_detail_log: detail_log;
 
