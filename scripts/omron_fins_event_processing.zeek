@@ -21,7 +21,7 @@ event OMRON_FINS::FINS_HeaderEvt (c: connection, is_orig: bool, finsHeader: OMRO
     info_general_log$command_code                = OMRON_FINS_ENUMS::COMMAND[finsHeader$commandCode];
 
     # Process the command details
-    process_details(c, finsHeader$command, info_general_log$omron_fins_link_id);
+    info_general_log$response_code = process_details(c, finsHeader$command, info_general_log$omron_fins_link_id);
 
     # Fire the event and tidy up
     OMRON_FINS::emit_omron_fins_general_log(c);

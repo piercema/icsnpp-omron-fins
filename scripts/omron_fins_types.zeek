@@ -18,6 +18,7 @@ module OMRON_FINS;
         source_unit_address         : count   &log &optional;
         service_id                  : string  &log &optional;
         command_code                : string  &log &optional;
+        response_code               : string  &log &optional;
     };
 
     type detail_log: record {

@@ -1,9 +1,14 @@
 module OMRON_FINS;
 
-    function process_access_right_acquire_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
-        c = set_session_detail_log(c);
+    function process_access_right_acquire_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string): string {
+        # Local string to hold the response code for general logging
+        local general_log_response_code : string;
+        general_log_response_code = "";
 
+        # Set sesssion detail log object
+        c = set_session_detail_log(c);
         local info_detail_log = c$omron_fins_detail_log;
+
         info_detail_log$omron_fins_link_id = link_id;
         info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
 
@@ -14,17 +19,28 @@ module OMRON_FINS;
             info_detail_log$acquire_network_address = finsCommand$accessRightAcquireCommand$response$networkAddress;
             info_detail_log$acquire_unit_address    = finsCommand$accessRightAcquireCommand$response$unitAddress;
             info_detail_log$acquire_node_number     = finsCommand$accessRightAcquireCommand$response$nodeNumber;
+
+            # Set the general logging response code
+            general_log_response_code = info_detail_log$response_code;
         }
 
         # Fire the event and tidy up
         OMRON_FINS::emit_omron_fins_detail_log(c);
         delete c$omron_fins_detail_log;
+
+        # Return the response code for general logging
+        return general_log_response_code;
     }
 
-    function process_access_right_forced_acquire_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
-        c = set_session_detail_log(c);
+    function process_access_right_forced_acquire_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string): string {
+        # Local string to hold the response code for general logging
+        local general_log_response_code : string;
+        general_log_response_code = "";
 
+        # Set sesssion detail log object
+        c = set_session_detail_log(c);
         local info_detail_log = c$omron_fins_detail_log;
+
         info_detail_log$omron_fins_link_id = link_id;
         info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
 
@@ -32,17 +48,29 @@ module OMRON_FINS;
             info_detail_log$program_no = finsCommand$accessRightForcedAcquireCommand$command$programNo;
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
             info_detail_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$accessRightForcedAcquireCommand$response$responseCode];
+
+            # Set the general logging response code
+            general_log_response_code = info_detail_log$response_code;
+
         }
 
         # Fire the event and tidy up
         OMRON_FINS::emit_omron_fins_detail_log(c);
         delete c$omron_fins_detail_log;
+
+        # Return the response code for general logging
+        return general_log_response_code;
     }
 
-    function process_access_right_release_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
-        c = set_session_detail_log(c);
+    function process_access_right_release_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string): string {
+        # Local string to hold the response code for general logging
+        local general_log_response_code : string;
+        general_log_response_code = "";
 
+        # Set sesssion detail log object
+        c = set_session_detail_log(c);
         local info_detail_log = c$omron_fins_detail_log;
+
         info_detail_log$omron_fins_link_id = link_id;
         info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
 
@@ -50,9 +78,15 @@ module OMRON_FINS;
             info_detail_log$program_no = finsCommand$accessRightReleaseCommand$command$programNo;
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
             info_detail_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$accessRightReleaseCommand$response$responseCode];
+
+            # Set the general logging response code
+            general_log_response_code = info_detail_log$response_code;
         }
 
         # Fire the event and tidy up
         OMRON_FINS::emit_omron_fins_detail_log(c);
         delete c$omron_fins_detail_log;
+
+        # Return the response code for general logging
+        return general_log_response_code;
     }
