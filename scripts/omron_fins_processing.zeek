@@ -6,16 +6,16 @@ module OMRON_FINS;
 
         switch(finsCommand$commandCode) {
             case OMRON_FINS_ENUMS::CommandCode_MEMORY_AREA_READ:
-                process_memory_area_read_detail(c, finsCommand, omron_fins_link_id);
+                general_logging_response_code = process_memory_area_read_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_MEMORY_AREA_WRITE:
-                process_memory_area_write_detail(c, finsCommand, omron_fins_link_id);
+                general_logging_response_code = process_memory_area_write_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_MULTIPLE_MEMORY_AREA_READ:
-                process_multiple_memory_area_read_detail(c, finsCommand, omron_fins_link_id);
+                general_logging_response_code = process_multiple_memory_area_read_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_MEMORY_AREA_FILL:
-                process_memory_area_fill_detail(c, finsCommand, omron_fins_link_id);
+                general_logging_response_code = process_memory_area_fill_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_MEMORY_AREA_TRANSFER:
                 process_memory_area_transfer_detail(c, finsCommand, omron_fins_link_id);
