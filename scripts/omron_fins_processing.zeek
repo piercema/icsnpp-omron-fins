@@ -21,19 +21,19 @@ module OMRON_FINS;
                 process_memory_area_transfer_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_PARAMETER_AREA_READ:
-                process_parameter_area_read_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_parameter_area_read_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_PARAMETER_AREA_WRITE:
-                process_parameter_area_write_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_parameter_area_write_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_PARAMETER_AREA_CLEAR:
-                process_parameter_area_clear_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_parameter_area_clear_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_DATA_LINK_TABLE_READ:
-                process_data_link_table_read_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_data_link_table_read_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_DATA_LINK_TABLE_WRITE:
-                process_data_link_table_write_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_data_link_table_write_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_PROGRAM_AREA_PROTECT:
                 process_program_area_protect_detail(c, finsCommand, omron_fins_link_id);
