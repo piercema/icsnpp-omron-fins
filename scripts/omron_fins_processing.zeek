@@ -51,10 +51,10 @@ module OMRON_FINS;
                 general_log_response_code = process_program_area_clear_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_RUN:
-                process_run_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_run_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_STOP:
-                process_stop_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_stop_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_CONTROLLER_DATA_READ:
                 process_controller_data_read_detail(c, finsCommand, omron_fins_link_id);
