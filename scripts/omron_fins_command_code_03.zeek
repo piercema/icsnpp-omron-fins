@@ -1,9 +1,14 @@
 module OMRON_FINS;
 
-    function process_program_area_protect_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
-        c = set_session_detail_log(c);
+    function process_program_area_protect_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string): string {
+        # Local string to hold the response code for general logging
+        local general_log_response_code : string;
+        general_log_response_code = "";
 
+        # Set sesssion detail log object
+        c = set_session_detail_log(c);
         local info_detail_log = c$omron_fins_detail_log;
+
         info_detail_log$omron_fins_link_id = link_id;
         info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
 
@@ -16,17 +21,28 @@ module OMRON_FINS;
 
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
             info_detail_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$programAreaProtectCommand$response$responseCode];
+
+            # Set the general logging response code
+            general_log_response_code = info_detail_log$response_code;
         }
 
         # Fire the event and tidy up
         OMRON_FINS::emit_omron_fins_detail_log(c);
         delete c$omron_fins_detail_log;
+
+        # Return the response code for general logging
+        return general_log_response_code;
     }
 
-    function process_program_area_protect_clear_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
-        c = set_session_detail_log(c);
+    function process_program_area_protect_clear_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string): string {
+        # Local string to hold the response code for general logging
+        local general_log_response_code : string;
+        general_log_response_code = "";
 
+        # Set sesssion detail log object
+        c = set_session_detail_log(c);
         local info_detail_log = c$omron_fins_detail_log;
+
         info_detail_log$omron_fins_link_id = link_id;
         info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
 
@@ -40,17 +56,27 @@ module OMRON_FINS;
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
             info_detail_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$programAreaProtectClearCommand$response$responseCode];
 
+            # Set the general logging response code
+            general_log_response_code = info_detail_log$response_code;
         }
 
         # Fire the event and tidy up
         OMRON_FINS::emit_omron_fins_detail_log(c);
         delete c$omron_fins_detail_log;
+
+        # Return the response code for general logging
+        return general_log_response_code;
     }
 
-    function process_program_area_read_detail(c : connection, finsCommand: OMRON_FINS::Command, link_id: string) {
-        c = set_session_detail_log(c);
+    function process_program_area_read_detail(c : connection, finsCommand: OMRON_FINS::Command, link_id: string): string {
+        # Local string to hold the response code for general logging
+        local general_log_response_code : string;
+        general_log_response_code = "";
 
+        # Set sesssion detail log object
+        c = set_session_detail_log(c);
         local info_detail_log = c$omron_fins_detail_log;
+
         info_detail_log$omron_fins_link_id = link_id;
         info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
 
@@ -68,17 +94,27 @@ module OMRON_FINS;
             info_detail_log$last_word_bit   = finsCommand$programAreaReadCommand$response$numberOfBytesMask$lastWordBit;
             info_detail_log$data            = finsCommand$programAreaReadCommand$response$dataAsString;
 
+            # Set the general logging response code
+            general_log_response_code = info_detail_log$response_code;
         }
 
         # Fire the event and tidy up
         OMRON_FINS::emit_omron_fins_detail_log(c);
         delete c$omron_fins_detail_log;
+
+        # Return the response code for general logging
+        return general_log_response_code;
     }
 
-    function process_program_area_write_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
-        c = set_session_detail_log(c);
+    function process_program_area_write_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string): string {
+        # Local string to hold the response code for general logging
+        local general_log_response_code : string;
+        general_log_response_code = "";
 
+        # Set sesssion detail log object
+        c = set_session_detail_log(c);
         local info_detail_log = c$omron_fins_detail_log;
+
         info_detail_log$omron_fins_link_id = link_id;
         info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
 
@@ -96,17 +132,27 @@ module OMRON_FINS;
             info_detail_log$number_of_bytes = finsCommand$programAreaWriteCommand$response$numberOfBytesMask$numberOfBytes;
             info_detail_log$last_word_bit   = finsCommand$programAreaWriteCommand$response$numberOfBytesMask$lastWordBit;
 
+            # Set the general logging response code
+            general_log_response_code = info_detail_log$response_code;
         }
 
         # Fire the event and tidy up
         OMRON_FINS::emit_omron_fins_detail_log(c);
         delete c$omron_fins_detail_log;
+
+        # Return the response code for general logging
+        return general_log_response_code;
     }
 
-    function process_program_area_clear_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
-        c = set_session_detail_log(c);
+    function process_program_area_clear_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string): string {
+        # Local string to hold the response code for general logging
+        local general_log_response_code : string;
+        general_log_response_code = "";
 
+        # Set sesssion detail log object
+        c = set_session_detail_log(c);
         local info_detail_log = c$omron_fins_detail_log;
+
         info_detail_log$omron_fins_link_id = link_id;
         info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
 
@@ -117,9 +163,14 @@ module OMRON_FINS;
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
             info_detail_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$programAreaClearCommand$response$responseCode];
 
+            # Set the general logging response code
+            general_log_response_code = info_detail_log$response_code;
         }
 
         # Fire the event and tidy up
         OMRON_FINS::emit_omron_fins_detail_log(c);
         delete c$omron_fins_detail_log;
+
+        # Return the response code for general logging
+        return general_log_response_code;
     }
