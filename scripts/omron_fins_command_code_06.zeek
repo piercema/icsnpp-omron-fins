@@ -1,9 +1,14 @@
 module OMRON_FINS;
 
-    function process_controller_status_read_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
-        c = set_session_detail_log(c);
+    function process_controller_status_read_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string): string {
+        # Local string to hold the response code for general logging
+        local general_log_response_code : string;
+        general_log_response_code = "";
 
+        # Set sesssion detail log object
+        c = set_session_detail_log(c);
         local info_detail_log = c$omron_fins_detail_log;
+
         info_detail_log$omron_fins_link_id = link_id;
         info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
 
@@ -19,18 +24,29 @@ module OMRON_FINS;
             info_detail_log$message_yes_no                     = finsCommand$controllerStatusReadCommand$response$messageYesNoVec; 
             info_detail_log$fal_fals_no                        = finsCommand$controllerStatusReadCommand$response$falFalsNo ;
             info_detail_log$error_message                      = finsCommand$controllerStatusReadCommand$response$errorMessage; 
+
+            # Set the general logging response code
+            general_log_response_code = info_detail_log$response_code;
         }
 
         # Fire the event and tidy up
         OMRON_FINS::emit_omron_fins_detail_log(c);
         delete c$omron_fins_detail_log;
+
+        # Return the response code for general logging
+        return general_log_response_code;
     }
 
-    function process_network_status_read_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
+    function process_network_status_read_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string): string {
+        # Local string to hold the response code for general logging
+        local general_log_response_code : string;
+        general_log_response_code = "";
 
         # Note: For the Network Status Read command,there is no data to process; therefore we only process the response
 
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
+            # Set the general logging response code
+            general_log_response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$networkStatusReadCommand$response$responseCode];
 
             #
             # Network Member Data.
@@ -309,13 +325,21 @@ module OMRON_FINS;
                 }
             }
         }
+
+        # Return the response code for general logging
+        return general_log_response_code;
     }
 
-    function process_data_link_status_read_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
+    function process_data_link_status_read_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string): string {
+        # Local string to hold the response code for general logging
+        local general_log_response_code : string;
+        general_log_response_code = "";
 
         # Note: For the Data Link Status Read command,there is no data to process; therefore we only process the response
 
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
+            general_log_response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$dataLinkStatusReadCommand$response$responseCode];
+
             local data_link_status_read = data_link_status_read_log($ts=network_time(), $uid=c$uid, $id=c$id);
             data_link_status_read$omron_fins_link_id = link_id;
             data_link_status_read$command_code       = OMRON_FINS_ENUMS::COMMAND[finsCommand$commandCode];
@@ -609,12 +633,20 @@ module OMRON_FINS;
                 ++cnt;
             }
         }
+
+        # Return the response code for general logging
+        return general_log_response_code;
     }
 
-    function process_cycle_time_read_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
-        c = set_session_detail_log(c);
+    function process_cycle_time_read_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string): string {
+        # Local string to hold the response code for general logging
+        local general_log_response_code : string;
+        general_log_response_code = "";
 
+        # Set sesssion detail log object
+        c = set_session_detail_log(c);
         local info_detail_log = c$omron_fins_detail_log;
+
         info_detail_log$omron_fins_link_id = link_id;
         info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
 
@@ -626,10 +658,16 @@ module OMRON_FINS;
             info_detail_log$average_cycle_time = finsCommand$cycleTimeReadCommand$response$averageCycleTime;
             info_detail_log$max_cycle_time     = finsCommand$cycleTimeReadCommand$response$maxCycleTime;
             info_detail_log$min_cycle_time     = finsCommand$cycleTimeReadCommand$response$minCycleTime;
+
+            # Set the general logging response code
+            general_log_response_code = info_detail_log$response_code;
         }
 
         # Fire the event and tidy up
         OMRON_FINS::emit_omron_fins_detail_log(c);
         delete c$omron_fins_detail_log;
+
+        # Return the response code for general logging
+        return general_log_response_code;
     }
 

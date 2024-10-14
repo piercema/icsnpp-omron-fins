@@ -63,13 +63,16 @@ module OMRON_FINS;
                 general_log_response_code = process_connection_data_read_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_CONTROLLER_STATUS_READ:
-                process_controller_status_read_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_controller_status_read_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_NETWORK_STATUS_READ:
-                process_network_status_read_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_network_status_read_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_DATA_LINK_STATUS_READ:
-                process_data_link_status_read_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_data_link_status_read_detail(c, finsCommand, omron_fins_link_id);
+                break;
+             case OMRON_FINS_ENUMS::CommandCode_CYCLE_TIME_READ:
+                general_log_response_code = process_cycle_time_read_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_LOOP_BACK_TEST:
                 process_loop_back_test_detail(c, finsCommand, omron_fins_link_id);
@@ -154,9 +157,6 @@ module OMRON_FINS;
                 break;
             case OMRON_FINS_ENUMS::CommandCode_MULTIPLE_FORCED_STATUS_READ:
                 process_multiple_forced_status_read_detail(c, finsCommand, omron_fins_link_id);
-                break;
-             case OMRON_FINS_ENUMS::CommandCode_CYCLE_TIME_READ:
-                process_cycle_time_read_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_CLOCK_READ:
                 process_clock_read_detail(c, finsCommand, omron_fins_link_id);
