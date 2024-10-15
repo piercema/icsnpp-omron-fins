@@ -1,6 +1,11 @@
 module OMRON_FINS;
 
-    function process_clock_read_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
+    function process_clock_read_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string): string {
+        # Local string to hold the response code for general logging
+        local general_log_response_code : string;
+        general_log_response_code = "";
+
+        # Set sesssion detail log object
         c = set_session_detail_log(c);
 
         local info_detail_log = c$omron_fins_detail_log;
@@ -18,14 +23,25 @@ module OMRON_FINS;
             info_detail_log$minute        = finsCommand$clockReadCommand$response$minute;
             info_detail_log$second        = finsCommand$clockReadCommand$response$second;
             info_detail_log$day           = OMRON_FINS_ENUMS::DAY_OF_WEEK[finsCommand$clockReadCommand$response$day];
+
+            # Set the general logging response code
+            general_log_response_code = info_detail_log$response_code;
         }
 
         # Fire the event and tidy up
         OMRON_FINS::emit_omron_fins_detail_log(c);
         delete c$omron_fins_detail_log;
+
+        # Return the response code for general logging
+        return general_log_response_code;
     }
 
-    function process_clock_write_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
+    function process_clock_write_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string): string {
+        # Local string to hold the response code for general logging
+        local general_log_response_code : string;
+        general_log_response_code = "";
+
+        # Set sesssion detail log object
         c = set_session_detail_log(c);
 
         local info_detail_log = c$omron_fins_detail_log;
@@ -42,9 +58,15 @@ module OMRON_FINS;
             info_detail_log$day           = OMRON_FINS_ENUMS::DAY_OF_WEEK[finsCommand$clockWriteCommand$command$day];
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
             info_detail_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$clockWriteCommand$response$responseCode];
+
+            # Set the general logging response code
+            general_log_response_code = info_detail_log$response_code;
         }
 
         # Fire the event and tidy up
         OMRON_FINS::emit_omron_fins_detail_log(c);
         delete c$omron_fins_detail_log;
+
+        # Return the response code for general logging
+        return general_log_response_code;
     }

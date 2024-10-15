@@ -159,10 +159,10 @@ module OMRON_FINS;
                 process_multiple_forced_status_read_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_CLOCK_READ:
-                process_clock_read_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_clock_read_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_CLOCK_WRITE:
-                process_clock_write_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_clock_write_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_NAME_SET:
                 process_name_set_detail(c, finsCommand, omron_fins_link_id);
