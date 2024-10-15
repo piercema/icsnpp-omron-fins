@@ -1,6 +1,10 @@
 module OMRON_FINS;
 
-    function process_error_clear_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
+    function process_error_clear_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string): string {
+        # Local string to hold the response code for general logging
+        local general_log_response_code : string;
+        general_log_response_code = "";
+
         local error_log = detail_error_log($ts=network_time(), $uid=c$uid, $id=c$id);
         error_log$omron_fins_link_id = link_id;
         error_log$command_code       = OMRON_FINS_ENUMS::COMMAND[finsCommand$commandCode];
@@ -11,14 +15,24 @@ module OMRON_FINS;
             error_log$error_reset_fal_no = OMRON_FINS_ERROR_CODES::ERROR_CODES[finsCommand$errorClearCommand$command$errorResetFalNo];
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
             error_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$errorClearCommand$response$responseCode];
+
+            # Set the general logging response code
+            general_log_response_code = error_log$response_code;
         }
 
         # Fire the event and tidy up
         OMRON_FINS::emit_omron_fins_error_log(c);
         delete c$omron_fins_error_log;
+
+        # Return the response code for general logging
+        return general_log_response_code;
     }
 
-    function process_error_log_read_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
+    function process_error_log_read_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string): string {
+        # Local string to hold the response code for general logging
+        local general_log_response_code : string;
+        general_log_response_code = "";
+
         local error_log : detail_error_log;
 
 
@@ -39,6 +53,9 @@ module OMRON_FINS;
             delete c$omron_fins_error_log;
 
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
+            # Set the general logging response code
+            general_log_response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$errorLogReadCommand$response$responseCode];
+
             # Loop over the error records
             for (i in finsCommand$errorLogReadCommand$response$errorRecords) {
                 # Setup detail error log
@@ -67,9 +84,16 @@ module OMRON_FINS;
                 delete c$omron_fins_error_log;
             }
         }
+
+        # Return the response code for general logging
+        return general_log_response_code;
     }
 
-    function process_error_log_clear_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
+    function process_error_log_clear_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string): string {
+        # Local string to hold the response code for general logging
+        local general_log_response_code : string;
+        general_log_response_code = "";
+
         local error_log = detail_error_log($ts=network_time(), $uid=c$uid, $id=c$id);
         error_log$omron_fins_link_id = link_id;
         error_log$command_code       = OMRON_FINS_ENUMS::COMMAND[finsCommand$commandCode];
@@ -80,12 +104,17 @@ module OMRON_FINS;
 
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
             error_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$errorLogClearCommand$response$responseCode];
-        }
+
+            # Set the general logging response code
+            general_log_response_code = error_log$response_code;
+       }
 
         # Fire the event and tidy up
         OMRON_FINS::emit_omron_fins_error_log(c);
         delete c$omron_fins_error_log;
 
+        # Return the response code for general logging
+        return general_log_response_code;
     }
 
 

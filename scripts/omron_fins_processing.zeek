@@ -97,13 +97,13 @@ module OMRON_FINS;
                 general_log_response_code = process_access_right_release_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_ERROR_CLEAR:
-                process_error_clear_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_error_clear_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_ERROR_LOG_READ:
-                process_error_log_read_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_error_log_read_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_ERROR_LOG_CLEAR:
-                process_error_log_clear_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_error_log_clear_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_FILE_NAME_READ:
                 process_file_name_read_detail(c, finsCommand, omron_fins_link_id);
