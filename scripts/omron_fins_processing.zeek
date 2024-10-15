@@ -75,12 +75,13 @@ module OMRON_FINS;
                 general_log_response_code = process_cycle_time_read_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_LOOP_BACK_TEST:
-                process_loop_back_test_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_loop_back_test_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_BROADCAST_TEST_RESULTS_READ:
-                process_broadcast_test_results_read_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_broadcast_test_results_read_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_BROADCAST_TEST_DATA_SEND:
+                # Note: No response is returned from the Broadcast Test Data Send command. 
                 process_broadcast_test_data_send_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_MESSAGE_READ_MESSAGE_CLEAR_FAL_FALS_READ:
