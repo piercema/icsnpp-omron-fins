@@ -166,13 +166,13 @@ module OMRON_FINS;
                 general_log_response_code = process_clock_write_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_NAME_SET:
-                process_name_set_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_name_set_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_NAME_READ:
-                process_name_read_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_name_read_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_NAME_DELETE:
-                process_name_delete_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_name_delete_detail(c, finsCommand, omron_fins_link_id);
                 break;
         }
 
