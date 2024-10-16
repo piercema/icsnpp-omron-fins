@@ -80,15 +80,23 @@ module OMRON_FINS;
         delete c$omron_fins_detail_log;
     }
 
-    function process_message_read_response_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
-        c = set_session_detail_log(c);
+    function process_message_read_response_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string): string {
+        # Local string to hold the response code for general logging
+        local general_log_response_code : string;
+        general_log_response_code = "";
 
+        # Set sesssion detail log object
+        c = set_session_detail_log(c);
         local info_detail_log = c$omron_fins_detail_log;
+
         info_detail_log$omron_fins_link_id = link_id;
         info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
 
         # Response code
         info_detail_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$messageReadMessageClearFalFalsReadCommand$response$responseCode];
+
+        # Set the general logging response code
+        general_log_response_code = info_detail_log$response_code;
 
         # Message type
         info_detail_log$command = OMRON_FINS_ENUMS::MESSAGE_TYPE[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageType];
@@ -116,17 +124,28 @@ module OMRON_FINS;
         # Fire the event and tidy up
         OMRON_FINS::emit_omron_fins_detail_log(c);
         delete c$omron_fins_detail_log;
-    }
+        
+        # Return the response code for general logging
+        return general_log_response_code;
+   }
 
-    function process_message_clear_response_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
+    function process_message_clear_response_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string): string {
+        # Local string to hold the response code for general logging
+        local general_log_response_code : string;
+        general_log_response_code = "";
+
+        # Set sesssion detail log object
         c = set_session_detail_log(c);
-
         local info_detail_log = c$omron_fins_detail_log;
+
         info_detail_log$omron_fins_link_id = link_id;
         info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
 
         # Response code
         info_detail_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$messageReadMessageClearFalFalsReadCommand$response$responseCode];
+
+        # Set the general logging response code
+        general_log_response_code = info_detail_log$response_code;
 
         # Message type
         info_detail_log$command = OMRON_FINS_ENUMS::MESSAGE_TYPE[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageType];
@@ -134,17 +153,28 @@ module OMRON_FINS;
         # Fire the event and tidy up
         OMRON_FINS::emit_omron_fins_detail_log(c);
         delete c$omron_fins_detail_log;
+
+        # Return the response code for general logging
+        return general_log_response_code;
     }
 
-    function process_fal_fals_read_response_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
-        c = set_session_detail_log(c);
+    function process_fal_fals_read_response_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string): string {
+        # Local string to hold the response code for general logging
+        local general_log_response_code : string;
+        general_log_response_code = "";
 
+        # Set sesssion detail log object
+        c = set_session_detail_log(c);
         local info_detail_log = c$omron_fins_detail_log;
+
         info_detail_log$omron_fins_link_id = link_id;
         info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
 
         # Response code
         info_detail_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$messageReadMessageClearFalFalsReadCommand$response$responseCode];
+
+        # Set the general logging response code
+        general_log_response_code = info_detail_log$response_code;
 
         # Message type
         info_detail_log$command = OMRON_FINS_ENUMS::MESSAGE_TYPE[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageType];
@@ -184,9 +214,16 @@ module OMRON_FINS;
         # Fire the event and tidy up
         OMRON_FINS::emit_omron_fins_detail_log(c);
         delete c$omron_fins_detail_log;
+
+        # Return the response code for general logging
+        return general_log_response_code;
     }
 
-    function process_message_read_message_clear_fal_fals_read_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string) {
+    function process_message_read_message_clear_fal_fals_read_detail(c: connection, finsCommand: OMRON_FINS::Command, link_id: string): string {
+        # Local string to hold the response code for general logging
+        local general_log_response_code : string;
+        general_log_response_code = "";
+
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
             switch (finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageType) {
                 case OMRON_FINS_ENUMS::MessageType_MESSAGE_READ:
@@ -203,14 +240,17 @@ module OMRON_FINS;
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
             switch (finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageType) {
                 case OMRON_FINS_ENUMS::MessageType_MESSAGE_READ:
-                    process_message_read_response_detail(c, finsCommand, link_id);
+                    general_log_response_code = process_message_read_response_detail(c, finsCommand, link_id);
                     break;
                 case OMRON_FINS_ENUMS::MessageType_MESSAGE_CLEAR:
-                    process_message_clear_response_detail(c, finsCommand, link_id);
+                    general_log_response_code = process_message_clear_response_detail(c, finsCommand, link_id);
                     break;
                 case OMRON_FINS_ENUMS::MessageType_FAL_FALS_READ:
-                    process_fal_fals_read_response_detail(c, finsCommand, link_id);
+                    general_log_response_code = process_fal_fals_read_response_detail(c, finsCommand, link_id);
                     break;
             }
         }
+
+        # Return the response code for general logging
+        return general_log_response_code;
     }

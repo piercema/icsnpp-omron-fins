@@ -85,7 +85,7 @@ module OMRON_FINS;
                 process_broadcast_test_data_send_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_MESSAGE_READ_MESSAGE_CLEAR_FAL_FALS_READ:
-                process_message_read_message_clear_fal_fals_read_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_message_read_message_clear_fal_fals_read_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_ACCESS_RIGHT_ACQUIRE:
                 general_log_response_code = process_access_right_acquire_detail(c, finsCommand, omron_fins_link_id);
