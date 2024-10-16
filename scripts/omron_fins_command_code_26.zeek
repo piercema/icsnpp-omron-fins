@@ -37,8 +37,8 @@ module OMRON_FINS;
 
         # Set sesssion detail log object
          c = set_session_detail_log(c);
-
         local info_detail_log = c$omron_fins_detail_log;
+
         info_detail_log$omron_fins_link_id = link_id;
         info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
 
@@ -67,8 +67,8 @@ module OMRON_FINS;
 
         # Set sesssion detail log object
         c = set_session_detail_log(c);
-
         local info_detail_log = c$omron_fins_detail_log;
+
         info_detail_log$omron_fins_link_id = link_id;
         info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
 
