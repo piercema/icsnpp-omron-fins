@@ -106,49 +106,49 @@ module OMRON_FINS;
                 general_log_response_code = process_error_log_clear_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_FILE_NAME_READ:
-                process_file_name_read_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_file_name_read_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_SINGLE_FILE_READ:
-                process_single_file_read_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_single_file_read_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_SINGLE_FILE_WRITE:
-                process_single_file_write_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_single_file_write_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_MEMORY_CARD_FORMAT:
-                process_memory_card_format_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_memory_card_format_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_FILE_DELETE:
-                process_file_delete_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_file_delete_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_VOLUME_LABEL_CREATE_DELETE:
-                process_volume_label_create_delete_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_volume_label_create_delete_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_FILE_COPY:
-                process_file_copy_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_file_copy_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_FILE_NAME_CHANGE:
-                process_file_name_change_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_file_name_change_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_FILE_DATA_CHECK:
-                process_file_data_check_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_file_data_check_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_MEMORY_AREA_FILE_TRANSER:
-                process_memory_area_file_transfer_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_memory_area_file_transfer_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_PARAMETER_AREA_FILE_TRANSFER:
-                process_parameter_area_file_transfer_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_parameter_area_file_transfer_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_PROGRAM_AREA_FILE_TRANSFER:
-                process_program_area_file_transfer_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_program_area_file_transfer_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_FILE_MEMORY_INDEX_READ:
-                process_file_memory_index_read_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_file_memory_index_read_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_FILE_MEMORY_READ:
-                process_file_memory_read_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_file_memory_read_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_FILE_MEMORY_WRITE:
-                process_file_memory_write_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_file_memory_write_detail(c, finsCommand, omron_fins_link_id);
                 break;
              case OMRON_FINS_ENUMS::CommandCode_FORCED_SET_RESET:
                 process_forced_set_reset_detail(c, finsCommand, omron_fins_link_id);
