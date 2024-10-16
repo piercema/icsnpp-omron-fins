@@ -151,13 +151,13 @@ module OMRON_FINS;
                 general_log_response_code = process_file_memory_write_detail(c, finsCommand, omron_fins_link_id);
                 break;
              case OMRON_FINS_ENUMS::CommandCode_FORCED_SET_RESET:
-                process_forced_set_reset_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_forced_set_reset_detail(c, finsCommand, omron_fins_link_id);
                 break;
              case OMRON_FINS_ENUMS::CommandCode_FORCED_SET_RESET_CANCEL:
-                process_forced_set_reset_cancel_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_forced_set_reset_cancel_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_MULTIPLE_FORCED_STATUS_READ:
-                process_multiple_forced_status_read_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_multiple_forced_status_read_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_CLOCK_READ:
                 general_log_response_code = process_clock_read_detail(c, finsCommand, omron_fins_link_id);
