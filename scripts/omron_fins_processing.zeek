@@ -18,7 +18,7 @@ module OMRON_FINS;
                 general_log_response_code = process_memory_area_fill_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_MEMORY_AREA_TRANSFER:
-                process_memory_area_transfer_detail(c, finsCommand, omron_fins_link_id);
+                general_log_response_code = process_memory_area_transfer_detail(c, finsCommand, omron_fins_link_id);
                 break;
             case OMRON_FINS_ENUMS::CommandCode_PARAMETER_AREA_READ:
                 general_log_response_code = process_parameter_area_read_detail(c, finsCommand, omron_fins_link_id);
