@@ -27,11 +27,12 @@ module OMRON_FINS;
 
             # Set the general logging response code
             general_log_response_code = info_detail_log$response_code;
-        }
 
-        # Fire the event and tidy up
-        OMRON_FINS::emit_omron_fins_detail_log(c);
-        delete c$omron_fins_detail_log;
+            # Fire the event and tidy up
+            OMRON_FINS::emit_omron_fins_detail_log(c);
+            delete c$omron_fins_detail_log;
+
+        }
 
         # Return the response code for general logging
         return general_log_response_code;
