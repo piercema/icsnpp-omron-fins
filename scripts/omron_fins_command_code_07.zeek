@@ -26,11 +26,12 @@ module OMRON_FINS;
 
             # Set the general logging response code
             general_log_response_code = info_detail_log$response_code;
-        }
 
-        # Fire the event and tidy up
-        OMRON_FINS::emit_omron_fins_detail_log(c);
-        delete c$omron_fins_detail_log;
+            # Fire the event and tidy up
+            OMRON_FINS::emit_omron_fins_detail_log(c);
+            delete c$omron_fins_detail_log;
+
+        }
 
         # Return the response code for general logging
         return general_log_response_code;
@@ -56,16 +57,20 @@ module OMRON_FINS;
             info_detail_log$minute        = finsCommand$clockWriteCommand$command$minute;
             info_detail_log$second        = finsCommand$clockWriteCommand$command$second;
             info_detail_log$day           = OMRON_FINS_ENUMS::DAY_OF_WEEK[finsCommand$clockWriteCommand$command$day];
+
+            # Fire the event and tidy up
+            OMRON_FINS::emit_omron_fins_detail_log(c);
+            delete c$omron_fins_detail_log;
+
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
-            info_detail_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$clockWriteCommand$response$responseCode];
+            #
+            # Since there is only a response for this command, we capture the response_code in the general log file and 
+            # not in the info_detail_log file.
+            #
 
             # Set the general logging response code
-            general_log_response_code = info_detail_log$response_code;
+            general_log_response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$clockWriteCommand$response$responseCode];
         }
-
-        # Fire the event and tidy up
-        OMRON_FINS::emit_omron_fins_detail_log(c);
-        delete c$omron_fins_detail_log;
 
         # Return the response code for general logging
         return general_log_response_code;
