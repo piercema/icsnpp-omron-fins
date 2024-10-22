@@ -132,16 +132,19 @@ module OMRON_FINS;
             info_file_log$data_length = finsCommand$singleFileWriteCommand$command$dataLength;
             info_file_log$fuid = finsCommand$singleFileWriteCommand$command$fuid;
 
+            # Fire the event and tidy up
+            OMRON_FINS::emit_omron_fins_file_log(c);
+            delete c$omron_fins_file_log;
+
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
-            info_file_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$singleFileWriteCommand$response$responseCode];
+            #
+            # Since there is only a response for this command, we capture the response_code in the general log file and 
+            # not in the info_detail_log file.
+            #
 
             # Set the general logging response code
-            general_log_response_code = info_file_log$response_code;
+            general_log_response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$singleFileWriteCommand$response$responseCode];
         }
-
-        # Fire the event and tidy up
-        OMRON_FINS::emit_omron_fins_file_log(c);
-        delete c$omron_fins_file_log;
 
         # Return the response code for general logging
         return general_log_response_code;
@@ -160,16 +163,20 @@ module OMRON_FINS;
 
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
             info_file_log$disk_no = finsCommand$memoryCardFormatCommand$command$diskNo;
+
+            # Fire the event and tidy up
+            OMRON_FINS::emit_omron_fins_file_log(c);
+            delete c$omron_fins_file_log;
+
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
-            info_file_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$memoryCardFormatCommand$response$responseCode];
+            #
+            # Since there is only a response for this command, we capture the response_code in the general log file and 
+            # not in the info_detail_log file.
+            #
 
             # Set the general logging response code
-            general_log_response_code = info_file_log$response_code;
+            general_log_response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$memoryCardFormatCommand$response$responseCode];
         }
-
-        # Fire the event and tidy up
-        OMRON_FINS::emit_omron_fins_file_log(c);
-        delete c$omron_fins_file_log;
 
         # Return the response code for general logging
         return general_log_response_code;
@@ -236,16 +243,19 @@ module OMRON_FINS;
             info_file_log$parameter_code = OMRON_FINS_ENUMS::VOLUME_PARAMETER_CODE[finsCommand$volumeLabelCreateDeleteCommand$command$parameterCode];
             info_file_log$volume_label = finsCommand$volumeLabelCreateDeleteCommand$command$volumeLabel;
 
+            # Fire the event and tidy up
+            OMRON_FINS::emit_omron_fins_file_log(c);
+            delete c$omron_fins_file_log;
+
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
-            info_file_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$volumeLabelCreateDeleteCommand$response$responseCode];
+            #
+            # Since there is only a response for this command, we capture the response_code in the general log file and 
+            # not in the info_detail_log file.
+            #
             
             # Set the general logging response code
-            general_log_response_code = info_file_log$response_code;
+            general_log_response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$volumeLabelCreateDeleteCommand$response$responseCode];
         }
-
-        # Fire the event and tidy up
-        OMRON_FINS::emit_omron_fins_file_log(c);
-        delete c$omron_fins_file_log;
 
         # Return the response code for general logging
         return general_log_response_code;
@@ -268,16 +278,19 @@ module OMRON_FINS;
             info_file_log$dst_disk_no = finsCommand$fileCopyCommand$command$dstDiskNo;
             info_file_log$dst_file_name = finsCommand$fileCopyCommand$command$dstFileName$fileName;
 
+            # Fire the event and tidy up
+            OMRON_FINS::emit_omron_fins_file_log(c);
+            delete c$omron_fins_file_log;
+
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
-            info_file_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$fileCopyCommand$response$responseCode];
+            #
+            # Since there is only a response for this command, we capture the response_code in the general log file and 
+            # not in the info_detail_log file.
+            #
             
             # Set the general logging response code
-            general_log_response_code = info_file_log$response_code;
+            general_log_response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$fileCopyCommand$response$responseCode];
         }
-
-        # Fire the event and tidy up
-        OMRON_FINS::emit_omron_fins_file_log(c);
-        delete c$omron_fins_file_log;
  
         # Return the response code for general logging
         return general_log_response_code;
@@ -299,16 +312,19 @@ module OMRON_FINS;
             info_file_log$old_file_name = finsCommand$fileNameChangeCommand$command$oldFileName$fileName;
             info_file_log$new_file_name = finsCommand$fileNameChangeCommand$command$newFileName$fileName;
 
+            # Fire the event and tidy up
+            OMRON_FINS::emit_omron_fins_file_log(c);
+            delete c$omron_fins_file_log;
+
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
-            info_file_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$fileNameChangeCommand$response$responseCode];
+            #
+            # Since there is only a response for this command, we capture the response_code in the general log file and 
+            # not in the info_detail_log file.
+            #
             
             # Set the general logging response code
-            general_log_response_code = info_file_log$response_code;
+            general_log_response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$fileNameChangeCommand$response$responseCode];
         }
-
-        # Fire the event and tidy up
-        OMRON_FINS::emit_omron_fins_file_log(c);
-        delete c$omron_fins_file_log;
   
         # Return the response code for general logging
         return general_log_response_code;
@@ -329,16 +345,19 @@ module OMRON_FINS;
             info_file_log$disk_no = finsCommand$fileDataCheckCommand$command$diskNo;
             info_file_log$file_name = finsCommand$fileDataCheckCommand$command$fileName$fileName;
 
+            # Fire the event and tidy up
+            OMRON_FINS::emit_omron_fins_file_log(c);
+            delete c$omron_fins_file_log;
+
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
-            info_file_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$fileDataCheckCommand$response$responseCode];
+            #
+            # Since there is only a response for this command, we capture the response_code in the general log file and 
+            # not in the info_detail_log file.
+            #
              
             # Set the general logging response code
-            general_log_response_code = info_file_log$response_code;
+            general_log_response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$fileDataCheckCommand$response$responseCode];
        }
-
-        # Fire the event and tidy up
-        OMRON_FINS::emit_omron_fins_file_log(c);
-        delete c$omron_fins_file_log;
   
         # Return the response code for general logging
         return general_log_response_code;
@@ -556,16 +575,19 @@ module OMRON_FINS;
             info_file_log$block_no = finsCommand$fileMemoryWriteCommand$command$blockNo;
             info_file_log$memory_data = finsCommand$fileMemoryWriteCommand$command$data;
 
+            # Fire the event and tidy up
+            OMRON_FINS::emit_omron_fins_file_log(c);
+            delete c$omron_fins_file_log;
+
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
-            info_file_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$fileMemoryWriteCommand$response$responseCode];
+            #
+            # Since there is only a response for this command, we capture the response_code in the general log file and 
+            # not in the info_detail_log file.
+            #
              
             # Set the general logging response code
-            general_log_response_code = info_file_log$response_code;
+            general_log_response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$fileMemoryWriteCommand$response$responseCode];
         }
-
-        # Fire the event and tidy up
-        OMRON_FINS::emit_omron_fins_file_log(c);
-        delete c$omron_fins_file_log;
   
         # Return the response code for general logging
         return general_log_response_code;
