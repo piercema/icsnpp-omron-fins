@@ -50,11 +50,11 @@ module OMRON_FINS;
 
             # Set the general logging response code
             general_log_response_code = info_detail_log$response_code;
-        }
 
-        # Fire the event and tidy up
-        OMRON_FINS::emit_omron_fins_detail_log(c);
-        delete c$omron_fins_detail_log;
+            # Fire the event and tidy up
+            OMRON_FINS::emit_omron_fins_detail_log(c);
+            delete c$omron_fins_detail_log;
+        }
 
         # Return the response code for general logging
         return general_log_response_code;
@@ -69,11 +69,11 @@ module OMRON_FINS;
 
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
             info_detail_log$test_data     = finsCommand$broadcastTestDataSendCommand$command$testData;
+
+            # Fire the event and tidy up
+            OMRON_FINS::emit_omron_fins_detail_log(c);
+            delete c$omron_fins_detail_log;
         }
         
         # Note: No response is returned from the Broadcast Test Data Send command.
-
-        # Fire the event and tidy up
-        OMRON_FINS::emit_omron_fins_detail_log(c);
-        delete c$omron_fins_detail_log;
     }
