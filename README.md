@@ -132,15 +132,13 @@ This log captures the detailed data used with the FINS commands and responses.
 | no_of_units                        | count            | The number of data units read/returned
 | unit_address                       | string           | Connection Data Read - the unit address of the first Unit whos model number is to be read.
 | model_number                       | string           | Connection Data Read - the model number read
-|                                    |                  |
-| # Controller Status Data Read details                 |
-| controller_status_data_read_status | string           |
-| controller_status_data_read_mode   | string           |
-| fatal_error                        | vector of string |
-| non_fatal_error                    | vector of string |
-| message_yes_no                     | vector of string |
-| fal_fals_no                        | count            |
-| error_message                      | string           |
+| controller_status_data_read_status | string           | Controller Status Read - the operating status of the PC (00: Stop; 01: Run; 80: Standby)
+| controller_status_data_read_mode   | string           | Controller Status Read - PC mode (00: PROGRAM; 01: DEBUG; 02: MONITOR; 04: RUN)
+| fatal_error                        | vector of string | Controller Status Read - the contents of PC fatal error information
+| non_fatal_error                    | vector of string | Controller Status Read - the contents of PC non-fatal error information
+| message_yes_no                     | vector of string | Controller Status Read - corresponding message numbers (0: No; 1: Yes)
+| fal_fals_no                        | count            | Controller Status Read - the highest priority FALS or FALS error.
+| error_message                      | string           | Controller Status Read - the Error message of the present FAL/FALS number
 |                                    |                  |
 | # Cycle Time Read                  |                  |
 | cycle_time_read_parameter          | string           |
