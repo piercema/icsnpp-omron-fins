@@ -104,27 +104,25 @@ This log captures the detailed data used with the FINS commands and responses.
 | block_record_kind_of_dm            | string           | Data Link Table Read/Write - kind of DM; Set to 00
 | block_record_dm_area_first_word    | string           | Data Link Table Read/Write - the first word in a data link in the DM Area
 | block_record_num_of_total_words    | count            | Data Link Table Read/Write - the total number of words used for data links in the CIO and DM Area
-| program_no                         | count            |
-| protect_code                       | count            |
-| password                           | string           |
-| last_word                          | string           |
-| clear_code                         | string           |
-| number_of_bytes                    | count            |
-| run_mode                           | string           |
-| controller_data_to_read            | string           |
-
-| # Controller Model                 |                  |
-| controller_model                   | string           |
-| controller_version                 | string           |
-| for_system_use                     | string           |
-| program_area_size                  | count            |
-| iom_size                           | count            |
-| no_of_dm_words                     | count            |
-| timer_size                         | count            |
-| expansion_dm_size                  | count            |
-| no_of_steps_transitions            | count            |
-| kind_of_memory_card                | string           |
-| memory_card_size                   | count            |
+| program_no                         | count            | Set to 0000
+| protect_code                       | count            | Set to 00
+| password                           | string           | Program Area Protect/Clear - password
+| last_word                          | string           | Program Area Protect/Clear - Set to 00000000
+| clear_code                         | string           | Program Area Clear - Set to 00
+| number_of_bytes                    | count            | The number of data bytes
+| run_mode                           | string           | Run mode (00: Program; 01: Debug; 02: Monitor; 04: Run)
+| controller_data_to_read            | string           | Controller Data Read - the specified data to read
+| controller_model                   | string           | Controller Data Read - model
+| controller_version                 | string           | Controller Data Read - version
+| for_system_use                     | string           | Controller Data Read - reserved for system use
+| program_area_size                  | count            | Controller Data Read - the size of PC Setup and program area
+| iom_size                           | count            | Controller Data Read - the size of the area in which bit/word commands can be used
+| no_of_dm_words                     | count            | Controller Data Read - total words in the DM area
+| timer_size                         | count            | Controller Data Read - maxium no. of timers/counters available
+| expansion_dm_size                  | count            | Controller Data Read - banks in the expansion DM area
+| no_of_steps_transitions            | count            | Controller Data Read - maximum no. of steps/transitions available
+| kind_of_memory_card                | string           | Controller Data Read - kind of memory card (00: No memory card; 01: SPRAM; 02: EPROM; 03: EEPROM)
+| memory_card_size                   | count            | Controller Data Read - size of the memory card. K byte (1 word - 2 bytes)
 
 | # CPU Bus Unit                     |                  |
 | cpu_bus_unit_config                | vector of count  |
