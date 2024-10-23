@@ -126,7 +126,6 @@ module OMRON_FINS;
             # Set the data
             info_detail_log$omron_fins_link_id = link_id;
             info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
-            info_detail_log$fixed = finsCommand$dataLinkTableReadCommand$command$fixed;
             info_detail_log$intelligent_id_no = finsCommand$dataLinkTableReadCommand$command$intelligentIdNo;
             info_detail_log$first_word = finsCommand$dataLinkTableReadCommand$command$firstWord;
             info_detail_log$read_length = finsCommand$dataLinkTableReadCommand$command$readLength;
@@ -185,7 +184,6 @@ module OMRON_FINS;
                 info_detail_log$omron_fins_link_id = link_id;
                 info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
 
-                info_detail_log$fixed = finsCommand$dataLinkTableWriteCommand$command$fixed;
                 info_detail_log$intelligent_id_no = finsCommand$dataLinkTableWriteCommand$command$intelligentIdNo;
                 info_detail_log$first_word = finsCommand$dataLinkTableWriteCommand$command$firstWord;
                 info_detail_log$data_length = finsCommand$dataLinkTableWriteCommand$command$dataLength;

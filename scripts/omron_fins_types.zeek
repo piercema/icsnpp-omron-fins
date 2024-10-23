@@ -49,7 +49,6 @@ module OMRON_FINS;
         second                      : count  &log &optional;
         day                         : string &log &optional;
 
-        fixed                            : string &log &optional;
         intelligent_id_no                : string &log &optional;
         first_word                       : string &log &optional;
         read_length                      : string &log &optional;
