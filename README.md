@@ -139,12 +139,10 @@ This log captures the detailed data used with the FINS commands and responses.
 | message_yes_no                     | vector of string | Controller Status Read - corresponding message numbers (0: No; 1: Yes)
 | fal_fals_no                        | count            | Controller Status Read - the highest priority FALS or FALS error.
 | error_message                      | string           | Controller Status Read - the Error message of the present FAL/FALS number
-|                                    |                  |
-| # Cycle Time Read                  |                  |
-| cycle_time_read_parameter          | string           |
-| average_cycle_time                 | double           |
-| max_cycle_time                     | double           |
-| min_cycle_time                     | double           |
+| cycle_time_read_parameter          | string           | Cycle Time Read - parameter code (00: Initialized the cycle time; 01: Read the average, max, and min cycletime)
+| average_cycle_time                 | double           | Cycle Time Read - average cycle time (max cycle time + min cycle time) / 2
+| max_cycle_time                     | double           | Cycle Time Read - maximum cycle time
+| min_cycle_time                     | double           | Cycle Time Read - minimum cycle time
 |                                    |                  |
 | # Loopback Test                    |                  |
 | test_data                          | string           |
