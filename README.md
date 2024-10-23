@@ -123,20 +123,15 @@ This log captures the detailed data used with the FINS commands and responses.
 | no_of_steps_transitions            | count            | Controller Data Read - maximum no. of steps/transitions available
 | kind_of_memory_card                | string           | Controller Data Read - kind of memory card (00: No memory card; 01: SPRAM; 02: EPROM; 03: EEPROM)
 | memory_card_size                   | count            | Controller Data Read - size of the memory card. K byte (1 word - 2 bytes)
-
-| # CPU Bus Unit                     |                  |
-| cpu_bus_unit_config                | vector of count  |
-| no_of_sysmac_bus_master_mounted    | count            |
-| no_of_sysmac_bus2_master_mounted   | count            |
-
-| # CPU Bus Unit - PC Status details |                  |
-| peripheral_device_connected        | count            |
-| built_in_host_interface            | count            |
-| no_of_racks_connected              | count            |
-|                                    |                  |
-| no_of_units                        | count            |
-| unit_address                       | string           |
-| model_number                       | string           |
+| cpu_bus_unit_config                | vector of count  | Controller Data Read - CPU Bus unit numbers
+| no_of_sysmac_bus_master_mounted    | count            | Controller Data Read - no of SYSMAC BUS Masters mounted
+| no_of_sysmac_bus2_master_mounted   | count            | Controller Data Read - no of SYSMAC BUS Masters mounted
+| peripheral_device_connected        | count            | Controller Data Read - peripheral device connected (0: no; 1: yes)
+| built_in_host_interface            | count            | Controller Data Read - with built-in host insterface (always 1)
+| no_of_racks_connected              | count            | Controller Data Read - no of Racks connected to the PC
+| no_of_units                        | count            | The number of data units read/returned
+| unit_address                       | string           | Connection Data Read - the unit address of the first Unit whos model number is to be read.
+| model_number                       | string           | Connection Data Read - the model number read
 |                                    |                  |
 | # Controller Status Data Read details                 |
 | controller_status_data_read_status | string           |
