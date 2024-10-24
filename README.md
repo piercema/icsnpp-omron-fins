@@ -250,3 +250,30 @@ This log captures the information associated with the Data Link Status Read comm
 | error_status                       | string           | Error status (0: Normal; 1: Error)                                   |
 | mode_status                        | string           | Mode status (0: Stop; 1: Run)                                        |
 | warning_status                     | string           | Warning status (0: Normal; 1: Warning)                               |
+
+## OMRON FINS Network Status Read Log (omron_fins_network_status_read.log)
+
+#### Overview
+
+This log captures the information associated with the Network Status Read command.
+
+#### Fields Captured
+| Field                              | Type             | Description                                                                                                                                         |
+| -----------------------------------|------------------|---------------------------------------------------------------------------------------------|
+| ts                                 | time             | Timestamp (network time)                                                                    |
+| uid                                | string           | Unique ID for this connection                                                               |
+| id                                 | conn_id          | Default Zeek connection info (IP Addresses, Ports, etc.)                                    |
+| omron_fins_link_id                 | string           | Link id to link one log file to another                                                     |
+| command_code                       | string           | The command to execute                                                                      |
+| icf_data_type                      | string           | Data type (0: command; 1: response)                                                         |
+| response_code                      | string           | The response from executing the command                                                     |
+| node_number                        | count            | Node number                                                                                 |
+| in_network                         | string           | In Network (1: In Network; 0 Not in network)                                                |
+| exit_status                        | string           | Exit status (1: Exited because of an error; 0: Normal exit)                                 |
+| polling                            | string           | Polling (1: Unit does not respond to polling)                                               |
+| communication_cycle_time           | double           | The actual communications cycle time                                                        |
+| current_polling_node_number        | count            | The node number of the unit that is the polling point                                       |
+| cyclic_operation                   | string           | Indicates the current status of cyclic operation (00: Stopped; 01: Active)                  |
+| cyclic_transmission_status         | string           | Indicates the current status of cyclic transmission (00: No transmission; 01: Transmission) |
+| non_fatal_error                    | string           | Indicates nodes in which non-fatal errors occurred in cyclic transmission                   |
+| cyclic_error_count                 | count            | Indicates how many cyclic errors occurred since start up.                                   |
