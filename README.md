@@ -226,3 +226,27 @@ This log captures the error data used with the FINS commands and responses.
 | hour                               | count            | Error Log Read - hour error occurred                                |
 | year                               | count            | Error Log Read - year error occurred                                |
 | month                              | count            | Error Log Read - month error occurred                               |
+
+## OMRON FINS Data Link Status Read Log (omron_fins_data_link_status_read.log)
+
+#### Overview
+
+This log captures the information associated with the Data Link Status Read command
+
+#### Fields Captured
+| Field                              | Type             | Description                                                                                                                                         |
+| -----------------------------------|------------------|----------------------------------------------------------------------|
+| ts                                 | time             | Timestamp (network time)                                             |
+| uid                                | string           | Uinque ID for this connection                                        |
+| id                                 | conn_id          | Default Zeek connection info (IP Addresses, Ports, etc.)             |
+| omron_fins_link_id                 | string           | Link id to link one log file to another                              |
+| command_code                       | string           | The command to execute                                               |
+| icf_data_type                      | string           | Data type (0: command; 1: response)                                  |
+| response_code                      | string           | The response from executing the command                              |
+| node_number                        | count            | Node number                                                          |
+| data_links                         | string           | Data links (0: Not active; 1: Active)                                |
+| node_setting                       | string           | Slave/Master (0: Slave; 1: Master)                                   |
+| master_node_number                 | count            | The node number of the master node of the data link will be returned |
+| error_status                       | string           | Error status (0: Normal; 1: Error)                                   |
+| mode_status                        | string           | Mode status (0: Stop; 1: Run)                                        |
+| warning_status                     | string           | Warning status (0: Normal; 1: Warning)                               |
