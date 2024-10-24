@@ -43,7 +43,7 @@ This log summarizes the header data used for FINS commands and responses.
 | Field                       | Type            | Description                                                                        |
 | ----------------------------|-----------------|------------------------------------------------------------------------------------|
 | ts                          | time            | Timestamp (network time)                                                           |
-| uid                         | string          | Uinque ID for this connection                                                      |
+| uid                         | string          | Unique ID for this connection                                                      |
 | id                          | conn_id         | Default Zeek connection info (IP Addresses, Ports, etc.)                           |
 | proto                       | string          | Transport protocol                                                                 |
 | omron_fins_link_id          | string          | Link id to link one log file to another                                            |
@@ -71,7 +71,7 @@ This log captures the detailed data used with the FINS commands and responses.
 | Field                              | Type             | Description                                                                                                                                         |
 | -----------------------------------|------------------|---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ts                                 | time             | Timestamp (network time)                                                                                                                            |
-| uid                                | string           | Uinque ID for this connection                                                                                                                       |
+| uid                                | string           | Unique ID for this connection                                                                                                                       |
 | id                                 | conn_id          | Default Zeek connection info (IP Addresses, Ports, etc.)                                                                                            |
 | omron_fins_link_id                 | string           | Link id to link one log file to another                                                                                                             |
 | command_code                       | string           | The command to execute                                                                                                                              |
@@ -207,7 +207,7 @@ This log captures the error data used with the FINS commands and responses.
 | Field                              | Type             | Description                                                                                                                                         |
 | -----------------------------------|------------------|-------------------------------------------------------------------- |
 | ts                                 | time             | Timestamp (network time)                                            |
-| uid                                | string           | Uinque ID for this connection                                       |
+| uid                                | string           | Unique ID for this connection                                       |
 | id                                 | conn_id          | Default Zeek connection info (IP Addresses, Ports, etc.)            |
 | omron_fins_link_id                 | string           | Link id to link one log file to another                             |
 | command_code                       | string           | The command to execute                                              |
@@ -237,7 +237,7 @@ This log captures the information associated with the Data Link Status Read comm
 | Field                              | Type             | Description                                                                                                                                         |
 | -----------------------------------|------------------|----------------------------------------------------------------------|
 | ts                                 | time             | Timestamp (network time)                                             |
-| uid                                | string           | Uinque ID for this connection                                        |
+| uid                                | string           | Unique ID for this connection                                        |
 | id                                 | conn_id          | Default Zeek connection info (IP Addresses, Ports, etc.)             |
 | omron_fins_link_id                 | string           | Link id to link one log file to another                              |
 | command_code                       | string           | The command to execute                                               |
