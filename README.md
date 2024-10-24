@@ -143,60 +143,53 @@ This log captures the detailed data used with the FINS commands and responses.
 | average_cycle_time                 | double           | Cycle Time Read - average cycle time (max cycle time + min cycle time) / 2
 | max_cycle_time                     | double           | Cycle Time Read - maximum cycle time
 | min_cycle_time                     | double           | Cycle Time Read - minimum cycle time
-|                                    |                  |
-| # Loopback Test                    |                  |
-| test_data                          | string           |
-|                                    |                  |
-| # Broadcast Test Results Read      |                  |
-| number_of_receptions               | count            |
-|                                    |                  |
-| # Message Read | Message Clear | FAL/FALS Read        |
-| command                            | string           |
-| message_no_0                       | string           |
-| message_no_1                       | string           |
-| message_no_2                       | string           |
-| message_no_3                       | string           |
-| message_no_4                       | string           |
-| message_no_5                       | string           |
-| message_no_6                       | string           |
-| message_no_7                       | string           |
-| message_0                          | string           |
-| message_1                          | string           |
-| message_2                          | string           |
-| message_3                          | string           |
-| message_4                          | string           |
-| message_5                          | string           |
-| message_6                          | string           |
-| message_7                          | string           |
-|                                    |                  |
-| fal_fals_no_0                      | string           |
-| fal_fals_no_1                      | string           |
-| fal_fals_no_2                      | string           |
-| fal_fals_no_3                      | string           |
-| fal_fals_no_4                      | string           |
-| fal_fals_no_5                      | string           |
-| fal_fals_no_6                      | string           |
-| fal_fals_no_7                      | string           |
-| fal_fals_no_8                      | string           |
-| fal_fals_no_9                      | string           |
-| fal_fals_no_10                     | string           |
-| fal_fals_no_11                     | string           |
-| fal_fals_no_12                     | string           |
-| fal_fals_no_13                     | string           |
-| fal_fals_0                         | string           |
-| fal_fals_1                         | string           |
-| fal_fals_2                         | string           |
-| fal_fals_3                         | string           |
-| fal_fals_4                         | string           |
-| fal_fals_5                         | string           |
-| fal_fals_6                         | string           |
-| fal_fals_7                         | string           |
-| fal_fals_8                         | string           |
-| fal_fals_9                         | string           |
-| fal_fals_10                        | string           |
-| fal_fals_11                        | string           |
-| fal_fals_12                        | string           |
-| fal_fals_13                        | string           |
+| test_data                          | string           | Loop-Back Test - test data to be transmitted
+| number_of_receptions               | count            | Broadcast Test Results Read - The number of times the Broadcast Test Data Send command has been executed since the last Broadcast Test Results Read
+| command                            | string           | Message Read | Message Clear | FAL/FALS Read - the actual command (READ, CLEAR, FAL/FALS)
+| message_no_0                       | string           | Message Read | Message Clear - message 0 enabled (True/False)
+| message_no_1                       | string           | Message Read | Message Clear - message 1 enabled (True/False)
+| message_no_2                       | string           | Message Read | Message Clear - message 2 enabled (True/False)
+| message_no_3                       | string           | Message Read | Message Clear - message 3 enabled (True/False)
+| message_no_4                       | string           | Message Read | Message Clear - message 4 enabled (True/False)
+| message_no_5                       | string           | Message Read | Message Clear - message 5 enabled (True/False)
+| message_no_6                       | string           | Message Read | Message Clear - message 6 enabled (True/False)
+| message_no_7                       | string           | Message Read | Message Clear - message 7 enabled (True/False)
+| message_0                          | string           | Message Read - message 0 data
+| message_1                          | string           | Message Read - message 1 data
+| message_2                          | string           | Message Read - message 2 data
+| message_3                          | string           | Message Read - message 3 data
+| message_4                          | string           | Message Read - message 4 data
+| message_5                          | string           | Message Read - message 5 data
+| message_6                          | string           | Message Read - message 6 data
+| message_7                          | string           | Message Read - message 7 data
+| fal_fals_no_0                      | string           | Message FAL/FALS - FAL/FALS 0 enabled (True/False)
+| fal_fals_no_1                      | string           | Message FAL/FALS - FAL/FALS 1 enabled (True/False)
+| fal_fals_no_2                      | string           | Message FAL/FALS - FAL/FALS 2 enabled (True/False)
+| fal_fals_no_3                      | string           | Message FAL/FALS - FAL/FALS 3 enabled (True/False)
+| fal_fals_no_4                      | string           | Message FAL/FALS - FAL/FALS 4 enabled (True/False)
+| fal_fals_no_5                      | string           | Message FAL/FALS - FAL/FALS 5 enabled (True/False)
+| fal_fals_no_6                      | string           | Message FAL/FALS - FAL/FALS 6 enabled (True/False)
+| fal_fals_no_7                      | string           | Message FAL/FALS - FAL/FALS 7 enabled (True/False)
+| fal_fals_no_8                      | string           | Message FAL/FALS - FAL/FALS 8 enabled (True/False)
+| fal_fals_no_9                      | string           | Message FAL/FALS - FAL/FALS 9 enabled (True/False)
+| fal_fals_no_10                     | string           | Message FAL/FALS - FAL/FALS 10 enabled (True/False)
+| fal_fals_no_11                     | string           | Message FAL/FALS - FAL/FALS 11 enabled (True/False)
+| fal_fals_no_12                     | string           | Message FAL/FALS - FAL/FALS 12 enabled (True/False)
+| fal_fals_no_13                     | string           | Message FAL/FALS - FAL/FALS 13 enabled (True/False)
+| fal_fals_0                         | string           | Message FAL/FALS - error message 0
+| fal_fals_1                         | string           | Message FAL/FALS - error message 1
+| fal_fals_2                         | string           | Message FAL/FALS - error message 2
+| fal_fals_3                         | string           | Message FAL/FALS - error message 3
+| fal_fals_4                         | string           | Message FAL/FALS - error message 4
+| fal_fals_5                         | string           | Message FAL/FALS - error message 5
+| fal_fals_6                         | string           | Message FAL/FALS - error message 6
+| fal_fals_7                         | string           | Message FAL/FALS - error message 7
+| fal_fals_8                         | string           | Message FAL/FALS - error message 8
+| fal_fals_9                         | string           | Message FAL/FALS - error message 9
+| fal_fals_10                        | string           | Message FAL/FALS - error message 10
+| fal_fals_11                        | string           | Message FAL/FALS - error message 11
+| fal_fals_12                        | string           | Message FAL/FALS - error message 12
+| fal_fals_13                        | string           | Message FAL/FALS - error message 13 
 |                                    |                  |
 | # Access Right Acquire             |                  |
 | acquire_network_address            | count            |
