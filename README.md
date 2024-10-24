@@ -196,3 +196,33 @@ This log captures the detailed data used with the FINS commands and responses.
 | no_of_bits                         | count            | Forces Set/Reset - the number of bits/flags to be controlled                                                                                        |
 | set_reset_specification            | string           | Forces Set/Reset - the action to be taken for each bit/flag                                                                                         |
 | bit_flag                           | count            | Forces Set/Reset - the bit or flag to be controlled                                                                                                 |
+
+## OMRON FINS Error Log (omron_fins_error.log)
+
+#### Overview
+
+This log captures the error data used with the FINS commands and responses.
+
+#### Fields Captured
+| Field                              | Type             | Description                                                                                                                                         |
+| -----------------------------------|------------------|-------------------------------------------------------------------- |
+| ts                                 | time             | Timestamp (network time)                                            |
+| uid                                | string           | Uinque ID for this connection                                       |
+| id                                 | conn_id          | Default Zeek connection info (IP Addresses, Ports, etc.)            |
+| omron_fins_link_id                 | string           | Link id to link one log file to another                             |
+| command_code                       | string           | The command to execute                                              |
+| icf_data_type                      | string           | Data type (0: command; 1: response)                                 |
+| response_code                      | string           | The response from executing the command                             |
+| error_reset_fal_no                 | string           | Error Clear - the code of the error to be reset.                    |
+| beginning_record_no                | count            | Error Log Read - the first record to be read                        |
+| max_no_stored_records              | count            | Error Log Read - the maximum number of records that can be recorded |
+| no_of_stored_records               | count            | Error Log Read - the number of records that have been recorded      |
+| no_of_records                      | count            | Error Log Read - the number of records read                         |
+| error_code_1                       | string           | Error Log Read - associated error code                              |
+| error_code_2                       | string           | Error Log Read - associated error code                              |
+| minute                             | count            | Error Log Read - minute error occurred                              |
+| second                             | count            | Error Log Read - second error occurred                              |
+| day                                | count            | Error Log Read - day error occurred                                 |
+| hour                               | count            | Error Log Read - hour error occurred                                |
+| year                               | count            | Error Log Read - year error occurred                                |
+| month                              | count            | Error Log Read - month error occurred                               |
