@@ -68,137 +68,131 @@ This log summarizes the header data used for FINS commands and responses.
 This log captures the detailed data used with the FINS commands and responses.
 
 #### Fields Captured
-| Field                              | Type             | Description                                                                        |
-| -----------------------------------|------------------|------------------------------------------------------------------------------------|
-| ts                                 | time             | Timestamp (network time)                                                           |
-| uid                                | string           | Uinque ID for this connection                                                      |
-| id                                 | conn_id          | Default Zeek connection info (IP Addresses, Ports, etc.)                           |
-| omron_fins_link_id                 | string           | Link id to link one log file to another                                            |
-| command_code                       | string           | The command to execute                                                             |
-| icf_data_type                      | string           | Data type (0: command; 1: response)                                                |
-| memory_area_code                   | string           | The data area to read/write
-| beginning_address                  | string           | The address of the first word/bit/flag to read/write
-| number_of_items                    | count            | The number of items to read/write
-| parameter_area_code                | string           | The parameter area to read/write
-| beginning_word                     | string           | The first word to read/write
-| number_of_words                    | count            | The number of words to read/write
-| last_word_bit                      | count            | Last word bit (0: OFF; 1: ON)
-| response_code                      | string           | The response from executing the command
-| data                               | string           | The data to be read/written
-| year                               | count            | Clock read/write: Year
-| month                              | count            | Clock read/write: Month
-| date                               | count            | Clock read/write: Date
-| hour                               | count            | Clock read/write: Hour
-| minute                             | count            | Clock read/write: Minute
-| second                             | count            | Clock read/write: Second
-| day                                | string           | Clock read/write: Day
-| intelligent_id_no                  | string           | Data Link Table Read/Write - designate S (53) and N (4E) in ASCII.
-| first_word                         | string           | Data Link Table Read/Write - set to 0000
-| read_length                        | string           | Data Link Table Read - regardless of the value set, the data link tables for the number of link nodes that has been set will be read.
-| data_length                        | string           | The number of bytes to read/write/transfer/compare
-| num_of_link_nodes                  | count            | Data Link Table Read/Write - the number of link nodes
-| block_record_data_link_status      | string           | Data Link Table Read - data Link Status (0: normal; 1: warning)
-| block_record_num_of_link_nodes     | count            | Data Link Table Read - number of link nodes
-| block_record_node_num              | count            | Data Link Table Write - the data link node number 
-| block_record_cio_area_first_word   | string           | Data Link Table Read/Write - the first word in a data link in the CIO Area
-| block_record_kind_of_dm            | string           | Data Link Table Read/Write - kind of DM; Set to 00
-| block_record_dm_area_first_word    | string           | Data Link Table Read/Write - the first word in a data link in the DM Area
-| block_record_num_of_total_words    | count            | Data Link Table Read/Write - the total number of words used for data links in the CIO and DM Area
-| program_no                         | count            | Set to 0000
-| protect_code                       | count            | Set to 00
-| password                           | string           | Program Area Protect/Clear - password
-| last_word                          | string           | Program Area Protect/Clear - Set to 00000000
-| clear_code                         | string           | Program Area Clear - Set to 00
-| number_of_bytes                    | count            | The number of data bytes
-| run_mode                           | string           | Run mode (00: Program; 01: Debug; 02: Monitor; 04: Run)
-| controller_data_to_read            | string           | Controller Data Read - the specified data to read
-| controller_model                   | string           | Controller Data Read - model
-| controller_version                 | string           | Controller Data Read - version
-| for_system_use                     | string           | Controller Data Read - reserved for system use
-| program_area_size                  | count            | Controller Data Read - the size of PC Setup and program area
-| iom_size                           | count            | Controller Data Read - the size of the area in which bit/word commands can be used
-| no_of_dm_words                     | count            | Controller Data Read - total words in the DM area
-| timer_size                         | count            | Controller Data Read - maxium no. of timers/counters available
-| expansion_dm_size                  | count            | Controller Data Read - banks in the expansion DM area
-| no_of_steps_transitions            | count            | Controller Data Read - maximum no. of steps/transitions available
-| kind_of_memory_card                | string           | Controller Data Read - kind of memory card (00: No memory card; 01: SPRAM; 02: EPROM; 03: EEPROM)
-| memory_card_size                   | count            | Controller Data Read - size of the memory card. K byte (1 word - 2 bytes)
-| cpu_bus_unit_config                | vector of count  | Controller Data Read - CPU Bus unit numbers
-| no_of_sysmac_bus_master_mounted    | count            | Controller Data Read - no of SYSMAC BUS Masters mounted
-| no_of_sysmac_bus2_master_mounted   | count            | Controller Data Read - no of SYSMAC BUS Masters mounted
-| peripheral_device_connected        | count            | Controller Data Read - peripheral device connected (0: no; 1: yes)
-| built_in_host_interface            | count            | Controller Data Read - with built-in host insterface (always 1)
-| no_of_racks_connected              | count            | Controller Data Read - no of Racks connected to the PC
-| no_of_units                        | count            | The number of data units read/returned
-| unit_address                       | string           | Connection Data Read - the unit address of the first Unit whos model number is to be read.
-| model_number                       | string           | Connection Data Read - the model number read
-| controller_status_data_read_status | string           | Controller Status Read - the operating status of the PC (00: Stop; 01: Run; 80: Standby)
-| controller_status_data_read_mode   | string           | Controller Status Read - PC mode (00: PROGRAM; 01: DEBUG; 02: MONITOR; 04: RUN)
-| fatal_error                        | vector of string | Controller Status Read - the contents of PC fatal error information
-| non_fatal_error                    | vector of string | Controller Status Read - the contents of PC non-fatal error information
-| message_yes_no                     | vector of string | Controller Status Read - corresponding message numbers (0: No; 1: Yes)
-| fal_fals_no                        | count            | Controller Status Read - the highest priority FALS or FALS error.
-| error_message                      | string           | Controller Status Read - the Error message of the present FAL/FALS number
-| cycle_time_read_parameter          | string           | Cycle Time Read - parameter code (00: Initialized the cycle time; 01: Read the average, max, and min cycletime)
-| average_cycle_time                 | double           | Cycle Time Read - average cycle time (max cycle time + min cycle time) / 2
-| max_cycle_time                     | double           | Cycle Time Read - maximum cycle time
-| min_cycle_time                     | double           | Cycle Time Read - minimum cycle time
-| test_data                          | string           | Loop-Back Test - test data to be transmitted
-| number_of_receptions               | count            | Broadcast Test Results Read - The number of times the Broadcast Test Data Send command has been executed since the last Broadcast Test Results Read
-| command                            | string           | Message Read | Message Clear | FAL/FALS Read - the actual command (READ, CLEAR, FAL/FALS)
-| message_no_0                       | string           | Message Read | Message Clear - message 0 enabled (True/False)
-| message_no_1                       | string           | Message Read | Message Clear - message 1 enabled (True/False)
-| message_no_2                       | string           | Message Read | Message Clear - message 2 enabled (True/False)
-| message_no_3                       | string           | Message Read | Message Clear - message 3 enabled (True/False)
-| message_no_4                       | string           | Message Read | Message Clear - message 4 enabled (True/False)
-| message_no_5                       | string           | Message Read | Message Clear - message 5 enabled (True/False)
-| message_no_6                       | string           | Message Read | Message Clear - message 6 enabled (True/False)
-| message_no_7                       | string           | Message Read | Message Clear - message 7 enabled (True/False)
-| message_0                          | string           | Message Read - message 0 data
-| message_1                          | string           | Message Read - message 1 data
-| message_2                          | string           | Message Read - message 2 data
-| message_3                          | string           | Message Read - message 3 data
-| message_4                          | string           | Message Read - message 4 data
-| message_5                          | string           | Message Read - message 5 data
-| message_6                          | string           | Message Read - message 6 data
-| message_7                          | string           | Message Read - message 7 data
-| fal_fals_no_0                      | string           | Message FAL/FALS - FAL/FALS 0 enabled (True/False)
-| fal_fals_no_1                      | string           | Message FAL/FALS - FAL/FALS 1 enabled (True/False)
-| fal_fals_no_2                      | string           | Message FAL/FALS - FAL/FALS 2 enabled (True/False)
-| fal_fals_no_3                      | string           | Message FAL/FALS - FAL/FALS 3 enabled (True/False)
-| fal_fals_no_4                      | string           | Message FAL/FALS - FAL/FALS 4 enabled (True/False)
-| fal_fals_no_5                      | string           | Message FAL/FALS - FAL/FALS 5 enabled (True/False)
-| fal_fals_no_6                      | string           | Message FAL/FALS - FAL/FALS 6 enabled (True/False)
-| fal_fals_no_7                      | string           | Message FAL/FALS - FAL/FALS 7 enabled (True/False)
-| fal_fals_no_8                      | string           | Message FAL/FALS - FAL/FALS 8 enabled (True/False)
-| fal_fals_no_9                      | string           | Message FAL/FALS - FAL/FALS 9 enabled (True/False)
-| fal_fals_no_10                     | string           | Message FAL/FALS - FAL/FALS 10 enabled (True/False)
-| fal_fals_no_11                     | string           | Message FAL/FALS - FAL/FALS 11 enabled (True/False)
-| fal_fals_no_12                     | string           | Message FAL/FALS - FAL/FALS 12 enabled (True/False)
-| fal_fals_no_13                     | string           | Message FAL/FALS - FAL/FALS 13 enabled (True/False)
-| fal_fals_0                         | string           | Message FAL/FALS - error message 0
-| fal_fals_1                         | string           | Message FAL/FALS - error message 1
-| fal_fals_2                         | string           | Message FAL/FALS - error message 2
-| fal_fals_3                         | string           | Message FAL/FALS - error message 3
-| fal_fals_4                         | string           | Message FAL/FALS - error message 4
-| fal_fals_5                         | string           | Message FAL/FALS - error message 5
-| fal_fals_6                         | string           | Message FAL/FALS - error message 6
-| fal_fals_7                         | string           | Message FAL/FALS - error message 7
-| fal_fals_8                         | string           | Message FAL/FALS - error message 8
-| fal_fals_9                         | string           | Message FAL/FALS - error message 9
-| fal_fals_10                        | string           | Message FAL/FALS - error message 10
-| fal_fals_11                        | string           | Message FAL/FALS - error message 11
-| fal_fals_12                        | string           | Message FAL/FALS - error message 12
-| fal_fals_13                        | string           | Message FAL/FALS - error message 13 
-|                                    |                  |
-| # Access Right Acquire             |                  |
-| acquire_network_address            | count            |
-| acquire_node_number                | count            |
-| acquire_unit_address               | count            |
-|                                    |                  |
-| # Set/Reset details                |                  |
-| no_of_bits                         | count            |
-| set_reset_specification            | string           |
-| bit_flag                           | count            |
-|
-|
+| Field                              | Type             | Description                                                                                                                                         |
+| -----------------------------------|------------------|---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ts                                 | time             | Timestamp (network time)                                                                                                                            |
+| uid                                | string           | Uinque ID for this connection                                                                                                                       |
+| id                                 | conn_id          | Default Zeek connection info (IP Addresses, Ports, etc.)                                                                                            |
+| omron_fins_link_id                 | string           | Link id to link one log file to another                                                                                                             |
+| command_code                       | string           | The command to execute                                                                                                                              |
+| icf_data_type                      | string           | Data type (0: command; 1: response)                                                                                                                 |
+| memory_area_code                   | string           | The data area to read/write                                                                                                                         |
+| beginning_address                  | string           | The address of the first word/bit/flag to read/write                                                                                                |
+| number_of_items                    | count            | The number of items to read/write                                                                                                                   |
+| parameter_area_code                | string           | The parameter area to read/write                                                                                                                    |
+| beginning_word                     | string           | The first word to read/write                                                                                                                        |
+| number_of_words                    | count            | The number of words to read/write                                                                                                                   |
+| last_word_bit                      | count            | Last word bit (0: OFF; 1: ON)                                                                                                                       |
+| response_code                      | string           | The response from executing the command                                                                                                             |
+| data                               | string           | The data to be read/written                                                                                                                         |
+| year                               | count            | Clock read/write: Year                                                                                                                              |
+| month                              | count            | Clock read/write: Month                                                                                                                             |
+| date                               | count            | Clock read/write: Date                                                                                                                              |
+| hour                               | count            | Clock read/write: Hour                                                                                                                              |
+| minute                             | count            | Clock read/write: Minute                                                                                                                            |
+| second                             | count            | Clock read/write: Second                                                                                                                            |
+| day                                | string           | Clock read/write: Day                                                                                                                               |
+| intelligent_id_no                  | string           | Data Link Table Read/Write - designate S (53) and N (4E) in ASCII.                                                                                  |
+| first_word                         | string           | Data Link Table Read/Write - set to 0000                                                                                                            |
+| read_length                        | string           | Data Link Table Read - regardless of the value set, the data link tables for the number of link nodes that has been set will be read.               |
+| data_length                        | string           | The number of bytes to read/write/transfer/compare                                                                                                  |
+| num_of_link_nodes                  | count            | Data Link Table Read/Write - the number of link nodes                                                                                               |
+| block_record_data_link_status      | string           | Data Link Table Read - data Link Status (0: normal; 1: warning)                                                                                     |
+| block_record_num_of_link_nodes     | count            | Data Link Table Read - number of link nodes                                                                                                         |
+| block_record_node_num              | count            | Data Link Table Write - the data link node number                                                                                                   |
+| block_record_cio_area_first_word   | string           | Data Link Table Read/Write - the first word in a data link in the CIO Area                                                                          |
+| block_record_kind_of_dm            | string           | Data Link Table Read/Write - kind of DM; Set to 00                                                                                                  |
+| block_record_dm_area_first_word    | string           | Data Link Table Read/Write - the first word in a data link in the DM Area                                                                           |
+| block_record_num_of_total_words    | count            | Data Link Table Read/Write - the total number of words used for data links in the CIO and DM Area                                                   |
+| program_no                         | count            | Set to 0000                                                                                                                                         |
+| protect_code                       | count            | Set to 00                                                                                                                                           |
+| password                           | string           | Program Area Protect/Clear - password                                                                                                               |
+| last_word                          | string           | Program Area Protect/Clear - Set to 00000000                                                                                                        |
+| clear_code                         | string           | Program Area Clear - Set to 00                                                                                                                      |
+| number_of_bytes                    | count            | The number of data bytes                                                                                                                            |
+| run_mode                           | string           | Run mode (00: Program; 01: Debug; 02: Monitor; 04: Run)                                                                                             |
+| controller_data_to_read            | string           | Controller Data Read - the specified data to read                                                                                                   |
+| controller_model                   | string           | Controller Data Read - model                                                                                                                        |
+| controller_version                 | string           | Controller Data Read - version                                                                                                                      |
+| for_system_use                     | string           | Controller Data Read - reserved for system use                                                                                                      |
+| program_area_size                  | count            | Controller Data Read - the size of PC Setup and program area                                                                                        |
+| iom_size                           | count            | Controller Data Read - the size of the area in which bit/word commands can be used                                                                  |
+| no_of_dm_words                     | count            | Controller Data Read - total words in the DM area                                                                                                   |
+| timer_size                         | count            | Controller Data Read - maxium no. of timers/counters available                                                                                      |
+| expansion_dm_size                  | count            | Controller Data Read - banks in the expansion DM area                                                                                               |
+| no_of_steps_transitions            | count            | Controller Data Read - maximum no. of steps/transitions available                                                                                   |
+| kind_of_memory_card                | string           | Controller Data Read - kind of memory card (00: No memory card; 01: SPRAM; 02: EPROM; 03: EEPROM)                                                   |
+| memory_card_size                   | count            | Controller Data Read - size of the memory card. K byte (1 word - 2 bytes)                                                                           |
+| cpu_bus_unit_config                | vector of count  | Controller Data Read - CPU Bus unit numbers                                                                                                         |
+| no_of_sysmac_bus_master_mounted    | count            | Controller Data Read - no of SYSMAC BUS Masters mounted                                                                                             |
+| no_of_sysmac_bus2_master_mounted   | count            | Controller Data Read - no of SYSMAC BUS Masters mounted                                                                                             |
+| peripheral_device_connected        | count            | Controller Data Read - peripheral device connected (0: no; 1: yes)                                                                                  |
+| built_in_host_interface            | count            | Controller Data Read - with built-in host insterface (always 1)                                                                                     |
+| no_of_racks_connected              | count            | Controller Data Read - no of Racks connected to the PC                                                                                              |
+| no_of_units                        | count            | The number of data units read/returned                                                                                                              |
+| unit_address                       | string           | Connection Data Read - the unit address of the first Unit whos model number is to be read.                                                          |
+| model_number                       | string           | Connection Data Read - the model number read                                                                                                        |
+| controller_status_data_read_status | string           | Controller Status Read - the operating status of the PC (00: Stop; 01: Run; 80: Standby)                                                            |
+| controller_status_data_read_mode   | string           | Controller Status Read - PC mode (00: PROGRAM; 01: DEBUG; 02: MONITOR; 04: RUN)                                                                     |
+| fatal_error                        | vector of string | Controller Status Read - the contents of PC fatal error information                                                                                 |
+| non_fatal_error                    | vector of string | Controller Status Read - the contents of PC non-fatal error information                                                                             |
+| message_yes_no                     | vector of string | Controller Status Read - corresponding message numbers (0: No; 1: Yes)                                                                              |
+| fal_fals_no                        | count            | Controller Status Read - the highest priority FALS or FALS error.                                                                                   |
+| error_message                      | string           | Controller Status Read - the Error message of the present FAL/FALS number                                                                           |
+| cycle_time_read_parameter          | string           | Cycle Time Read - parameter code (00: Initialized the cycle time; 01: Read the average, max, and min cycletime)                                     |
+| average_cycle_time                 | double           | Cycle Time Read - average cycle time (max cycle time + min cycle time) / 2                                                                          |
+| max_cycle_time                     | double           | Cycle Time Read - maximum cycle time                                                                                                                |
+| min_cycle_time                     | double           | Cycle Time Read - minimum cycle time                                                                                                                |
+| test_data                          | string           | Loop-Back Test - test data to be transmitted                                                                                                        |
+| number_of_receptions               | count            | Broadcast Test Results Read - The number of times the Broadcast Test Data Send command has been executed since the last Broadcast Test Results Read |
+| command                            | string           | Message Read | Message Clear | FAL/FALS Read - the actual command (READ, CLEAR, FAL/FALS)                                                           |
+| message_no_0                       | string           | Message Read | Message Clear - message 0 enabled (True/False)                                                                                       |
+| message_no_1                       | string           | Message Read | Message Clear - message 1 enabled (True/False)                                                                                       |
+| message_no_2                       | string           | Message Read | Message Clear - message 2 enabled (True/False)                                                                                       |
+| message_no_3                       | string           | Message Read | Message Clear - message 3 enabled (True/False)                                                                                       |
+| message_no_4                       | string           | Message Read | Message Clear - message 4 enabled (True/False)                                                                                       |
+| message_no_5                       | string           | Message Read | Message Clear - message 5 enabled (True/False)                                                                                       |
+| message_no_6                       | string           | Message Read | Message Clear - message 6 enabled (True/False)                                                                                       |
+| message_no_7                       | string           | Message Read | Message Clear - message 7 enabled (True/False)                                                                                       |
+| message_0                          | string           | Message Read - message 0 data                                                                                                                       |
+| message_1                          | string           | Message Read - message 1 data                                                                                                                       |
+| message_2                          | string           | Message Read - message 2 data                                                                                                                       |
+| message_3                          | string           | Message Read - message 3 data                                                                                                                       |
+| message_4                          | string           | Message Read - message 4 data                                                                                                                       |
+| message_5                          | string           | Message Read - message 5 data                                                                                                                       |
+| message_6                          | string           | Message Read - message 6 data                                                                                                                       |
+| message_7                          | string           | Message Read - message 7 data                                                                                                                       |
+| fal_fals_no_0                      | string           | Message FAL/FALS - FAL/FALS 0 enabled (True/False)                                                                                                  |
+| fal_fals_no_1                      | string           | Message FAL/FALS - FAL/FALS 1 enabled (True/False)                                                                                                  |
+| fal_fals_no_2                      | string           | Message FAL/FALS - FAL/FALS 2 enabled (True/False)                                                                                                  |
+| fal_fals_no_3                      | string           | Message FAL/FALS - FAL/FALS 3 enabled (True/False)                                                                                                  |
+| fal_fals_no_4                      | string           | Message FAL/FALS - FAL/FALS 4 enabled (True/False)                                                                                                  |
+| fal_fals_no_5                      | string           | Message FAL/FALS - FAL/FALS 5 enabled (True/False)                                                                                                  |
+| fal_fals_no_6                      | string           | Message FAL/FALS - FAL/FALS 6 enabled (True/False)                                                                                                  |
+| fal_fals_no_7                      | string           | Message FAL/FALS - FAL/FALS 7 enabled (True/False)                                                                                                  |
+| fal_fals_no_8                      | string           | Message FAL/FALS - FAL/FALS 8 enabled (True/False)                                                                                                  |
+| fal_fals_no_9                      | string           | Message FAL/FALS - FAL/FALS 9 enabled (True/False)                                                                                                  |
+| fal_fals_no_10                     | string           | Message FAL/FALS - FAL/FALS 10 enabled (True/False)                                                                                                 |
+| fal_fals_no_11                     | string           | Message FAL/FALS - FAL/FALS 11 enabled (True/False)                                                                                                 |
+| fal_fals_no_12                     | string           | Message FAL/FALS - FAL/FALS 12 enabled (True/False)                                                                                                 |
+| fal_fals_no_13                     | string           | Message FAL/FALS - FAL/FALS 13 enabled (True/False)                                                                                                 |
+| fal_fals_0                         | string           | Message FAL/FALS - error message 0                                                                                                                  |
+| fal_fals_1                         | string           | Message FAL/FALS - error message 1                                                                                                                  |
+| fal_fals_2                         | string           | Message FAL/FALS - error message 2                                                                                                                  |
+| fal_fals_3                         | string           | Message FAL/FALS - error message 3                                                                                                                  |
+| fal_fals_4                         | string           | Message FAL/FALS - error message 4                                                                                                                  |
+| fal_fals_5                         | string           | Message FAL/FALS - error message 5                                                                                                                  |
+| fal_fals_6                         | string           | Message FAL/FALS - error message 6                                                                                                                  |
+| fal_fals_7                         | string           | Message FAL/FALS - error message 7                                                                                                                  |
+| fal_fals_8                         | string           | Message FAL/FALS - error message 8                                                                                                                  |
+| fal_fals_9                         | string           | Message FAL/FALS - error message 9                                                                                                                  |
+| fal_fals_10                        | string           | Message FAL/FALS - error message 10                                                                                                                 |
+| fal_fals_11                        | string           | Message FAL/FALS - error message 11                                                                                                                 |
+| fal_fals_12                        | string           | Message FAL/FALS - error message 12                                                                                                                 |
+| fal_fals_13                        | string           | Message FAL/FALS - error message 13                                                                                                                 |
+| acquire_network_address            | count            | Access Right Acquire - network address of device with access right                                                                                  |
+| acquire_node_number                | count            | Access Right Acquire - node number of device with access right                                                                                      |
+| acquire_unit_address               | count            | Access Right Acquire - unit address of Unit with access right                                                                                       |
+| no_of_bits                         | count            | Forces Set/Reset - the number of bits/flags to be controlled                                                                                        |
+| set_reset_specification            | string           | Forces Set/Reset - the action to be taken for each bit/flag                                                                                         |
+| bit_flag                           | count            | Forces Set/Reset - the bit or flag to be controlled                                                                                                 |
