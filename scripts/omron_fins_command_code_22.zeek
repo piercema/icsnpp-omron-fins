@@ -44,6 +44,7 @@ module OMRON_FINS;
             info_file_log$unused_capacity = finsCommand$fileNameReadCommand$response$diskData$unusedCapacity;
             info_file_log$total_no_files = finsCommand$fileNameReadCommand$response$diskData$totalNoFiles;
             info_file_log$no_files_read = finsCommand$fileNameReadCommand$response$noOfFiles$filesRead;
+            info_file_log$last_file = finsCommand$fileNameReadCommand$response$noOfFiles$lastFile;
 
             # Fire the event and tidy up
             OMRON_FINS::emit_omron_fins_file_log(c);

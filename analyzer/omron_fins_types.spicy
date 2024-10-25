@@ -280,6 +280,7 @@ type DateTime = unit {
 #
 type NoOfFiles = unit {
     var filesRead : uint64;
+    var lastFile  : uint64;
     numOfFiles : bitfield(16) {
         lastFile    : 15;
         noFilesRead : 0..14;
@@ -287,6 +288,7 @@ type NoOfFiles = unit {
 
     on %done {
         self.filesRead = self.numOfFiles.noFilesRead;
+        self.lastFile  = self.numOfFiles.lastFile;
     }
 };
 
