@@ -277,3 +277,66 @@ This log captures the information associated with the Network Status Read comman
 | cyclic_transmission_status         | string           | Indicates the current status of cyclic transmission (00: No transmission; 01: Transmission) |
 | non_fatal_error                    | string           | Indicates nodes in which non-fatal errors occurred in cyclic transmission                   |
 | cyclic_error_count                 | count            | Indicates how many cyclic errors occurred since start up.                                   |
+
+## OMRON FINS Network Status Read Log (omron_fins_file.log)
+
+#### Overview
+
+This log captures the fields associated with the File, Memory, and Volume information
+
+#### Fields Captured
+| Field                              | Type             | Description                                                                                                                                         |
+| -----------------------------------|------------------|------------------------------------------------------------------------------------|
+| ts                                 | time             | Timestamp (network time)                                                           |
+| uid                                | string           | Unique ID for this connection                                                      |
+| id                                 | conn_id          | Default Zeek connection info (IP Addresses, Ports, etc.)                           |
+| omron_fins_link_id                 | string           | Link id to link one log file to another                                            |
+| command_code                       | string           | The command to execute                                                             |
+| icf_data_type                      | string           | Data type (0: command; 1: response)                                                |
+| response_code                      | string           | The response from executing the command                                            |
+| disk_no                            | count            | Disk No.                                                                           |
+| beginning_file_position            | string           | The first file to be read                                                          |
+| no_of_files                        | count            | The number of files.                                                               |
+| volume_label                       | string           | The volume label                                                                   |
+| year                               | count            | The year the volume label or file was created                                      |
+| month                              | count            | The month the volume label or file was created                                     |
+| day                                | count            | The day the volume label or file was created                                       |
+| hour                               | count            | The hour the volume label or file was created                                      |
+| minute                             | count            | The minute the volume label or file was created                                    |
+| second                             | count            | The second the volume label or file was created                                    |
+| total_capacity                     | count            | The total capacity of the file device                                              |
+| unused_capacity                    | count            | The number of bytes still available                                                |
+| total_no_files                     | count            | The number of files recorded in the file device                                    |
+| no_files_read                      | count            | The number of files that have been read.                                           |
+| last_file                          | count            | Last file (0:Without last file; 1: With last file)                                 |
+| file_name                          | string           | The name of the file                                                               |
+| file_capacity                      | count            | The capacity (bytes) of the file                                                   |
+| file_position                      | count            | The number of bytes fron the start of the file from which to start reading/writing |
+| data_length                        | count            | The number of bytes of data to read/write                                          |
+| fuid                               | string           | File unique identifier                                                             |
+| parameter_code                     | string           | Parameter code                                                                     |
+| src_disk_no                        | count            | Disk number for the source file                                                    |
+| src_file_name                      | string           | File name for the source file                                                      |
+| dst_disk_no                        | count            | Disk number for the destination file                                               |
+| dst_file_name                      | string           | File name for the destination file                                                 |
+| old_file_name                      | string           | The original file name                                                             |
+| new_file_name                      | string           | The new file name                                                                  |
+| parameter_area_code                | string           | The parameter area to be used for data transfer/comparison                         |
+| beginning_address                  | string           | The first word in the parameter area to be transferred/compared                    |
+| no_of_words                        | count            | The number of data words to be transferred/compared                                |
+| memory_area_code                   | string           | The memory rea to be used for data transfer                                        |
+| no_of_items                        | count            | The number of items to be transferred/compared                                     |
+| program_no                         | string           | Program number                                                                     |
+| no_of_bytes                        | count            | The number of data bytes to be transferred/compared                                |
+| beginning_word                     | string           | Beginning word                                                                     |
+| beginning_block_no                 | count            | The first block                                                                    |
+| no_of_blocks                       | count            | The total number of blocks to be read                                              |
+| remaining_blocks                   | count            | The number of blocks not to be read                                                |
+| total_no_of_blocks                 | count            | The totoal number of blocks in File Memory                                         |
+| memory_type                        | string           | The type of File Memory being used                                                 |
+| data_type                          | string           | Date type (000: Empty; 001: I/O data; 010: User program; 011: Comments)            |
+| last_block                         | string           | The last block                                                                     |
+| protected                          | string           | Protected                                                                          |
+| control_data                       | count            | The number of comments.  Used for commend data only                                |
+| block_no                           | count            | The number of the File Memory block to read                                        |
+| memory_data                        | string           | The File Memory data to be read/written                                            |
