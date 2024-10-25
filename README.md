@@ -6,7 +6,9 @@ ICSNPP-Omron-FINS is a Spicy based Zeek plugin for parsing and logging fields wi
 
 Omron FINS is a protocol created by Omron Corporation for commuincation between Omron programamable logic controllers (PLCs), human-machine interfaces (HMIs), and other devices in industrial automation systems.  It is widely used in manufacturing, process control, and other industrial applications.
 
-The FINS protocol can be addressed to Omron CV-Series PCs (programmable controllers), C-Series PCS, SYSMAC NET Link Units, SYSMAC LINK Support Boards, and CPU Bus Units, such as Personal Computer Units and BASIC Units.  This parser targets the FINS commands available to the CV-Series, C-Series, SYSMAC LINK, and SYSMAC NET PCs transported UDP.
+The FINS protocol can be addressed to Omron CV-Series PCs (programmable controllers), C-Series PCS, SYSMAC NET Link Units, SYSMAC LINK Support Boards, and CPU Bus Units, such as Personal Computer Units and BASIC Units.
+
+This parser targets the FINS commands available to the CV-Series, C-Series, SYSMAC LINK, and SYSMAC NET PCs transported over UDP.
 
 ## Installation
 
