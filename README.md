@@ -23,14 +23,6 @@ If this package is installed from ZKG, it will be added to the available plugins
 
 If users have ZKG configured to load packages (see `@load packages` in the [ZKG Quickstart Guide](https://docs.zeek.org/projects/package-manager/en/stable/quickstart.html)), this plugin and these scripts will automatically be loaded and ready to go.
 
-
-## Compilation
-* `cmake -DMAKE_BUILD_TYPE=Debug .`
-* `make clean all`
-
-## Executation
-* `rm *.log; zeek Spicy::enable_print=T -Cr ../testing/traces/omron.pcap ../omron_fins.hlto ../scripts/*.zeek local `
-
 ## Logging Capabilities
 
 ### OMRON FINS Log (omron_fins_general.log)
