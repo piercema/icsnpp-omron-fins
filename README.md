@@ -34,26 +34,26 @@ If users have ZKG configured to load packages (see `@load packages` in the [ZKG 
 This log summarizes the header data used for FINS commands and responses.
 
 #### Fields Captured
-| Field                       | Type            | Description                                                                        |
-| ----------------------------|-----------------|------------------------------------------------------------------------------------|
-| ts                          | time            | Timestamp (network time)                                                           |
-| uid                         | string          | Unique ID for this connection                                                      |
-| id                          | conn_id         | Default Zeek connection info (IP Addresses, Ports, etc.)                           |
-| proto                       | string          | Transport protocol                                                                 |
-| omron_fins_link_id          | string          | Link id to link one log file to another                                            |
-| icf_gateway                 | string          | Gateway usage (0 don't use; 1 use); set to 1.                                      |
-| icf_data_type               | string          | Data type (0: command; 1: response)                                                |
-| icf_response_setting        | string          | Response setting (0: response required; 1: response not required)                  |
-| gateway_count               | count           | Gateway Count.  Set to 02                                                          |
-| destination_network_address | count           | Destination network address                                                        |
-| destination_node_number     | count           | Destination node number                                                            |
-| destination_unit_address    | count           | Destination unit address                                                           |
-| source_network_address      | count           | Source network address                                                             |
-| source_node_number          | count           | Source node number                                                                 |
-| source_unit_address         | count           | Source unit address                                                                |
-| service_id                  | string          | Service ID.  Used to identify the processing generating the transmission           |
-| command_code                | string          | The command to execute                                                             |
-| response_code               | string          | The response from executing the command                                            |
+| Field                       | Type            | Description                                                                               |
+| ----------------------------|-----------------|-------------------------------------------------------------------------------|
+| ts                          | time            | Timestamp (network time)                                                      |
+| uid                         | string          | Unique ID for this connection                                                 |
+| id                          | conn_id         | Default Zeek connection info (IP Addresses, Ports, etc.)                      |
+| proto                       | string          | Transport protocol                                                            |
+| omron_fins_link_id          | string          | Link id to link one log file to another                                       |
+| icf_gateway                 | string          | Gateway usage (0 don't use; 1 use); per the protocol specification, set to 1. |
+| icf_data_type               | string          | Data type (0: command; 1: response)                                           |
+| icf_response_setting        | string          | Response setting (0: response required; 1: response not required)             |
+| gateway_count               | count           | Gateway Count.  Per the protocol specification, set to 02                     |
+| destination_network_address | count           | Destination network address                                                   |
+| destination_node_number     | count           | Destination node number                                                       |
+| destination_unit_address    | count           | Destination unit address                                                      |
+| source_network_address      | count           | Source network address                                                        |
+| source_node_number          | count           | Source node number                                                            |
+| source_unit_address         | count           | Source unit address                                                           |
+| service_id                  | string          | Service ID.  Used to identify the processing generating the transmission      |
+| command_code                | string          | The command to execute                                                        |
+| response_code               | string          | The response from executing the command                                       |
 
 ### OMRON FINS Detail Log (omron_fins_detail.log)
 
@@ -87,7 +87,7 @@ This log captures the detailed data used with the FINS commands and responses.
 | second                             | count            | Clock read/write: Second                                                                                                                            |
 | day                                | string           | Clock read/write: Day                                                                                                                               |
 | intelligent_id_no                  | string           | Data Link Table Read/Write - designate S (53) and N (4E) in ASCII.                                                                                  |
-| first_word                         | string           | Data Link Table Read/Write - set to 0000                                                                                                            |
+| first_word                         | string           | Data Link Table Read/Write - per the protocol specification, set to 0000                                                                            |
 | read_length                        | string           | Data Link Table Read - regardless of the value set, the data link tables for the number of link nodes that has been set will be read.               |
 | data_length                        | string           | The number of bytes to read/write/transfer/compare                                                                                                  |
 | num_of_link_nodes                  | count            | Data Link Table Read/Write - the number of link nodes                                                                                               |
@@ -95,14 +95,14 @@ This log captures the detailed data used with the FINS commands and responses.
 | block_record_num_of_link_nodes     | count            | Data Link Table Read - number of link nodes                                                                                                         |
 | block_record_node_num              | count            | Data Link Table Write - the data link node number                                                                                                   |
 | block_record_cio_area_first_word   | string           | Data Link Table Read/Write - the first word in a data link in the CIO Area                                                                          |
-| block_record_kind_of_dm            | string           | Data Link Table Read/Write - kind of DM; Set to 00                                                                                                  |
+| block_record_kind_of_dm            | string           | Data Link Table Read/Write - kind of DM; Per the protocol specification, set to 00.                                                                 |
 | block_record_dm_area_first_word    | string           | Data Link Table Read/Write - the first word in a data link in the DM Area                                                                           |
 | block_record_num_of_total_words    | count            | Data Link Table Read/Write - the total number of words used for data links in the CIO and DM Area                                                   |
-| program_no                         | count            | Set to 0000                                                                                                                                         |
-| protect_code                       | count            | Set to 00                                                                                                                                           |
+| program_no                         | count            | Per the protocol specification, set to 0000                                                                                                         |
+| protect_code                       | count            | Per the protocol specification, set to 00                                                                                                           |
 | password                           | string           | Program Area Protect/Clear - password                                                                                                               |
-| last_word                          | string           | Program Area Protect/Clear - Set to 00000000                                                                                                        |
-| clear_code                         | string           | Program Area Clear - Set to 00                                                                                                                      |
+| last_word                          | string           | Program Area Protect/Clear - per the protocol specification, set to 00000000                                                                        |
+| clear_code                         | string           | Program Area Clear - per the protocol specification, set to 00                                                                                      |
 | number_of_bytes                    | count            | The number of data bytes                                                                                                                            |
 | run_mode                           | string           | Run mode (00: Program; 01: Debug; 02: Monitor; 04: Run)                                                                                             |
 | controller_data_to_read            | string           | Controller Data Read - the specified data to read                                                                                                   |
