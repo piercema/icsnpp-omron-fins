@@ -16,13 +16,14 @@ module OMRON_FINS;
 
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
             info_detail_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$clockReadCommand$response$responseCode];
-            info_detail_log$year          = finsCommand$clockReadCommand$response$year;
-            info_detail_log$month         = finsCommand$clockReadCommand$response$month;
-            info_detail_log$date          = finsCommand$clockReadCommand$response$date;
-            info_detail_log$hour          = finsCommand$clockReadCommand$response$hour;
-            info_detail_log$minute        = finsCommand$clockReadCommand$response$minute;
-            info_detail_log$second        = finsCommand$clockReadCommand$response$second;
+            info_detail_log$year          = finsCommand$clockReadCommand$response$year$bcdValue;
+            info_detail_log$month         = finsCommand$clockReadCommand$response$month$bcdValue;
+            info_detail_log$date          = finsCommand$clockReadCommand$response$date$bcdValue;
+            info_detail_log$hour          = finsCommand$clockReadCommand$response$hour$bcdValue;
+            info_detail_log$minute        = finsCommand$clockReadCommand$response$minute$bcdValue;
+            info_detail_log$second        = finsCommand$clockReadCommand$response$second$bcdValue;
             info_detail_log$day           = OMRON_FINS_ENUMS::DAY_OF_WEEK[finsCommand$clockReadCommand$response$day];
+            info_detail_log$clock_time    = finsCommand$clockReadCommand$response$clockTime;
 
             # Set the general logging response code
             general_log_response_code = info_detail_log$response_code;
@@ -50,13 +51,14 @@ module OMRON_FINS;
         info_detail_log = process_command_and_datatype_detail(info_detail_log, finsCommand);
 
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
-            info_detail_log$year          = finsCommand$clockWriteCommand$command$year;
-            info_detail_log$month         = finsCommand$clockWriteCommand$command$month;
-            info_detail_log$date          = finsCommand$clockWriteCommand$command$date;
-            info_detail_log$hour          = finsCommand$clockWriteCommand$command$hour;
-            info_detail_log$minute        = finsCommand$clockWriteCommand$command$minute;
-            info_detail_log$second        = finsCommand$clockWriteCommand$command$second;
+            info_detail_log$year          = finsCommand$clockWriteCommand$command$year$bcdValue;
+            info_detail_log$month         = finsCommand$clockWriteCommand$command$month$bcdValue;
+            info_detail_log$date          = finsCommand$clockWriteCommand$command$date$bcdValue;
+            info_detail_log$hour          = finsCommand$clockWriteCommand$command$hour$bcdValue;
+            info_detail_log$minute        = finsCommand$clockWriteCommand$command$minute$bcdValue;
+            info_detail_log$second        = finsCommand$clockWriteCommand$command$second_bcdValue;
             info_detail_log$day           = OMRON_FINS_ENUMS::DAY_OF_WEEK[finsCommand$clockWriteCommand$command$day];
+            info_detail_log$clock_time    = finsCommand$clockWriteCommand$command$clockTime;
 
             # Fire the event and tidy up
             OMRON_FINS::emit_omron_fins_detail_log(c);

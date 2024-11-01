@@ -19,15 +19,41 @@ type ClockRead_Command = unit {
     : bytes &eod; # Note: There is no data associated with the ClockRead command - hence the anonymous field
 };
 
+#
+# ClockRead Response
+#
+# Parameters:
+#    Year, Month, Date, Hour minute, Second, Day:
+#        - each value expressed in Binary Coded Decimal (BCD).  See OMRON_FINS_TYPES::BCDEncoding
+#          for details.
+#    Year:
+#        - The rightmost two digits of the year. Parser assumes the year starts with the year 2000
+#    Hour:
+#        - 00 to 23
+#    Day:
+#        - See OMRON_FINS_ENUMS::DayOfWeek for details
+#
 type ClockRead_Response = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
-    year         : uint8;
-    month        : uint8;
-    date         : uint8;
-    hour         : uint8;
-    minute       : uint8;
-    second       : uint8;
+    year         : OMRON_FINS_TYPES::BCDEncoding;
+    month        : OMRON_FINS_TYPES::BCDEncoding;
+    date         : OMRON_FINS_TYPES::BCDEncoding;
+    hour         : OMRON_FINS_TYPES::BCDEncoding;
+    minute       : OMRON_FINS_TYPES::BCDEncoding;
+    second       : OMRON_FINS_TYPES::BCDEncoding;
     day          : uint8 &convert=OMRON_FINS_ENUMS::DayOfWeek($$);
+
+    var clockTime : time;
+
+    on %done {
+        self.year.bcdValue += 2000;
+        self.clockTime     = spicy::mktime(self.year.bcdValue,
+                                           self.month.bcdValue,
+                                           self.date.bcdValue,
+                                           self.hour.bcdValue,
+                                           self.minute.bcdValue,
+                                           self.second.bcdValue);
+    }
 };
 
 #
@@ -40,28 +66,70 @@ type ClockWrite = unit(dataType: OMRON_FINS_ENUMS::DataType) {
     };
 };
 
+#
+# ClockWrite command
+#
+# Parameters:
+#    Year, Month, Date, Hour minute, Second, Day:
+#        - each value expressed in Binary Coded Decimal (BCD).  See OMRON_FINS_TYPES::BCDEncoding
+#          for details.
+#    Year:
+#        - The rightmost two digits of the year. Parser assumes the year starts with the year 2000
+#    Hour:
+#        - 00 to 23
+#    Day:
+#        - See OMRON_FINS_ENUMS::DayOfWeek for details
+#
+#  Note:
+#    1. Second and Day are optional.  If the second or day are not specified, 00 will be set as
+#       the seonc and the previous value will be kept for the day.
+#    2. The PC does not check the day from the date.  This means that no eror will occur even 
+#       if the date and day do not agree.
+#
 type ClockWrite_Command = unit {
-    year         : uint8;
-    month        : uint8;
-    date         : uint8;
-    hour         : uint8;
-    minute       : uint8;
+    year         : OMRON_FINS_TYPES::BCDEncoding;
+    month        : OMRON_FINS_TYPES::BCDEncoding;
+    date         : OMRON_FINS_TYPES::BCDEncoding;
+    hour         : OMRON_FINS_TYPES::BCDEncoding;
+    minute       : OMRON_FINS_TYPES::BCDEncoding;
     data         : bytes &eod;
-    var second   : uint8;
-    var day      : OMRON_FINS_ENUMS::DayOfWeek;
+
+    var second_firstDigit  : uint8  = 0;
+    var second_secondDigit : uint8  = 0;
+    var second_bcdValue    : uint64 = 0;
+    var day                : OMRON_FINS_ENUMS::DayOfWeek;
+    var clockTime          : time;
+
     on %done {
         #
         # The second and day parameters are optional and are parsed as bytes to the &eod.  Once
         # parsed, then length is checked to determine if one or both fields need to be set.
         #
-        if ( |self.data| == 1 ) {
-            self.second = *self.data.at(0);
+        # Parsing the second paramter into a BCD value is done by bit shifting the lower 4 bits
+        # to the right to determine the first digit and bit masking off the the top 4 bits to 
+        # determine the second digit.
+        #
+        # The day parameter is just the second entry in the data vector passed into the DayOfWeek
+        # enumeration.
+        #
+        if ( |self.data| >= 1 ) {
+            self.second_firstDigit  = (*self.data.at(0) >> 4) * 10;
+            self.second_secondDigit = *self.data.at(0) & 0x0F;
+            self.second_bcdValue    = self.second_firstDigit + self.second_secondDigit;
         } 
         
         if ( |self.data| == 2) {
-            self.second = *self.data.at(0);
             self.day = OMRON_FINS_ENUMS::DayOfWeek(*self.data.at(1));
         }
+
+        # Calculate the clock time
+        self.year.bcdValue += 2000;
+        self.clockTime     = spicy::mktime(self.year.bcdValue,
+                                            self.month.bcdValue,
+                                            self.date.bcdValue,
+                                            self.hour.bcdValue,
+                                            self.minute.bcdValue,
+                                            self.second_bcdValue);
     }
 };
 

@@ -48,6 +48,7 @@ module OMRON_FINS;
         minute                      : count  &log &optional;
         second                      : count  &log &optional;
         day                         : string &log &optional;
+        clock_time                  : time   &log &optional;
 
         intelligent_id_no                : string &log &optional;
         first_word                       : string &log &optional;

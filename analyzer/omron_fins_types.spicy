@@ -328,3 +328,23 @@ type ForcedSetResetData = unit {
        self.bitFlag = self.bitFlagBytes.to_uint(spicy::ByteOrder::Network);
     }
 };
+
+#
+# Binary Coded Decimal (BCD) is another process for converting decimal numbers into their binary 
+# equivalents.  It is a form of binary encoding where each digit is a decimal number represented
+# in the form of bits.  The encoding can be done in either 4-bit or 8-bit (usually 4-bit is 
+# preferred).  The parser assumes 4-bit encoding.
+#
+# Reference: 
+#    https://geeksforgeeks.org/bcd-or-binary-coded-decimal
+#
+type BCDEncoding = unit {
+    var bcdValue : uint64;
+    dataType : bitfield(8) {
+        firstDigit  : 4..7 &convert=cast<uint8>($$);
+        secondDigit : 0..3 &convert=cast<uint8>($$);
+    };
+    on %done {
+        self.bcdValue = (self.dataType.firstDigit * 10) + self.dataType.secondDigit;
+    }
+};
