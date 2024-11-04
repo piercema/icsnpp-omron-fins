@@ -86,7 +86,7 @@ This log captures the detailed data used with the FINS commands and responses.
 | minute                             | count            | Clock read/write: Minute                                                                                                                            |
 | second                             | count            | Clock read/write: Second                                                                                                                            |
 | day                                | string           | Clock read/write: Day                                                                                                                               |
-| clock_time                         | time             | Clock read/write: Calculated clock time
+| clock_time                         | time             | Clock read/write: Calculated clock time                                                                                                             |
 | intelligent_id_no                  | string           | Data Link Table Read/Write - designate S (53) and N (4E) in ASCII.                                                                                  |
 | first_word                         | string           | Data Link Table Read/Write - per the protocol specification, set to 0000                                                                            |
 | read_length                        | string           | Data Link Table Read - regardless of the value set, the data link tables for the number of link nodes that has been set will be read.               |
