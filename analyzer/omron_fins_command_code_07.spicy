@@ -82,7 +82,7 @@ type ClockWrite = unit(dataType: OMRON_FINS_ENUMS::DataType) {
 #
 #  Note:
 #    1. Second and Day are optional.  If the second or day are not specified, 00 will be set as
-#       the seonc and the previous value will be kept for the day.
+#       the second and the previous value will be kept for the day.
 #    2. The PC does not check the day from the date.  This means that no eror will occur even 
 #       if the date and day do not agree.
 #
