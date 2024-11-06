@@ -155,7 +155,7 @@ type MessageClear_Response = unit(messageNoParameter : OMRON_FINS_TYPES::Message
 };
 
 #
-# FAL/FALS Read Command/Reponse
+# FAL/FALS Read Command/Response
 #
 type FalFalsRead_Command = unit(messageNoParameter : OMRON_FINS_TYPES::MessageNoParameter) {
     : bytes &eod; # Note: There is no data associated with the FAL/FALS Read command - hence the anonymous field

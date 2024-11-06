@@ -100,7 +100,7 @@ type SingleFileWrite_Response = unit {
 type MemoryCardFormat = unit(dataType: OMRON_FINS_ENUMS::DataType) {
     switch(dataType) {
         OMRON_FINS_ENUMS::DataType::COMMAND  -> command : MemoryCardFormat_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: MemoryCardFormat_Reponse();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: MemoryCardFormat_Response();
     };
 };
 
@@ -108,7 +108,7 @@ type MemoryCardFormat_Command = unit {
     diskNo : uint16;
 };
 
-type MemoryCardFormat_Reponse = unit {
+type MemoryCardFormat_Response = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
 };
 
@@ -118,7 +118,7 @@ type MemoryCardFormat_Reponse = unit {
 type FileDelete = unit(dataType: OMRON_FINS_ENUMS::DataType) {
     switch(dataType) {
         OMRON_FINS_ENUMS::DataType::COMMAND  -> command : FileDelete_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: FileDelete_Reponse();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: FileDelete_Response();
     };
 };
 
@@ -128,7 +128,7 @@ type FileDelete_Command = unit {
     fileNames : OMRON_FINS_TYPES::FileName[self.noOfFiles];
 };
 
-type FileDelete_Reponse = unit {
+type FileDelete_Response = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
     noOfFiles    : uint16;
 };
@@ -139,7 +139,7 @@ type FileDelete_Reponse = unit {
 type VolumeLabelCreateDelete = unit(dataType: OMRON_FINS_ENUMS::DataType) {
     switch(dataType) {
         OMRON_FINS_ENUMS::DataType::COMMAND  -> command : VolumeLabelCreateDelete_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: VolumeLabelCreateDelete_Reponse();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: VolumeLabelCreateDelete_Response();
     };
 };
 
@@ -156,7 +156,7 @@ type VolumeLabelCreateDelete_Command = unit {
     }
 };
 
-type VolumeLabelCreateDelete_Reponse = unit {
+type VolumeLabelCreateDelete_Response = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
 };
 
@@ -166,7 +166,7 @@ type VolumeLabelCreateDelete_Reponse = unit {
 type FileCopy = unit(dataType: OMRON_FINS_ENUMS::DataType) {
     switch(dataType) {
         OMRON_FINS_ENUMS::DataType::COMMAND  -> command : FileCopy_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: FileCopy_Reponse();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: FileCopy_Response();
     };
 };
 
@@ -177,7 +177,7 @@ type FileCopy_Command = unit {
     dstFileName : OMRON_FINS_TYPES::FileName;
 };
 
-type FileCopy_Reponse = unit {
+type FileCopy_Response = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
 };
 
@@ -187,7 +187,7 @@ type FileCopy_Reponse = unit {
 type FileNameChange = unit(dataType: OMRON_FINS_ENUMS::DataType) {
     switch(dataType) {
         OMRON_FINS_ENUMS::DataType::COMMAND  -> command : FileNameChange_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: FileNameChange_Reponse();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: FileNameChange_Response();
     };
 };
 
@@ -197,7 +197,7 @@ type FileNameChange_Command = unit {
     oldFileName : OMRON_FINS_TYPES::FileName;
 };
 
-type FileNameChange_Reponse = unit {
+type FileNameChange_Response = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
 };
 
@@ -207,7 +207,7 @@ type FileNameChange_Reponse = unit {
 type FileDataCheck = unit(dataType: OMRON_FINS_ENUMS::DataType) {
     switch(dataType) {
         OMRON_FINS_ENUMS::DataType::COMMAND  -> command : FileDataCheck_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: FileDataCheck_Reponse();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: FileDataCheck_Response();
     };
 };
 
@@ -216,7 +216,7 @@ type FileDataCheck_Command = unit {
     fileName : OMRON_FINS_TYPES::FileName;
 };
 
-type FileDataCheck_Reponse = unit {
+type FileDataCheck_Response = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
 };
 
@@ -226,7 +226,7 @@ type FileDataCheck_Reponse = unit {
 type MemoryAreaFileTransfer = unit(dataType: OMRON_FINS_ENUMS::DataType) {
     switch(dataType) {
         OMRON_FINS_ENUMS::DataType::COMMAND  -> command : MemoryAreaFileTransfer_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: MemoryAreaFileTransfer_Reponse();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: MemoryAreaFileTransfer_Response();
     };
 };
 
@@ -239,7 +239,7 @@ type MemoryAreaFileTransfer_Command = unit {
     fileName          : OMRON_FINS_TYPES::FileName;
 };
 
-type MemoryAreaFileTransfer_Reponse = unit {
+type MemoryAreaFileTransfer_Response = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
     noOfItems    : uint16;
 };
@@ -250,7 +250,7 @@ type MemoryAreaFileTransfer_Reponse = unit {
 type ParameterAreaFileTransfer = unit(dataType: OMRON_FINS_ENUMS::DataType) {
     switch(dataType) {
         OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ParameterAreaFileTransfer_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ParameterAreaFileTransfer_Reponse();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ParameterAreaFileTransfer_Response();
     };
 };
 
@@ -263,7 +263,7 @@ type ParameterAreaFileTransfer_Command = unit {
     fileName          : OMRON_FINS_TYPES::FileName;
 };
 
-type ParameterAreaFileTransfer_Reponse = unit {
+type ParameterAreaFileTransfer_Response = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
     noOfWords    : uint16;
 };
@@ -274,7 +274,7 @@ type ParameterAreaFileTransfer_Reponse = unit {
 type ProgramAreaFileTransfer = unit(dataType: OMRON_FINS_ENUMS::DataType) {
     switch(dataType) {
         OMRON_FINS_ENUMS::DataType::COMMAND  -> command : ProgramAreaFileTransfer_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ProgramAreaFileTransfer_Reponse();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: ProgramAreaFileTransfer_Response();
     };
 };
 
@@ -287,7 +287,7 @@ type ProgramAreaFileTransfer_Command = unit {
     fileName      : OMRON_FINS_TYPES::FileName;
 };
 
-type ProgramAreaFileTransfer_Reponse = unit {
+type ProgramAreaFileTransfer_Response = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
     dataLength   : uint32;
 };
@@ -298,7 +298,7 @@ type ProgramAreaFileTransfer_Reponse = unit {
 type FileMemoryIndexRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
     switch(dataType) {
         OMRON_FINS_ENUMS::DataType::COMMAND  -> command : FileMemoryIndexRead_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: FileMemoryIndexRead_Reponse();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: FileMemoryIndexRead_Response();
     };
 };
 
@@ -307,7 +307,7 @@ type FileMemoryIndexRead_Command = unit {
     noOfBlocks       : uint8;
 };
 
-type FileMemoryIndexRead_Reponse = unit {
+type FileMemoryIndexRead_Response = unit {
     responseCode        : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
     noOfBlocksRemaining : uint16;
     totalNoOfBLocks     : uint16;
@@ -321,7 +321,7 @@ type FileMemoryIndexRead_Reponse = unit {
 type FileMemoryRead = unit(dataType: OMRON_FINS_ENUMS::DataType) {
     switch(dataType) {
         OMRON_FINS_ENUMS::DataType::COMMAND  -> command : FileMemoryRead_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: FileMemoryRead_Reponse();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: FileMemoryRead_Response();
     };
 };
 
@@ -329,7 +329,7 @@ type FileMemoryRead_Command = unit {
     blockNo : uint16;
 };
 
-type FileMemoryRead_Reponse = unit {
+type FileMemoryRead_Response = unit {
     responseCode        : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
     dataTypeControlData : OMRON_FINS_TYPES::DataTypeControlData;
     data                : bytes &eod &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
@@ -341,7 +341,7 @@ type FileMemoryRead_Reponse = unit {
 type FileMemoryWrite = unit(dataType: OMRON_FINS_ENUMS::DataType) {
     switch(dataType) {
         OMRON_FINS_ENUMS::DataType::COMMAND  -> command : FileMemoryWrite_Command();
-        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: FileMemoryWrite_Reponse();
+        OMRON_FINS_ENUMS::DataType::RESPONSE -> response: FileMemoryWrite_Response();
     };
 };
 
@@ -351,6 +351,6 @@ type FileMemoryWrite_Command = unit {
     data                : bytes &eod &convert=OMRON_FINS_FUNCTIONS::bytesToHexString($$);
 };
 
-type FileMemoryWrite_Reponse = unit {
+type FileMemoryWrite_Response = unit {
     responseCode : uint16 &convert=OMRON_FINS_ENUMS::ResponseCode($$);
 };
