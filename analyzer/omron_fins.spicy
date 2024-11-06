@@ -20,7 +20,7 @@ import OMRON_FINS_COMMAND_CODE_23;
 import OMRON_FINS_COMMAND_CODE_26;
 
 public type Messages = unit {
-     : FINS_Header;
+    : FINS_Header[];
 };
 
 public type FINS_Header = unit {
