@@ -319,7 +319,7 @@ This log captures the fields associated with the File, Memory, and Volume inform
 | parameter_area_code                | string           | The parameter area to be used for data transfer/comparison                         |
 | beginning_address                  | string           | The first word in the parameter area to be transferred/compared                    |
 | no_of_words                        | count            | The number of data words to be transferred/compared                                |
-| memory_area_code                   | string           | The memory rea to be used for data transfer                                        |
+| memory_area_code                   | string           | The memory area to be used for data transfer                                        |
 | no_of_items                        | count            | The number of items to be transferred/compared                                     |
 | program_no                         | string           | Program number                                                                     |
 | no_of_bytes                        | count            | The number of data bytes to be transferred/compared                                |
@@ -327,7 +327,7 @@ This log captures the fields associated with the File, Memory, and Volume inform
 | beginning_block_no                 | count            | The first block                                                                    |
 | no_of_blocks                       | count            | The total number of blocks to be read                                              |
 | remaining_blocks                   | count            | The number of blocks not to be read                                                |
-| total_no_of_blocks                 | count            | The totoal number of blocks in File Memory                                         |
+| total_no_of_blocks                 | count            | The total number of blocks in File Memory                                         |
 | memory_type                        | string           | The type of File Memory being used                                                 |
 | data_type                          | string           | Date type (000: Empty; 001: I/O data; 010: User program; 011: Comments)            |
 | last_block                         | string           | The last block                                                                     |
