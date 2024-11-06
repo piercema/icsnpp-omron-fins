@@ -232,7 +232,6 @@ XXXXXXXXXX.XXXXXX	10.4.14.102	58722	10.130.130.130	9600	omron_fins	Use (1)	Respo
 XXXXXXXXXX.XXXXXX	10.4.14.102	58722	10.130.130.130	9600	omron_fins	Use (1)	Response (1)	Response-Not-Required (1)	2	0	0	0	0	0	0	0x7a	File Data Check (0x2209)	Normal completion (0x0000)
 XXXXXXXXXX.XXXXXX	10.4.14.102	58722	10.130.130.130	9600	omron_fins	Use (1)	Response (1)	Response-Not-Required (1)	2	0	0	0	0	0	0	0x7a	Memory Area File Transfer (0x220A)	Normal completion (0x0000)
 XXXXXXXXXX.XXXXXX	10.4.14.102	58722	10.130.130.130	9600	omron_fins	Use (1)	Response (1)	Response-Not-Required (1)	2	0	0	0	0	0	0	0x7a	Parameter Area File Transer (0x220B)	Normal completion (0x0000)
-XXXXXXXXXX.XXXXXX	10.4.14.102	58722	10.130.130.130	9600	omron_fins	Use (1)	Response (1)	Response-Not-Required (1)	2	0	0	0	0	0	0	0x7a	Parameter Area File Transer (0x220B)	Normal completion (0x0000)
 XXXXXXXXXX.XXXXXX	10.4.14.102	58722	10.130.130.130	9600	omron_fins	Use (1)	Response (1)	Response-Not-Required (1)	2	0	0	0	0	0	0	0x7a	File Memory Index Read (0x220F)	Normal completion (0x0000)
 XXXXXXXXXX.XXXXXX	10.4.14.102	58722	10.130.130.130	9600	omron_fins	Use (1)	Response (1)	Response-Not-Required (1)	2	0	0	0	0	0	0	0x7a	File Memory Index Read (0x220F)	Normal completion (0x0000)
 XXXXXXXXXX.XXXXXX	10.4.14.102	58722	10.130.130.130	9600	omron_fins	Use (1)	Response (1)	Response-Not-Required (1)	2	0	0	0	0	0	0	0x7a	File Memory Index Read (0x220F)	Normal completion (0x0000)
@@ -242,5 +241,4 @@ XXXXXXXXXX.XXXXXX	10.4.14.102	58722	10.130.130.130	9600	omron_fins	Use (1)	Respo
 XXXXXXXXXX.XXXXXX	10.4.14.102	58722	10.130.130.130	9600	omron_fins	Use (1)	Response (1)	Response-Not-Required (1)	2	0	0	0	0	0	0	0x7a	Forced Set Reset Cancel (0x2302)	Normal completion (0x0000)
 XXXXXXXXXX.XXXXXX	10.4.14.102	58722	10.130.130.130	9600	omron_fins	Use (1)	Response (1)	Response-Not-Required (1)	2	0	0	0	0	0	0	0x7a	Multiple Forced Status Read (0x230A)	Normal completion (0x0000)
 XXXXXXXXXX.XXXXXX	10.4.14.102	58722	10.130.130.130	9600	omron_fins	Use (1)	Response (1)	Response-Not-Required (1)	2	0	0	0	0	0	0	0x7a	Name Set (0x2601)	Normal completion (0x0000)
-XXXXXXXXXX.XXXXXX	10.4.14.102	58722	10.130.130.130	9600	omron_fins	Use (1)	Response (1)	Response-Not-Required (1)	2	0	0	0	0	0	0	0x7a	Name Delete (0x2602)	Normal completion (0x0000)
 XXXXXXXXXX.XXXXXX	10.4.14.102	58722	10.130.130.130	9600	omron_fins	Use (1)	Response (1)	Response-Not-Required (1)	2	0	0	0	0	0	0	0x7a	Name Delete (0x2602)	Normal completion (0x0000)
