@@ -48,6 +48,41 @@ export{
     }&default = "Unknown";
 
     #
+    # References:
+    #   - W421-E1-04.pdf
+    #       Section 7-4-2 FINS/TCP Mode Specifications; Page 177 - 180
+    #   - Wireshark OMRON FINS dissectore: packet-omron-fins.c
+    #       https://github.com/wireshark/wireshark/blob/master/epan/dissectors/packet-omron-fins.c
+    #
+    const TCP_COMMAND_CODE = {
+        [OMRON_FINS_ENUMS::NODE_ADDRESS_DATA_SEND_CLIENT] = "Node Address Data Send (Client to Server)",
+        [OMRON_FINS_ENUMS::NODE_ADDRESS_DATA_SEND_SERVER] = "Node Address Data Send (Server to Client)",
+        [OMRON_FINS_ENUMS::FRAME_SEND]                    = "Frame Send",
+        [OMRON_FINS_ENUMS::FRAME_SEND_ERROR_NOTIFICATION] = "Frame Send Error Notification",
+        [OMRON_FINS_ENUMS::CONNECTION_CONFIRMATION]       = "Connection Confirmation"
+    }&default = "Unknown";
+
+    #
+    # References:
+    #   - W421-E1-04.pdf
+    #       Section 7-4-2 FINS/TCP Mode Specifications; Page 178
+    #   - Wireshark OMRON FINS dissectore: packet-omron-fins.c
+    #       https://github.com/wireshark/wireshark/blob/master/epan/dissectors/packet-omron-fins.c
+    #
+    const TCP_ERROR_CODE = {
+        [OMRON_FINS_ENUMS::NORMAL]                                       = "Normal",
+        [OMRON_FINS_ENUMS::HEADER_NOT_FINS]                              = "The header is not 'FINS' (ASCII code)",
+        [OMRON_FINS_ENUMS::DATA_LENGTH_TOO_LONG]                         = "The data length is too long.",
+        [OMRON_FINS_ENUMS::COMMAND_NOT_SUPPORTED]                        = "The command is not supported",
+        [OMRON_FINS_ENUMS::ALL_CONNECTIONS_IN_USE]                       = "All connections are in use",
+        [OMRON_FINS_ENUMS::NODE_ALL_READY_CONNECTED]                     = "The specified node is already connected",
+        [OMRON_FINS_ENUMS::ATTEMPT_TO_ACCESS_PROTECTED_NODE]             = "Attempt to access a protected node from an unspecified IP address",
+        [OMRON_FINS_ENUMS::CLIENT_NODE_ADDRESS_OUT_OF_RANGE]             = "The clinet FINS node address is out of range",
+        [OMRON_FINS_ENUMS::NODE_ADDRESS_BEING_USED_BY_CLIENT_AND_SERVER] = "The same FINS node address is being used byt the client and server",
+        [OMRON_FINS_ENUMS::ALL_NODE_ADDRESSES_HAVE_BEEN_USED]            = "All the node addresses available for allocation have been used"
+    }&default= "Unknown";
+
+    #
     # Appendix A: FINS Command List
     #
     const COMMAND = {
