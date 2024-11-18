@@ -19,7 +19,8 @@ import OMRON_FINS_COMMAND_CODE_22;
 import OMRON_FINS_COMMAND_CODE_23;
 import OMRON_FINS_COMMAND_CODE_26;
 
-public type Messages = unit {
+
+public type UDP_Messages = unit {
     : FINS_Header[];
 };
 
