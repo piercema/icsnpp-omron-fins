@@ -21,11 +21,11 @@ import OMRON_FINS_COMMAND_CODE_26;
 
 
 public type UDP_Messages = unit {
-    : FINS_Header[];
+    finsHeader : FINS_Header[];
 };
 
 public type TCP_Messages = unit {
-    : TCP_FINS_Header[];
+    tcpFinsHeader : TCP_FINS_Header[];
 };
 
 const MAGIC_BYTES : uint32 = 0x46494E53; # ASCII code: "FINS"
@@ -49,9 +49,9 @@ public type TCP_FINS_Header = unit {
                                                                            }
     };
 
-    on %done {
-        print self;
-    }
+#    on %done {
+#        print self;
+#    }
 };
 
 public type FINS_Header = unit {
