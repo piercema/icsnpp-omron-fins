@@ -24,6 +24,36 @@ public type UDP_Messages = unit {
     : FINS_Header[];
 };
 
+public type TCP_Messages = unit {
+    : TCP_FINS_Header[];
+};
+
+const MAGIC_BYTES : uint32 = 0x46494E53; # ASCII code: "FINS"
+
+public type TCP_FINS_Header = unit {
+    header    : uint32 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$) &requires=($$==MAGIC_BYTES);
+    length    : uint32; # Length of data after command.
+    command   : uint32 &convert=OMRON_FINS_ENUMS::TcpCommandCode($$);
+    errorCode : uint32 &convert=OMRON_FINS_ENUMS::TcpErrorCode($$);
+
+    switch(self.command) {
+        #
+        # To determine the length of the FINS_Header, take into account the size of self.command (4 bytes) 
+        # and self.errorCode (4 bytes) and subtract them from the overall self.length
+        # 
+        OMRON_FINS_ENUMS::TcpCommandCode::FRAME_SEND                    ->   finsFrame : FINS_Header[] &max-size=self.length - 8;
+        OMRON_FINS_ENUMS::TcpCommandCode::NODE_ADDRESS_DATA_SEND_CLIENT ->   data_send_client_node_address : uint32;
+        OMRON_FINS_ENUMS::TcpCommandCode::NODE_ADDRESS_DATA_SEND_SERVER -> { 
+                                                                             client_node_address : uint32;
+                                                                             server_node_address : uint32;
+                                                                           }
+    };
+
+    on %done {
+        print self;
+    }
+};
+
 public type FINS_Header = unit {
     var omronFinsLinkId : string;
 

@@ -4,7 +4,12 @@ import Zeek_omron_fins;
 protocol analyzer OMRON_FINS_UDP over UDP:
     parse with OMRON_FINS::UDP_Messages;
 
+protocol analyzer OMRON_FINS_TCP over TCP:
+    parse with OMRON_FINS::TCP_Messages;
+
 export OMRON_FINS::UDP_Messages;
+export OMRON_FINS::TCP_Messages;
+export OMRON_FINS::TCP_FINS_Header;
 export OMRON_FINS::FINS_Header;
 export OMRON_FINS::Command;
 
