@@ -179,10 +179,7 @@ module OMRON_FINS;
         return general_log_response_code;
     }
 
-    function process_fins_header(c: connection, finsHeader: OMRON_FINS::FINS_Header) {
-        c = set_session_general_log(c);
-
-        local info_general_log = c$omron_fins_general_log;
+    function process_fins_header(c: connection, info_general_log: general_log, finsHeader: OMRON_FINS::FINS_Header) : connection {
 
         # Map header information
         info_general_log$omron_fins_link_id          = finsHeader$omronFinsLinkId;
@@ -202,8 +199,6 @@ module OMRON_FINS;
         # Process the command details
         info_general_log$response_code = process_details(c, finsHeader$command, info_general_log$omron_fins_link_id);
 
-        # Fire the event and tidy up
-        OMRON_FINS::emit_omron_fins_general_log(c);
-        delete c$omron_fins_general_log;
-
+        # Return the connection
+        return c;
     }
