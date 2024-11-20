@@ -211,14 +211,11 @@ module OMRON_FINS;
         info_general_log$tcp_error_code = OMRON_FINS_ENUMS::TCP_ERROR_CODE[tcpFinsHeader$errorCode];
 
         if (tcpFinsHeader$command == OMRON_FINS_ENUMS::TcpCommandCode_NODE_ADDRESS_DATA_SEND_CLIENT) {
-            #info_general_log$client_node_address = tcpFinsHeader$dataSendClientNodeAddress;
-            info_general_log$client_node_address = tcpFinsHeader$data_send_client_node_address;
+            info_general_log$client_node_address = tcpFinsHeader$dataSendClientNodeAddress;
 
         } else if (tcpFinsHeader$command == OMRON_FINS_ENUMS::TcpCommandCode_NODE_ADDRESS_DATA_SEND_SERVER) {
-            #info_general_log$client_node_address = tcpFinsHeader$clientNodeAddress;
-            #info_general_log$server_node_address = tcpFinsHeader$serverNodeAddress;
-            info_general_log$client_node_address = tcpFinsHeader$client_node_address;
-            info_general_log$server_node_address = tcpFinsHeader$server_node_address;
+            info_general_log$client_node_address = tcpFinsHeader$clientNodeAddress;
+            info_general_log$server_node_address = tcpFinsHeader$serverNodeAddress;
         }
 
         else if (tcpFinsHeader$command == OMRON_FINS_ENUMS::TcpCommandCode_FRAME_SEND) {
