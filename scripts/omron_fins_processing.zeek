@@ -202,3 +202,15 @@ module OMRON_FINS;
         # Return the connection
         return c;
     }
+
+    function process_tcp_fins_header(c: connection, info_general_log: general_log, tcpFinsHeader: OMRON_FINS::TCP_FINS_Header) : connection {
+
+        if (tcpFinsHeader$command == OMRON_FINS_ENUMS::TcpCommandCode_FRAME_SEND) {
+            for (i in tcpFinsHeader$finsHeader) {
+                c = process_fins_header(c, info_general_log, tcpFinsHeader$finsHeader[i]);
+            }
+        }
+
+        # Return the connection
+        return c;
+    }

@@ -18,3 +18,9 @@ on OMRON_FINS::UDP_Messages -> event OMRON_FINS::UDP_MessagesEvt (
     $is_orig,
     self
 );
+
+on OMRON_FINS::TCP_Messages -> event OMRON_FINS::TCP_MessagesEvt (
+    $conn,
+    $is_orig,
+    self
+);
