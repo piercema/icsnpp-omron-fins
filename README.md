@@ -41,6 +41,12 @@ This log summarizes the header data used for FINS commands and responses.
 | id                          | conn_id         | Default Zeek connection info (IP Addresses, Ports, etc.)                      |
 | proto                       | string          | Transport protocol                                                            |
 | omron_fins_link_id          | string          | Link id to link one log file to another                                       |
+| tcp_header                  | string          | ASCII code: 'FINS'                                                            |
+| tcp_length                  | count           | Length of data from command onwards                                           |
+| tcp_command                 | string          | TCP Command - e.g. Frame Send, FINS Node Address Send, etc.                   |
+| tcp_error_code              | string          | TCP error code                                                                |
+| client_node_address         | count           | FINS node address of FINS/TCP client. 1 to 254                                |
+| server_node_address         | count           | FINS node address of FINS/TCP server. 1 to 254                                |
 | icf_gateway                 | string          | Gateway usage (0 don't use; 1 use); per the protocol specification, set to 1. |
 | icf_data_type               | string          | Data type (0: command; 1: response)                                           |
 | icf_response_setting        | string          | Response setting (0: response required; 1: response not required)             |
