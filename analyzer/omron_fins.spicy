@@ -41,7 +41,7 @@ public type TCP_FINS_Header = unit {
         # To determine the length of the FINS_Header, take into account the size of self.command (4 bytes) 
         # and self.errorCode (4 bytes) and subtract them from the overall self.length
         # 
-        OMRON_FINS_ENUMS::TcpCommandCode::FRAME_SEND                    ->   finsHeader : FINS_Header[] &max-size=self.length - 8;
+        OMRON_FINS_ENUMS::TcpCommandCode::FRAME_SEND                    ->   finsHeader : FINS_Header[] &size=self.length - 8;
         OMRON_FINS_ENUMS::TcpCommandCode::NODE_ADDRESS_DATA_SEND_CLIENT ->   dataSendClientNodeAddress : uint32;
         OMRON_FINS_ENUMS::TcpCommandCode::NODE_ADDRESS_DATA_SEND_SERVER -> { 
                                                                              clientNodeAddress : uint32;
