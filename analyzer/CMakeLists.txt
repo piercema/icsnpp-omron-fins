@@ -44,5 +44,4 @@ spicy_add_analyzer(
             omron_fins_command_code_22.zeek
             omron_fins_command_code_23.zeek
             omron_fins_command_code_26.zeek
-    ENV HILTI_CXX_FLAGS=-fno-var-tracking-assignments
 )
