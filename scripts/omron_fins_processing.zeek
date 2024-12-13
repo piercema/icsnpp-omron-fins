@@ -178,3 +178,52 @@ module OMRON_FINS;
 
         return general_log_response_code;
     }
+
+    function process_fins_header(c: connection, info_general_log: general_log, finsHeader: OMRON_FINS::FINS_Header) : connection {
+
+        # Map header information
+        info_general_log$omron_fins_link_id          = finsHeader$omronFinsLinkId;
+        info_general_log$icf_gateway                 = OMRON_FINS_ENUMS::GATEWAY_USAGE[finsHeader$icf$gateway];
+        info_general_log$icf_data_type               = OMRON_FINS_ENUMS::DATA_TYPE[finsHeader$icf$dataType];
+        info_general_log$icf_response_setting        = OMRON_FINS_ENUMS::RESPONSE_SETTING[finsHeader$icf$responseSetting];
+        info_general_log$gateway_count               = finsHeader$gatewayCount;
+        info_general_log$destination_network_address = finsHeader$destinationNetworkAddress;
+        info_general_log$destination_node_number     = finsHeader$destinationNodeNumber;
+        info_general_log$destination_unit_address    = finsHeader$destinationUnitAddress;
+        info_general_log$source_network_address      = finsHeader$sourceNetworkAddress;
+        info_general_log$source_node_number          = finsHeader$sourceNodeNumber;
+        info_general_log$source_unit_address         = finsHeader$sourceUnitAddress;
+        info_general_log$service_id                  = finsHeader$serviceId;
+        info_general_log$command_code                = OMRON_FINS_ENUMS::COMMAND[finsHeader$commandCode];
+
+        # Process the command details
+        info_general_log$response_code = process_details(c, finsHeader$command, info_general_log$omron_fins_link_id);
+
+        # Return the connection
+        return c;
+    }
+
+    function process_tcp_fins_header(c: connection, info_general_log: general_log, tcpFinsHeader: OMRON_FINS::TCP_FINS_Header) : connection {
+
+        info_general_log$tcp_header     = tcpFinsHeader$header;
+        info_general_log$tcp_length     = tcpFinsHeader$length;
+        info_general_log$tcp_command    = OMRON_FINS_ENUMS::TCP_COMMAND_CODE[tcpFinsHeader$command];
+        info_general_log$tcp_error_code = OMRON_FINS_ENUMS::TCP_ERROR_CODE[tcpFinsHeader$errorCode];
+
+        if (tcpFinsHeader$command == OMRON_FINS_ENUMS::TcpCommandCode_NODE_ADDRESS_DATA_SEND_CLIENT) {
+            info_general_log$client_node_address = tcpFinsHeader$dataSendClientNodeAddress;
+
+        } else if (tcpFinsHeader$command == OMRON_FINS_ENUMS::TcpCommandCode_NODE_ADDRESS_DATA_SEND_SERVER) {
+            info_general_log$client_node_address = tcpFinsHeader$clientNodeAddress;
+            info_general_log$server_node_address = tcpFinsHeader$serverNodeAddress;
+        }
+
+        else if (tcpFinsHeader$command == OMRON_FINS_ENUMS::TcpCommandCode_FRAME_SEND) {
+            for (i in tcpFinsHeader$finsHeader) {
+                c = process_fins_header(c, info_general_log, tcpFinsHeader$finsHeader[i]);
+            }
+        }
+
+        # Return the connection
+        return c;
+    }

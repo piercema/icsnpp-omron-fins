@@ -2,15 +2,25 @@ import OMRON_FINS;
 import Zeek_omron_fins;
 
 protocol analyzer OMRON_FINS_UDP over UDP:
-    parse with OMRON_FINS::Messages;
+    parse with OMRON_FINS::UDP_Messages;
 
-export OMRON_FINS::Messages;
+protocol analyzer OMRON_FINS_TCP over TCP:
+    parse with OMRON_FINS::TCP_Messages;
+
+export OMRON_FINS::UDP_Messages;
+export OMRON_FINS::TCP_Messages;
+export OMRON_FINS::TCP_FINS_Header;
 export OMRON_FINS::FINS_Header;
 export OMRON_FINS::Command;
 
-on OMRON_FINS::FINS_Header -> event OMRON_FINS::FINS_HeaderEvt (
+on OMRON_FINS::UDP_Messages -> event OMRON_FINS::UDP_MessagesEvt (
     $conn,
     $is_orig,
     self
 );
 
+on OMRON_FINS::TCP_Messages -> event OMRON_FINS::TCP_MessagesEvt (
+    $conn,
+    $is_orig,
+    self
+);

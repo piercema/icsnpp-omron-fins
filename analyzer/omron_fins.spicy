@@ -19,8 +19,35 @@ import OMRON_FINS_COMMAND_CODE_22;
 import OMRON_FINS_COMMAND_CODE_23;
 import OMRON_FINS_COMMAND_CODE_26;
 
-public type Messages = unit {
-    : FINS_Header[];
+
+public type UDP_Messages = unit {
+    finsHeader : FINS_Header[];
+};
+
+public type TCP_Messages = unit {
+    tcpFinsHeader : TCP_FINS_Header[];
+};
+
+const MAGIC_BYTES : uint32 = 0x46494E53; # ASCII code: "FINS"
+
+public type TCP_FINS_Header = unit {
+    header    : uint32 &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$) &requires=($$==MAGIC_BYTES);
+    length    : uint32; # Length of data after command.
+    command   : uint32 &convert=OMRON_FINS_ENUMS::TcpCommandCode($$);
+    errorCode : uint32 &convert=OMRON_FINS_ENUMS::TcpErrorCode($$);
+
+    switch(self.command) {
+        #
+        # To determine the length of the FINS_Header, take into account the size of self.command (4 bytes) 
+        # and self.errorCode (4 bytes) and subtract them from the overall self.length
+        # 
+        OMRON_FINS_ENUMS::TcpCommandCode::FRAME_SEND                    ->   finsHeader : FINS_Header[] &size=self.length - 8;
+        OMRON_FINS_ENUMS::TcpCommandCode::NODE_ADDRESS_DATA_SEND_CLIENT ->   dataSendClientNodeAddress : uint32;
+        OMRON_FINS_ENUMS::TcpCommandCode::NODE_ADDRESS_DATA_SEND_SERVER -> { 
+                                                                             clientNodeAddress : uint32;
+                                                                             serverNodeAddress : uint32;
+                                                                           }
+    };
 };
 
 public type FINS_Header = unit {

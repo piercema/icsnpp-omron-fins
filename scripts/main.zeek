@@ -10,6 +10,7 @@ module OMRON_FINS;
 
 export {
     const omron_fins_ports_udp: set[port] = { 9600/udp } &redef;
+    const omron_fins_ports_tcp: set[port] = { 9600/tcp } &redef;
 
     redef enum Log::ID += { LOG_GENERAL_LOG, 
                             LOG_DETAIL_LOG, 
@@ -56,14 +57,21 @@ redef record connection += {
     omron_fins_file_log: detail_file_log &optional;
 };
 
+redef likely_server_ports += { omron_fins_ports_tcp, omron_fins_ports_udp };
+
 #Put protocol detection information here
 event zeek_init() &priority=5 {
 
     # register with the file analysis framework
     Files::register_protocol(Analyzer::ANALYZER_OMRON_FINS_UDP,
                             [$get_file_handle = OMRON_FINS::get_file_handle]);
+    Files::register_protocol(Analyzer::ANALYZER_OMRON_FINS_TCP,
+                            [$get_file_handle = OMRON_FINS::get_file_handle]);
+
 
     Analyzer::register_for_ports(Analyzer::ANALYZER_OMRON_FINS_UDP, omron_fins_ports_udp);
+    Analyzer::register_for_ports(Analyzer::ANALYZER_OMRON_FINS_TCP, omron_fins_ports_tcp);
+
 
     # initialize logging streams for all omron_fins logs
     Log::create_stream(OMRON_FINS::LOG_GENERAL_LOG,

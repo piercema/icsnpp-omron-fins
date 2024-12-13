@@ -3,11 +3,20 @@ module Zeek_omron_fins;
 import OMRON_FINS;
 import spicy;
 
-on OMRON_FINS::Messages::%done {
+on OMRON_FINS::UDP_Messages::%done {
     spicy::accept_input();
 }
 
-on OMRON_FINS::Messages::%error {
-    spicy::decline_input("error parsing omron_fins message");
+on OMRON_FINS::UDP_Messages::%error {
+    spicy::decline_input("error parsing omron_fins UDP message");
 }
+
+on OMRON_FINS::TCP_Messages::%done {
+    spicy::accept_input();
+}
+
+on OMRON_FINS::TCP_Messages::%error {
+    spicy::decline_input("error parsing omron_fins TCP message");
+}
+
 

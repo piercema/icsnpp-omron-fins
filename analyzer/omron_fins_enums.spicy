@@ -48,6 +48,41 @@ public type ResponseSetting = enum {
 };
 
 #
+# References:
+#   - W421-E1-04.pdf
+#       Section 7-4-2 FINS/TCP Mode Specifications; Page 177 - 180
+#   - Wireshark OMRON FINS dissectore: packet-omron-fins.c
+#       https://github.com/wireshark/wireshark/blob/master/epan/dissectors/packet-omron-fins.c
+#
+public type TcpCommandCode = enum {
+    NODE_ADDRESS_DATA_SEND_CLIENT = 0x00,
+    NODE_ADDRESS_DATA_SEND_SERVER = 0x01,
+    FRAME_SEND                    = 0x02,
+    FRAME_SEND_ERROR_NOTIFICATION = 0x03,
+    CONNECTION_CONFIRMATION       = 0x06
+};
+
+#
+# References:
+#   - W421-E1-04.pdf
+#       Section 7-4-2 FINS/TCP Mode Specifications; Page 178
+#   - Wireshark OMRON FINS dissectore: packet-omron-fins.c
+#       https://github.com/wireshark/wireshark/blob/master/epan/dissectors/packet-omron-fins.c
+#
+public type TcpErrorCode = enum {
+    NORMAL = 0x00000000,
+    HEADER_NOT_FINS                              = 0x00000001,
+    DATA_LENGTH_TOO_LONG                         = 0x00000002,
+    COMMAND_NOT_SUPPORTED                        = 0x00000003,
+    ALL_CONNECTIONS_IN_USE                       = 0x00000020,
+    NODE_ALL_READY_CONNECTED                     = 0x00000021,
+    ATTEMPT_TO_ACCESS_PROTECTED_NODE             = 0x00000022,
+    CLIENT_NODE_ADDRESS_OUT_OF_RANGE             = 0x00000023,
+    NODE_ADDRESS_BEING_USED_BY_CLIENT_AND_SERVER = 0x00000024,
+    ALL_NODE_ADDRESSES_HAVE_BEEN_USED            = 0x00000025
+};
+
+#
 # Appendix A: FINS Command List
 #
 public type CommandCode = enum {
