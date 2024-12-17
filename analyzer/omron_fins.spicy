@@ -62,12 +62,12 @@ public type FINS_Header = unit {
                              };
     reserved                  : uint8;
     gatewayCount              : uint8;
-    destinationNetworkAddress : uint8;
-    destinationNodeNumber     : uint8;
-    destinationUnitAddress    : uint8;
-    sourceNetworkAddress      : uint8;
-    sourceNodeNumber          : uint8;
-    sourceUnitAddress         : uint8;
+    destinationNetworkAddress : uint8  &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    destinationNodeNumber     : uint8  &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    destinationUnitAddress    : uint8  &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    sourceNetworkAddress      : uint8  &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    sourceNodeNumber          : uint8  &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
+    sourceUnitAddress         : uint8  &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
     serviceId                 : uint8  &convert=OMRON_FINS_FUNCTIONS::uintToHexString($$);
     commandCode               : uint16 &convert=OMRON_FINS_ENUMS::CommandCode($$);
     command                   : Command(self);
