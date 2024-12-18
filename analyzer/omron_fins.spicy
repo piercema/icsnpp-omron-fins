@@ -21,7 +21,11 @@ import OMRON_FINS_COMMAND_CODE_26;
 
 
 public type UDP_Messages = unit {
-    finsHeader : FINS_Header[];
+    udpMessages : UDP_Message[];
+};
+
+public type UDP_Message = unit {
+    finsHeader : FINS_Header;
 };
 
 public type TCP_Messages = unit {
