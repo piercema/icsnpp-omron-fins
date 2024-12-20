@@ -47,14 +47,14 @@ module OMRON_FINS;
         return info_file_log;
     }
 
-    function convert_enabled_to_boolean(enabledValue: OMRON_FINS_ENUMS::ENABLED) : bool
+    function convert_enabled_to_boolean(enabledValue: string) : bool
     {
         local boolean_value: bool;
-        if (OMRON_FINS_ENUMS::ENABLED[enabledValue] == "True (1)"){
-            boolean_value = T
+        if (enabledValue == "True (1)"){
+            boolean_value = T;
         }
         else {
-           boolean_value = False 
+           boolean_value = F;
         }
 
         return boolean_value;
