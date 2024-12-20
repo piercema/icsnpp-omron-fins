@@ -509,8 +509,8 @@ module OMRON_FINS;
                 info_file_log$total_no_of_blocks = finsCommand$fileMemoryIndexReadCommand$response$totalNoOfBLocks;
                 info_file_log$memory_type = OMRON_FINS_ENUMS::MEMORY_TYPE[finsCommand$fileMemoryIndexReadCommand$response$memoryType];
                 info_file_log$data_type = OMRON_FINS_ENUMS::CONTROL_DATA_TYPE[finsCommand$fileMemoryIndexReadCommand$response$dataTypeControlData[i]$dataType$dataType];
-                info_file_log$last_block = OMRON_FINS_ENUMS::ENABLED[finsCommand$fileMemoryIndexReadCommand$response$dataTypeControlData[i]$dataType$lastBlock];
-                info_file_log$protected = OMRON_FINS_ENUMS::ENABLED[finsCommand$fileMemoryIndexReadCommand$response$dataTypeControlData[i]$dataType$protected];
+                info_file_log$last_block = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$fileMemoryIndexReadCommand$response$dataTypeControlData[i]$dataType$lastBlock]);
+                info_file_log$protected = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$fileMemoryIndexReadCommand$response$dataTypeControlData[i]$dataType$protected]);
                 info_file_log$control_data = finsCommand$fileMemoryIndexReadCommand$response$dataTypeControlData[i]$controlData;
 
                 # Fire the event and tidy up
@@ -540,8 +540,8 @@ module OMRON_FINS;
         } else if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_RESPONSE) {
             info_file_log$response_code = OMRON_FINS_ENUMS::RESPONSE_CODE[finsCommand$fileMemoryReadCommand$response$responseCode];
             info_file_log$data_type = OMRON_FINS_ENUMS::CONTROL_DATA_TYPE[finsCommand$fileMemoryReadCommand$response$dataTypeControlData$dataType$dataType];
-            info_file_log$last_block = OMRON_FINS_ENUMS::ENABLED[finsCommand$fileMemoryReadCommand$response$dataTypeControlData$dataType$lastBlock];
-            info_file_log$protected = OMRON_FINS_ENUMS::ENABLED[finsCommand$fileMemoryReadCommand$response$dataTypeControlData$dataType$protected];
+            info_file_log$last_block = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$fileMemoryReadCommand$response$dataTypeControlData$dataType$lastBlock]);
+            info_file_log$protected = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$fileMemoryReadCommand$response$dataTypeControlData$dataType$protected]);
             info_file_log$control_data = finsCommand$fileMemoryReadCommand$response$dataTypeControlData$controlData;
             info_file_log$memory_data = finsCommand$fileMemoryReadCommand$response$data;
              
@@ -570,8 +570,8 @@ module OMRON_FINS;
 
         if (finsCommand$icfDataType == OMRON_FINS_ENUMS::DataType_COMMAND) {
             info_file_log$data_type = OMRON_FINS_ENUMS::CONTROL_DATA_TYPE[finsCommand$fileMemoryWriteCommand$command$dataTypeControlData$dataType$dataType];
-            info_file_log$last_block = OMRON_FINS_ENUMS::ENABLED[finsCommand$fileMemoryWriteCommand$command$dataTypeControlData$dataType$lastBlock];
-            info_file_log$protected = OMRON_FINS_ENUMS::ENABLED[finsCommand$fileMemoryWriteCommand$command$dataTypeControlData$dataType$protected];
+            info_file_log$last_block = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$fileMemoryWriteCommand$command$dataTypeControlData$dataType$lastBlock]);
+            info_file_log$protected = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$fileMemoryWriteCommand$command$dataTypeControlData$dataType$protected]);
             info_file_log$control_data = finsCommand$fileMemoryWriteCommand$command$dataTypeControlData$controlData;
             info_file_log$block_no = finsCommand$fileMemoryWriteCommand$command$blockNo;
             info_file_log$memory_data = finsCommand$fileMemoryWriteCommand$command$data;

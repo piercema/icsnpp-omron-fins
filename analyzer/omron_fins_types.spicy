@@ -279,10 +279,10 @@ type DateTime = unit {
 # FileNameRead: NoOfFiles
 #
 type NoOfFiles = unit {
-    var filesRead : uint64;
-    var lastFile  : uint64;
+    var filesRead : uint16;
+    var lastFile  : bool;
     numOfFiles : bitfield(16) {
-        lastFile    : 15;
+        lastFile    : 15 &convert=cast<bool>($$);
         noFilesRead : 0..14;
     };
 

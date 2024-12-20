@@ -1,0 +1,20 @@
+# Copyright 2024, Battelle Energy Alliance, LLC, ALL RIGHTS RESERVED
+# Development Machine Files
+.*.swp
+*~
+*.bak
+*.DS_Store
+.~lock.*#
+
+# Parsnip/Zeek Output Files
+*.svg
+*cycles.txt
+*.log
+*.hlto
+
+# Zeek Test Files
+testing/.tmp/
+testing/.btest.failed.dat
+
+# Don't ignore baseline log files
+!testing/baseline/*/*.log

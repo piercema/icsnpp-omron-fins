@@ -10,14 +10,14 @@ module OMRON_FINS;
         info_detail_log$command = OMRON_FINS_ENUMS::MESSAGE_TYPE[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageType];
 
         # Message bits set
-        info_detail_log$message_no_0 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_0];
-        info_detail_log$message_no_1 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_1];
-        info_detail_log$message_no_2 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_2];
-        info_detail_log$message_no_3 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_3];
-        info_detail_log$message_no_4 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_4];
-        info_detail_log$message_no_5 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_5];
-        info_detail_log$message_no_6 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_6];
-        info_detail_log$message_no_7 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_7];
+        info_detail_log$message_no_0 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_0]);
+        info_detail_log$message_no_1 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_1]);
+        info_detail_log$message_no_2 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_2]);
+        info_detail_log$message_no_3 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_3]);
+        info_detail_log$message_no_4 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_4]);
+        info_detail_log$message_no_5 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_5]);
+        info_detail_log$message_no_6 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_6]);
+        info_detail_log$message_no_7 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_7]);
 
         # Fire the event and tidy up
         OMRON_FINS::emit_omron_fins_detail_log(c);
@@ -35,14 +35,14 @@ module OMRON_FINS;
         info_detail_log$command = OMRON_FINS_ENUMS::MESSAGE_TYPE[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageType];
 
         # Message bits set
-        info_detail_log$message_no_0 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_0];
-        info_detail_log$message_no_1 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_1];
-        info_detail_log$message_no_2 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_2];
-        info_detail_log$message_no_3 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_3];
-        info_detail_log$message_no_4 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_4];
-        info_detail_log$message_no_5 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_5];
-        info_detail_log$message_no_6 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_6];
-        info_detail_log$message_no_7 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_7];
+        info_detail_log$message_no_0 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_0]);
+        info_detail_log$message_no_1 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_1]);
+        info_detail_log$message_no_2 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_2]);
+        info_detail_log$message_no_3 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_3]);
+        info_detail_log$message_no_4 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_4]);
+        info_detail_log$message_no_5 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_5]);
+        info_detail_log$message_no_6 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_6]);
+        info_detail_log$message_no_7 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_7]);
 
         # Fire the event and tidy up
         OMRON_FINS::emit_omron_fins_detail_log(c);
@@ -60,20 +60,20 @@ module OMRON_FINS;
         info_detail_log$command = OMRON_FINS_ENUMS::MESSAGE_TYPE[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageType];
 
         # Message bits set
-        info_detail_log$fal_fals_no_0  = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_0];
-        info_detail_log$fal_fals_no_1  = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_1];
-        info_detail_log$fal_fals_no_2  = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_2];
-        info_detail_log$fal_fals_no_3  = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_3];
-        info_detail_log$fal_fals_no_4  = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_4];
-        info_detail_log$fal_fals_no_5  = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_5];
-        info_detail_log$fal_fals_no_6  = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_6];
-        info_detail_log$fal_fals_no_7  = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_7];
-        info_detail_log$fal_fals_no_8  = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$reservedBit_or_falFalsBit_8];
-        info_detail_log$fal_fals_no_9  = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$reservedBit_or_falFalsBit_9];
-        info_detail_log$fal_fals_no_10 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$reservedBit_or_falFalsBit_10];
-        info_detail_log$fal_fals_no_11 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$reservedBit_or_falFalsBit_11];
-        info_detail_log$fal_fals_no_12 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$reservedBit_or_falFalsBit_12];
-        info_detail_log$fal_fals_no_13 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$reservedBit_or_falFalsBit_13];
+        info_detail_log$fal_fals_no_0  = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_0]);
+        info_detail_log$fal_fals_no_1  = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_1]);
+        info_detail_log$fal_fals_no_2  = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_2]);
+        info_detail_log$fal_fals_no_3  = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_3]);
+        info_detail_log$fal_fals_no_4  = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_4]);
+        info_detail_log$fal_fals_no_5  = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_5]);
+        info_detail_log$fal_fals_no_6  = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_6]);
+        info_detail_log$fal_fals_no_7  = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$messageNoBit_or_falFalsBit_7]);
+        info_detail_log$fal_fals_no_8  = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$reservedBit_or_falFalsBit_8]);
+        info_detail_log$fal_fals_no_9  = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$reservedBit_or_falFalsBit_9]);
+        info_detail_log$fal_fals_no_10 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$reservedBit_or_falFalsBit_10]);
+        info_detail_log$fal_fals_no_11 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$reservedBit_or_falFalsBit_11]);
+        info_detail_log$fal_fals_no_12 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$reservedBit_or_falFalsBit_12]);
+        info_detail_log$fal_fals_no_13 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$command$messageNoParameter$reservedBit_or_falFalsBit_13]);
 
         # Fire the event and tidy up
         OMRON_FINS::emit_omron_fins_detail_log(c);
@@ -102,14 +102,14 @@ module OMRON_FINS;
         info_detail_log$command = OMRON_FINS_ENUMS::MESSAGE_TYPE[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageType];
 
         # Message bit set
-        info_detail_log$message_no_0 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$message_read_response$messageNoBit_0];
-        info_detail_log$message_no_1 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$message_read_response$messageNoBit_1];
-        info_detail_log$message_no_2 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$message_read_response$messageNoBit_2];
-        info_detail_log$message_no_3 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$message_read_response$messageNoBit_3];
-        info_detail_log$message_no_4 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$message_read_response$messageNoBit_4];
-        info_detail_log$message_no_5 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$message_read_response$messageNoBit_5];
-        info_detail_log$message_no_6 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$message_read_response$messageNoBit_6];
-        info_detail_log$message_no_7 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$message_read_response$messageNoBit_7];
+        info_detail_log$message_no_0 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$message_read_response$messageNoBit_0]);
+        info_detail_log$message_no_1 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$message_read_response$messageNoBit_1]);
+        info_detail_log$message_no_2 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$message_read_response$messageNoBit_2]);
+        info_detail_log$message_no_3 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$message_read_response$messageNoBit_3]);
+        info_detail_log$message_no_4 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$message_read_response$messageNoBit_4]);
+        info_detail_log$message_no_5 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$message_read_response$messageNoBit_5]);
+        info_detail_log$message_no_6 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$message_read_response$messageNoBit_6]);
+        info_detail_log$message_no_7 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$message_read_response$messageNoBit_7]);
 
         # Messages
         info_detail_log$message_0    = finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$message_read_response$messageNo_0;
@@ -180,20 +180,20 @@ module OMRON_FINS;
         info_detail_log$command = OMRON_FINS_ENUMS::MESSAGE_TYPE[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageType];
 
         # Message bit set
-        info_detail_log$fal_fals_no_0  = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$fal_fals_read_response$falFalsNoBit_0];
-        info_detail_log$fal_fals_no_1  = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$fal_fals_read_response$falFalsNoBit_1];
-        info_detail_log$fal_fals_no_2  = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$fal_fals_read_response$falFalsNoBit_2];
-        info_detail_log$fal_fals_no_3  = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$fal_fals_read_response$falFalsNoBit_3];
-        info_detail_log$fal_fals_no_4  = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$fal_fals_read_response$falFalsNoBit_4];
-        info_detail_log$fal_fals_no_5  = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$fal_fals_read_response$falFalsNoBit_5];
-        info_detail_log$fal_fals_no_6  = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$fal_fals_read_response$falFalsNoBit_6];
-        info_detail_log$fal_fals_no_7  = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$fal_fals_read_response$falFalsNoBit_7];
-        info_detail_log$fal_fals_no_8  = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$fal_fals_read_response$falFalsNoBit_8];
-        info_detail_log$fal_fals_no_9  = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$fal_fals_read_response$falFalsNoBit_9];
-        info_detail_log$fal_fals_no_10 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$fal_fals_read_response$falFalsNoBit_10];
-        info_detail_log$fal_fals_no_11 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$fal_fals_read_response$falFalsNoBit_11];
-        info_detail_log$fal_fals_no_12 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$fal_fals_read_response$falFalsNoBit_12];
-        info_detail_log$fal_fals_no_13 = OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$fal_fals_read_response$falFalsNoBit_13];
+        info_detail_log$fal_fals_no_0  = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$fal_fals_read_response$falFalsNoBit_0]);
+        info_detail_log$fal_fals_no_1  = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$fal_fals_read_response$falFalsNoBit_1]);
+        info_detail_log$fal_fals_no_2  = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$fal_fals_read_response$falFalsNoBit_2]);
+        info_detail_log$fal_fals_no_3  = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$fal_fals_read_response$falFalsNoBit_3]);
+        info_detail_log$fal_fals_no_4  = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$fal_fals_read_response$falFalsNoBit_4]);
+        info_detail_log$fal_fals_no_5  = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$fal_fals_read_response$falFalsNoBit_5]);
+        info_detail_log$fal_fals_no_6  = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$fal_fals_read_response$falFalsNoBit_6]);
+        info_detail_log$fal_fals_no_7  = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$fal_fals_read_response$falFalsNoBit_7]);
+        info_detail_log$fal_fals_no_8  = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$fal_fals_read_response$falFalsNoBit_8]);
+        info_detail_log$fal_fals_no_9  = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$fal_fals_read_response$falFalsNoBit_9]);
+        info_detail_log$fal_fals_no_10 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$fal_fals_read_response$falFalsNoBit_10]);
+        info_detail_log$fal_fals_no_11 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$fal_fals_read_response$falFalsNoBit_11]);
+        info_detail_log$fal_fals_no_12 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$fal_fals_read_response$falFalsNoBit_12]);
+        info_detail_log$fal_fals_no_13 = convert_enabled_to_boolean(OMRON_FINS_ENUMS::ENABLED[finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$fal_fals_read_response$falFalsNoBit_13]);
 
         # Messages
         info_detail_log$fal_fals_0  = finsCommand$messageReadMessageClearFalFalsReadCommand$response$messageRead_FalFalsRead$fal_fals_read_response$falFalsNo_0;
