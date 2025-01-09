@@ -334,9 +334,9 @@ export{
     # RunMode 
     #
     const RUN_MODE = {
-        [OMRON_FINS_ENUMS::RunMode_DEBUG]   = "Debug (1)",
-        [OMRON_FINS_ENUMS::RunMode_MONITOR] = "Monitor (2)",
-        [OMRON_FINS_ENUMS::RunMode_RUN]     = "Run (4)",
+        [OMRON_FINS_ENUMS::RunMode_DEBUG_MODE] = "Debug (1)",
+        [OMRON_FINS_ENUMS::RunMode_MONITOR]    = "Monitor (2)",
+        [OMRON_FINS_ENUMS::RunMode_RUN]        = "Run (4)",
     }&default = "Not Set: Default to Monitor (2)";
 
     #
@@ -370,10 +370,10 @@ export{
     # Controller Status Read Mode
     #
     const CONTROLLER_STATUS_READ_MODE = {
-        [OMRON_FINS_ENUMS::ControllerStatusReadMode_PROGRAM] = "PROGRAM (0x00)",
-        [OMRON_FINS_ENUMS::ControllerStatusReadMode_DEBUG]   = "DEBUG (0x01)",
-        [OMRON_FINS_ENUMS::ControllerStatusReadMode_MONITOR] = "MONITOR (0x02)",
-        [OMRON_FINS_ENUMS::ControllerStatusReadMode_RUN]     = "RUN (0x04)",
+        [OMRON_FINS_ENUMS::ControllerStatusReadMode_PROGRAM]    = "PROGRAM (0x00)",
+        [OMRON_FINS_ENUMS::ControllerStatusReadMode_DEBUG_MODE] = "DEBUG (0x01)",
+        [OMRON_FINS_ENUMS::ControllerStatusReadMode_MONITOR]    = "MONITOR (0x02)",
+        [OMRON_FINS_ENUMS::ControllerStatusReadMode_RUN]        = "RUN (0x04)",
     }&default = "Unknown";
 
     #

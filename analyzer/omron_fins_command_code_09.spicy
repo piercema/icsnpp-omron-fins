@@ -195,8 +195,9 @@ type FalFalsRead_Response = unit(restOfData : bytes) {
     var falFalsNo_13    : string;
 
     on %done {
-
-        self.falFalsNoBits = (*restOfData.at(1) << 8) | *restOfData.at(0);
+        local temp : uint16;
+        temp = cast<uint16>(*restOfData.at(1));
+        self.falFalsNoBits = cast<uint16>((temp << 8) | cast<uint16>(*restOfData.at(0)));
 
         self.falFalsNoBit_0 = OMRON_FINS_ENUMS::Enabled((self.falFalsNoBits & 0x0001));
         if (self.falFalsNoBit_0 == OMRON_FINS_ENUMS::Enabled::TRUE) {
