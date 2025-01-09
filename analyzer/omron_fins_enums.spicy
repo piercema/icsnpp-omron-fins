@@ -336,7 +336,7 @@ public type DataLinkStatus = enum {
 # RunMode 
 #
 public type RunMode = enum {
-    DEBUG   = 1,
+    DEBUG_MODE   = 1,
     MONITOR = 2,
     RUN     = 4,
 };
@@ -372,10 +372,10 @@ public type ControllerStatusReadStatus = enum {
 # Controller Status Read Mode
 #
 public type ControllerStatusReadMode = enum {
-    PROGRAM = 0x00,
-    DEBUG   = 0x01,
-    MONITOR = 0x02,
-    RUN     = 0x04,
+    PROGRAM    = 0x00,
+    DEBUG_MODE = 0x01,
+    MONITOR    = 0x02,
+    RUN        = 0x04,
 };
 
 #
