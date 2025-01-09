@@ -26,10 +26,6 @@ public type UDP_Messages = unit {
 
 public type TCP_Messages = unit {
     tcpFinsHeader : TCP_FINS_Header[];
-
-    on %done {
-        print "ERROR in TCP_Messages";
-    }
 };
 
 const MAGIC_BYTES : uint32 = 0x46494E53; # ASCII code: "FINS"
