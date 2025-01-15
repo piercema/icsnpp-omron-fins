@@ -6,7 +6,7 @@ module OMRON_FINS;
                 $ts=network_time(),
                 $uid=c$uid,
                 $id=c$id,
-                $proto="omron_fins");
+                $proto=get_conn_transport_proto(c$id));
         
         return c;
     }
